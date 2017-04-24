@@ -35,8 +35,8 @@
     
     if (self.childViewControllers.count > 0) { // 如果push进来的不是第一个控制器
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20, 0, 15, 15)];
-        [btn setImage:[UIImage imageNamed:@"ic_fanhui.png"] forState:UIControlStateNormal];
-        [btn setImage:[UIImage imageNamed:@"c4_ic_zuo.png"] forState:UIControlStateHighlighted]; // 让按钮内部的所有内容左对齐
+        [btn setImage:IMG(@"ic_fanhui.png") forState:UIControlStateNormal];
+        [btn setImage:IMG(@"c4_ic_zuo.png") forState:UIControlStateHighlighted]; // 让按钮内部的所有内容左对齐
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         //设置内边距，让按钮靠近屏幕边缘
         btn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
