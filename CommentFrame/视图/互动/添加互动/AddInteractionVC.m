@@ -149,6 +149,7 @@ UICollectionViewDelegateFlowLayout>
 }
 #pragma mark - 拍照获得数据
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 	weakObj;
 	UIImage *theImage = nil;
 	// 判断，图片是否允许修改
@@ -161,9 +162,8 @@ UICollectionViewDelegateFlowLayout>
 	}
 	if (theImage) {//保存图片到相册中
 		[[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
-			[picker dismissViewControllerAnimated:YES completion:nil];
+			
 		} faildBlock:^(NSError *error) {
-			[picker dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}
 }

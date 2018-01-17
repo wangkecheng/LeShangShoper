@@ -10,4 +10,5 @@
 #import "ManufacturersModel.h"
 @interface ManufacturersCell : UITableViewCell
 @property(nonatomic,strong)ManufacturersModel *model;
+@property(nonatomic,strong)SeriesModel *seriesModel;
 @end

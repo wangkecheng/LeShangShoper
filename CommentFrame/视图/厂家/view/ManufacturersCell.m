@@ -23,7 +23,10 @@
 	_model = model;
 	_nameLbl.text = model.name;
 }
-
+-(void)setSeriesModel:(SeriesModel *)seriesModel{
+    _seriesModel = seriesModel;
+    _nameLbl.text = seriesModel.name;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

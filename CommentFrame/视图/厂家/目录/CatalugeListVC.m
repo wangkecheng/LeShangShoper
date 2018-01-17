@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
-@property(nonatomic,strong)NSMutableArray * arrModel;
+@property(nonatomic,strong)CatalugeListHeaderView * headerView;
 @end
 
 @implementation CatalugeListVC
@@ -24,25 +24,19 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = _model.name;
-	
-	_arrModel = [NSMutableArray array];
+	 
 	[_tableView registerNib:[UINib nibWithNibName:ManufacturersCell_ bundle:nil] forCellReuseIdentifier:ManufacturersCell_];
 	
 	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
-	_tableView.tableHeaderView = [CatalugeListHeaderView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH, 240)];
+    _headerView = [CatalugeListHeaderView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH, 240)];
+    _tableView.tableHeaderView = _headerView;
 	_tableView.tableFooterView=[UIView new];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
-	//	[self getPage];
-	for (int i = 0 ; i< 10; i++) {
-		ManufacturersModel * model = [[ManufacturersModel alloc]init];
-		model.name =@"warron";
-		[_arrModel addObject:model];
-	}
-	[self.tableView reloadData];
+     [self getPage];
 }
 
 - (void)getPage{
@@ -57,22 +51,24 @@
 - (void)getData:(NSInteger)pageIndex{
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
+    m.mid = _model.mid;
 	weakObj;
-	[BaseServer postObjc:m path:@"getUniversityList.php" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+	[BaseServer postObjc:m path:@"/merchant/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:result[@"data"]];
-		
-		if (strongSelf.page == 1) {
-			[strongSelf.arrModel removeAllObjects];
-		}
-		[strongSelf.arrModel addObjectsFromArray:tempArr];
+		strongSelf.model = [ManufacturersModel yy_modelWithJSON:result[@"data"]];//直接用上个页面传过来的model来处理
+        strongSelf.model.seriesArr = [NSMutableArray array];
+        for (NSDictionary * dict in result[@"data"][@"series"]) {
+            SeriesModel * seriesModel = [SeriesModel yy_modelWithJSON:dict];
+            [strongSelf.model.seriesArr addObject:seriesModel];
+        }
 		dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl)];
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
 			[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
-			if (strongSelf.arrModel.count == 0) {
+			if (strongSelf.model.seriesArr.count == 0) {
 				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
 			}
 		});
@@ -82,19 +78,20 @@
 		[strongSelf.tableView.mj_footer endRefreshing];
 	}];
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	
-	return _arrModel.count;
+	return _model.seriesArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell * cell = nil;
 	weakObj;
 	ManufacturersCell *headerCell = [tableView dequeueReusableCellWithIdentifier:ManufacturersCell_ forIndexPath:indexPath];
-	[headerCell setModel:_arrModel[indexPath.row]];
+	[headerCell setSeriesModel:_model.seriesArr[indexPath.row]];
 	[headerCell setSelectionStyle:0];//不要分割线
 	cell = headerCell;
 	

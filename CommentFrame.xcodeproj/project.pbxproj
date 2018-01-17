@@ -779,6 +779,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18C86DA5200F332D00F4E587 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		1F608DFF0BE1D8969B30F5AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,7 +805,6 @@
 				200C800F1FFFC8CB00C6A2AA /* AddInteractionVC.h */,
 				200C80101FFFC8CB00C6A2AA /* AddInteractionVC.m */,
 				200C80111FFFC8CB00C6A2AA /* AddInteractionVC.xib */,
-				206FA0312000F25700DB7998 /* model */,
 				206FA0302000F25600DB7998 /* view */,
 			);
 			path = "添加互动";
@@ -1225,17 +1231,9 @@
 				2090C634200D865B00CC07F9 /* SpecialOfferListVC.m */,
 				2090C635200D865B00CC07F9 /* SpecialOfferListVC.xib */,
 				2090C63C200DF6C000CC07F9 /* 商品详情 */,
-				200D7F9A1FF7473B00B97979 /* model */,
 				200D7F9B1FF7473B00B97979 /* view */,
 			);
 			path = "特价";
-			sourceTree = "<group>";
-		};
-		200D7F9A1FF7473B00B97979 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		200D7F9B1FF7473B00B97979 /* view */ = {
@@ -1567,13 +1565,6 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		206FA0312000F25700DB7998 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		206FA0372000F61100DB7998 /* 输入框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1644,18 +1635,11 @@
 				207418CA200660A2007C4F36 /* CatalugeListVC.h */,
 				207418CB200660A2007C4F36 /* CatalugeListVC.m */,
 				207418CC200660A2007C4F36 /* CatalugeListVC.xib */,
-				207418C820066068007C4F36 /* model */,
+				18C86DA5200F332D00F4E587 /* model */,
 				207418C920066068007C4F36 /* view */,
 				207418CF200661FF007C4F36 /* 产品系列详情 */,
 			);
 			path = "目录";
-			sourceTree = "<group>";
-		};
-		207418C820066068007C4F36 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		207418C920066068007C4F36 /* view */ = {
@@ -2188,7 +2172,7 @@
 				TargetAttributes = {
 					2031F6B01EA99BA30075E7F3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 682G272KAQ;
+						DevelopmentTeam = XD227H8XK8;
 						ProvisioningStyle = Automatic;
 					};
 					2031F6C91EA99BA30075E7F3 = {
@@ -2791,7 +2775,7 @@
 			baseConfigurationReference = F01CA82EB27CD0D9FEF3A079 /* Pods-CommentFrame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 682G272KAQ;
+				DEVELOPMENT_TEAM = XD227H8XK8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2822,7 +2806,7 @@
 			baseConfigurationReference = 11C318E848A96E01BDB5F867 /* Pods-CommentFrame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 682G272KAQ;
+				DEVELOPMENT_TEAM = XD227H8XK8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

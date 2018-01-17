@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CatalugeListHeaderView : UIView
+@property (weak, nonatomic) IBOutlet UIImageView *backImg;
+
 +(CatalugeListHeaderView *)instanceByFrame:(CGRect)frame;
 @end
