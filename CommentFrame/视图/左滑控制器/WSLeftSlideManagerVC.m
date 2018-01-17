@@ -142,7 +142,8 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
 }
 
 - (void)panGestureRecognizer:(UIPanGestureRecognizer *)recognizer{
-    CGPoint point = [recognizer translationInView:self.view];
+	return;//不能滑动打开侧滑视图
+	CGPoint point = [recognizer translationInView:self.view];
     CGFloat velocityX = [recognizer velocityInView:self.view].x;
     if (velocityX > MinTrigerSpeed) {
         [self showMenu:YES];

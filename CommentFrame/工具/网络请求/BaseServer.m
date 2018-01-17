@@ -78,10 +78,10 @@
     NSSet *set = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"application/javascript",nil];
     [manager.responseSerializer setAcceptableContentTypes:set];
     [manager.requestSerializer setTimeoutInterval:10.0]; // 10秒超时
-    //    NSString *token = TOKEN;
-    //    if (token.length!=0) {//登陆的时候是没有TOKEN的
-    ////        [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"token"];
-    //    }
+        NSString *token = TOKEN;
+        if (token.length!=0) {//登陆的时候是没有TOKEN的
+            [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"token"];
+        }
     NSString *fullPath = [POST_HOST stringByAppendingString:path];
     NSDictionary *paramDict  =  [obj yy_modelToJSONObject];//将HDModel对象转为字典
     [manager POST:fullPath parameters:paramDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -91,7 +91,7 @@
             if ([image isKindOfClass:[UIImage class]]) {
                 NSData *imageData =  [DDFactory resetSizeOfImageData:image maxSize:500000];
                 NSString * name = [NSString stringWithFormat:@"uploadimageFile%ld",i];
-                [formData appendPartWithFileData:imageData name:name fileName:@"imgfileStyle" mimeType:@"image/jpeg"];
+                [formData appendPartWithFileData:imageData name:name fileName:@"files" mimeType:@"image/jpeg"];
             }
         }
         

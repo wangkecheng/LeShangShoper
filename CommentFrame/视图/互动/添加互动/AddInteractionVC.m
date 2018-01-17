@@ -83,74 +83,41 @@ UICollectionViewDelegateFlowLayout>
 -(void)back{
 	[self.view endEditing:YES];
 		weakObj;
-	if (_noteTextView.text.length == 0 && _arrSelected.count == 0) {
-		[self.navigationController popViewControllerAnimated:YES];
-		return;
-	}
+//	if (_noteTextView.text.length == 0 && _arrSelected.count == 0) {
+//		[self.navigationController popViewControllerAnimated:YES];
+//		return;
+//	}
 
-	SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:@"是否保存草稿" cancelTitle:nil destructiveTitle:@"取消" otherTitles:@[@"保存",@"不保存"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
-		if (index == 0) { //保存到数据库
-			dispatch_async(dispatch_get_main_queue(), ^{
-				
-			});
-		}
-		else if(index == 1){
-			[weakSelf.navigationController popViewControllerAnimated:YES];
-		}
-	}];
-	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
-	[actionSheet show];
+//	SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:@"是否保存草稿" cancelTitle:nil destructiveTitle:@"取消" otherTitles:@[@"保存",@"不保存"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
+//		if (index == 0) { //保存到数据库
+//			dispatch_async(dispatch_get_main_queue(), ^{
+//
+//			});
+//		}
+//		else if(index == 1){
+//			[weakSelf.navigationController popViewControllerAnimated:YES];
+//		}
+//	}];
+//	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
+//	[actionSheet show];
 }
 
 -(void)publishAction{//发布操作
 	weakObj;
-	[self uploadImgBlock:^(NSMutableArray *arrImgUrl){//先将图片上传到服务器
-		HDModel *m = [HDModel model];
-//		m.project_id = ProjectID;
-//		m.content = weakSelf.noteTextView.text;
-		if (arrImgUrl.count!=0) {
-//			m.images = [arrImgUrl componentsJoinedByString:@","];//都上传完后，在将图片链接和文字上传
-		}
-		[BaseServer postObjc:m path:@"app/yychat/addprojectchat.html" isShowHud:YES isShowSuccessHud:NO  success:^(id result) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				if (weakSelf.publishedBlock) {
-					weakSelf.publishedBlock();
-				}
-				[weakSelf.navigationController popViewControllerAnimated:YES];
-			});
-		} failed:^(NSError *error) {
-			
-		}];
+ //上传图片
+	HDModel *m = [HDModel model];
+	m.content = _noteTextView.text;
+	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (weakSelf.publishedBlock) {
+				weakSelf.publishedBlock();
+			}
+			[weakSelf.navigationController popViewControllerAnimated:YES];
+		});
+	} failed:^(NSError *error) {
+		
 	}];
 }
-
-//上传图片
--(void)uploadImgBlock:(void(^)(NSMutableArray *))finishBlock{
-	//创建一个组队列
-	dispatch_group_t group =  dispatch_group_create();
-	//创建队列
-	dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	
-	_arrImgUrl = [[NSMutableArray alloc]init];
-	weakObj;
-//	for (ALAsset *set  in _arrSelected) {
-//		dispatch_group_enter(group);//进入组队列
-//		dispatch_group_async(group,queue, ^{
-//			[BaseServer uploadImages: [self getBigIamgeWithALAsset:set] path:@"app/yyapp/uploadfile.html"param:nil isShowHud:NO success:^(id result) {
-//				[weakSelf.arrImgUrl addObject: result[@"data"]];
-//				dispatch_group_leave(group);//离开组队列
-//			} failed:^(NSError *error) {
-//
-//			}];
-//		});
-//	}
-	dispatch_group_notify(group, queue, ^{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			finishBlock(weakSelf.arrImgUrl);
-		});
-	});
-}
-
 #pragma mark 选择图片
 - (void)selectImgFromAlbum{
 	weakObj;

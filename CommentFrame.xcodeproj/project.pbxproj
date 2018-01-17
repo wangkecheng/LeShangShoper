@@ -1852,8 +1852,8 @@
 		2090C624200B15BD00CC07F9 /* 左滑控制器 */ = {
 			isa = PBXGroup;
 			children = (
-				2090C625200B15BD00CC07F9 /* WSLeftSlideManagerVC.m */,
 				2090C626200B15BD00CC07F9 /* WSLeftSlideManagerVC.h */,
+				2090C625200B15BD00CC07F9 /* WSLeftSlideManagerVC.m */,
 			);
 			path = "左滑控制器";
 			sourceTree = "<group>";

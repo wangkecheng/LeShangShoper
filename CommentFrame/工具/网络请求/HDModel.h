@@ -27,5 +27,5 @@
 @property (nonatomic,strong)NSString *interactId;
 
 @property (nonatomic,strong)NSString *keyword;
-
+@property (nonatomic,strong)NSString *content;
 @end
