@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="229" id="KGk-i7-Jjw" customClass="SellerCell">
+            <rect key="frame" x="0.0" y="0.0" width="475" height="229"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="475" height="228.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4D-ZE-U3E">
+                        <rect key="frame" x="0.0" y="0.0" width="475" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门商家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy9-K6-wgV">
+                                <rect key="frame" x="209" y="6.5" width="57.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iv1-vT-cJa">
+                                <rect key="frame" x="281.5" y="14.5" width="30" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbB-Ky-ACP">
+                                <rect key="frame" x="164" y="14.5" width="30" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="GZh-Yc-LuC"/>
+                                    <constraint firstAttribute="width" constant="30" id="znL-qD-afY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iv1-vT-cJa" firstAttribute="width" secondItem="rbB-Ky-ACP" secondAttribute="width" id="4AQ-Qy-8Id"/>
+                            <constraint firstItem="rbB-Ky-ACP" firstAttribute="centerY" secondItem="f4D-ZE-U3E" secondAttribute="centerY" id="DKK-ko-cW9"/>
+                            <constraint firstItem="iv1-vT-cJa" firstAttribute="centerY" secondItem="f4D-ZE-U3E" secondAttribute="centerY" id="RgO-f8-uKb"/>
+                            <constraint firstItem="gy9-K6-wgV" firstAttribute="centerX" secondItem="f4D-ZE-U3E" secondAttribute="centerX" id="RpH-Cp-Vga"/>
+                            <constraint firstItem="iv1-vT-cJa" firstAttribute="height" secondItem="rbB-Ky-ACP" secondAttribute="height" id="Rsh-VY-ROy"/>
+                            <constraint firstItem="iv1-vT-cJa" firstAttribute="leading" secondItem="gy9-K6-wgV" secondAttribute="trailing" constant="15" id="XCd-IZ-FMi"/>
+                            <constraint firstAttribute="height" constant="30" id="Ymy-eq-l8B"/>
+                            <constraint firstItem="gy9-K6-wgV" firstAttribute="centerY" secondItem="f4D-ZE-U3E" secondAttribute="centerY" id="fl1-eF-6fP"/>
+                            <constraint firstItem="gy9-K6-wgV" firstAttribute="leading" secondItem="rbB-Ky-ACP" secondAttribute="trailing" constant="15" id="q4Y-8V-TeS"/>
+                        </constraints>
+                    </view>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfT-sL-YjM">
+                        <rect key="frame" x="0.0" y="30" width="475" height="168.5"/>
+                    </scrollView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="U07-aE-Rhk">
+                        <rect key="frame" x="0.0" y="198.5" width="475" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="daE-7G-3F8"/>
+                        </constraints>
+                    </pageControl>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="U07-aE-Rhk" firstAttribute="top" secondItem="UfT-sL-YjM" secondAttribute="bottom" id="9TX-Lk-lv8"/>
+                    <constraint firstAttribute="trailing" secondItem="UfT-sL-YjM" secondAttribute="trailing" id="C5g-Bz-jkd"/>
+                    <constraint firstItem="UfT-sL-YjM" firstAttribute="top" secondItem="f4D-ZE-U3E" secondAttribute="bottom" id="K60-f3-Wc4"/>
+                    <constraint firstItem="f4D-ZE-U3E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M13-4q-BnL"/>
+                    <constraint firstItem="UfT-sL-YjM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PTH-ti-SN7"/>
+                    <constraint firstAttribute="trailing" secondItem="U07-aE-Rhk" secondAttribute="trailing" id="Y5Y-vz-uee"/>
+                    <constraint firstAttribute="bottom" secondItem="U07-aE-Rhk" secondAttribute="bottom" constant="10" id="YRq-9D-mwx"/>
+                    <constraint firstAttribute="trailing" secondItem="f4D-ZE-U3E" secondAttribute="trailing" id="e3W-vJ-Tf8"/>
+                    <constraint firstItem="U07-aE-Rhk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="q4I-pJ-W7j"/>
+                    <constraint firstItem="f4D-ZE-U3E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yn6-QG-NLg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="pageContro" destination="U07-aE-Rhk" id="x3o-K7-aGy"/>
+                <outlet property="scrollView" destination="UfT-sL-YjM" id="HdZ-57-OOv"/>
+            </connections>
+            <point key="canvasLocation" x="-653.5" y="-322.5"/>
+        </tableViewCell>
+    </objects>
+</document>

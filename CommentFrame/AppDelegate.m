@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+
+#import "GuideVC.h"
 #import "HDMainTBC.h"
 @interface AppDelegate ()
 
@@ -18,14 +20,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-   HDMainTBC *mainTBC =  [[HDMainTBC alloc] init];
-    [_window setRootViewController:mainTBC];
-    
+	[_window makeKeyAndVisible];
+	if (![GuideVC hadLoaded]) {
+		GuideVC *VC = [GuideVC loadWithBlock:^(BOOL isFinish) {
+			[CacheTool setRootVCByIsMainVC:YES];//主界面视图
+		}];
+		_window.rootViewController = VC;//第一次进入会走这里
+	}else{
+		[CacheTool setRootVCByIsMainVC:YES];//主界面视图
+	}
+	
     [IQKeyboardManager sharedManager];//键盘
-    [self setShareSDK];//配置分享 和登陆
-    [self updateVersion];//版本更新
-    //推送
-    [self jPushAddAndOptions:launchOptions];
+//    [self setShareSDK];//配置分享 和登陆
+//    [self updateVersion];//版本更新
+//    //推送
+//    [self jPushAddAndOptions:launchOptions];
     return YES;
 }
 -(void)updateVersion{
@@ -36,8 +45,7 @@
 }
 
 -(void)setShareSDK{
-    [ShareSDK registerApp:@"1b7f350b60f88"
-     
+    [ShareSDK registerApp:@"1b7f350b60f88" 
           activePlatforms:@[
                             @(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeWechat),

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="LeftTopHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="313"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SNr-bf-0nA">
+                    <rect key="frame" x="0.0" y="3" width="307" height="307"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="SNr-bf-0nA" secondAttribute="height" multiplier="20:20" id="UuY-OW-RnA"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LV.6.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-ul-668">
+                    <rect key="frame" x="309" y="159" width="103" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.99283117055892944" green="0.55900299549102783" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Be7-QC-czD">
+                    <rect key="frame" x="307" y="156" width="105" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="9OF-kH-9oQ"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9l-nC-3SG">
+                    <rect key="frame" x="309" y="140" width="103" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Kpg-ul-668" firstAttribute="leading" secondItem="J9l-nC-3SG" secondAttribute="leading" id="4tr-wm-Wk9"/>
+                <constraint firstItem="Kpg-ul-668" firstAttribute="trailing" secondItem="J9l-nC-3SG" secondAttribute="trailing" id="6x9-bt-yG4"/>
+                <constraint firstItem="J9l-nC-3SG" firstAttribute="leading" secondItem="SNr-bf-0nA" secondAttribute="trailing" constant="2" id="ACx-nf-Sn4"/>
+                <constraint firstItem="Be7-QC-czD" firstAttribute="top" secondItem="J9l-nC-3SG" secondAttribute="bottom" id="H37-m8-9uZ"/>
+                <constraint firstItem="Be7-QC-czD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OYl-2H-l7p"/>
+                <constraint firstItem="SNr-bf-0nA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Q6I-ZP-hUP"/>
+                <constraint firstAttribute="bottom" secondItem="SNr-bf-0nA" secondAttribute="bottom" constant="3" id="V93-d3-6fy"/>
+                <constraint firstItem="Be7-QC-czD" firstAttribute="leading" secondItem="SNr-bf-0nA" secondAttribute="trailing" id="a4o-CE-gN2"/>
+                <constraint firstItem="Kpg-ul-668" firstAttribute="top" secondItem="Be7-QC-czD" secondAttribute="bottom" constant="2" id="ao2-WE-gWT"/>
+                <constraint firstAttribute="trailing" secondItem="J9l-nC-3SG" secondAttribute="trailing" id="lwi-f0-Hpu"/>
+                <constraint firstItem="SNr-bf-0nA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="qqm-UR-wk8"/>
+                <constraint firstAttribute="trailing" secondItem="Be7-QC-czD" secondAttribute="trailing" id="tjf-6A-Y3j"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="headerImg" destination="SNr-bf-0nA" id="gEn-xm-rDM"/>
+                <outlet property="nameLbl" destination="J9l-nC-3SG" id="Rhy-Qp-0YP"/>
+                <outlet property="rankLbl" destination="Kpg-ul-668" id="Pvu-Us-kat"/>
+            </connections>
+            <point key="canvasLocation" x="-2636" y="-798"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="image1.jpg" width="1242" height="1786"/>
+    </resources>
+</document>

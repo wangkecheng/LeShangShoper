@@ -14,27 +14,34 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - IQKeyboardManager (4.0.7)
+  - IQKeyboardManager (5.0.6)
   - MJRefresh (3.1.12)
-  - SDWebImage (3.8.2):
-    - SDWebImage/Core (= 3.8.2)
-  - SDWebImage/Core (3.8.2)
+  - PLeakSniffer (0.1.0)
+  - SDCycleScrollView (1.74):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
-  - AFNetworking
-  - IQKeyboardManager
+  - AFNetworking (~> 3.1.0)
+  - IQKeyboardManager (~> 5.0.4)
   - MJRefresh
-  - SDWebImage
-  - YYModel
+  - PLeakSniffer
+  - SDCycleScrollView (~> 1.73)
+  - SDWebImage (~> 4.0.0)
+  - YYModel (~> 1.0.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
+  IQKeyboardManager: 077b7f691dfa9d69db9cff66f2bed68ebfc02d9b
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  PLeakSniffer: f7eb13cd3a36150e0a2fd5fe8a33ca83bd2646d4
+  SDCycleScrollView: f821215226f6146a35470721a9d6e83ec5cfb04b
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 13c934a788503c7021f3012873865e3065dbbf2e
+PODFILE CHECKSUM: 6a2e3aee3b98bceda6c98e198503863381d45059
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.3.1

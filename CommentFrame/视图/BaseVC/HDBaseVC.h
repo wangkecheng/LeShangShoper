@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HDBaseVC : UIViewController
-
+@property(nonatomic,copy)void(^finishLoginBlock)(void);
 @end

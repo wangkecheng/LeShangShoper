@@ -1,0 +1,13 @@
+//
+//  FeedBackVC.h
+//  CommentFrame
+//
+//  Created by warron on 2018/1/5.
+//  Copyright © 2018年 warron. All rights reserved.
+//
+
+#import "HDBaseTableVC.h"
+
+@interface FeedBackVC : HDBaseTableVC
+
+@end

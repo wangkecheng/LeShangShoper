@@ -14,7 +14,7 @@
 
 @implementation HDBaseVC
 
-- (void)viewDidLoad {//所有的子类都必需调用这个方法
+- (void)viewDidLoad {//  带xib的继承这个
    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];

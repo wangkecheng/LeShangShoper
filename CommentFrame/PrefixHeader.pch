@@ -7,20 +7,25 @@
 //
 
 //网络请求基地址
-#define  POST_HOST @""
+#define  POST_HOST @"https://120.79.169.197:3000"
 //图片基地址
 #define  POST_HOST_image @""
-
+#define LeftSildeAction @"LeftSildeAction" 
 // 当前应用AppDelegate  ==========
 #define CurrentAppDelegate [[UIApplication sharedApplication] delegate]
 
+#define TOKEN  [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]
 //配置颜色
 #define UIColorFromHX(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 #define UIColorFromRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 #define UIColorFromRGB(R, G, B) [UIColor colorWithRed:((R) / 255.0f) green:((G) / 255.0f) blue:((B) / 255.0f) alpha:1.0f]
+
+#define NavigationBarH ([[[DDFactory getCurrentDeviceModel] uppercaseString] containsString:@"X"]? 88:64)//适配iphoneX  getCurrentDeviceModel中需要自己添加下iphoneX的判断信息
 
 // 屏幕尺寸
 #define SCREENWIDTH [UIScreen mainScreen].bounds.size.width
@@ -28,21 +33,43 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 // 自定义日志打印
 #define NSLog(...) NSLog(@"%s 第%d行 \n %@ \n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+
+#define IMGURL(URL) [DDFactory getImgUrl:URL]
 #define IMG(name) [UIImage imageNamed:name]
 
 #define weakObject(type) __weak typeof(type) weak##type = type
 #define weakObj       __weak __typeof(self) weakSelf = self
-
+#define SAFE_BLOCK_CALL(b, p) (b == nil ? : b(p) )
+#define CountDownTime  60
+#import "DDButton.h"
+#import "SDImageCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "HDMainTBC.h"
+#import "EaseChineseToPinyin.h"
 //这部分用于从plist文件中解析控制器
 #define ClassName @"className"//控制器名字
 #define TitleVC @"title"//控制器标题
 #define Image @"image"//控制器是tabBar的图片
 #define SelectImage @"selectImage"//控制器是tabBar的图片
 #define AttachInfo @"attachInfo"//控制器 的附加信息
-
+#import "GYDB.h"
+#import "DSAlert.h"//弹框 ，可以自定义
+#import "SDCycleScrollView.h"
+#import "SRActionSheet.h"
+#import "NSString+Category.h"
+#import "UITableView+LOExtension.h"
+#import "UICollectionView+LOExtension.h"
+#import "BaseServer.h"
+#import "HDBaseVC.h"
+#import "HDWebVC.h"
+#import "CacheTool.h"
+#import "UIView+Toast.h"
 #import "objc/runtime.h"
-
+#import "UIViewController+BarButton.h"
 #import "YYModel.h"
+#import "HDMainNavC.h"
+#import "WSDatePickerView.h"
 #import "AFNetworking.h"
 #import "SDImageCache.h"
 #import <AFNetworkActivityIndicatorManager.h>
@@ -51,7 +78,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #import "IQKeyboardManager.h"
 #import "IQUIView+IQKeyboardToolbar.h"//IQKeyboardManager 完成按钮的点击事件等
-
 
 #import "DDFactory.h"//工厂类
 #import "AYCheckManager.h"//版本更新

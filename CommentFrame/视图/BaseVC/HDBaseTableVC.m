@@ -12,7 +12,7 @@
 
 @end
 
-@implementation HDBaseTableVC
+@implementation HDBaseTableVC//静态tableview继承这个
 
 - (void)viewDidLoad {
     [super viewDidLoad];

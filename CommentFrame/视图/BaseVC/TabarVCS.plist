@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>测试1</string>
+		<string>首页</string>
 		<key>className</key>
-		<string>test1</string>
+		<string>HomeVC</string>
 		<key>selectImage</key>
 		<string>home_shouyeb</string>
 		<key>image</key>
@@ -14,9 +14,9 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>测试1</string>
+		<string>特价</string>
 		<key>className</key>
-		<string>test1</string>
+		<string>SpecialOfferListVC</string>
 		<key>selectImage</key>
 		<string>home_shouyeb</string>
 		<key>image</key>
@@ -24,9 +24,9 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>测试1</string>
+		<string>厂家</string>
 		<key>className</key>
-		<string>test1</string>
+		<string>ManufacturersVC</string>
 		<key>selectImage</key>
 		<string>home_shouyeb</string>
 		<key>image</key>
@@ -34,9 +34,19 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>测试1</string>
+		<string>互动</string>
 		<key>className</key>
-		<string>test1</string>
+		<string>InteractionVC</string>
+		<key>selectImage</key>
+		<string>home_shouyeb</string>
+		<key>image</key>
+		<string>home_shouye</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>失信</string>
+		<key>className</key>
+		<string>LosePromiseVC</string>
 		<key>selectImage</key>
 		<string>home_shouyeb</string>
 		<key>image</key>

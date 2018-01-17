@@ -8,5 +8,10 @@
 #import <UIKit/UIKit.h>
 
 @interface HDMainNavC : UINavigationController
--(void)setNavigationBarBgColor;
+
+-(void)pushVC:(UIViewController *)VC;
+
+
+
+-(void)pushVC:(UIViewController *)VC isHideBack:(BOOL)isHideBack animated:(BOOL)animated;
 @end

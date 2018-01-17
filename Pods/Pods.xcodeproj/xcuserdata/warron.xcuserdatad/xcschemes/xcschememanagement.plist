@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PLeakSniffer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CommentFrame.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +35,11 @@
 			<false/>
 		</dict>
 		<key>Pods-CommentFrameUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -46,47 +56,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0AC1C2AB4013C00CA26226CCA50A284D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>191E1DE89858E716D77F5113905AD89E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3C8FF9ED6ECACE221BE94C02ED05CC0A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>404D47C06907A422882BB74017438A63</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>70BC44266C6FFE30D2C57129458E070B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>928353533005A4198EBDA5B700D37B64</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C81778447E9F9F6E9940FC536D1FF382</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D0D0C9D20C43FA94D4C88FBFE2601B8E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

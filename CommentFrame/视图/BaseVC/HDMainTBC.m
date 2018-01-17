@@ -8,7 +8,8 @@
 
 #import "HDMainTBC.h"
 #import "HDMainNavC.h"
-@interface HDMainTBC ()
+ 
+@interface HDMainTBC () 
 
 @end
 
@@ -16,22 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setTabBarBackColor];
     
     [self addTabBarItems];
-   
 }
 
 // 设置TabBar背景颜色
 -(void)setTabBarBackColor{
     UIView *view = [[UIView alloc]init];
     view.frame = self.tabBar.bounds;
-    view.backgroundColor = UIColorFromHX(0x222222);
+    view.backgroundColor = [UIColor whiteColor];
     [self.tabBar insertSubview:view atIndex:0];
     self.tabBar.opaque = YES;
     // 设置tabbar渲染颜色
-    [UITabBar appearance].tintColor = UIColorFromHX(0xf78707);
+    [UITabBar appearance].tintColor = UIColorFromRGB(32, 192, 176);
     self.tabBar.translucent = NO;
 }
 //添加TabBar控制器的所有子控制器
@@ -41,6 +40,7 @@
      // className     tabBarItem对应的Viewcontroller的类名
      // selectImage   tabBarItem 选中的图片
      // image         tabBarItem 正常的图片
+     //要修改tabbar的话就 修改 TabarVCS.plist中的信息
         for (NSDictionary *dict in [DDFactory createClassByPlistName:@"TabarVCS"]) {
         UIViewController *VC = dict[ClassName];
         HDMainNavC *navc = [[HDMainNavC alloc]initWithRootViewController:VC];
@@ -49,6 +49,30 @@
         navc.tabBarItem.title = dict[TitleVC];
         [self addChildViewController:navc];
     }
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    NSMutableArray * tabbarArr = [NSMutableArray array];
+    NSInteger index = [self.tabBar.items indexOfObject:item];
+    
+    for (UIView *subview in tabBar.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+            [tabbarArr addObject:subview];
+        }
+    }
+    UIView * tabbarBtn = tabbarArr[index];
+    for (UIView * imgV in tabbarBtn.subviews) {
+        if ([imgV isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
+            CABasicAnimation*pulse = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+            pulse.timingFunction= [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            pulse.duration = 0.2;
+            pulse.repeatCount= 1;
+            pulse.autoreverses= YES;
+            pulse.fromValue= [NSNumber numberWithFloat:0.7];
+            pulse.toValue= [NSNumber numberWithFloat:1.3];
+            [imgV.layer addAnimation:pulse forKey:nil];
+        }
+    } 
 }
 //是否可以旋转 这个在 HDMainNavC 中也需要设置
 - (BOOL)shouldAutorotate{

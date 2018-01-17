@@ -39,5 +39,34 @@
 //检查网络状态ß
 +(void)checkNetWorkingState;
 
++ (NSDictionary *) reverseDict:(NSDictionary *)dict;//将字典中的字段全转为字符串
+
++ (NSData *)resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger)maxSize;
+
+//去除searhBarBack的背景色
++(void)removeSearhBarBack:(UISearchBar *)searchBar;
+
+//快速获得图片url 这个是做个预防
++(NSURL *)getImgUrl:(NSString *)imgStr;
+
++ (NSString*)getCurrentDeviceModel;
+
++ (NSString *)getString:(NSString *)string withDefault:(NSString *)defaultString;
+
+//通过xib文件 初始化对象
++(id)getXibObjc:(NSString *)xibName;
+
++ (id)getVCById:(NSString *)Id;
+
+/**
+ 通过Storyboard名及其ID获取控制器
+ @param Id 控制器id
+ @param name Storyboard名
+ @return 控制器
+ */
++ (id)getVCById:(NSString *)Id storyboardName:(NSString *)name;
+
+
++(UIImage *)circleImage:(UIImage *)image size:(CGSize)size;
 @end
 
