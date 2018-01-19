@@ -1,5 +1,3 @@
-
-//
 //  HomeVC.m
 //  CommentFrame
 //
@@ -19,16 +17,17 @@
 #define AdvertCell_ @"AdvertCell"
 #define NewsCell_ @"NewsCell"
 #import "LeftTopHeadView.h"
-#import "InteligentServiceView.h" 
+#import "InteligentServiceView.h"
+
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
 
-
-
+@property(nonatomic,strong)NSMutableArray * arrNewsModel;
+@property(nonatomic,strong)NSMutableArray * arrAdvertModel;
 @property(nonatomic,strong)NSMutableArray * arrHomeHeaderModel;
 @property(nonatomic,strong)NSMutableArray * arrMerchantModel;
-@property(nonatomic,strong)NSMutableArray * arrModel;
+@property (nonatomic, strong)DSAlert *alertControl;
 @end
 
 @implementation HomeVC
@@ -37,8 +36,9 @@
     [super viewDidLoad];
 	
 	_arrHomeHeaderModel = [NSMutableArray array];
-	_arrModel  = [NSMutableArray array];
 	_arrMerchantModel = [NSMutableArray array];
+    _arrAdvertModel = [NSMutableArray array];
+    _arrNewsModel = [NSMutableArray array];
 	weakObj;
 	LeftTopHeadView * headerView = [LeftTopHeadView headerViewWithFrame:CGRectMake(0, 0, 100, 44)];
 	headerView.leftTopHeaderViewBlock = ^{
@@ -92,20 +92,47 @@
 	 
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
-	
-	InteligentServiceView *view = [InteligentServiceView instanceByFrame:CGRectMake(SCREENWIDTH - 80, SCREENHEIGHT/2.0 + 90, 80, 80) clickBlock:^{
-		
-	}];//点击智能服务之后的操作回调
-	view.backgroundColor = [UIColor redColor];
-	[self.view addSubview:view];
-	[self getPage];
+    
+    UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
+    [serviceBtn setImage:IMG(@"ic_service.png") forState:0];
+    [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:serviceBtn];
+    
+          [self getPage];
+  
+//    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
+//
+//        return YES;
+//    } PhClickBlock:^BOOL{
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18783999629"]];
+//        return YES;
+//    }];
+//    [self.view addSubview:alertView]; //改用按钮的方式
+  
 }
 
+-(void)serviceAction{//智能服务
+        weakObj;
+    
+    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
+        
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        return YES;
+    } PhClickBlock:^BOOL{
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18783999629"]];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        return YES;
+    }];
+    _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+}
 - (void)getPage{
 	
 	[self getData:1];
 	[self getAdvertismentData];
 	[self getMerchantData];
+    [self getArrAdvertModel];
 }
 //广告数据请求
 -(void)getAdvertismentData{
@@ -115,7 +142,9 @@
 		[weakSelf.arrHomeHeaderModel removeAllObjects];
 		[weakSelf.arrHomeHeaderModel addObjectsFromArray:arr];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if ( weakSelf.tableView.numberOfSections>0) {
+                [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
 		});
 	} failed:^(NSError *error) {
 		
@@ -127,16 +156,39 @@
 	weakObj;
 	HDModel * m = [HDModel model];
 	m.number = @"6";//查询数量，默认6
-	[BaseServer postObjc:nil path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-		NSArray *arr =  [NSArray yy_modelArrayWithClass:[HomeHeaderModel class] json:result[@"data"]];
+	[BaseServer postObjc:m path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+		NSArray *arr =  [NSArray yy_modelArrayWithClass:[SellerModel class] json:result[@"data"]];
 		[weakSelf.arrMerchantModel removeAllObjects];
 		[weakSelf.arrMerchantModel addObjectsFromArray:arr];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if ( weakSelf.tableView.numberOfSections>1) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            }
 		});
 	} failed:^(NSError *error) {
 		
 	}];
+}
+
+-(void)getArrAdvertModel{//热门商品
+    weakObj;
+    HDModel * m = [HDModel model];
+    [BaseServer postObjc:m path:@"/commodity/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+        NSArray *arr =  [NSArray yy_modelArrayWithClass:[AdvertModel class] json:result[@"data"]];
+        [weakSelf.arrAdvertModel removeAllObjects];
+        [weakSelf.arrAdvertModel addObjectsFromArray:arr];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ( weakSelf.tableView.numberOfSections>1) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            }
+        });
+    } failed:^(NSError *error) {
+        
+    }];
 }
 - (void)getNextPage{
 	
@@ -145,27 +197,32 @@
 - (void)getData:(NSInteger)pageIndex{
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
-//	m.page = [NSString stringFromInt:pageIndex];
+    m.pageNumber = [NSString stringFromInt:pageIndex];
 	weakObj;
-	return;
-	[BaseServer postObjc:m path:@"/getUniversityDepartmentList.php" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+	[BaseServer postObjc:m path:@"/news/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		NSArray * tempArr = nil;//[NSArray yy_modelArrayWithClass:[MajorListModel class] json:result[@"data"]];
-		
+		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[NewsModel class] json:result[@"data"][@"rows"]];
 		if (strongSelf.page == 1) {
-			[strongSelf.arrModel removeAllObjects];
+			[strongSelf.arrNewsModel removeAllObjects];
 		}
-		[strongSelf.arrModel addObjectsFromArray:tempArr];
+		[strongSelf.arrNewsModel addObjectsFromArray:tempArr];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[strongSelf.tableView reloadData];
+            if ( weakSelf.tableView.numberOfSections>3) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
+            }
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
-			[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
-			if (strongSelf.arrModel.count == 0) {
-				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
-			}
+            if (strongSelf.page == [result[@"data"][@"pageNumber"] integerValue]) {
+                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+//            [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+//            if (strongSelf.arrModel.count == 0) {
+//                [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+//            }
 		});
 	} failed:^(NSError *error) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
@@ -174,14 +231,14 @@
 	}];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return _arrModel.count + 3;//
+	return 4;//
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	if (section != 3) {
 		return 1;
 	}else{
-		return _arrModel.count;
+		return _arrNewsModel.count;
 	}
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -205,21 +262,16 @@
 		cell = sellerCell;
 	}else if (indexPath.section == 2){
 		AdvertCell *advertCell = [tableView dequeueReusableCellWithIdentifier:AdvertCell_ forIndexPath:indexPath];
-		
-		NSMutableArray * arr = [NSMutableArray array];
-		for (int  i = 0 ; i < 9; i++) {
-			AdvertModel * model = [[AdvertModel alloc]init];
-			model.title = [NSString stringWithFormat:@"warron %d",i];
-			[arr addObject:model];
-		}
-		[advertCell setAlertArr:arr];
+		 
+		[advertCell setAlertArr:_arrAdvertModel];
 		advertCell.clickBlock = ^(AdvertModel *model) {
 			
 		};
 		cell = advertCell;
 	}else if (indexPath.section == 3){
 		NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:NewsCell_ forIndexPath:indexPath];
-		cell = newsCell;
+        [newsCell setNewsModel:_arrNewsModel[indexPath.row]];
+         cell = newsCell;
 	}
 	return cell;
 }
@@ -235,7 +287,7 @@
 	if (indexPath.section == 2) {
 		return  50;
 	}
-	return 58;
+	return 80;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];

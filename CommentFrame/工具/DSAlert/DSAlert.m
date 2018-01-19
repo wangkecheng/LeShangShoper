@@ -364,7 +364,7 @@
     self.subView.layer.shadowOpacity = 1;
     self.subView.layer.shadowRadius  = 10.0f;
     self.subView.layer.borderWidth   = 0.5f;
-    self.subView.layer.borderColor   = DS_COLOR(110, 115, 120, 1).CGColor;
+    self.subView.layer.borderColor   = [UIColor clearColor].CGColor;
     if (_subView.center.y == CGRectGetHeight(_subView.frame)/2.0) {//表示没有设置中心点
         _subView.center = CGPointMake(SCREENWIDTH/2.0, SCREENHEIGHT/2.0);
     }
@@ -440,8 +440,8 @@
 //    _buttonTitleColor = buttonTitleColor;
 //}
 
-- (void)setBgImageName:(NSString *)bgImageName
-{
+- (void)setBgImageName:(NSString *)bgImageName{
+    
     _bgImageName                   = bgImageName;
     
     _containerView.backgroundColor = [UIColor clearColor];

@@ -23,6 +23,8 @@
 }
 -(void)setNewsModel:(NewsModel *)newsModel{
 	_newsModel = newsModel;
+    _titleLbl.text = newsModel.name;
+    [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl)];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

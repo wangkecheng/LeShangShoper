@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AdvertModel : NSObject
-@property (nonatomic, strong)NSString *title;
+@property (nonatomic, strong)NSString *name;
+@property (nonatomic, strong)NSString *cid;
+@property (nonatomic, strong)NSString *logoUrl;
 @end

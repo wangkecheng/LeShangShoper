@@ -19,7 +19,7 @@
 	AdvertItemView * view = [DDFactory getXibObjc:@"AdvertItemView"];
 	view.frame = frame;
 	view.model = model;
-	view.titLbl.text = model.title;
+	view.titLbl.text = model.name;
 	view.clickBlock = clickBlock;
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(clickAction)];
 	[view addGestureRecognizer:tap];

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -70,18 +70,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C26-Gb-U68">
-                                                    <rect key="frame" x="20" y="18" width="62" height="30"/>
-                                                    <state key="normal" title="产品建议">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C26-Gb-U68">
+                                                    <rect key="frame" x="20" y="22" width="96" height="22"/>
+                                                    <state key="normal" title=" 产品建议" image="btn_option_p.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="adviceAction:" destination="6vk-KE-fWT" eventType="touchUpInside" id="h9J-LY-m7m"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-kh-yOw">
-                                                    <rect key="frame" x="112" y="18" width="62" height="30"/>
-                                                    <state key="normal" title="程序错误">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-kh-yOw">
+                                                    <rect key="frame" x="146" y="22" width="96" height="22"/>
+                                                    <state key="normal" title=" 程序错误" image="btn_option_n.png">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -240,12 +240,18 @@
                     </tableView>
                     <connections>
                         <outlet property="accountField" destination="dQZ-49-oUl" id="DFa-H6-74N"/>
+                        <outlet property="bugAdviceBtn" destination="aPh-kh-yOw" id="sEj-j9-QaQ"/>
                         <outlet property="noteTextView" destination="pwv-3I-HTA" id="aqi-KX-jot"/>
+                        <outlet property="productAdviceBtn" destination="C26-Gb-U68" id="cee-ju-oB9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2D-by-8oH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-815.20000000000005" y="-41.829085457271368"/>
+            <point key="canvasLocation" x="-1138" y="-29"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btn_option_n.png" width="17" height="17"/>
+        <image name="btn_option_p.png" width="17" height="17"/>
+    </resources>
 </document>

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "InteligentServiceAlertView.h"
 @interface InteligentServiceView : UIView
 
 +(InteligentServiceView * )instanceByFrame:(CGRect) frame clickBlock:(void(^)(void))clickBlock;

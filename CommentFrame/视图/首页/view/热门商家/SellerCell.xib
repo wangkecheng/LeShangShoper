@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -62,6 +62,13 @@
                             <constraint firstAttribute="height" constant="20" id="daE-7G-3F8"/>
                         </constraints>
                     </pageControl>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fa-MA-bZO">
+                        <rect key="frame" x="0.0" y="227" width="475" height="1"/>
+                        <color key="backgroundColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="C6P-9u-po1"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="U07-aE-Rhk" firstAttribute="top" secondItem="UfT-sL-YjM" secondAttribute="bottom" id="9TX-Lk-lv8"/>
@@ -69,9 +76,12 @@
                     <constraint firstItem="UfT-sL-YjM" firstAttribute="top" secondItem="f4D-ZE-U3E" secondAttribute="bottom" id="K60-f3-Wc4"/>
                     <constraint firstItem="f4D-ZE-U3E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M13-4q-BnL"/>
                     <constraint firstItem="UfT-sL-YjM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="PTH-ti-SN7"/>
+                    <constraint firstItem="5fa-MA-bZO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SCa-oe-B4T"/>
                     <constraint firstAttribute="trailing" secondItem="U07-aE-Rhk" secondAttribute="trailing" id="Y5Y-vz-uee"/>
                     <constraint firstAttribute="bottom" secondItem="U07-aE-Rhk" secondAttribute="bottom" constant="10" id="YRq-9D-mwx"/>
                     <constraint firstAttribute="trailing" secondItem="f4D-ZE-U3E" secondAttribute="trailing" id="e3W-vJ-Tf8"/>
+                    <constraint firstAttribute="bottom" secondItem="5fa-MA-bZO" secondAttribute="bottom" constant="1" id="hGN-dY-ebn"/>
+                    <constraint firstAttribute="trailing" secondItem="5fa-MA-bZO" secondAttribute="trailing" id="iMP-vh-ODG"/>
                     <constraint firstItem="U07-aE-Rhk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="q4I-pJ-W7j"/>
                     <constraint firstItem="f4D-ZE-U3E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yn6-QG-NLg"/>
                 </constraints>

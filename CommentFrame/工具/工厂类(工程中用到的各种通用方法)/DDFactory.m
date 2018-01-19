@@ -256,6 +256,9 @@
         return [NSURL URLWithString:imgStr];
     }
     if (([imgStr rangeOfString:@"http"].location == NSNotFound)){
+        if (imgStr==nil) {
+            imgStr = @"";
+        }
         return [NSURL URLWithString:[POST_HOST  stringByAppendingString:imgStr]];// 这里需要自己改 @""
     }
     

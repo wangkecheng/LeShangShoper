@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="InteligentServiceAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="257"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_pop_service.png" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-4e-wQA">
+                    <rect key="frame" x="0.0" y="0.0" width="325" height="257"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Swk-4e-wQA" secondAttribute="height" multiplier="610:482" id="kJu-nc-Npw"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEt-Ft-gxE">
+                    <rect key="frame" x="0.0" y="184.5" width="325" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-4Z-aBW">
+                            <rect key="frame" x="28" y="10" width="110" height="40"/>
+                            <state key="normal" image="btn_pop_weixin.png"/>
+                            <connections>
+                                <action selector="weiXinAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="do8-bZ-Kpn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQF-Em-92K">
+                            <rect key="frame" x="192.5" y="10" width="110" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="7bX-84-Unc"/>
+                                <constraint firstAttribute="height" constant="40" id="eoq-Xa-6Ne"/>
+                            </constraints>
+                            <state key="normal" image="btn_pop_phone.png"/>
+                            <connections>
+                                <action selector="phoneAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="D74-L3-YL6"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="cSc-4Z-aBW" firstAttribute="centerX" secondItem="FEt-Ft-gxE" secondAttribute="centerX" multiplier="1/2" constant="1" id="3zr-wp-BzB"/>
+                        <constraint firstAttribute="height" constant="60" id="A6N-7y-lKl"/>
+                        <constraint firstItem="EQF-Em-92K" firstAttribute="centerY" secondItem="FEt-Ft-gxE" secondAttribute="centerY" id="K5A-7a-SWh"/>
+                        <constraint firstItem="cSc-4Z-aBW" firstAttribute="centerY" secondItem="FEt-Ft-gxE" secondAttribute="centerY" id="MKz-JY-bTk"/>
+                        <constraint firstItem="EQF-Em-92K" firstAttribute="width" secondItem="cSc-4Z-aBW" secondAttribute="width" id="QFE-5w-fhu"/>
+                        <constraint firstItem="EQF-Em-92K" firstAttribute="centerX" secondItem="FEt-Ft-gxE" secondAttribute="centerX" multiplier="3/2" constant="3" id="ffa-qs-Q1I"/>
+                        <constraint firstItem="EQF-Em-92K" firstAttribute="height" secondItem="cSc-4Z-aBW" secondAttribute="height" id="k69-Br-gnk"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="FEt-Ft-gxE" firstAttribute="centerY" secondItem="Swk-4e-wQA" secondAttribute="centerY" multiplier="5/3" id="3a1-SN-C78"/>
+                <constraint firstItem="Swk-4e-wQA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ajt-Kb-fQP"/>
+                <constraint firstAttribute="trailing" secondItem="FEt-Ft-gxE" secondAttribute="trailing" id="ddU-pV-LQ7"/>
+                <constraint firstItem="Swk-4e-wQA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eDM-9V-vek"/>
+                <constraint firstItem="FEt-Ft-gxE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pI3-YF-hbA"/>
+                <constraint firstAttribute="trailing" secondItem="Swk-4e-wQA" secondAttribute="trailing" id="zet-4k-WQB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-574" y="-409"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bg_pop_service.png" width="305" height="241"/>
+        <image name="btn_pop_phone.png" width="110" height="40"/>
+        <image name="btn_pop_weixin.png" width="110" height="40"/>
+    </resources>
+</document>

@@ -34,7 +34,11 @@
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
 		btn.imageView.layer.masksToBounds = YES;
-		[btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0];
+       
+        if (model.logoUrl) {
+            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0];
+        }
+		
 		[btn setTitle:model.name forState:0];
 		 btn.titleLabel.textAlignment = 1;
 		[btn setTitleColor:[UIColor blackColor] forState:0];

@@ -12,6 +12,9 @@
 @property (weak, nonatomic) IBOutlet BRPlaceholderTextView *noteTextView;
 @property (weak, nonatomic) IBOutlet UITextField *accountField;
 @property (nonatomic,strong)NSString *typeStr;//1,产品建议，2，程序错误
+@property (weak, nonatomic) IBOutlet UIButton *productAdviceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *bugAdviceBtn;
+
 @end
 
 @implementation FeedBackVC
@@ -31,16 +34,19 @@
 	[_noteTextView setPlaceholderOpacity:1];
 	self.tableView.backgroundColor = UIColorFromRGB(245, 245, 245);
 	[self.tableView hideSurplusLine];
+    _typeStr = @"1";//默认为产品建议
 }
 
-- (IBAction)adviceAction:(id)sender {
+- (IBAction)adviceAction:(UIButton *)sender {
 	_typeStr =@"1";
-	
+    [_productAdviceBtn setImage:IMG(@"btn_option_p") forState:0];
+    [_bugAdviceBtn setImage:IMG(@"btn_option_n") forState:0];
 }
 
-- (IBAction)bugAction:(id)sender {
+- (IBAction)bugAction:(UIButton *)sender {
      _typeStr =@"2";
-
+    [_bugAdviceBtn setImage:IMG(@"btn_option_p") forState:0];
+    [_productAdviceBtn setImage:IMG(@"btn_option_n") forState:0];
 }
 
 - (IBAction)submitAction:(id)sender {

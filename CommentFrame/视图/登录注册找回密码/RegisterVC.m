@@ -57,6 +57,7 @@ typedef enum ViewTagIndentifyer{
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)sendVercodeAction:(id)sender {
 	_getVercodeBtn.userInteractionEnabled = NO;
 	HDModel *m = [HDModel model];

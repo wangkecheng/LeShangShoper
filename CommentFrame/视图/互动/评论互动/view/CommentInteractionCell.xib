@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="129" id="KGk-i7-Jjw" customClass="CommentInteractionCell">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8D-Ks-WXa">
+                        <rect key="frame" x="10" y="15" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="o8D-Ks-WXa" secondAttribute="height" multiplier="4:4" id="kjD-0G-4Yv"/>
+                            <constraint firstAttribute="width" constant="40" id="m7D-Zq-Sm7"/>
+                        </constraints>
+                        <state key="normal" image="icon_touxiang.png"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="20"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="headerBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kPK-2l-GdM"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnw-ge-oCp">
+                        <rect key="frame" x="55" y="15" width="276" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1r-qg-b3h">
+                        <rect key="frame" x="55" y="38" width="276" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.6705138087272644" green="0.67063111066818237" blue="0.67050635814666748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="di9-OE-eM7">
+                        <rect key="frame" x="55" y="60" width="276" height="63.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.31368762254714966" green="0.31374725699424744" blue="0.31368386745452881" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="o8D-Ks-WXa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="0sk-Hx-s5w"/>
+                    <constraint firstItem="Bnw-ge-oCp" firstAttribute="top" secondItem="o8D-Ks-WXa" secondAttribute="top" id="CYn-eL-0st"/>
+                    <constraint firstItem="Bnw-ge-oCp" firstAttribute="leading" secondItem="o8D-Ks-WXa" secondAttribute="trailing" constant="5" id="EnE-j9-1Vs"/>
+                    <constraint firstItem="o8D-Ks-WXa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="M3T-Os-6dx"/>
+                    <constraint firstItem="di9-OE-eM7" firstAttribute="leading" secondItem="Bnw-ge-oCp" secondAttribute="leading" id="WEH-68-i8d"/>
+                    <constraint firstItem="di9-OE-eM7" firstAttribute="trailing" secondItem="Bnw-ge-oCp" secondAttribute="trailing" id="Z6P-AB-J4q"/>
+                    <constraint firstItem="E1r-qg-b3h" firstAttribute="bottom" secondItem="o8D-Ks-WXa" secondAttribute="bottom" id="boy-i6-zXI"/>
+                    <constraint firstItem="E1r-qg-b3h" firstAttribute="leading" secondItem="Bnw-ge-oCp" secondAttribute="leading" id="fx3-YX-r4t"/>
+                    <constraint firstItem="E1r-qg-b3h" firstAttribute="trailing" secondItem="Bnw-ge-oCp" secondAttribute="trailing" id="hHB-G1-vIi"/>
+                    <constraint firstAttribute="bottom" secondItem="di9-OE-eM7" secondAttribute="bottom" constant="5" id="kI3-f6-cty"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Bnw-ge-oCp" secondAttribute="trailing" constant="10" id="mfW-NT-liM"/>
+                    <constraint firstItem="di9-OE-eM7" firstAttribute="top" secondItem="E1r-qg-b3h" secondAttribute="bottom" constant="5" id="u6Q-Pv-buW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLbl" destination="di9-OE-eM7" id="VCH-f9-bVR"/>
+                <outlet property="headBtn" destination="o8D-Ks-WXa" id="nvA-P5-fiC"/>
+                <outlet property="nameLbl" destination="Bnw-ge-oCp" id="BzQ-6r-UXv"/>
+                <outlet property="timeLbl" destination="E1r-qg-b3h" id="eW8-Be-4Gl"/>
+            </connections>
+            <point key="canvasLocation" x="-99.5" y="-45.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_touxiang.png" width="88" height="88"/>
+    </resources>
+</document>

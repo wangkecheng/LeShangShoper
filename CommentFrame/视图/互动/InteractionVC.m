@@ -10,6 +10,7 @@
 #import "InteractionCell.h"
 #import "AddInteractionVC.h"
 #define InteractionCell_ @"InteractionCell"
+#import "CommentInteractionVC.h"
 @interface InteractionVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)NSMutableArray *arrModel;
@@ -116,14 +117,10 @@
 			
 		}];
 	};
-	cell.commentBlock = ^(InteractionModel *mode) {
-//		HDModel * m = [HDModel model];
-//		m.interactId = model.uid;
-//		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-//
-//		} failed:^(NSError *error) {
-//
-//		}];
+	cell.commentBlock = ^(InteractionModel *model) {
+        CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+        VC.interactionModel = model;
+        [self.navigationController pushViewController:VC animated:YES]; 
 	};
 	return cell;
 }

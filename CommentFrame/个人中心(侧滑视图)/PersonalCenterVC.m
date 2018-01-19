@@ -165,7 +165,7 @@
 }
 - (IBAction)resetAddress:(id)sender {
 	weakObj;
-	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeUserName cancelBlock:^BOOL{
+	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeAddress cancelBlock:^BOOL{
 		[weakSelf.alertControl ds_dismissAlertView];
 		return YES;
 	} okBlock:^BOOL(NSString *str) {

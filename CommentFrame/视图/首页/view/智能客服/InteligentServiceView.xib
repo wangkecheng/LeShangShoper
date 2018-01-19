@@ -6,33 +6,38 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="InteligentServiceView">
-            <rect key="frame" x="0.0" y="0.0" width="410" height="477"/>
+            <rect key="frame" x="0.0" y="0.0" width="307" height="355"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-8L-qQu">
-                    <rect key="frame" x="0.0" y="0.0" width="410" height="477"/>
+                    <rect key="frame" x="125" y="143" width="57" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="R1O-8L-qQu" secondAttribute="height" multiplier="19:23" id="njB-DX-DLi"/>
+                    </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" image="ic_service.png"/>
+                    <state key="normal" backgroundImage="ic_service.png"/>
                     <connections>
-                        <action selector="serviceAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="fsT-jd-2gj"/>
+                        <action selector="serviceAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="qkg-jY-jP7"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="R1O-8L-qQu" secondAttribute="bottom" id="2fN-n2-Xiz"/>
-                <constraint firstAttribute="trailing" secondItem="R1O-8L-qQu" secondAttribute="trailing" id="DP9-cx-8al"/>
-                <constraint firstItem="R1O-8L-qQu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ba0-7q-qxw"/>
-                <constraint firstItem="R1O-8L-qQu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xPG-XL-wBB"/>
+                <constraint firstItem="R1O-8L-qQu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="iHu-Zk-ATz"/>
+                <constraint firstItem="R1O-8L-qQu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mUM-9E-TYf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="43" y="147.5"/>
+            <connections>
+                <outlet property="serviceBtn" destination="R1O-8L-qQu" id="QGS-UI-8aL"/>
+            </connections>
+            <point key="canvasLocation" x="-766" y="59"/>
         </view>
     </objects>
     <resources>

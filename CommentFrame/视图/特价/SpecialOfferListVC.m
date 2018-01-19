@@ -20,10 +20,12 @@
 @implementation SpecialOfferListVC
 
 - (void)viewDidLoad {
-	[super viewDidLoad]; 
+	[super viewDidLoad];
+    
+    _arrModel = [NSMutableArray array];
+    
 	[_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
-	
-	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
+     _tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
@@ -31,6 +33,7 @@
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     [self addRightBarButtonWithFirstImage:IMG(@"bg_special_zone") action:nil];
+    [self getPage];
 }
 - (void)getPage{
 	
@@ -46,7 +49,7 @@
 	HDModel *m = [HDModel model];
 	m.pageNumber = [NSString stringFromInt:pageIndex];
 	weakObj;
-	[BaseServer postObjc:m path:@"/commodity/collect/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"][@"rows"]];
@@ -74,12 +77,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	
-	return 5;//_arrModel.count;
+	return _arrModel.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionCell_ forIndexPath:indexPath];
-//	[cell setModel:_arrModel[indexPath.row]];
+    [cell setModel:_arrModel[indexPath.row]];
 	[cell setSelectionStyle:0];//不要分割线
 	return cell;
 }

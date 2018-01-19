@@ -40,6 +40,12 @@
     _collectionBtn.alpha = _specialImg.alpha = 1;
     [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
     [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];//如果已经收藏了
+    [_img sd_setImageWithURL:IMGURL(model.logoUrl)];
+    _titleLbl.text  = model.name;
+    _priceLbl.text = model.price;
+    _specificationLbl.text = model.spec;
+    //    _usePlaceLbl.text = model.
+    _factoryLbl.text = model.merchantName;
 }
 
 - (IBAction)collectionAction:(id)sender {

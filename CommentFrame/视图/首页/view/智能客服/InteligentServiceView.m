@@ -10,6 +10,7 @@
 #import "InteligentServiceView.h"
 @interface InteligentServiceView()
 
+@property (weak, nonatomic) IBOutlet UIButton *serviceBtn;
 @property (copy, nonatomic) void(^clickBlock)(void);
 @end
 
@@ -19,6 +20,7 @@
 	InteligentServiceView *view = [DDFactory getXibObjc:@"InteligentServiceView"];
 	view.frame = frame;
 	view.clickBlock = clickBlock;
+    view.serviceBtn.bounds = view.bounds;
 	return view;
 }
 
