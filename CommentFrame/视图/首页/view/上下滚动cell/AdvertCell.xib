@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,33 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="402" height="72.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-v5-CQ3">
-                        <rect key="frame" x="5" y="5" width="107" height="62.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotProductImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-v5-CQ3">
+                        <rect key="frame" x="5" y="26.5" width="80" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="Zak-v5-CQ3" secondAttribute="height" multiplier="120:70" id="Jvo-hr-cHA"/>
+                            <constraint firstAttribute="width" secondItem="Zak-v5-CQ3" secondAttribute="height" multiplier="120:30" id="Jvo-hr-cHA"/>
+                            <constraint firstAttribute="width" constant="80" id="mGu-CO-iqn"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eip-uy-8rd">
-                        <rect key="frame" x="117" y="15" width="1" height="42.5"/>
+                        <rect key="frame" x="90" y="36.5" width="1" height="0.0"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="fMA-Q6-nqu"/>
                         </constraints>
                     </view>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWc-OE-hyp">
-                        <rect key="frame" x="128" y="0.0" width="274" height="50"/>
+                        <rect key="frame" x="101" y="0.0" width="301" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="eWA-7a-L9Z"/>
                         </constraints>
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Zak-v5-CQ3" secondAttribute="bottom" constant="5" id="7eD-ss-AZ4"/>
+                    <constraint firstItem="Zak-v5-CQ3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5kh-F2-JUr"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="bottom" secondItem="Zak-v5-CQ3" secondAttribute="bottom" constant="-10" id="BT7-ZB-M3V"/>
                     <constraint firstItem="aWc-OE-hyp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="R6Z-g9-asD"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="leading" secondItem="Zak-v5-CQ3" secondAttribute="trailing" constant="5" id="RTt-Zi-QoU"/>
                     <constraint firstItem="Zak-v5-CQ3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="USF-cV-Llt"/>
-                    <constraint firstItem="Zak-v5-CQ3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="bzr-7w-zPg"/>
                     <constraint firstItem="aWc-OE-hyp" firstAttribute="leading" secondItem="eip-uy-8rd" secondAttribute="trailing" constant="10" id="hB0-ao-LdG"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="top" secondItem="Zak-v5-CQ3" secondAttribute="top" constant="10" id="jal-e8-qMp"/>
                     <constraint firstAttribute="trailing" secondItem="aWc-OE-hyp" secondAttribute="trailing" id="pE4-BC-SKh"/>
@@ -54,7 +54,10 @@
             <connections>
                 <outlet property="scrollView" destination="aWc-OE-hyp" id="efw-fk-tzd"/>
             </connections>
-            <point key="canvasLocation" x="-291" y="-194.5"/>
+            <point key="canvasLocation" x="-345" y="-194"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="hotProductImg.png" width="79" height="19"/>
+    </resources>
 </document>

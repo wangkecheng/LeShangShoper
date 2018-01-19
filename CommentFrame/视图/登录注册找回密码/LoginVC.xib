@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,6 +56,12 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRp-AK-PKV">
                                     <rect key="frame" x="0.0" y="250" width="375" height="400"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="qWN-Kj-6RT">
+                                            <rect key="frame" x="0.0" y="200" width="375" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="qWN-Kj-6RT" secondAttribute="height" multiplier="15:8" id="k2V-dL-wuB"/>
+                                            </constraints>
+                                        </imageView>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uZ-zP-hAO" userLabel="inputView">
                                             <rect key="frame" x="30" y="20" width="315" height="76"/>
                                             <subviews>
@@ -83,10 +89,10 @@
                                                                 <constraint firstAttribute="width" constant="1" id="nH8-VQ-ATe"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_sj_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Ce-NO-bnV">
-                                                            <rect key="frame" x="20" y="11" width="12" height="16"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_input_name.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Ce-NO-bnV">
+                                                            <rect key="frame" x="20" y="11.5" width="12" height="15"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="6Ce-NO-bnV" secondAttribute="height" multiplier="3:4" id="QkM-Rg-Dy8"/>
+                                                                <constraint firstAttribute="width" secondItem="6Ce-NO-bnV" secondAttribute="height" multiplier="26:32" id="QkM-Rg-Dy8"/>
                                                                 <constraint firstAttribute="width" constant="12" id="skr-kb-Vct"/>
                                                             </constraints>
                                                         </imageView>
@@ -132,10 +138,10 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5KQ-aa-kNm" userLabel="PWDView">
                                                     <rect key="frame" x="0.0" y="38" width="315" height="38"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_mima_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="EMv-TM-37e">
-                                                            <rect key="frame" x="20" y="10" width="12" height="18"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_input_lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="EMv-TM-37e">
+                                                            <rect key="frame" x="20" y="11.5" width="12" height="15"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="EMv-TM-37e" secondAttribute="height" multiplier="8/12" id="3FU-P9-gya"/>
+                                                                <constraint firstAttribute="width" secondItem="EMv-TM-37e" secondAttribute="height" multiplier="26:32" id="3FU-P9-gya"/>
                                                                 <constraint firstAttribute="width" constant="12" id="GMW-gW-FcI"/>
                                                             </constraints>
                                                         </imageView>
@@ -216,9 +222,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="qWN-Kj-6RT" secondAttribute="trailing" id="32B-H2-7gp"/>
+                                        <constraint firstAttribute="bottom" secondItem="qWN-Kj-6RT" secondAttribute="bottom" id="7NT-Na-139"/>
                                         <constraint firstItem="xky-KE-1Tm" firstAttribute="top" secondItem="XLi-SE-0ah" secondAttribute="bottom" constant="15" id="NPv-0i-kv5"/>
                                         <constraint firstItem="4uZ-zP-hAO" firstAttribute="leading" secondItem="XRp-AK-PKV" secondAttribute="leading" constant="30" id="OVM-VV-ypt"/>
                                         <constraint firstItem="XLi-SE-0ah" firstAttribute="leading" secondItem="4uZ-zP-hAO" secondAttribute="leading" id="Pfb-k2-GT5"/>
+                                        <constraint firstItem="qWN-Kj-6RT" firstAttribute="leading" secondItem="XRp-AK-PKV" secondAttribute="leading" id="Rv2-To-0kB"/>
                                         <constraint firstItem="XLi-SE-0ah" firstAttribute="trailing" secondItem="4uZ-zP-hAO" secondAttribute="trailing" id="SAu-dC-Iec"/>
                                         <constraint firstItem="xky-KE-1Tm" firstAttribute="trailing" secondItem="XLi-SE-0ah" secondAttribute="trailing" id="W7f-zM-Mf3"/>
                                         <constraint firstItem="4uZ-zP-hAO" firstAttribute="top" secondItem="XRp-AK-PKV" secondAttribute="top" constant="20" id="beh-uO-859"/>
@@ -264,8 +273,9 @@
         </view>
     </objects>
     <resources>
-        <image name="dl_mima_2.png" width="16" height="16"/>
-        <image name="dl_sj_1.png" width="16" height="16"/>
+        <image name="bg_login.png" width="375" height="161"/>
+        <image name="ic_input_lock.png" width="13" height="16"/>
+        <image name="ic_input_name.png" width="13" height="16"/>
         <image name="logo.png" width="16" height="16"/>
     </resources>
 </document>

@@ -69,7 +69,7 @@
 	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
 	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
 	
-	UIImage *image = [UIImage imageNamed:@"btn-index-search"];
+	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
 	
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
 	
@@ -93,7 +93,7 @@
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
 	
-	InteligentServiceView *view = [InteligentServiceView instanceByFrame:CGRectMake(SCREENWIDTH - 80, SCREENHEIGHT - 180, 80, 80) clickBlock:^{
+	InteligentServiceView *view = [InteligentServiceView instanceByFrame:CGRectMake(SCREENWIDTH - 80, SCREENHEIGHT/2.0 + 90, 80, 80) clickBlock:^{
 		
 	}];//点击智能服务之后的操作回调
 	view.backgroundColor = [UIColor redColor];

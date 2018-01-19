@@ -189,7 +189,7 @@ UICollectionViewDelegateFlowLayout>
 	HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath];
 	if (indexPath.row == _arrSelected.count) {
 		ImgModel *model = [[ImgModel alloc]init];
-		model.image = [UIImage imageNamed:@"pic_xiangmuquan_fazhaopian"];
+		model.image = [UIImage imageNamed:@"ic_interactive_add"];
 		[cell  setAddImgModel:model];
 	}
 	else{

@@ -31,8 +31,8 @@
 	}
 	
     [IQKeyboardManager sharedManager];//键盘
-//    [self setShareSDK];//配置分享 和登陆
-//    [self updateVersion];//版本更新
+    [self setShareSDK];//配置分享 和登陆
+    [self updateVersion];//版本更新
 //    //推送
 //    [self jPushAddAndOptions:launchOptions];
     return YES;
@@ -113,7 +113,7 @@
     //Required
     //如需兼容旧版本的方式，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化和同时使用pushConfig.plist文件声明appKey等配置内容。
     //参数参考pushConfig
-    [JPUSHService setupWithOption:launchOptions appKey:@"35c8fb34cc400bf3705359fb"
+    [JPUSHService setupWithOption:launchOptions appKey:@"0d9e3e620fd64c91650e5b03"
                           channel:@"Publish channel"
                  apsForProduction:NO //配置环境的设置：是否生产环境
             advertisingIdentifier:nil];

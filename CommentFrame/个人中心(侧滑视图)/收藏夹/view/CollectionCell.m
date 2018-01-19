@@ -37,7 +37,9 @@
 	_factoryLbl.text = model.merchantName;
 }
 -(void)setSpecialModel:(CollectionModel *)model{
-	_collectionBtn.alpha = _specialImg.alpha = 1;
+    _collectionBtn.alpha = _specialImg.alpha = 1;
+    [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
+    [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];//如果已经收藏了
 }
 
 - (IBAction)collectionAction:(id)sender {

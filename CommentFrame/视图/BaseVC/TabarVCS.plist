@@ -8,9 +8,9 @@
 		<key>className</key>
 		<string>HomeVC</string>
 		<key>selectImage</key>
-		<string>home_shouyeb</string>
+		<string>btn_foot_home_p</string>
 		<key>image</key>
-		<string>home_shouye</string>
+		<string>btn_foot_home_n</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -18,9 +18,9 @@
 		<key>className</key>
 		<string>SpecialOfferListVC</string>
 		<key>selectImage</key>
-		<string>home_shouyeb</string>
+		<string>btn_foot_discount_p</string>
 		<key>image</key>
-		<string>home_shouye</string>
+		<string>btn_foot_discount_n</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -28,9 +28,9 @@
 		<key>className</key>
 		<string>ManufacturersVC</string>
 		<key>selectImage</key>
-		<string>home_shouyeb</string>
+		<string>btn_foot_factory_p</string>
 		<key>image</key>
-		<string>home_shouye</string>
+		<string>btn_foot_factory_n</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -38,9 +38,9 @@
 		<key>className</key>
 		<string>InteractionVC</string>
 		<key>selectImage</key>
-		<string>home_shouyeb</string>
+		<string>btn_foot_interactive_p</string>
 		<key>image</key>
-		<string>home_shouye</string>
+		<string>btn_foot_interactive_n</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -48,9 +48,9 @@
 		<key>className</key>
 		<string>LosePromiseVC</string>
 		<key>selectImage</key>
-		<string>home_shouyeb</string>
+		<string>btn_foot_nocredit_p</string>
 		<key>image</key>
-		<string>home_shouye</string>
+		<string>btn_foot_nocredit_n</string>
 	</dict>
 </array>
 </plist>

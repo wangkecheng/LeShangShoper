@@ -28,6 +28,8 @@
 
 -(void)setModel:(ProductDetailListModel *)model{
 	_model = model;
+    [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
+    [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];
 }
 
 - (IBAction)collectionAction:(id)sender {

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InteligentServiceView">
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="InteligentServiceView">
             <rect key="frame" x="0.0" y="0.0" width="410" height="477"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-8L-qQu">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1O-8L-qQu">
                     <rect key="frame" x="0.0" y="0.0" width="410" height="477"/>
-                    <state key="normal" title="智能服务"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="ic_service.png"/>
                     <connections>
                         <action selector="serviceAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="fsT-jd-2gj"/>
                     </connections>
@@ -26,14 +26,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="R1O-8L-qQu" secondAttribute="bottom" id="2fN-n2-Xiz"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="R1O-8L-qQu" secondAttribute="trailing" id="DP9-cx-8al"/>
-                <constraint firstItem="R1O-8L-qQu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ba0-7q-qxw"/>
-                <constraint firstItem="R1O-8L-qQu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="xPG-XL-wBB"/>
+                <constraint firstAttribute="bottom" secondItem="R1O-8L-qQu" secondAttribute="bottom" id="2fN-n2-Xiz"/>
+                <constraint firstAttribute="trailing" secondItem="R1O-8L-qQu" secondAttribute="trailing" id="DP9-cx-8al"/>
+                <constraint firstItem="R1O-8L-qQu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ba0-7q-qxw"/>
+                <constraint firstItem="R1O-8L-qQu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xPG-XL-wBB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="43" y="147.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_service.png" width="57" height="69"/>
+    </resources>
 </document>

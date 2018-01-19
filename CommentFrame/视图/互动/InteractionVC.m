@@ -29,7 +29,7 @@
 	[_tableview setSeparatorStyle:0];
 	
 	[_tableview hideSurplusLine];
-	[self addRightBarButtonItemWithTitle:@"添加互动" action:@selector(addInteraction)];
+	[self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction)];
 	_tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	[self getPage];

@@ -40,10 +40,15 @@
 	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
 	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
 	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
-	UIImage *image = [UIImage imageNamed:@"btn-index-search"];
+	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
 	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
 	searchField.leftView = iconView;
+    UIButton * rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(searchField.frame) - 10, CGRectGetWidth(searchField.frame) - 10)];
+    [rightBtn setImage:IMG(@"ic_search_delete") forState:0];
+    [rightBtn addTarget:self action:@selector(delegateInputText) forControlEvents:UIControlEventTouchUpInside];
+    searchField.rightView = rightBtn;
+    searchField.rightViewMode=UITextFieldViewModeWhileEditing;
 	searchField.leftViewMode=UITextFieldViewModeAlways;
 	self.navigationItem.titleView = _searchBar;
 	
@@ -67,6 +72,10 @@
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)delegateInputText{
+    [_searchBar resignFirstResponder];
+    _searchBar.text = nil;
+}
 - (void)getPage{
 	
 	[self getData:1];

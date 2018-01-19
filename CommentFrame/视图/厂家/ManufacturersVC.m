@@ -41,7 +41,7 @@
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
 	[self getPage];
 	
-	[self addRightBarButtonWithFirstImage:IMG(@"btn-index-search") action:@selector(toSearchManufacturersVC)];
+	[self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
 }
 
 -(void)toSearchManufacturersVC{
