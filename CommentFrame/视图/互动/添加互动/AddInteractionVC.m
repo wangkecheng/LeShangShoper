@@ -33,7 +33,7 @@ UICollectionViewDelegateFlowLayout>
 
 @implementation AddInteractionVC
 
--(instancetype)initWithBlock:(void(^)())publishedBlock{
+-(instancetype)initWithBlock:(void(^)(void))publishedBlock{
 	self = [super init];
 	if (self) {
 		_publishedBlock = publishedBlock;
@@ -107,7 +107,7 @@ UICollectionViewDelegateFlowLayout>
  //上传图片
 	HDModel *m = [HDModel model];
 	m.content = _noteTextView.text;
-	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+	[BaseServer postObjc:m path:@"/interact/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (weakSelf.publishedBlock) {
 				weakSelf.publishedBlock();
@@ -117,6 +117,16 @@ UICollectionViewDelegateFlowLayout>
 	} failed:^(NSError *error) {
 		
 	}];
+//	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			if (weakSelf.publishedBlock) {
+//				weakSelf.publishedBlock();
+//			}
+//			[weakSelf.navigationController popViewControllerAnimated:YES];
+//		});
+//	} failed:^(NSError *error) {
+//
+//	}];
 }
 #pragma mark 选择图片
 - (void)selectImgFromAlbum{

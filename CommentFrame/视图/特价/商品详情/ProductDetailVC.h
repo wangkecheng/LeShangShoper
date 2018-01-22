@@ -7,7 +7,7 @@
 //
 
 #import "HDBaseVC.h"
-
+#import "CollectionModel.h"
 @interface ProductDetailVC : HDBaseVC
-
+@property (strong, nonatomic)CollectionModel * model;
 @end

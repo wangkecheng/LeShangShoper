@@ -24,15 +24,15 @@
 	[super viewDidLoad];
 	_arrModel = [[NSMutableArray alloc]init];
 	[_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
-	_tableview.backgroundColor = self.view.backgroundColor = UIColorFromRGB(242, 242, 242);
-	_tableview.delegate = self;
-	_tableview.dataSource = self;
+	 _tableview.backgroundColor = self.view.backgroundColor = UIColorFromRGB(242, 242, 242);
+	 _tableview.delegate = self;
+	 _tableview.dataSource = self;
 	[_tableview setSeparatorStyle:0];
 	
 	[_tableview hideSurplusLine];
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction)];
-	_tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	_tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+	 _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+	 _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	[self getPage];
 }
 
@@ -44,7 +44,6 @@
 -(void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO];
-	
 }
 
 - (void)getPage{
@@ -108,6 +107,7 @@
 	InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
 	[cell setModel:_arrModel[indexPath.section]];
 	[cell setSelectionStyle:0];
+	weakObj;
 	cell.pardiseBlock = ^(InteractionModel *model) {
 		HDModel * m = [HDModel model];
 		m.interactId = model.uid;
@@ -120,7 +120,7 @@
 	cell.commentBlock = ^(InteractionModel *model) {
         CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
         VC.interactionModel = model;
-        [self.navigationController pushViewController:VC animated:YES]; 
+        [weakSelf.navigationController pushViewController:VC animated:YES]; 
 	};
 	return cell;
 }
@@ -138,9 +138,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-		return 30;
+		return 5;
 	}
-	return 10;
+	return 5;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -29,7 +29,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-	
 }
 
 -(void)setModel:(InteractionModel *)model{
@@ -43,9 +42,9 @@
 	if (imgStrArr.count > 2) {
 		w = CGRectGetWidth(self.contentView.frame) / 3.0 - 20;
 	}
-	h = w;
-	
+	h = w; 
 }
+
 - (IBAction)commentAction:(id)sender {
 	if (_commentBlock) {
 		_commentBlock(_model);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="commentTextView" destination="n6q-If-XFa" id="uZu-mq-bLc"/>
                 <outlet property="commentView" destination="Pvw-ug-1QZ" id="VSg-fb-I6Y"/>
-                <outlet property="commentViewBottom" destination="QUd-li-C2h" id="a3n-Yb-cVq"/>
+                <outlet property="commentViewBottom" destination="3Kc-xI-MTs" id="zSz-U1-zSU"/>
                 <outlet property="placeholder" destination="Rf7-u5-UeN" id="G3o-aH-u7X"/>
                 <outlet property="tableview" destination="AZG-Jd-v9M" id="21N-qV-InQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

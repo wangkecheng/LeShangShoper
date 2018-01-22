@@ -48,7 +48,7 @@
         [LWActiveIncator hideInViwe:CurrentAppDelegate.window];
          if ([responseObject[@"code"] integerValue] == 0) {
             if (isShowSuccessHud)
-                [CurrentAppDelegate.window  makeToast:responseObject[@"msg"]];
+                [CurrentAppDelegate.window  makeToast:responseObject[@"message"]];
             NSDictionary *dict = [DDFactory reverseDict:responseObject];
             SAFE_BLOCK_CALL(success, dict);
             return;

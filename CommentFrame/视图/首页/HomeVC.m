@@ -18,7 +18,7 @@
 #define NewsCell_ @"NewsCell"
 #import "LeftTopHeadView.h"
 #import "InteligentServiceView.h"
-
+#import "SearchManufacturersVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -143,8 +143,12 @@
 		[weakSelf.arrHomeHeaderModel addObjectsFromArray:arr];
 		dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>0) {
-                [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
+				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+					[weakSelf.tableView reloadData];
+//					[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+				});
+				
+			}
 		});
 	} failed:^(NSError *error) {
 		
@@ -163,8 +167,9 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                      [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-                });
+//                      [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+					[weakSelf.tableView reloadData];
+				});
             }
 		});
 	} failed:^(NSError *error) {
@@ -182,7 +187,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+						[weakSelf.tableView reloadData];
+//					[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             }
         });
@@ -211,7 +217,8 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>3) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
+					[weakSelf.tableView reloadData];
+//					[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             }
 			[strongSelf.tableView.mj_header endRefreshing];
@@ -322,6 +329,9 @@
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 	  //打开搜索界面
+	SearchManufacturersVC * VC = [[SearchManufacturersVC alloc]init];
+	HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+	[navi pushVC:VC isHideBack:YES animated:YES];
 	return NO;
 }
 - (void)didReceiveMemoryWarning {

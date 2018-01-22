@@ -175,28 +175,33 @@
 }
 + (NSDictionary *) reverseDict:(NSDictionary *)dict {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    for (NSString *key in [dict allKeys]) {
-        id value = [dict objectForKey:key];
-        if ([value isKindOfClass:[NSString class]]) {
-            [dic setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
-        }
-        if ([value isKindOfClass:[NSNumber class]]) {
-            [dic setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
-            
-        }
-        
-        if ([value isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *eleDict = [self reverseDict:value];
-            [dic setObject:eleDict  forKey:key];
-        }
-        if ([value isKindOfClass:[NSArray class]]) {
-            NSMutableArray  *arr = [[NSMutableArray alloc]init];
-            for (NSDictionary *dictT in value) {
-                [arr addObject:[self reverseDict:dictT]];
-            }
-            [dic setObject:arr forKey:key];
-        }
-    }
+	if([dict isKindOfClass:[NSDictionary class]]){
+		for (NSString *key in [dict allKeys]) {
+			id value = [dict objectForKey:key];
+			if ([value isKindOfClass:[NSString class]]) {
+				[dic setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
+			}
+			if ([value isKindOfClass:[NSNumber class]]) {
+				[dic setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
+				
+			}
+			
+			if ([value isKindOfClass:[NSDictionary class]]) {
+				NSDictionary *eleDict = [self reverseDict:value];
+				[dic setObject:eleDict  forKey:key];
+			}
+			if ([value isKindOfClass:[NSArray class]]) {
+				
+				NSMutableArray  *arr = [[NSMutableArray alloc]init];
+				for (NSDictionary *dictT in value) {
+					if([dict isKindOfClass:[NSDictionary class]]) {
+						[arr addObject:[self reverseDict:dictT]];
+					}
+				}
+				[dic setObject:arr forKey:key];
+			}
+		}
+	} 
     return [dic copy];
 }
 + (NSData *)resetSizeOfImageData:(UIImage *)source_image maxSize:(NSInteger)maxSize

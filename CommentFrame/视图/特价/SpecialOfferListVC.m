@@ -11,6 +11,7 @@
 #import "ProductDetailVC.h"
 #import "CollectionCell.h"
 #define CollectionCell_ @"CollectionCell"
+#import "SearchManufacturersVC.h"
 @interface SpecialOfferListVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -23,7 +24,31 @@
 	[super viewDidLoad];
     
     _arrModel = [NSMutableArray array];
-    
+	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 100, 30)];
+	[searchBar setPlaceholder:@"探索您心仪的宝贝"];
+	searchBar.delegate = self;
+	searchBar.layer.cornerRadius = 5;
+	searchBar.layer.masksToBounds = YES;
+	
+	[DDFactory removeSearhBarBack:searchBar];
+	UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+	searchField.textColor = [UIColor blackColor];
+	[searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+	searchField.font=[UIFont systemFontOfSize:14];
+	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
+	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
+	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
+	
+	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
+	
+	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
+	
+	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
+	
+	searchField.leftView = iconView;
+	searchField.leftViewMode=UITextFieldViewModeAlways;
+	
+	self.navigationItem.titleView = searchBar;
 	[_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
      _tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	[_tableView hideSurplusLine];
@@ -95,6 +120,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+	CollectionModel * model = _arrModel[indexPath.row];
+	VC.model  = model;
 	[self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -121,6 +148,10 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 	//打开搜索界面
+	//打开搜索界面
+	SearchManufacturersVC * VC = [[SearchManufacturersVC alloc]init];
+	HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+	[navi pushVC:VC isHideBack:YES animated:YES];
 	return NO;
 }
 

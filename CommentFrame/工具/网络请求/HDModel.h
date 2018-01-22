@@ -29,4 +29,5 @@
 @property (nonatomic,strong)NSString *keyword;
 @property (nonatomic,strong)NSString *content;
 @property (nonatomic,strong)NSString *mid;
+@property (nonatomic,strong)NSString *cid;
 @end

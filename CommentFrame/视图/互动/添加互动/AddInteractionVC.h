@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddInteractionVC : UIViewController
--(instancetype)initWithBlock:(void(^)())publishedBlock;
+-(instancetype)initWithBlock:(void(^)(void))publishedBlock;
 @end

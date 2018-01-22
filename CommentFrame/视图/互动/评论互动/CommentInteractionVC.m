@@ -25,20 +25,18 @@
 @end
 
 @implementation CommentInteractionVC
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //注册键盘通知
-    [self registeKeyboardNotifications];
-    [IQKeyboardManager sharedManager].enable = NO;//解觉键盘提升时 ， 输入框没有紧贴键盘顶部的bug， 不加这个代码 在系统原生键盘上不会出现这个问题
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	//注册键盘通知
+	[self registeKeyboardNotifications];
+	  [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条
+	[IQKeyboardManager sharedManager].enable = NO;//解觉键盘提升时 ， 输入框没有紧贴键盘顶部的bug， 不加这个代码 在系统原生键盘上不会出现这个问题
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+	[IQKeyboardManager sharedManager].enableAutoToolbar = YES;//显示工具条
     [IQKeyboardManager sharedManager].enable = YES;
     //移除键盘通知
     [self unregisteKeyboardNotification];
@@ -73,6 +71,7 @@
 - (void)getData:(NSInteger)pageIndex {
     _page = pageIndex;
     HDModel *m = [HDModel model];
+	m.interactId = _interactionModel.interactId;
     m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
     [BaseServer postObjc:m path:@"/interact/comment/ist" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
@@ -152,10 +151,11 @@
     weakObj;
     HDModel * m = [HDModel model];
     m.interactId = _interactionModel.uid;
+	m.content = comment;
     [BaseServer postObjc:m path:@"/interact/comment/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.commentTextView.text = @"";
-            weakSelf.placeholder.text = @"说点什么吧";
+            weakSelf.placeholder.alpha = 1;
         });
     } failed:^(NSError *error) {
         
@@ -163,12 +163,12 @@
 }
 #pragma mark - 键盘处理
 - (void)registeKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)unregisteKeyboardNotification {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
@@ -177,7 +177,7 @@
     NSTimeInterval animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];  //键盘动画时间
     
     [UIView animateWithDuration:animationDuration animations:^{
-        _commentView.frame = CGRectMake(0, SCREENHEIGHT - keyboardRect.size.height - CGRectGetHeight(_commentView.frame), SCREENHEIGHT, CGRectGetHeight(_commentView.frame));
+//        _commentView.frame = CGRectMake(0, SCREENHEIGHT - keyboardRect.size.height - CGRectGetHeight(_commentView.frame), SCREENHEIGHT, CGRectGetHeight(_commentView.frame));
         self.commentViewBottom.constant =  keyboardRect.size.height;
     }];
     
@@ -190,7 +190,9 @@
     } completion:nil];
 }
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    
+	if (textView.text.length != 0) {
+		_placeholder.alpha = 0;
+	}
     return YES;
 }
 
