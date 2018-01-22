@@ -36,7 +36,7 @@
 		btn.imageView.layer.masksToBounds = YES;
        
         if (model.logoUrl) {
-            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0];
+            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"")];
         }
 		
 		[btn setTitle:model.name forState:0];
