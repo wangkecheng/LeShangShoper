@@ -21,7 +21,7 @@
 }
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;
-	[_img sd_setImageWithURL:IMGURL(model.logoUrl)];
+	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon")];
 	_titleLbl.text = model.name;
 	_locationLbl.text  = model.addr;
 }
