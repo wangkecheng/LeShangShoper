@@ -156,6 +156,9 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.commentTextView.text = @"";
             weakSelf.placeholder.alpha = 1;
+			if(weakSelf.finishComBlock){
+				weakSelf.finishComBlock(weakSelf.interactionModel);
+			}
         });
     } failed:^(NSError *error) {
         

@@ -99,7 +99,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return  120;
+	return  [InteractionCell cellHByModel:_arrModel[indexPath.section]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -111,6 +111,8 @@
 	cell.pardiseBlock = ^(InteractionModel *model) {
 		HDModel * m = [HDModel model];
 		m.interactId = model.uid;
+		model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
+		[weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[weakSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
 		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 			
 		} failed:^(NSError *error) {
@@ -119,6 +121,10 @@
 	};
 	cell.commentBlock = ^(InteractionModel *model) {
         CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+		VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
+			interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
+			[weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[weakSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
+		};
         VC.interactionModel = model;
         [weakSelf.navigationController pushViewController:VC animated:YES]; 
 	};

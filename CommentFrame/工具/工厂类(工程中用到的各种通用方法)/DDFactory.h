@@ -68,5 +68,9 @@
 
 
 +(UIImage *)circleImage:(UIImage *)image size:(CGSize)size;
+
+//高度不变获取宽度
++(CGFloat)autoWByText:(NSString *)text Font:(CGFloat)font H:(CGFloat)H;
++(CGFloat)autoHByText:(NSString *)text Font:(CGFloat)font W:(CGFloat)W;
 @end
 
