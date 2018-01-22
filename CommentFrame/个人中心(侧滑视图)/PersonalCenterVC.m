@@ -71,7 +71,7 @@
 			weakSelf.addressLbl.text = model.addr;
 			weakSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
 			weakSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分",model.integral];
-			[weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"image1.jpg")];
+			[weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxinag")];
 		}else{
 			weakSelf.dianJiLoginLbl.alpha = 1;
 			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;

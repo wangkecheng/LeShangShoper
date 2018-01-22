@@ -63,7 +63,7 @@
             [strongSelf.model.seriesArr addObject:seriesModel];
         }
 		dispatch_async(dispatch_get_main_queue(), ^{
-            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl)];
+            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon")];
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
