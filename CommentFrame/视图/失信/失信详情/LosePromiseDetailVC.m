@@ -9,7 +9,9 @@
 
 #import "LosePromiseDetailVC.h"
 
-@interface LosePromiseDetailVC ()
+@interface LosePromiseDetailVC ()<UIWebViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -18,6 +20,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title  = @"失信详情";
+    _webView.delegate = self;
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    return YES;
+}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -31,11 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"商品详情";
-	NSMutableArray * arr = [NSMutableArray array];
-	for (int i = 0 ;i<6; i++) {
-		[arr addObject:@"image0.jpg"];
-	}
-	
+  
 	HDModel * m = [HDModel model];
 	m.cid  = _model.cid;
 	weakObj;
@@ -52,10 +48,14 @@
 }
 
 -(void)setViewData{
+    _specialImg.alpha = 0;
+    if ([_detailModel.collect integerValue] == 2) {
+          _specialImg.alpha = 1;
+    }
 	_titleLbl.text = _detailModel.name;
 	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH,CGRectGetHeight(_scrollContentView.frame))  imageURLStringsGroup:_detailModel.imageHashs];
-	cycleView.backgroundColor=[UIColor redColor];
 	cycleView.showPageControl = NO;
+    [cycleView setPlaceholderImage:IMG(@"Icon")];
 	cycleView.autoScroll = NO;
 	[self.scrollContentView addSubview:cycleView];
 	weakObj;

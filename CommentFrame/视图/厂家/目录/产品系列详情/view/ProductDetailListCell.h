@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductDetailListModel.h"
+#import "CollectionModel.h"
 @interface ProductDetailListCell : UICollectionViewCell
 
-@property (nonatomic,copy)void(^collectionBlock)(ProductDetailListModel * model);
-@property(nonatomic)ProductDetailListModel * model;
+@property (nonatomic,copy)void(^collectionBlock)(CollectionModel * model);
+@property(nonatomic,strong)CollectionModel * model;
 @end

@@ -77,13 +77,14 @@ typedef void (^finishBlock)(BOOL isFinish);
 
 //设置根视图
 + (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC {
-	WSLeftSlideManagerVC *VC = [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
-	VC.scaleContent = YES;
-	[CurrentAppDelegate.window setRootViewController:VC];
-	if ([CacheTool getRecentLoginUser]) {//如果有最近的登录者，表示该登录者登录后又退出了，则在此进入 就要进入登录界面
-		HDMainNavC * navc = [[HDMainNavC alloc]initWithRootViewController:[[LoginVC alloc]init]];
-		[VC presentViewController:navc animated:YES completion:nil];
+	
+    HDBaseVC * VC = [[LoginVC alloc]init];//(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:[[LoginVC alloc]init]];
+	if (isMainVC) { 
+        WSLeftSlideManagerVC *managerVC =   [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
+        managerVC.scaleContent = YES;
+        VC = (HDBaseVC *)managerVC;
 	}
+    [CurrentAppDelegate.window setRootViewController:VC];
 	return VC;
 }
 +(void)showLoginVC:(HDBaseVC *)theVC{

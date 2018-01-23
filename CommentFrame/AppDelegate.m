@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "CacheTool.h"
 #import "GuideVC.h"
 #import "HDMainTBC.h"
 @interface AppDelegate ()
@@ -23,11 +23,15 @@
 	[_window makeKeyAndVisible];
 	if (![GuideVC hadLoaded]) {
 		GuideVC *VC = [GuideVC loadWithBlock:^(BOOL isFinish) {
-			[CacheTool setRootVCByIsMainVC:YES];//主界面视图
+			[CacheTool setRootVCByIsMainVC:NO];//登录视图
 		}];
 		_window.rootViewController = VC;//第一次进入会走这里
 	}else{
-		[CacheTool setRootVCByIsMainVC:YES];//主界面视图
+        if ([CacheTool getUserModel].isMember) {
+            [CacheTool setRootVCByIsMainVC:YES];//主视图
+        }else{
+             [CacheTool setRootVCByIsMainVC:NO];//登录视图
+        } 
 	}
 	
     [IQKeyboardManager sharedManager];//键盘

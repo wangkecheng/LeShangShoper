@@ -7,7 +7,8 @@
 //
 
 #import "HDBaseVC.h"
-
+#import "ManufacturersModel.h"
 @interface ProductDetailListVC : HDBaseVC
-
+@property(nonatomic,strong)BrandsModel *brandsModel;
+@property(nonatomic,strong)NSString *mid;
 @end

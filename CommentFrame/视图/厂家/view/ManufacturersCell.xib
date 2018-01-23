@@ -48,7 +48,7 @@
             <connections>
                 <outlet property="nameLbl" destination="hSP-R3-XFd" id="4Go-Rd-bpM"/>
             </connections>
-            <point key="canvasLocation" x="17" y="-11"/>
+            <point key="canvasLocation" x="-127" y="-58"/>
         </tableViewCell>
     </objects>
 </document>

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UICollectionView(LOExtension)
-
+ 
+//设置占位图片
 -(void)setHolderImg:(NSString *)img isHide:(BOOL)isHide;
+//设置占位文字及图片
+-(void)setHolderImg:(NSString *)img holderStr:(NSString *)holderStr isHide:(BOOL)isHide;
 @end

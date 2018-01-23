@@ -15,20 +15,64 @@
             <rect key="frame" x="0.0" y="0.0" width="461" height="202"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -         热点新闻         - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDB-oj-rWQ">
-                    <rect key="frame" x="151" y="93" width="159" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5Z-ht-BXN">
+                    <rect key="frame" x="0.0" y="0.0" width="461" height="101"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1月2日 下午 4:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aC-ZI-95b">
+                            <rect key="frame" x="155.5" y="37" width="150" height="28"/>
+                            <color key="backgroundColor" red="0.86265093088150024" green="0.86279940605163574" blue="0.86264163255691528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="Rol-dZ-Ugp"/>
+                                <constraint firstAttribute="width" constant="150" id="wcC-pz-ljn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="5"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94107431173324585" green="0.94123536348342896" blue="0.94106405973434448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="7aC-ZI-95b" firstAttribute="centerX" secondItem="e5Z-ht-BXN" secondAttribute="centerX" id="97J-xN-qjW"/>
+                        <constraint firstItem="7aC-ZI-95b" firstAttribute="centerY" secondItem="e5Z-ht-BXN" secondAttribute="centerY" id="IKn-KR-XpC"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tns-FD-cLN">
+                    <rect key="frame" x="0.0" y="101" width="461" height="101"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -         热点新闻         - -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wft-VZ-CHX">
+                            <rect key="frame" x="151" y="42" width="159" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Wft-VZ-CHX" firstAttribute="centerX" secondItem="Tns-FD-cLN" secondAttribute="centerX" id="GHW-aa-l0r"/>
+                        <constraint firstItem="Wft-VZ-CHX" firstAttribute="centerY" secondItem="Tns-FD-cLN" secondAttribute="centerY" id="ZUc-4U-47I"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="tDB-oj-rWQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vof-XN-82S"/>
-                <constraint firstItem="tDB-oj-rWQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wNQ-Xx-sFF"/>
+                <constraint firstItem="e5Z-ht-BXN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2R7-In-VqH"/>
+                <constraint firstItem="Tns-FD-cLN" firstAttribute="leading" secondItem="e5Z-ht-BXN" secondAttribute="leading" id="6oN-rt-lIw"/>
+                <constraint firstItem="e5Z-ht-BXN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KI4-v7-UuM"/>
+                <constraint firstItem="e5Z-ht-BXN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xw6-ES-pOi"/>
+                <constraint firstAttribute="trailing" secondItem="e5Z-ht-BXN" secondAttribute="trailing" id="aKp-ed-VmJ"/>
+                <constraint firstItem="Tns-FD-cLN" firstAttribute="top" secondItem="e5Z-ht-BXN" secondAttribute="bottom" id="iQy-Jz-MdP"/>
+                <constraint firstAttribute="bottom" secondItem="Tns-FD-cLN" secondAttribute="bottom" id="jtn-T1-DqJ"/>
+                <constraint firstItem="Tns-FD-cLN" firstAttribute="width" secondItem="e5Z-ht-BXN" secondAttribute="width" id="kCH-Wx-pI5"/>
+                <constraint firstItem="Tns-FD-cLN" firstAttribute="height" secondItem="e5Z-ht-BXN" secondAttribute="height" id="toC-1I-tt8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="1" y="-103"/>
+            <connections>
+                <outlet property="timeLbl" destination="7aC-ZI-95b" id="U7M-Ir-Wbv"/>
+            </connections>
+            <point key="canvasLocation" x="-58.5" y="-108"/>
         </view>
     </objects>
 </document>

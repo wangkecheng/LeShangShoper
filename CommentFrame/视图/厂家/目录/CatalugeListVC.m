@@ -10,13 +10,16 @@
 #import "CatalugeListVC.h"
 #import "ManufacturersCell.h"
 #import "CatalugeListHeaderView.h"
+#import "CatalugeSheetView.h"
 #import "ProductDetailListVC.h"
+
 #define ManufacturersCell_ @"ManufacturersCell"
 @interface CatalugeListVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
 @property(nonatomic,strong)CatalugeListHeaderView * headerView;
+@property(nonatomic,strong)CatalugeSheetView *sheetView ;
 @end
 
 @implementation CatalugeListVC
@@ -56,12 +59,7 @@
 	[BaseServer postObjc:m path:@"/merchant/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		strongSelf.model = [ManufacturersModel yy_modelWithJSON:result[@"data"]];//直接用上个页面传过来的model来处理
-        strongSelf.model.seriesArr = [NSMutableArray array];
-        for (NSDictionary * dict in result[@"data"][@"series"]) {
-            SeriesModel * seriesModel = [SeriesModel yy_modelWithJSON:dict];
-            [strongSelf.model.seriesArr addObject:seriesModel];
-        }
+		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理 
 		dispatch_async(dispatch_get_main_queue(), ^{
             [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon")];
 			[strongSelf.tableView reloadData];
@@ -88,13 +86,11 @@
 	return _model.seriesArr.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	UITableViewCell * cell = nil;
+ 
 	weakObj;
-	ManufacturersCell *headerCell = [tableView dequeueReusableCellWithIdentifier:ManufacturersCell_ forIndexPath:indexPath];
-	[headerCell setSeriesModel:_model.seriesArr[indexPath.row]];
-	[headerCell setSelectionStyle:0];//不要分割线
-	cell = headerCell;
-	
+	ManufacturersCell *cell = [tableView dequeueReusableCellWithIdentifier:ManufacturersCell_ forIndexPath:indexPath];
+	[cell setSeriesModel:_model.seriesArr[indexPath.row]];
+	[cell setSelectionStyle:0];//不要分割线
 	return cell;
 }
 
@@ -105,10 +101,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
-	[self.navigationController pushViewController:VC animated:YES];
+
+    [self.sheetView showWithSeriesModel:_model.seriesArr[indexPath.row]];
 }
 
+-(CatalugeSheetView *)sheetView{
+    
+    if (!_sheetView) {
+        weakObj;
+        _sheetView = [CatalugeSheetView instanceByFrame:[UIScreen mainScreen].bounds clickBlock:^(BrandsModel *model) {
+              __strong typeof (weakSelf) strongSelf = weakSelf;
+                ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
+                VC.brandsModel = model;
+                VC.mid = strongSelf.model.mid;
+                [strongSelf.navigationController pushViewController:VC animated:YES];
+        }];
+    }
+    return _sheetView;
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	
 	weakObj;
