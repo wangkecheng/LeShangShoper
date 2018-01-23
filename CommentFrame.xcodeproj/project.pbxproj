@@ -261,6 +261,8 @@
 		2031F6CF1EA99BA30075E7F3 /* CommentFrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6CE1EA99BA30075E7F3 /* CommentFrameTests.m */; };
 		2031F6DA1EA99BA30075E7F3 /* CommentFrameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6D91EA99BA30075E7F3 /* CommentFrameUITests.m */; };
 		2031F6EF1EA9A3720075E7F3 /* DDFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6EE1EA9A3720075E7F3 /* DDFactory.m */; };
+		203F992D2016401900AE85CA /* IQButtonBarArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */; };
+		203F992E2016401900AE85CA /* IQButtonBarArrowLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */; };
 		2064C5351FFB53B90073C2EC /* SellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5331FFB53B90073C2EC /* SellerCell.m */; };
 		2064C5361FFB53B90073C2EC /* SellerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064C5341FFB53B90073C2EC /* SellerCell.xib */; };
 		2064C53A1FFB56D10073C2EC /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5381FFB56D10073C2EC /* AdvertCell.m */; };
@@ -762,6 +764,8 @@
 		2031F6E81EA9A0ED0075E7F3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2031F6ED1EA9A3720075E7F3 /* DDFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFactory.h; sourceTree = "<group>"; };
 		2031F6EE1EA9A3720075E7F3 /* DDFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFactory.m; sourceTree = "<group>"; };
+		203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@2x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@2x.png"; sourceTree = SOURCE_ROOT; };
+		203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@3x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@3x.png"; sourceTree = SOURCE_ROOT; };
 		2064C5321FFB53B90073C2EC /* SellerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerCell.h; sourceTree = "<group>"; };
 		2064C5331FFB53B90073C2EC /* SellerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerCell.m; sourceTree = "<group>"; };
 		2064C5341FFB53B90073C2EC /* SellerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerCell.xib; sourceTree = "<group>"; };
@@ -1881,6 +1885,8 @@
 				18B542B32011839500A40C4E /* 3厂家 */,
 				18B542C42011839500A40C4E /* 4互动 */,
 				18B542502011839400A40C4E /* 5失信 */,
+				203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */,
+				203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */,
 				206FA0412001040D00DB7998 /* ic_wangjimima_shanchu.png */,
 				1840EEAD20118B5400A341F7 /* icon_touxiang@3x.png */,
 				1840EEAC20118B5300A341F7 /* icon_touxiang2@2x.png */,
@@ -2867,6 +2873,7 @@
 				18B542D12011839500A40C4E /* ic_nocredit@2x.png in Resources */,
 				2064C5471FFB5A160073C2EC /* alertImg.png in Resources */,
 				200D7EF01FF742CC00B97979 /* ico_check_nomal@3x.png in Resources */,
+				203F992D2016401900AE85CA /* IQButtonBarArrowLeft@2x.png in Resources */,
 				200D7EE51FF742CC00B97979 /* AlbumListCell.xib in Resources */,
 				2068653F2009C429008C50A2 /* DSTableCell.xib in Resources */,
 				18B542CE2011839500A40C4E /* ic_detail_praise@3x.png in Resources */,
@@ -2893,6 +2900,7 @@
 				18B542F52011839500A40C4E /* ic_collection_n@2x.png in Resources */,
 				18B543202011839500A40C4E /* ic_default_arrow@3x.png in Resources */,
 				18B542D02011839500A40C4E /* ic_detail_views@3x.png in Resources */,
+				203F992E2016401900AE85CA /* IQButtonBarArrowLeft@3x.png in Resources */,
 				18B5430D2011839500A40C4E /* ic_my_name@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,5 +15,9 @@
 @property(nonatomic,copy)void(^pardiseBlock)(InteractionModel *mode);
 
 @property(nonatomic,copy)void(^commentBlock)(InteractionModel *mode);
+
+@property(nonatomic,copy)void(^seeBigImgBlock)(NSInteger index);
+
++(CGFloat)cellHByModel:(InteractionModel *)model;
 @end
 

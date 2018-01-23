@@ -328,6 +328,7 @@
  return 0.01;
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+	
 	  //打开搜索界面
     SearchProductVC * VC = [[SearchProductVC alloc]init];
     HDMainNavC * navi = (HDMainNavC *)self.navigationController;

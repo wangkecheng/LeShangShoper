@@ -14,7 +14,7 @@
 @property (nonatomic,strong)NSString *createAt;//发布时间（毫秒时间戳）
 @property (nonatomic,strong)NSString *giveNumber;//点赞数
 @property (nonatomic,strong)NSString *commentNumber;//评论数
-@property (nonatomic,strong)NSString *imageUrls;//图片地址数组
+@property (nonatomic,strong)NSArray *imageUrls;//图片地址数组
 @property (nonatomic,strong)NSString *uid;//用户id
 @property (nonatomic,strong)NSString *content;//内容
 @property (nonatomic,strong)NSString *interactId;//互动Id

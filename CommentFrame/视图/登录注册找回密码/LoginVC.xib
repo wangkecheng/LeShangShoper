@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,8 +26,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-P2-B6c">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="vQm-P2-B6c">
+                    <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vQm-P2-B6c" secondAttribute="height" multiplier="15:8" id="EcH-sC-lnz"/>
+                    </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CT7-39-tJR">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -38,7 +41,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBS-Nk-9EX">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="M2A-Bg-KgS">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="M2A-Bg-KgS">
                                             <rect key="frame" x="147.5" y="85" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="M2A-Bg-KgS" secondAttribute="height" multiplier="15:15" id="Fo5-8e-BDi"/>
@@ -46,7 +49,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="XBS-Nk-9EX" secondAttribute="height" multiplier="3/2" id="Fyk-90-v1M"/>
                                         <constraint firstItem="M2A-Bg-KgS" firstAttribute="centerX" secondItem="XBS-Nk-9EX" secondAttribute="centerX" id="alP-Ih-oAM"/>
@@ -56,12 +59,6 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRp-AK-PKV">
                                     <rect key="frame" x="0.0" y="250" width="375" height="400"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="qWN-Kj-6RT">
-                                            <rect key="frame" x="0.0" y="200" width="375" height="200"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="qWN-Kj-6RT" secondAttribute="height" multiplier="15:8" id="k2V-dL-wuB"/>
-                                            </constraints>
-                                        </imageView>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uZ-zP-hAO" userLabel="inputView">
                                             <rect key="frame" x="30" y="20" width="315" height="76"/>
                                             <subviews>
@@ -220,14 +217,11 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="qWN-Kj-6RT" secondAttribute="trailing" id="32B-H2-7gp"/>
-                                        <constraint firstAttribute="bottom" secondItem="qWN-Kj-6RT" secondAttribute="bottom" id="7NT-Na-139"/>
                                         <constraint firstItem="xky-KE-1Tm" firstAttribute="top" secondItem="XLi-SE-0ah" secondAttribute="bottom" constant="15" id="NPv-0i-kv5"/>
                                         <constraint firstItem="4uZ-zP-hAO" firstAttribute="leading" secondItem="XRp-AK-PKV" secondAttribute="leading" constant="30" id="OVM-VV-ypt"/>
                                         <constraint firstItem="XLi-SE-0ah" firstAttribute="leading" secondItem="4uZ-zP-hAO" secondAttribute="leading" id="Pfb-k2-GT5"/>
-                                        <constraint firstItem="qWN-Kj-6RT" firstAttribute="leading" secondItem="XRp-AK-PKV" secondAttribute="leading" id="Rv2-To-0kB"/>
                                         <constraint firstItem="XLi-SE-0ah" firstAttribute="trailing" secondItem="4uZ-zP-hAO" secondAttribute="trailing" id="SAu-dC-Iec"/>
                                         <constraint firstItem="xky-KE-1Tm" firstAttribute="trailing" secondItem="XLi-SE-0ah" secondAttribute="trailing" id="W7f-zM-Mf3"/>
                                         <constraint firstItem="4uZ-zP-hAO" firstAttribute="top" secondItem="XRp-AK-PKV" secondAttribute="top" constant="20" id="beh-uO-859"/>
@@ -236,7 +230,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="XBS-Nk-9EX" firstAttribute="leading" secondItem="vTR-9T-kYM" secondAttribute="leading" id="94x-64-TdW"/>
                                 <constraint firstItem="XBS-Nk-9EX" firstAttribute="top" secondItem="vTR-9T-kYM" secondAttribute="top" id="HP1-GX-6bj"/>
@@ -249,6 +243,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="vTR-9T-kYM" firstAttribute="leading" secondItem="CT7-39-tJR" secondAttribute="leading" id="8aA-Tt-geO"/>
                         <constraint firstAttribute="bottom" secondItem="vTR-9T-kYM" secondAttribute="bottom" id="DQJ-y1-WPn"/>
@@ -267,15 +262,14 @@
                 <constraint firstItem="CT7-39-tJR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XO3-JV-Fk0"/>
                 <constraint firstAttribute="trailing" secondItem="vQm-P2-B6c" secondAttribute="trailing" id="rrm-0B-yli"/>
                 <constraint firstItem="vQm-P2-B6c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sjh-7T-Fqe"/>
-                <constraint firstItem="vQm-P2-B6c" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wil-Xc-Dm8"/>
             </constraints>
-            <point key="canvasLocation" x="-215.5" y="-210.5"/>
+            <point key="canvasLocation" x="118" y="-223"/>
         </view>
     </objects>
     <resources>
+        <image name="Icon.png" width="87" height="87"/>
         <image name="bg_login.png" width="375" height="161"/>
         <image name="ic_input_lock.png" width="13" height="16"/>
         <image name="ic_input_name.png" width="13" height="16"/>
-        <image name="logo.png" width="16" height="16"/>
     </resources>
 </document>
