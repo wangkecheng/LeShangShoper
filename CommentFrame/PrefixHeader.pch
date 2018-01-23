@@ -41,7 +41,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define weakObj       __weak __typeof(self) weakSelf = self
 #define SAFE_BLOCK_CALL(b, p) (b == nil ? : b(p) )
 #define CountDownTime  60
-#import "DDButton.h"
+#import "UIButton+EnlargeEdge.h"
+#import "DDButton.h" 
 #import "SDImageCache.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"

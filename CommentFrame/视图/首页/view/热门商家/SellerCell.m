@@ -41,6 +41,7 @@
 		
 		[btn setTitle:model.name forState:0];
 		 btn.titleLabel.textAlignment = 1;
+         btn.titleLabel.font = [UIFont systemFontOfSize:14];
 		[btn setTitleColor:[UIColor blackColor] forState:0];
 		 btn.tag = i;
 		[btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -67,10 +67,10 @@
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
-			[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
-			if (strongSelf.model.seriesArr.count == 0) {
-				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
-			}
+//            [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+//            if (strongSelf.model.seriesArr.count == 0) {
+//                [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+//            }
 		});
 	} failed:^(NSError *error) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;

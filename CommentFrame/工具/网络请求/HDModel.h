@@ -30,4 +30,6 @@
 @property (nonatomic,strong)NSString *content;
 @property (nonatomic,strong)NSString *mid;
 @property (nonatomic,strong)NSString *cid;
+@property (nonatomic,strong)NSString *hot;//1，非热门，2，热门，默认全部
+@property (nonatomic,strong)NSString *sort;//排序方式 1，正序，2，逆序
 @end
