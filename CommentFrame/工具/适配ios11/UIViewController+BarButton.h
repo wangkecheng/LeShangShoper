@@ -11,7 +11,7 @@
 @interface UIViewController (BarButton)
 - (void)addLeftBarButtonWithImage:(UIImage *)image action:(SEL)action;
 
-- (void)addRightBarButtonWithFirstImage:(UIImage *)firstImage action:(SEL)action;
+- (UIButton *)addRightBarButtonWithFirstImage:(UIImage *)firstImage action:(SEL)action;
 - (UIButton *)addRightBarButtonItemWithTitle:(NSString *)itemTitle action:(SEL)action;
 - (void)addLeftBarButtonItemWithTitle:(NSString *)itemTitle action:(SEL)action;
 

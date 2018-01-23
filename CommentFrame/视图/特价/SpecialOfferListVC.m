@@ -11,18 +11,28 @@
 #import "ProductDetailVC.h"
 #import "CollectionCell.h"
 #define CollectionCell_ @"CollectionCell"
-#import "SearchManufacturersVC.h"
+#import "SearchProductVC.h"
 @interface SpecialOfferListVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *priceBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *priceImg;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImg;
+
+@property (weak, nonatomic) IBOutlet UIButton *hotBtn;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
 @property(nonatomic,strong)NSMutableArray * arrModel;
+@property(nonatomic,strong)NSString *priceKey;
+@property(nonatomic,strong)NSString *hotKey;
 @end
 
 @implementation SpecialOfferListVC
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
+    [_priceBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
+    [_hotBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
     _arrModel = [NSMutableArray array];
 	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 100, 30)];
 	[searchBar setPlaceholder:@"探索您心仪的宝贝"];
@@ -57,9 +67,35 @@
 	
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
-    [self addRightBarButtonWithFirstImage:IMG(@"bg_special_zone") action:nil];
+    UIButton * btn = [self addRightBarButtonWithFirstImage:IMG(@"bg_special_zone") action:nil];
+    btn.userInteractionEnabled = NO;
     [self getPage];
 }
+
+- (IBAction)priceSortAction:(UIButton *)sender {//价格
+   
+    if ([_priceKey isEqualToString:@"2"]) {
+         _priceKey = @"1";// 排序方式 1，正序，2，逆序
+        [_priceImg setImage:IMG(@"ico_paihangAssent")];
+    }else{
+        _priceKey = @"2";
+        [_priceImg setImage:IMG(@"ico_paihangDescending")];
+    }
+    [self getPage];
+}
+
+- (IBAction)hotSortAction:(UIButton *)sender {//热度
+    if ([_hotKey isEqualToString:@"2"]) {
+        _hotKey = @"1"; //1，非热门，2，热门，默认全部
+        [_hotImg setImage:IMG(@"ico_paihangAssent")];
+    }else{
+        _hotKey = @"2";
+        [_hotImg setImage:IMG(@"ico_paihangDescending")];
+    }
+       [self getPage];
+}
+
+
 - (void)getPage{
 	
 	[self getData:1];
@@ -73,6 +109,8 @@
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
 	m.pageNumber = [NSString stringFromInt:pageIndex];
+    m.hot = _hotKey;
+    m.sort = _priceKey;
 	weakObj;
 	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
@@ -147,9 +185,8 @@
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-	//打开搜索界面
-	//打开搜索界面
-	SearchManufacturersVC * VC = [[SearchManufacturersVC alloc]init];
+	//打开搜索界面 
+	SearchProductVC * VC = [[SearchProductVC alloc]init];
 	HDMainNavC * navi = (HDMainNavC *)self.navigationController;
 	[navi pushVC:VC isHideBack:YES animated:YES];
 	return NO;
@@ -161,3 +198,4 @@
 }
 
 @end
+

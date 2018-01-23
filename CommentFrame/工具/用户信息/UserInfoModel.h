@@ -15,7 +15,7 @@
 @property (nonatomic, copy) NSString *token;//后续访问token
 @property (nonatomic, copy) NSString *lv;//等级
 @property (nonatomic, copy) NSString *addr;//地址
-@property (nonatomic, copy) NSString *sex;//性别
+@property (nonatomic, copy) NSString *sex;//性别 1,男 2,女
 @property (nonatomic, copy) NSString *mobile;//电话
 @property (nonatomic, copy) NSString *name;//姓名
 @property (nonatomic, copy) NSString *integral;//积分

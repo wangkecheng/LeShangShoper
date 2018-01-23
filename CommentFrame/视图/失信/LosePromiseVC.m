@@ -111,10 +111,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	if (section == 0) {
-		return 30;
-	}
-	return 10;
+	 
+	return 5;
 }
 
 - (void)didReceiveMemoryWarning {

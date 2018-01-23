@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 10, 30)];
-	[_searchBar setPlaceholder:@"探索厂家"];
+	[_searchBar setPlaceholder:@"搜索厂家"];
 	_searchBar.delegate = self;
 	_searchBar.layer.cornerRadius = 5;
 	_searchBar.layer.masksToBounds = YES;
@@ -101,7 +101,7 @@
 		if (strongSelf.page == 1) {
 			[strongSelf.arrModel removeAllObjects];
 		}
-		
+		 [strongSelf.arrModel addObjectsFromArray:tempArr];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
@@ -153,6 +153,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
 		SearchManufacturersHeaderView *headerView= [SearchManufacturersHeaderView instanceByFrame:CGRectMake(0, 0, SCREENHEIGHT, 60)];
+        headerView.serachCountLbl.text = [NSString stringFromInt:_arrModel.count];
 		return headerView;
 	}
 	UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 5)];

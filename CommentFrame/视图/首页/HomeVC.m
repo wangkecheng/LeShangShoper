@@ -18,7 +18,7 @@
 #define NewsCell_ @"NewsCell"
 #import "LeftTopHeadView.h"
 #import "InteligentServiceView.h"
-#import "SearchManufacturersVC.h"
+#import "SearchProductVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -286,10 +286,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	if (indexPath.section == 0) {
-		return  120;
+		return  200;
 	}
 	if (indexPath.section == 1) {
-		return  SCREENWIDTH/3 - 80 + 150;
+		return  SCREENWIDTH/3 +50;
 	}
 	if (indexPath.section == 2) {
 		return  50;
@@ -329,9 +329,9 @@
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 	  //打开搜索界面
-	SearchManufacturersVC * VC = [[SearchManufacturersVC alloc]init];
-	HDMainNavC * navi = (HDMainNavC *)self.navigationController;
-	[navi pushVC:VC isHideBack:YES animated:YES];
+    SearchProductVC * VC = [[SearchProductVC alloc]init];
+    HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+    [navi pushVC:VC isHideBack:YES animated:YES];
 	return NO;
 }
 - (void)didReceiveMemoryWarning {

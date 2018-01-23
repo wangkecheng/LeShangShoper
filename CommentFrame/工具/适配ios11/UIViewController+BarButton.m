@@ -29,7 +29,7 @@
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
 }
 
-- (void)addRightBarButtonWithFirstImage:(UIImage *)firstImage action:(SEL)action
+- (UIButton *)addRightBarButtonWithFirstImage:(UIImage *)firstImage action:(SEL)action
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     view.backgroundColor = [UIColor clearColor];
@@ -43,6 +43,7 @@
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:firstButton];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    return firstButton;
 }
 
 - (void)addLeftBarButtonItemWithTitle:(NSString *)itemTitle action:(SEL)action

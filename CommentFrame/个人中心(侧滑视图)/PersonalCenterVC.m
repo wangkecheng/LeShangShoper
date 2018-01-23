@@ -71,7 +71,7 @@
 			weakSelf.addressLbl.text = model.addr;
 			weakSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
 			weakSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分",model.integral];
-			[weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxinag")];
+			[weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang")];
 		}else{
 			weakSelf.dianJiLoginLbl.alpha = 1;
 			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;
@@ -159,6 +159,7 @@
 		UserInfoModel * model = [CacheTool getUserModel];
 		model.name = weakSelf.userNameLbl.text = str;
 		[CacheTool writeToDB:model];
+         [weakSelf resetUserInfo];
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
@@ -173,6 +174,7 @@
 		UserInfoModel * model = [CacheTool getUserModel];
 		model.addr = weakSelf.addressLbl.text = str;
 		[CacheTool writeToDB:model];
+        [weakSelf resetUserInfo];
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
@@ -189,8 +191,14 @@
 	}];
 }
  
-- (IBAction)switchAction:(id)sender {
-
+- (IBAction)switchAction:(UISwitch *)sender {
+    UserInfoModel * model = [CacheTool getUserModel];
+    model.sex = @"1";//男
+    if (sender.isSelected) {
+        model.sex = @"2";//女
+    }
+    [CacheTool writeToDB:model];
+    [self resetUserInfo];
 }
 
 - (IBAction)toCollectionVC:(id)sender {
