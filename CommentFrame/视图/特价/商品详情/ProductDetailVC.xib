@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -59,15 +59,25 @@
                                 <action selector="addToCartAction:" destination="-1" eventType="touchUpInside" id="mjv-ZS-Wlk"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6HL-Fh-Its">
+                            <rect key="frame" x="0.0" y="0.0" width="187" height="1"/>
+                            <color key="backgroundColor" red="0.90970492362976074" green="0.90986090898513794" blue="0.9096950888633728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="nAb-BU-xTc"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="bi0-jM-Gew" firstAttribute="leading" secondItem="yNK-7j-8lh" secondAttribute="trailing" constant="3" id="2Tw-by-P88"/>
                         <constraint firstItem="yNK-7j-8lh" firstAttribute="leading" secondItem="o4N-ob-13f" secondAttribute="leading" constant="10" id="Eqg-SG-Fhr"/>
                         <constraint firstItem="yNK-7j-8lh" firstAttribute="centerY" secondItem="o4N-ob-13f" secondAttribute="centerY" id="Nf0-Vg-ywA"/>
+                        <constraint firstItem="eOu-hW-26h" firstAttribute="leading" secondItem="6HL-Fh-Its" secondAttribute="trailing" id="QHh-Zs-adF"/>
                         <constraint firstAttribute="bottom" secondItem="eOu-hW-26h" secondAttribute="bottom" id="aHr-CF-VqG"/>
                         <constraint firstAttribute="trailing" secondItem="eOu-hW-26h" secondAttribute="trailing" id="bZG-7r-5aW"/>
+                        <constraint firstItem="6HL-Fh-Its" firstAttribute="leading" secondItem="o4N-ob-13f" secondAttribute="leading" id="kze-i6-wO2"/>
                         <constraint firstAttribute="height" constant="50" id="pMw-6B-Igg"/>
+                        <constraint firstItem="6HL-Fh-Its" firstAttribute="top" secondItem="o4N-ob-13f" secondAttribute="top" id="tTb-p3-tBz"/>
                         <constraint firstItem="bi0-jM-Gew" firstAttribute="centerY" secondItem="yNK-7j-8lh" secondAttribute="centerY" id="xG3-eg-WL2"/>
                         <constraint firstItem="eOu-hW-26h" firstAttribute="top" secondItem="o4N-ob-13f" secondAttribute="top" id="zbg-1t-cEx"/>
                     </constraints>

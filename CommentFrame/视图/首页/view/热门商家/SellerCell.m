@@ -24,7 +24,7 @@
 -(void)setSellerArr:(NSArray *)sellerArr{
 	_sellerArr = sellerArr;
 	UIButton *lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,0,0,0)];
-	CGFloat btnW = CGRectGetWidth(_scrollView.frame)/3 - 60;
+	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - 60)/3.0;
 	CGFloat btnH = btnW + 20;
 	CGFloat imgW = btnW;
 	for (int i  = 0 ;i< sellerArr.count;i++) {
@@ -48,7 +48,11 @@
 		[_scrollView addSubview:btn];
 		lastBtn = btn;
 	}
-	_pageContro.numberOfPages = sellerArr.count/3;
+    NSInteger pageCount = sellerArr.count/3;
+    if (sellerArr.count%3!=0 && sellerArr.count!=0) {
+        pageCount+=1;
+    }
+	_pageContro.numberOfPages = pageCount;
 	_pageContro.currentPage = 0;
 	_pageContro.pageIndicatorTintColor = [UIColor grayColor];
 	_pageContro.currentPageIndicatorTintColor = UIColorFromRGB(33, 145, 241);

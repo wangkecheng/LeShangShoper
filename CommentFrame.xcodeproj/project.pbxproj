@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C120171D2A00B56E5F /* NSDate+Category.m */; };
+		180D74C62017229C00B56E5F /* CatalugeSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C52017229C00B56E5F /* CatalugeSheetView.m */; };
+		180D74C8201722B400B56E5F /* CatalugeSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D74C7201722B400B56E5F /* CatalugeSheetView.xib */; };
+		180D74CC201734F100B56E5F /* CatalugeSheetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74CA201734F100B56E5F /* CatalugeSheetViewCell.m */; };
+		180D74CD201734F100B56E5F /* CatalugeSheetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D74CB201734F100B56E5F /* CatalugeSheetViewCell.xib */; };
 		1840EEAE20118B5400A341F7 /* icon_touxiang2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1840EEAC20118B5300A341F7 /* icon_touxiang2@2x.png */; };
 		1840EEAF20118B5400A341F7 /* icon_touxiang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1840EEAD20118B5400A341F7 /* icon_touxiang@3x.png */; };
 		1840EEB32011BF6400A341F7 /* InteligentServiceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840EEB22011BF6400A341F7 /* InteligentServiceAlertView.m */; };
@@ -426,6 +431,14 @@
 /* Begin PBXFileReference section */
 		02BE82ABC3A20FB8A2F366DB /* Pods-CommentFrameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameTests/Pods-CommentFrameTests.debug.xcconfig"; sourceTree = "<group>"; };
 		11C318E848A96E01BDB5F867 /* Pods-CommentFrame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrame/Pods-CommentFrame.release.xcconfig"; sourceTree = "<group>"; };
+		180D74C120171D2A00B56E5F /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		180D74C220171D2A00B56E5F /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		180D74C42017229C00B56E5F /* CatalugeSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalugeSheetView.h; sourceTree = "<group>"; };
+		180D74C52017229C00B56E5F /* CatalugeSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatalugeSheetView.m; sourceTree = "<group>"; };
+		180D74C7201722B400B56E5F /* CatalugeSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalugeSheetView.xib; sourceTree = "<group>"; };
+		180D74C9201734F100B56E5F /* CatalugeSheetViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalugeSheetViewCell.h; sourceTree = "<group>"; };
+		180D74CA201734F100B56E5F /* CatalugeSheetViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatalugeSheetViewCell.m; sourceTree = "<group>"; };
+		180D74CB201734F100B56E5F /* CatalugeSheetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalugeSheetViewCell.xib; sourceTree = "<group>"; };
 		1840EEAC20118B5300A341F7 /* icon_touxiang2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang2@2x.png"; sourceTree = "<group>"; };
 		1840EEAD20118B5400A341F7 /* icon_touxiang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang@3x.png"; sourceTree = "<group>"; };
 		1840EEB020119F5500A341F7 /* CommentFrame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommentFrame.entitlements; sourceTree = "<group>"; };
@@ -1706,6 +1719,8 @@
 		200D7FB51FF7540F00B97979 /* 类别 */ = {
 			isa = PBXGroup;
 			children = (
+				180D74C220171D2A00B56E5F /* NSDate+Category.h */,
+				180D74C120171D2A00B56E5F /* NSDate+Category.m */,
 				2090C638200DF46C00CC07F9 /* 扩大按钮点击范围 */,
 				200D7FB61FF7540F00B97979 /* tableView */,
 				200D7FBB1FF7540F00B97979 /* 字符串 */,
@@ -1716,10 +1731,10 @@
 		200D7FB61FF7540F00B97979 /* tableView */ = {
 			isa = PBXGroup;
 			children = (
-				200D7FB71FF7540F00B97979 /* UICollectionView+LOExtension.m */,
 				200D7FB81FF7540F00B97979 /* UITableView+LOExtension.h */,
 				200D7FB91FF7540F00B97979 /* UITableView+LOExtension.m */,
 				200D7FBA1FF7540F00B97979 /* UICollectionView+LOExtension.h */,
+				200D7FB71FF7540F00B97979 /* UICollectionView+LOExtension.m */,
 			);
 			path = tableView;
 			sourceTree = "<group>";
@@ -2105,6 +2120,12 @@
 				207418D220066242007C4F36 /* CatalugeListHeaderView.h */,
 				207418D320066242007C4F36 /* CatalugeListHeaderView.m */,
 				207418D520066252007C4F36 /* CatalugeListHeaderView.xib */,
+				180D74C42017229C00B56E5F /* CatalugeSheetView.h */,
+				180D74C52017229C00B56E5F /* CatalugeSheetView.m */,
+				180D74C7201722B400B56E5F /* CatalugeSheetView.xib */,
+				180D74C9201734F100B56E5F /* CatalugeSheetViewCell.h */,
+				180D74CA201734F100B56E5F /* CatalugeSheetViewCell.m */,
+				180D74CB201734F100B56E5F /* CatalugeSheetViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2743,6 +2764,7 @@
 				200D7E911FF740DA00B97979 /* PersonalCenterVC.xib in Resources */,
 				18B543082011839500A40C4E /* ic_my_collection@3x.png in Resources */,
 				207418DB200663E0007C4F36 /* ProductDetailListVC.xib in Resources */,
+				180D74C8201722B400B56E5F /* CatalugeSheetView.xib in Resources */,
 				18B5432F2011839500A40C4E /* bg_store_ad@2x.png in Resources */,
 				18B542E42011839500A40C4E /* btn_foot_home_p@3x.png in Resources */,
 				18B542DD2011839500A40C4E /* btn_foot_factory_n@2x.png in Resources */,
@@ -2773,6 +2795,7 @@
 				208951031FFBC36C0060DBD4 /* SettingVC.storyboard in Resources */,
 				200D7EEB1FF742CC00B97979 /* pic_xiangmuquan_fazhaopian@2x.png in Resources */,
 				200D7F641FF7434F00B97979 /* image11.gif in Resources */,
+				180D74CD201734F100B56E5F /* CatalugeSheetViewCell.xib in Resources */,
 				200D7EE31FF742CC00B97979 /* AlbumImgListVC.xib in Resources */,
 				200D7EEE1FF742CC00B97979 /* return@3x.png in Resources */,
 				2079EB261EA9CB81004DE68B /* TabarVCS.plist in Resources */,
@@ -3079,7 +3102,9 @@
 			files = (
 				200D7FC91FF7541000B97979 /* NSString+Emoji.m in Sources */,
 				200D7FD81FF7548D00B97979 /* HDWebVC.m in Sources */,
+				180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */,
 				200C802A1FFFD71500C6A2AA /* FeedBackVC.m in Sources */,
+				180D74CC201734F100B56E5F /* CatalugeSheetViewCell.m in Sources */,
 				200C80011FFFC39E00C6A2AA /* LosePromiseCell.m in Sources */,
 				20A5D8F81FB9901A00534868 /* GYDBError.m in Sources */,
 				206865432009C429008C50A2 /* DSActionSheet.m in Sources */,
@@ -3122,6 +3147,7 @@
 				2090C63B200DF46C00CC07F9 /* UIButton+EnlargeEdge.m in Sources */,
 				207418CD200660A2007C4F36 /* CatalugeListVC.m in Sources */,
 				206A1096200B0AED007115DE /* InteligentServiceView.m in Sources */,
+				180D74C62017229C00B56E5F /* CatalugeSheetView.m in Sources */,
 				200D7FCB1FF7541000B97979 /* NSString+Attri.m in Sources */,
 				200D7F591FF7434E00B97979 /* FLAnimatedImage.m in Sources */,
 				206865422009C429008C50A2 /* DSTableCell.m in Sources */,

@@ -26,10 +26,21 @@
 	
 }
 
--(void)setModel:(ProductDetailListModel *)model{
+-(void)setModel:(CollectionModel *)model{
 	_model = model;
+    
     [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
-    [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];
+    if ([model.collect integerValue] == 2) {////1,未收藏，2，已收藏
+       [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];
+    }
+    _reminderImg.alpha = 0;
+    if ([model.bargain integerValue] == 2) {//1,非特价，2，特价
+          _reminderImg.alpha = 1;
+    }
+    _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",model.cid];
+    _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",model.spec];
+    _priceLbl.text = [NSString stringWithFormat:@"￥%@",model.price];
+//    [_focusBtn setTitle:[NSString stringWithFormat:@" %@",model.] forState:0];
 }
 
 - (IBAction)collectionAction:(id)sender {

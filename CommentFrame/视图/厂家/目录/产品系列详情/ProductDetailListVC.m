@@ -10,6 +10,8 @@
 #import "ProductDetailListVC.h"
 #import "ProductDetailListCell.h"
 #define ProductDetailListCell_ @"ProductDetailListCell"
+#import "CollectionModel.h"
+#import "ProductDetailVC.h"
 @interface ProductDetailListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -24,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = _brandsModel.name;
 	_collectionView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	_collectionView.delegate = self;
 	_collectionView.showsHorizontalScrollIndicator = YES;
@@ -59,30 +62,32 @@
 - (void)getData:(NSInteger)pageIndex {
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
-//	m.page = [NSString stringFromInt:_page];
-	
+    m.pageNumber = [NSString stringFromInt:_page];
+    m.mid = _mid;
+    m.brand = _brandsModel.name;
 	weakObj;
-	[BaseServer postObjc:m path:@"app/yymember/listmemberwatermark.html" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[ProductDetailListModel class] json:result[@"data"][@"data"]];
-		if (weakSelf.page == 1){
-			[weakSelf.arrModel removeAllObjects];
+	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"][@"rows"]];
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+		if (strongSelf.page == 1){
+			[strongSelf.arrModel removeAllObjects];
 		}
-		[weakSelf.arrModel addObjectsFromArray:tempArr];
+		[strongSelf.arrModel addObjectsFromArray:tempArr];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
-			if (weakSelf.arrModel == 0) {
-				[weakSelf.collectionView setHolderImg:@"alertImg" isHide:NO];
-			} else{
-				[weakSelf.collectionView setHolderImg:@"alertImg" isHide:YES];
-			}
-			[weakSelf.collectionView reloadData];
-			[weakSelf.collectionView.mj_header endRefreshing];
-			if (weakSelf.page == [result[@"data"][@"totalPages"]integerValue]) {
-				//最后一页
-				[weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
-			} else {
-				[weakSelf.collectionView.mj_footer endRefreshing];
-			}
+		 
+            [strongSelf.collectionView reloadData];
+            [strongSelf.collectionView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+            if (strongSelf.arrModel.count == 0) {
+                [strongSelf.collectionView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+            }
+            [strongSelf.collectionView.mj_header endRefreshing];
+            if (strongSelf.page == [result[@"data"][@"pageNumber"]integerValue]) {
+                //最后一页
+                [strongSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
+            } else {
+                [strongSelf.collectionView.mj_footer endRefreshing];
+            }
 		});
 	} failed:^(NSError *error) {
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -95,17 +100,16 @@
 //设置每一组cell的个数(组数默认是1 )
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 	
-	return  10;_arrModel.count;
+	return  _arrModel.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 	weakObj;
 	ProductDetailListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ProductDetailListCell_ forIndexPath:indexPath];
 //	[cell setModel: _arrModel[indexPath.row]];
-	cell.collectionBlock = ^(ProductDetailListModel *model) {
+	cell.collectionBlock = ^(CollectionModel *model) {
 		
 	};
-	cell.backgroundColor = [UIColor redColor];
 	return  cell;
 }
 
@@ -116,7 +120,10 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-	 
+    ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+    CollectionModel * model = _arrModel[indexPath.row];
+    VC.model  = model;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

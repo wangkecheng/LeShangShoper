@@ -39,7 +39,10 @@
 -(void)setSpecialModel:(CollectionModel *)model{
     _collectionBtn.alpha = _specialImg.alpha = 1;
     [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
-    [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];//如果已经收藏了
+    if ([model.collect integerValue] == 2) {////1,未收藏，2，已收藏
+        [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];//如果已经收藏了
+    }
+  
     [_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon")];
     _titleLbl.text  = model.name;
     _priceLbl.text = model.price;

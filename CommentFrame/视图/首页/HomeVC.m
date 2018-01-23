@@ -289,7 +289,7 @@
 		return  200;
 	}
 	if (indexPath.section == 1) {
-		return  SCREENWIDTH/3 +50;
+		return   (CGRectGetWidth(tableView.frame) - 60)/3.0 + 40 + 50 ;
 	}
 	if (indexPath.section == 2) {
 		return  50;
@@ -307,7 +307,7 @@
 		view.frame = CGRectMake(0, 0, SCREENWIDTH, 0.01);
 		return view;
 	}
-	NewsHeaderView *hewdderView = [NewsHeaderView headerViewWithFrame:CGRectMake(5, 0, SCREENWIDTH - 10, 35)];
+	NewsHeaderView *hewdderView = [NewsHeaderView headerViewWithFrame:CGRectMake(5, 0, SCREENWIDTH - 10, 75)];
 	return hewdderView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -315,7 +315,7 @@
 	if (section == 0 || section == 1 || section == 2) {
 		return 0.01;
 	}
-	return 30;
+	return 75;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];

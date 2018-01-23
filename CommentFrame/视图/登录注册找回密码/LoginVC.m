@@ -32,7 +32,7 @@ typedef enum ViewTagIndentifyer{
 	return self;
 }
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    [super viewDidLoad]; 
 	[[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"token"];//登录注册不需要token这个地方置为空
 	_userField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
@@ -83,7 +83,7 @@ typedef enum ViewTagIndentifyer{
 				model.isRecentLogin = 0;
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[CacheTool writeToDB:model];
-					[weakSelf dismissViewControllerAnimated:YES completion:nil];
+					[CacheTool setRootVCByIsMainVC:YES];
 				});
 			}
 		} failed:^(NSError *error) {
