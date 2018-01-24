@@ -76,24 +76,27 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSSet *set = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"application/javascript",nil];
     [manager.responseSerializer setAcceptableContentTypes:set];
+	AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+	securityPolicy.validatesDomainName = NO;
+	securityPolicy.allowInvalidCertificates = YES;
+	manager.securityPolicy = securityPolicy;
     [manager.requestSerializer setTimeoutInterval:10.0]; // 10秒超时
         NSString *token = TOKEN;
         if (token.length!=0) {//登陆的时候是没有TOKEN的
-            [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"token"];
+            [manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"Authorization"];
         }
     NSString *fullPath = [POST_HOST stringByAppendingString:path];
     NSDictionary *paramDict  =  [obj yy_modelToJSONObject];//将HDModel对象转为字典
     [manager POST:fullPath parameters:paramDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //构造数据
-        for (NSInteger i = 0; i<imageArr.count; i++) {
+        for (NSInteger i = 0; i < imageArr.count; i++) {
             UIImage * image = imageArr[i];
             if ([image isKindOfClass:[UIImage class]]) {
                 NSData *imageData =  [DDFactory resetSizeOfImageData:image maxSize:500000];
-                NSString * name = [NSString stringWithFormat:@"uploadimageFile%ld",i];
+                NSString * name = [NSString stringWithFormat:@"uploadimg%ld",i];
                 [formData appendPartWithFileData:imageData name:name fileName:@"files" mimeType:@"image/jpeg"];
             }
         }
-        
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (isShowHud) {
             //          [HUD showProgress:uploadProgress.completedUnitCount *1.0/uploadProgress.totalUnitCount  message:@"正在上传..."];

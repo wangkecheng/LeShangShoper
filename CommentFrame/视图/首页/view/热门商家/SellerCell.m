@@ -33,7 +33,7 @@
 		btn.imageView.layer.masksToBounds = YES;
        
         if (model.logoUrl) {
-            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
         }
 		
 		[btn setTitle:model.name forState:0];

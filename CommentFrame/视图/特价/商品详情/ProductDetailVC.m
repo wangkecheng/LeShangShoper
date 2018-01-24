@@ -89,7 +89,7 @@
 		strongSelf.indicatorLbl.text = [NSString stringWithFormat:@"%ld/%ld",currentIndex+1,strongSelf.detailModel.imageUrls.count];
 	};
 	_specificationLbl.text = _detailModel.spec;//规格
-//	_usePlaceLbl.text = _detailModel //使用位置
+	_usePlaceLbl.text = _detailModel.typeName; //使用位置
 	_numberLbl.text = [NSString stringWithFormat:@"编号：%@",_detailModel.cid];//编号
 	_factoryLbl.text = _detailModel.merchantName;//工厂或者公司
 	_priceLbl.text =  [NSString stringWithFormat:@"￥%@",_detailModel.price];

@@ -21,7 +21,7 @@
 -(void)setNewsModel:(LosePromissAndNewsModel *)newsModel{
 	_newsModel = newsModel;
     _titleLbl.text = newsModel.title;
-    [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+    [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

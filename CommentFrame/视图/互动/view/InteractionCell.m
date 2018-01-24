@@ -34,7 +34,7 @@ static int Btn_Tag = 100;
 
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
-	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 	_nameLbl.text = model.name;
 	_titLbl.text = model.content;
 	
