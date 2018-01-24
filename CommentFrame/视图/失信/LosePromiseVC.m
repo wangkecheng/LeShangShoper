@@ -8,6 +8,7 @@
 
 #import "LosePromiseVC.h"
 #import "LosePromiseCell.h"
+#import "LosePromiseDetailVC.h"
 #define LosePromiseCell_ @"LosePromiseCell"
 @interface LosePromiseVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -55,7 +56,7 @@
 	m.pageNumber = [NSString stringFromInt:pageIndex];
 	weakObj;
 	[BaseServer postObjc:m path:@"/dishonesty/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[LosePromiseModel class] json:result[@"data"][@"rows"]];
+		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[LosePromissAndNewsModel class] json:result[@"data"][@"rows"]];
 		if (weakSelf.page == 1) {
 			[weakSelf.arrModel removeAllObjects];
 		}
@@ -64,7 +65,7 @@
 			[weakSelf.tableview reloadData];
 			[weakSelf.tableview.mj_header endRefreshing];
 			[weakSelf.tableview.mj_footer endRefreshing];
-			if (weakSelf.page == [result[@"data"][@"total"] integerValue]) {
+			if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
 				[weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
 			}
 		});
@@ -100,7 +101,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
+    LosePromiseDetailVC *VC  =[[LosePromiseDetailVC alloc]initWithTitle:@"失信详情"];
+    VC.model = _arrModel[indexPath.section];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]init];

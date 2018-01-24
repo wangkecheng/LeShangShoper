@@ -42,7 +42,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nV5-cz-hDd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250.33333333333334"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="qPm-PK-b6s">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="qPm-PK-b6s">
                                             <rect key="frame" x="147.66666666666666" y="84.333333333333329" width="80" height="79.999999999999986"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="iyL-ff-eiT"/>
@@ -400,11 +400,11 @@
     </objects>
     <resources>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
+        <image name="Icon.png" width="87" height="87"/>
         <image name="bg_login.png" width="375" height="161"/>
         <image name="ic_input_address.png" width="13" height="16"/>
         <image name="ic_input_lock.png" width="13" height="16"/>
         <image name="ic_input_name.png" width="13" height="16"/>
         <image name="ic_input_phone.png" width="13" height="16"/>
-        <image name="logo.png" width="16" height="16"/>
     </resources>
 </document>

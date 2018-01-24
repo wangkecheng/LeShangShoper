@@ -6,8 +6,8 @@
 //  Copyright © 2018年 warron. All rights reserved.
 //
 
-#import "LosePromiseModel.h"
+#import "LosePromissAndNewsModel.h"
 
-@implementation LosePromiseModel
+@implementation LosePromissAndNewsModel
 
 @end

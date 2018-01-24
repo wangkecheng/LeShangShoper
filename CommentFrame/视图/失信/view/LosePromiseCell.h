@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
- #import "LosePromiseModel.h"
+ #import "LosePromissAndNewsModel.h"
 @interface LosePromiseCell : UITableViewCell
-@property(nonatomic,strong)LosePromiseModel *model;
+@property(nonatomic,strong)LosePromissAndNewsModel *model;
 @end

@@ -11,8 +11,7 @@
 @interface UserInfoModel : NSObject
 
 @property (nonatomic,assign)NSInteger isMember;
-@property (nonatomic,assign)NSInteger isRecentLogin;//是否是最近登录用户
-@property (nonatomic, copy) NSString *token;//后续访问token
+@property (nonatomic,assign)NSInteger isRecentLogin;//是否是最近登录用户 
 @property (nonatomic, copy) NSString *lv;//等级
 @property (nonatomic, copy) NSString *addr;//地址
 @property (nonatomic, copy) NSString *sex;//性别 1,男 2,女

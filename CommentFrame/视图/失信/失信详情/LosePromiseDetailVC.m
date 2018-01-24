@@ -16,12 +16,21 @@
 @end
 
 @implementation LosePromiseDetailVC
-
+-(instancetype)initWithTitle:(NSString *)title
+{
+    self = [super init];
+    if (self) {
+        self.title  = title;;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title  = @"失信详情";
+	
     _webView.delegate = self;
+    [_webView loadHTMLString:_model.content baseURL:nil];
 }
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     return YES;
 }

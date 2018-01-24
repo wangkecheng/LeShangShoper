@@ -32,7 +32,7 @@
 	[_tableview hideSurplusLine];
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction)];
 	 _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	 _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+	 _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
 	[self getPage];
 }
 
@@ -72,7 +72,7 @@
 			[weakSelf.tableview reloadData];
 			[weakSelf.tableview.mj_header endRefreshing];
 			[weakSelf.tableview.mj_footer endRefreshing];
-			if (weakSelf.page == [result[@"data"][@"total"] integerValue]) {
+			if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
 				[weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
 			}
 			[weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
@@ -110,7 +110,7 @@
 	weakObj;
 	cell.pardiseBlock = ^(InteractionModel *model) {
 		HDModel * m = [HDModel model];
-		m.interactId = model.uid;
+		m.interactId = model.interactId;
 		model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
 		[weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[weakSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
 		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {

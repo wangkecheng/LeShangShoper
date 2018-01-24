@@ -66,9 +66,14 @@
 	self.didLeftSildeAction = ^{
 		UserInfoModel * model  = [CacheTool getUserModel];
 		 if (model.isMember == 1) {//如果存在
+             [weakSelf.switchSex setOn:NO];
+             if ([model.sex integerValue] == 2) {
+                  [weakSelf.switchSex setOn:YES];
+             } 
 			weakSelf.dianJiLoginLbl.alpha = 0;
 			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 1;
 			weakSelf.userNameLbl.text =weakSelf.nameLbl.text = model.name;
+            weakSelf.phoneLbl.text = model.mobile;
 			weakSelf.addressLbl.text = model.addr;
 			weakSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
 			weakSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分",model.integral];
@@ -218,7 +223,8 @@
 
 - (IBAction)loginOutAction:(id)sender {
 	UserInfoModel * model = [CacheTool getUserModel];;
-	 model.isMember = NO;
+	 model.isMember = 0;
+     model.isRecentLogin = 1;
 	[CacheTool writeToDB:model];//状态设置为NO，表示登出
 	LoginVC * loginVC = [[LoginVC alloc]init];
 	[self presentViewController:loginVC animated:YES completion:nil];

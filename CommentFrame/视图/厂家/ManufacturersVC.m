@@ -38,10 +38,15 @@
 	_tableView.dataSource = self;
 	_tableView.tableFooterView=[UIView new];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+//    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
 	[self getPage];
 	
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
+    
+    //修改索引颜色
+//    _tableView.sectionIndexBackgroundColor = [UIColor redColor];//修改右边索引的背景色
+    _tableView.sectionIndexColor = [UIColor blackColor];//修改右边索引字体的颜色
+//    _tableView.sectionIndexTrackingBackgroundColor = [UIColor blueColor];//修改右边索引点击时候的背景色
 }
 
 -(void)toSearchManufacturersVC{
@@ -85,6 +90,10 @@
 			if (strongSelf.arrModel.count == 0) {
 				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
 			}
+//            [strongSelf.tableView.mj_footer endRefreshing];
+//            if (strongSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
+//                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+//            }
 		});
 	} failed:^(NSError *error) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
@@ -119,6 +128,13 @@
 		[titleArr addObject:model.name];
 	}
 	return titleArr;
+}
+//响应点击索引时的委托方法
+-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    if (index + 1 <= _arrModel.count) {
+        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+    return index;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LosePromiseModel : NSObject
+@interface LosePromissAndNewsModel : NSObject
 
 @property(nonatomic,strong)NSString * name;//发布人
 @property(nonatomic,strong)NSString * title;//标题
@@ -16,4 +16,7 @@
 @property(nonatomic,strong)NSString * createAt;//发布时间
 @property(nonatomic,strong)NSString * did;//失信id
 @property(nonatomic,strong)NSString * logoUrl;//logo地址
+@property(nonatomic,strong)NSString * number;
+@property(nonatomic,strong)NSString * giveNumber;
 @end
+ 

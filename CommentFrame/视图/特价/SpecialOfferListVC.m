@@ -23,8 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
 @property(nonatomic,strong)NSMutableArray * arrModel;
-@property(nonatomic,strong)NSString *priceKey;
-@property(nonatomic,strong)NSString *hotKey;
+@property(nonatomic,strong)NSString *sortkey;
+@property(nonatomic,strong)NSString *sort;
 @end
 
 @implementation SpecialOfferListVC
@@ -73,23 +73,28 @@
 }
 
 - (IBAction)priceSortAction:(UIButton *)sender {//价格
-   
-    if ([_priceKey isEqualToString:@"2"]) {
-         _priceKey = @"1";// 排序方式 1，正序，2，逆序
-        [_priceImg setImage:IMG(@"ico_paihangAssent")];
-    }else{
-        _priceKey = @"2";
+       _sortkey = @"price";
+       _page = 1;
+    [_hotImg setImage:IMG(@"ico_paihang")];
+    if ([_sort isEqualToString:@"2"]) {
+         _sort = @"1";// 排序方式 1，正序 从高到低，2，逆序
         [_priceImg setImage:IMG(@"ico_paihangDescending")];
+    }else{
+        _sort = @"2";
+        [_priceImg setImage:IMG(@"ico_paihangAssent")];
     }
     [self getPage];
 }
 
 - (IBAction)hotSortAction:(UIButton *)sender {//热度
-    if ([_hotKey isEqualToString:@"2"]) {
-        _hotKey = @"1"; //1，非热门，2，热门，默认全部
+         _sortkey = @"hot";
+         _page = 1;
+        [_priceImg setImage:IMG(@"ico_paihang")];
+    if ([_sort isEqualToString:@"2"]) {
+        _sort = @"1"; //1，非热门，2，热门，默认全部
         [_hotImg setImage:IMG(@"ico_paihangAssent")];
     }else{
-        _hotKey = @"2";
+        _sort = @"2";
         [_hotImg setImage:IMG(@"ico_paihangDescending")];
     }
        [self getPage];
@@ -109,11 +114,10 @@
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
 	m.pageNumber = [NSString stringFromInt:pageIndex];
-    m.hot = _hotKey;
-    m.sort = _priceKey;
+    m.sort = _sort;
+    m.sortkey = _sortkey;
 	weakObj;
 	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"][@"rows"]];
 		
@@ -124,8 +128,11 @@
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[strongSelf.tableView reloadData];
-			[strongSelf.tableView.mj_header endRefreshing];
-			[strongSelf.tableView.mj_footer endRefreshing];
+            [strongSelf.tableView.mj_header endRefreshing];
+            [strongSelf.tableView.mj_footer endRefreshing];
+            if (strongSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
+                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
 			[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
 			if (strongSelf.arrModel.count == 0) {
 				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];

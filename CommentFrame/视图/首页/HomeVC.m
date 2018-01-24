@@ -21,6 +21,7 @@
 #import "SearchProductVC.h"
 #import "CatalugeListVC.h"
 #import "ProductDetailVC.h"
+#import "LosePromiseDetailVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -210,7 +211,7 @@
 	[BaseServer postObjc:m path:@"/news/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[NewsModel class] json:result[@"data"][@"rows"]];
+		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[LosePromissAndNewsModel class] json:result[@"data"][@"rows"]];
 		if (strongSelf.page == 1) {
 			[strongSelf.arrNewsModel removeAllObjects];
 		}
@@ -225,7 +226,7 @@
             }
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
-            if (strongSelf.page == [result[@"data"][@"pageNumber"] integerValue]) {
+            if (strongSelf.arrNewsModel.count == [result[@"data"][@"total"] integerValue]) {
                 [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
 //            [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
@@ -307,6 +308,12 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 3) {
+        LosePromissAndNewsModel * model =  _arrNewsModel[indexPath.row];
+        LosePromiseDetailVC *VC  =[[LosePromiseDetailVC alloc]initWithTitle:model.title];
+        VC.model = model;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

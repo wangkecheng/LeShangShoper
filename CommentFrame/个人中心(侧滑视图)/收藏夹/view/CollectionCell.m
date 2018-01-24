@@ -31,7 +31,7 @@
 	_collectionBtn.alpha = _specialImg.alpha = 0;
 	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates] ;
 	_titleLbl.text  = model.name;
-	_priceLbl.text = model.price;
+	_priceLbl.text = [NSString stringWithFormat:@"￥ %@",model.price];
 	_specificationLbl.text = model.spec;
 //	_usePlaceLbl.text = model.
 	_factoryLbl.text = model.merchantName;

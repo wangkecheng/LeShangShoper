@@ -7,10 +7,7 @@
 //
 
 #import "NewsCell.h"
-@implementation NewsModel
-
-@end
-
+ 
 @interface NewsCell()
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *newsImg;
@@ -21,9 +18,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
--(void)setNewsModel:(NewsModel *)newsModel{
+-(void)setNewsModel:(LosePromissAndNewsModel *)newsModel{
 	_newsModel = newsModel;
-    _titleLbl.text = newsModel.name;
+    _titleLbl.text = newsModel.title;
     [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

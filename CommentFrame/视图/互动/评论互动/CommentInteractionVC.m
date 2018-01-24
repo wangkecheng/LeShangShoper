@@ -69,7 +69,8 @@
 	m.interactId = _interactionModel.interactId;
 //    m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
-    [BaseServer postObjc:m path:@"/interact/comment/ist" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+    return;
+    [BaseServer postObjc:m path:@"/interact/comment/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CommentInteractionModel class] json:result[@"data"][@"rows"]];
         if (weakSelf.page == 1) {
             [weakSelf.arrModel removeAllObjects];
@@ -80,7 +81,7 @@
             [weakSelf.tableview reloadData];
             [weakSelf.tableview.mj_header endRefreshing];
             [weakSelf.tableview.mj_footer endRefreshing];
-            if (weakSelf.page == [result[@"data"][@"total"] integerValue]) {
+            if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
                 [weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
             }
             [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
@@ -145,7 +146,7 @@
     }
     weakObj;
     HDModel * m = [HDModel model];
-    m.interactId = _interactionModel.uid;
+    m.interactId = _interactionModel.interactId;
 	m.content = comment;
     [BaseServer postObjc:m path:@"/interact/comment/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
         dispatch_async(dispatch_get_main_queue(), ^{

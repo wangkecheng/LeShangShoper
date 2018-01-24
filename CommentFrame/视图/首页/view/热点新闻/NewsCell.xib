@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="387" height="153.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaZ-wv-8AE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaZ-wv-8AE">
                         <rect key="frame" x="10" y="10" width="223.5" height="133.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -50,7 +50,7 @@
                 <outlet property="newsImg" destination="PC6-mZ-tFF" id="N5G-aw-BUC"/>
                 <outlet property="titleLbl" destination="jaZ-wv-8AE" id="bgp-DV-mXj"/>
             </connections>
-            <point key="canvasLocation" x="-76" y="-33"/>
+            <point key="canvasLocation" x="-197" y="-50"/>
         </tableViewCell>
     </objects>
 </document>

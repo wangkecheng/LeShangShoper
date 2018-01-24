@@ -47,10 +47,7 @@ typedef enum ViewTagIndentifyer{
 	[_phoneField setKeyboardType:UIKeyboardTypeNumberPad];
 	
 	_phoneField.delegate = self;
-	_vercodeField.delegate = self;
-	
-	UserInfoModel *model = [CacheTool getRecentLoginUser];
-	//	_userField.text = model.driverid;
+	_vercodeField.delegate = self; 
 }
 
 - (IBAction)goLogin:(UIButton *)sender {//注册
@@ -59,6 +56,10 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)sendVercodeAction:(id)sender {
+    if (_phoneField.text.length == 0) {
+        [self.view makeToast:@"请输入手机号"];
+        return;
+    }
 	_getVercodeBtn.userInteractionEnabled = NO;
 	HDModel *m = [HDModel model];
 	m.mobile = _phoneField.text;
@@ -74,13 +75,29 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)registerAction:(id)sender {
+    if (_phoneField.text.length == 0) {
+        [self.view makeToast:@"请输入手机号"];
+        return;
+    }
+    if (_vercodeField.text.length == 0) {
+        [self.view makeToast:@"请输入验证码"];
+        return;
+    }
+    if (_userNameField.text.length == 0) {
+       [self.view makeToast:@"请输入姓名"];
+        return;
+    }
+    if (_addressField.text.length == 0) {
+       [self.view makeToast:@"请输入详细地址"];
+        return;
+    }
 	_registerBtn.userInteractionEnabled = NO; 
 	
 	HDModel *m = [HDModel model];
 	m.mobile = _phoneField.text;
+    m.verCode = _vercodeField.text;
 	m.name = _userNameField.text;
 	m.addr = _addressField.text;
-	m.verCode = _vercodeField.text;
 	weakObj;
 	[BaseServer postObjc:m path:@"/user/register" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		weakSelf.registerBtn.userInteractionEnabled = YES;

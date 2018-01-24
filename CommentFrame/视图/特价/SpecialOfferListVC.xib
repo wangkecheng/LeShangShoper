@@ -45,7 +45,7 @@
                                         <action selector="priceSortAction:" destination="-1" eventType="touchUpInside" id="Plz-9R-rXT"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_paihang1.png" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-On-710">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_paihang.png" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-On-710">
                                     <rect key="frame" x="121" y="18" width="10" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="Flb-F4-Yku"/>
@@ -78,8 +78,8 @@
                                         <action selector="hotSortAction:" destination="-1" eventType="touchUpInside" id="zCu-tD-HBw"/>
                                     </connections>
                                 </button>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ico_paihang1.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Kj-BV-C7Q">
-                                    <rect key="frame" x="127" y="18" width="23" height="14"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_paihang.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Kj-BV-C7Q">
+                                    <rect key="frame" x="121" y="18" width="10" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="1oS-4U-5mY"/>
                                         <constraint firstAttribute="width" secondItem="3Kj-BV-C7Q" secondAttribute="height" multiplier="19:26" id="2qH-6e-Wxd"/>
@@ -128,6 +128,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ico_paihang1.png" width="9" height="13"/>
+        <image name="ico_paihang.png" width="9" height="13"/>
     </resources>
 </document>

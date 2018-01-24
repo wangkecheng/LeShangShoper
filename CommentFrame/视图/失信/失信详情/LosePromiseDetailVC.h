@@ -7,7 +7,8 @@
 //
 
 #import "HDBaseVC.h"
-
+#import "LosePromissAndNewsModel.h"
 @interface LosePromiseDetailVC : HDBaseVC
-
+-(instancetype)initWithTitle:(NSString *)title;
+@property (strong, nonatomic)LosePromissAndNewsModel * model;
 @end

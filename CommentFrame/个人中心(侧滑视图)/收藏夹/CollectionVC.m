@@ -10,6 +10,8 @@
 #import "CollectionVC.h"
 #import "CollectionCell.h"
 #define CollectionCell_ @"CollectionCell"
+#import "SearchProductVC.h"
+#import "ProductDetailVC.h"
 @interface CollectionVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -22,6 +24,8 @@
     [super viewDidLoad];
 	
 	self.title = @"收藏夹";
+    
+    _arrModel = [NSMutableArray array];
     [_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
 	
 	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
@@ -31,7 +35,16 @@
 	
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+    [self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
+    [self getPage];
 }
+-(void)toSearchManufacturersVC{
+    //打开搜索界面
+    SearchProductVC * VC = [[SearchProductVC alloc]init];
+    HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+    [navi pushVC:VC isHideBack:YES animated:YES];
+}
+
 - (void)getPage{
 	
 	[self getData:1];
@@ -86,11 +99,15 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return 100;
+	return 120;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+    CollectionModel * model = _arrModel[indexPath.row];
+    VC.model  = model;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -100,8 +117,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	
-	
+	 
 	return 0.01;
 }
 

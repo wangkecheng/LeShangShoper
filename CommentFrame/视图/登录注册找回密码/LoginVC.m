@@ -49,8 +49,13 @@ typedef enum ViewTagIndentifyer{
 }
 - (IBAction)sendVertiCodeAction:(id)sender {
 	_getVercodeBtn.userInteractionEnabled = NO;
+    if (_userField.text.length == 0) {
+        [self.view makeToast:@"请输入手机号"];
+        return;
+    }
 	HDModel *m = [HDModel model];
 	m.mobile = _userField.text;
+   
 	weakObj;
 	[BaseServer postObjc:m path:@"sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		weakSelf.getVercodeBtn.userInteractionEnabled = YES;
@@ -63,22 +68,30 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)login:(UIButton *)sender {
-	
+    if (_userField.text.length == 0) {
+        [self.view makeToast:@"请输入手机号"];
+        return;
+    }
+    if (_vercodeField.text.length == 0) {
+        [self.view makeToast:@"请输入验证码"];
+        return;
+    }
 	_loginBtn.userInteractionEnabled = NO;
 	HDModel *m = [HDModel model];
 	m.mobile = _userField.text;
 	m.verCode = _vercodeField.text;
-	
+   
 	weakObj;
 	[BaseServer postObjc:m path:@"/user/login" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-		weakSelf.loginBtn.userInteractionEnabled = YES;
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+		strongSelf.loginBtn.userInteractionEnabled = YES;
 		[[NSUserDefaults standardUserDefaults] setObject:result[@"data"][@"token"] forKey:@"token"];
 		HDModel *m = [HDModel model];
-		m.mobile = @"18408246301";
+        m.mobile =  strongSelf.userField.text;
 		[BaseServer postObjc:m path:@"/user/info" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 			if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 				UserInfoModel *model = [CacheTool getUserModelByID:result[@"data"][@"mobile"]];
-				[model yy_modelSetWithJSON:result[@"data"]];//蹦在这里，则是后台返回的数据中新增了字段 
+				[model yy_modelSetWithJSON:result[@"data"]];
 				model.isMember = 1;
 				model.isRecentLogin = 0;
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -91,7 +104,8 @@ typedef enum ViewTagIndentifyer{
 		}];
 		
 	} failed:^(NSError *error) {
-		   weakSelf.loginBtn.userInteractionEnabled = YES;
+         __strong typeof (weakSelf) strongSelf = weakSelf;
+		   strongSelf.loginBtn.userInteractionEnabled = YES;
 	}];
 }
 

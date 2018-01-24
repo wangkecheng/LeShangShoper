@@ -82,7 +82,7 @@
                 [strongSelf.collectionView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
             }
             [strongSelf.collectionView.mj_header endRefreshing];
-            if (strongSelf.page == [result[@"data"][@"pageNumber"]integerValue]) {
+            if (strongSelf.arrModel.count == [result[@"data"][@"total"]integerValue]) {
                 //最后一页
                 [strongSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
             } else {

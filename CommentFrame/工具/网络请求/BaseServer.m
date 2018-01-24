@@ -16,8 +16,7 @@
 + (void)postObjc:(id)objc path:(NSString *)path isShowHud:(BOOL)isShowHud isShowSuccessHud:(BOOL)isShowSuccessHud success:(successBlock)success failed:(failedBlock)failed{
     
     NSDictionary *dict  = [objc yy_modelToJSONObject];
-    [self postDict:dict path:path isShowHud:isShowHud isShowSuccessHud:isShowSuccessHud isShowFieldHud:YES  success:success failed:failed];
-  
+    [self postDict:dict path:path isShowHud:isShowHud isShowSuccessHud:isShowSuccessHud isShowFieldHud:YES  success:success failed:failed]; 
 }
 
 //当遇到字段是系统保留字段(请求数据的对象属性 不能是系统保留字段) 就用这个方法

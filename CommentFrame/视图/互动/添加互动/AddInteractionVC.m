@@ -64,7 +64,7 @@ UICollectionViewDelegateFlowLayout>
 	_collectionView.scrollEnabled  = NO;
 	
 	_arrSelected = [NSMutableArray array];
-	_flowLayout.sectionInset = UIEdgeInsetsMake(5, 0, 0, 0);
+	_flowLayout.sectionInset = UIEdgeInsetsMake(5, 10, 0, 0);
 	_flowLayout.minimumInteritemSpacing = 3;//同一行
 	_flowLayout.minimumLineSpacing = 3;//同一列
 	
