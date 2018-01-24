@@ -7,10 +7,7 @@
 //
 
 #import "SellerCell.h"
-
-@implementation SellerModel
  
-@end
 @interface SellerCell()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageContro;
@@ -28,7 +25,7 @@
 	CGFloat btnH = btnW + 20;
 	CGFloat imgW = btnW;
 	for (int i  = 0 ;i< sellerArr.count;i++) {
-		SellerModel *model = sellerArr[i];
+		ManufacturersModel *model = sellerArr[i];
 		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + 20,CGRectGetMinY(lastBtn.frame),btnW, btnH)
 												titleX:0 titleY:imgW + 5 titleW:btnW titleH:btnH - imgW
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
@@ -36,7 +33,7 @@
 		btn.imageView.layer.masksToBounds = YES;
        
         if (model.logoUrl) {
-            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"Icon")];
+            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
         }
 		
 		[btn setTitle:model.name forState:0];

@@ -183,7 +183,6 @@
 			}
 			if ([value isKindOfClass:[NSNumber class]]) {
 				[dic setObject:[NSString stringWithFormat:@"%@",value] forKey:key];
-				
 			}
 			
 			if ([value isKindOfClass:[NSDictionary class]]) {
@@ -194,8 +193,11 @@
 				
 				NSMutableArray  *arr = [[NSMutableArray alloc]init];
 				for (NSDictionary *dictT in value) {
-					if([dict isKindOfClass:[NSDictionary class]]) {
+					if([dictT isKindOfClass:[NSDictionary class]]) {
 						[arr addObject:[self reverseDict:dictT]];
+					}
+					else if ([dictT isKindOfClass:[NSString class]]){
+						[arr addObject:dictT];
 					}
 				}
 				[dic setObject:arr forKey:key];

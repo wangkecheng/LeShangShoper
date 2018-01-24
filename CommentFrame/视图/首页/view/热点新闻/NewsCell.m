@@ -24,7 +24,7 @@
 -(void)setNewsModel:(NewsModel *)newsModel{
 	_newsModel = newsModel;
     _titleLbl.text = newsModel.name;
-    [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl) placeholderImage:IMG(@"Icon")];
+    [_newsImg sd_setImageWithURL:IMGURL(newsModel.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

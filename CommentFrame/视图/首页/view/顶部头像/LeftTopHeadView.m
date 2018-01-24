@@ -41,7 +41,7 @@
 	if (model.isMember == 1) {//如果存在
 		_nameLbl.text = model.name;
 		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
-		[_headerImg  sd_setImageWithURL:IMGURL(model.headUrl) placeholderImage:IMG(@"icon_touxiang")];
+		[_headerImg  sd_setImageWithURL:IMGURL(model.headUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 	}else{
 		_rankLbl.alpha = 0;
 	}

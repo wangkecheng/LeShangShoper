@@ -9,13 +9,13 @@
 #import "AdvertItemView.h"
 @interface AdvertItemView()
 @property (weak, nonatomic) IBOutlet UILabel *titLbl;
-@property (strong, nonatomic)AdvertModel  * model;
-@property (copy, nonatomic)void(^clickBlock)(AdvertModel  * model);
+@property (strong, nonatomic)CollectionModel  * model;
+@property (copy, nonatomic)void(^clickBlock)(CollectionModel  * model);
 @end
 
 @implementation AdvertItemView
 
-+(AdvertItemView *)instanceByFrame:(CGRect)frame model:(AdvertModel  *)model clickBlock:(void(^)(AdvertModel *model))clickBlock{
++(AdvertItemView *)instanceByFrame:(CGRect)frame model:(CollectionModel  *)model clickBlock:(void(^)(CollectionModel *model))clickBlock{
 	AdvertItemView * view = [DDFactory getXibObjc:@"AdvertItemView"];
 	view.frame = frame;
 	view.model = model;

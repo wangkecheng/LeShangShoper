@@ -44,8 +44,8 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"添加互动";
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(publishAction)];
-	self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishAction)];
+	self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0, 132, 249);
 	
 	//文字样式
 	[_noteTextView setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
@@ -107,17 +107,7 @@ UICollectionViewDelegateFlowLayout>
  //上传图片
 	HDModel *m = [HDModel model];
 	m.content = _noteTextView.text;
-	[BaseServer postObjc:m path:@"/interact/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if (weakSelf.publishedBlock) {
-				weakSelf.publishedBlock();
-			}
-			[weakSelf.navigationController popViewControllerAnimated:YES];
-		});
-	} failed:^(NSError *error) {
-		
-	}];
-//	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+//	[BaseServer postObjc:m path:@"/interact/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 //		dispatch_async(dispatch_get_main_queue(), ^{
 //			if (weakSelf.publishedBlock) {
 //				weakSelf.publishedBlock();
@@ -125,8 +115,18 @@ UICollectionViewDelegateFlowLayout>
 //			[weakSelf.navigationController popViewControllerAnimated:YES];
 //		});
 //	} failed:^(NSError *error) {
-//
+//		
 //	}];
+	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if (weakSelf.publishedBlock) {
+				weakSelf.publishedBlock();
+			}
+			[weakSelf.navigationController popViewControllerAnimated:YES];
+		});
+	} failed:^(NSError *error) {
+
+	}];
 }
 #pragma mark 选择图片
 - (void)selectImgFromAlbum{

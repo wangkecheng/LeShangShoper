@@ -23,7 +23,7 @@
 }
 -(void)setModel:(CommentInteractionModel *)model{
     _model = model;
-    [_headBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon")];
+    [_headBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     _nameLbl.text = model.name;
     _timeLbl.text = model.createAt;
     _contentLbl.text = model.content;

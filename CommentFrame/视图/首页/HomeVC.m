@@ -19,6 +19,8 @@
 #import "LeftTopHeadView.h"
 #import "InteligentServiceView.h"
 #import "SearchProductVC.h"
+#import "CatalugeListVC.h"
+#import "ProductDetailVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -161,7 +163,7 @@
 	HDModel * m = [HDModel model];
 	m.number = @"6";//查询数量，默认6
 	[BaseServer postObjc:m path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-		NSArray *arr =  [NSArray yy_modelArrayWithClass:[SellerModel class] json:result[@"data"]];
+		NSArray *arr =  [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:result[@"data"]];
 		[weakSelf.arrMerchantModel removeAllObjects];
 		[weakSelf.arrMerchantModel addObjectsFromArray:arr];
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -181,7 +183,7 @@
     weakObj;
     HDModel * m = [HDModel model];
     [BaseServer postObjc:m path:@"/commodity/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-        NSArray *arr =  [NSArray yy_modelArrayWithClass:[AdvertModel class] json:result[@"data"]];
+        NSArray *arr =  [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"]];
         [weakSelf.arrAdvertModel removeAllObjects];
         [weakSelf.arrAdvertModel addObjectsFromArray:arr];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -262,8 +264,12 @@
 	}else if (indexPath.section == 1){
 		SellerCell *sellerCell = [tableView dequeueReusableCellWithIdentifier:SellerCell_ forIndexPath:indexPath];
 		[sellerCell setSellerArr:_arrMerchantModel];
-		sellerCell.clickBlock = ^(NSInteger index, SellerModel *model) {
+		sellerCell.clickBlock = ^(NSInteger index, ManufacturersModel *model) {
 			//进入对应的商家
+			__strong typeof (weakSelf) strongSelf = weakSelf;
+			CatalugeListVC * VC =  [[CatalugeListVC alloc]init]; 
+			VC.model = model;
+			[strongSelf.navigationController pushViewController:VC animated:YES];
 		};
 		
 		cell = sellerCell;
@@ -271,8 +277,11 @@
 		AdvertCell *advertCell = [tableView dequeueReusableCellWithIdentifier:AdvertCell_ forIndexPath:indexPath];
 		 
 		[advertCell setAlertArr:_arrAdvertModel];
-		advertCell.clickBlock = ^(AdvertModel *model) {
-			
+		advertCell.clickBlock = ^(CollectionModel *model) {
+			__strong typeof (weakSelf) strongSelf = weakSelf;
+			ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+			VC.model  = model;
+			[strongSelf.navigationController pushViewController:VC animated:YES];
 		};
 		cell = advertCell;
 	}else if (indexPath.section == 3){

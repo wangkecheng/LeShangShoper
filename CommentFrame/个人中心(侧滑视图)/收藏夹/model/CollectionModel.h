@@ -21,7 +21,8 @@
 @property (nonatomic,strong)NSString *bargain;//1,非特价，2，特价
 @property (nonatomic,strong)NSString *mid;//商家id
 @property (nonatomic,strong)NSString *collect;////1,未收藏，2，已收藏
-@property (nonatomic,strong)NSArray  *imageHashs;
+@property (nonatomic,strong)NSArray  *imageUrls;
+ 
 @end
 
 //bargain = 1;

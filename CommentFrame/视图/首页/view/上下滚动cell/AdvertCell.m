@@ -31,7 +31,7 @@
 	CGFloat viewWidth = CGRectGetWidth(_scrollView.frame);
 	CGFloat itemH = CGRectGetHeight(_scrollView.frame)/2;
 	UIView* lastView = [[UIView  alloc]initWithFrame:CGRectMake(0,-itemH,0, itemH)];
-	for (AdvertModel *model in _alertArr) {
+	for (CollectionModel *model in _alertArr) {
 		
 		AdvertItemView * view = [AdvertItemView instanceByFrame:CGRectMake(0, CGRectGetMaxY(lastView.frame), viewWidth, itemH)
 														  model:model clickBlock:_clickBlock];

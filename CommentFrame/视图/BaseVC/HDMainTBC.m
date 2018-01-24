@@ -30,7 +30,7 @@
     [self.tabBar insertSubview:view atIndex:0];
     self.tabBar.opaque = YES;
     // 设置tabbar渲染颜色
-    [UITabBar appearance].tintColor = UIColorFromRGB(32, 192, 176);
+    [UITabBar appearance].tintColor = UIColorFromRGB(0, 132, 249);
     self.tabBar.translucent = NO;
 }
 //添加TabBar控制器的所有子控制器

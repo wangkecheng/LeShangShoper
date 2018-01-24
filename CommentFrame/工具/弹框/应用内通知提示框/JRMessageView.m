@@ -211,7 +211,7 @@ typedef void(^TapBlock)();
         }
         self.backgroundColor = UIColorFromRGBA(51, 51, 51, 0.9);
       
-      [_iconView sd_setImageWithURL:IMGURL(icon) forState:0 placeholderImage:IMG(@"pic_quanzi_fujingderent")];
+      [_iconView sd_setImageWithURL:IMGURL(icon) forState:0 placeholderImage:IMG(@"pic_quanzi_fujingderent") options:SDWebImageAllowInvalidSSLCertificates];
         
         [CurrentAppDelegate.window addSubview:self];
         // 添加滑动手势

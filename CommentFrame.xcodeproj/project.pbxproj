@@ -293,7 +293,6 @@
 		206865442009C429008C50A2 /* DSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068653D2009C429008C50A2 /* DSAlert.m */; };
 		206865482009E9BE008C50A2 /* AdvertItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206865472009E9BE008C50A2 /* AdvertItemView.xib */; };
 		2068654B2009EA59008C50A2 /* AdvertItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068654A2009EA59008C50A2 /* AdvertItemView.m */; };
-		2068654E2009F48F008C50A2 /* AdvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2068654D2009F48F008C50A2 /* AdvertModel.m */; };
 		206A1096200B0AED007115DE /* InteligentServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 206A1095200B0AED007115DE /* InteligentServiceView.m */; };
 		206A109A200B0BA7007115DE /* InteligentServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206A1099200B0BA7007115DE /* InteligentServiceView.xib */; };
 		206FA0352000F26100DB7998 /* HWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 206FA0322000F25F00DB7998 /* HWCollectionViewCell.m */; };
@@ -818,8 +817,6 @@
 		206865472009E9BE008C50A2 /* AdvertItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvertItemView.xib; sourceTree = "<group>"; };
 		206865492009EA59008C50A2 /* AdvertItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertItemView.h; sourceTree = "<group>"; };
 		2068654A2009EA59008C50A2 /* AdvertItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertItemView.m; sourceTree = "<group>"; };
-		2068654C2009F48F008C50A2 /* AdvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdvertModel.h; sourceTree = "<group>"; };
-		2068654D2009F48F008C50A2 /* AdvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdvertModel.m; sourceTree = "<group>"; };
 		206A1094200B0AED007115DE /* InteligentServiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InteligentServiceView.h; sourceTree = "<group>"; };
 		206A1095200B0AED007115DE /* InteligentServiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InteligentServiceView.m; sourceTree = "<group>"; };
 		206A1099200B0BA7007115DE /* InteligentServiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InteligentServiceView.xib; sourceTree = "<group>"; };
@@ -1580,8 +1577,6 @@
 		200D7F8E1FF7473A00B97979 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				2068654C2009F48F008C50A2 /* AdvertModel.h */,
-				2068654D2009F48F008C50A2 /* AdvertModel.m */,
 				2090C628200B196900CC07F9 /* HomeHeaderModel.h */,
 				2090C629200B196900CC07F9 /* HomeHeaderModel.m */,
 			);
@@ -3192,7 +3187,6 @@
 				200D7EDC1FF742CC00B97979 /* UIImage+ImageEffects.m in Sources */,
 				200D7F6A1FF7434F00B97979 /* XHLaunchImageView.m in Sources */,
 				200D7ED21FF742CC00B97979 /* LWAlertContentView.m in Sources */,
-				2068654E2009F48F008C50A2 /* AdvertModel.m in Sources */,
 				200C80051FFFC4F000C6A2AA /* LosePromiseModel.m in Sources */,
 				200D7EDD1FF742CC00B97979 /* WSPHPhotoLibrary.m in Sources */,
 				200C80261FFFD2AA00C6A2AA /* EaseChineseToPinyin.m in Sources */,
