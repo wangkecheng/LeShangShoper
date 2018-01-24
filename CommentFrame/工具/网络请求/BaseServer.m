@@ -87,6 +87,7 @@
         }
     NSString *fullPath = [POST_HOST stringByAppendingString:path];
     NSDictionary *paramDict  =  [obj yy_modelToJSONObject];//将HDModel对象转为字典
+	weakObj;
     [manager POST:fullPath parameters:paramDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //构造数据
         for (NSInteger i = 0; i < imageArr.count; i++) {
@@ -94,15 +95,30 @@
             if ([image isKindOfClass:[UIImage class]]) {
                 NSData *imageData =  [DDFactory resetSizeOfImageData:image maxSize:500000];
                 NSString * name = [NSString stringWithFormat:@"uploadimg%ld",i];
+				if ([path containsString:@"user/update"]) {
+					name = @"headPic";
+				}
                 [formData appendPartWithFileData:imageData name:name fileName:@"files" mimeType:@"image/jpeg"];
             }
         }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        if (isShowHud) {
-            //          [HUD showProgress:uploadProgress.completedUnitCount *1.0/uploadProgress.totalUnitCount  message:@"正在上传..."];
-        }
+		
+		
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //结果处理
+		if ([responseObject[@"code"] integerValue] == 0) {
+			if (isShowHud)
+				[CurrentAppDelegate.window  makeToast:responseObject[@"message"]];
+			NSDictionary *dict = [DDFactory reverseDict:responseObject];
+			SAFE_BLOCK_CALL(success, dict);
+			return;
+		}else {//失败
+			NSError *error = [NSError errorWithDomain:@"出错了"
+												 code:01
+											 userInfo:responseObject];
+			[weakSelf showFieldMsg:[error userInfo][@"message"] isShowFieldHud:YES];
+			SAFE_BLOCK_CALL(failed, error);
+		}
         SAFE_BLOCK_CALL(success, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         

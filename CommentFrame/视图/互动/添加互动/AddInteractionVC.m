@@ -106,7 +106,7 @@ UICollectionViewDelegateFlowLayout>
 	weakObj;
     //上传图片
 	HDModel *m = [HDModel model];
-  // /user/update
+	m.content = _noteTextView.text; 
 	NSMutableArray *arrImg = [NSMutableArray array];
 	for (ImgModel  *model in _arrSelected) {
 		[arrImg addObject:model.image];
