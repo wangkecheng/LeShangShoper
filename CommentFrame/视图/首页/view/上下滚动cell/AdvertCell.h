@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AdvertModel.h"
+#import "CollectionModel.h"
 
 @interface AdvertCell : UITableViewCell
 @property (nonatomic, strong)NSArray *alertArr;
 
-@property (copy, nonatomic)void(^clickBlock)(AdvertModel  * model);
+@property (copy, nonatomic)void(^clickBlock)(CollectionModel  * model);
 @end

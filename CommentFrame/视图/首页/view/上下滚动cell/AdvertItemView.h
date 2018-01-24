@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AdvertModel.h"
+#import "CollectionModel.h"
 @interface AdvertItemView : UIView
-+(AdvertItemView *)instanceByFrame:(CGRect)frame model:(AdvertModel  *)model clickBlock:(void(^)(AdvertModel *model))clickBlock;
++(AdvertItemView *)instanceByFrame:(CGRect)frame model:(CollectionModel  *)model clickBlock:(void(^)(CollectionModel *model))clickBlock;
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
                 <outlet property="dianJiLoginLbl" destination="NBA-Dg-5yQ" id="Zt3-Ug-A1g"/>
                 <outlet property="headerBtn" destination="2a2-Ie-V0s" id="F2z-DQ-VYq"/>
                 <outlet property="imgBackground" destination="CQd-9y-c9b" id="Oig-l9-xt0"/>
-                <outlet property="nameLbl" destination="Mrc-xo-4fR" id="3RJ-Qh-c8P"/>
+                <outlet property="nameLbl" destination="Mrc-xo-4fR" id="6eg-2v-Qff"/>
                 <outlet property="phoneLbl" destination="jXt-EI-RKN" id="B2j-ya-5Ie"/>
                 <outlet property="rankLbl" destination="dqd-NS-n3S" id="kHJ-sQ-pdU"/>
                 <outlet property="switchSex" destination="y59-Dh-kUR" id="bf3-sb-VUA"/>

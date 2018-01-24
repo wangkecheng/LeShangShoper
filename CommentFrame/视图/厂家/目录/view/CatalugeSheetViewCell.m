@@ -23,7 +23,7 @@
 
 -(void)setModel:(BrandsModel *)model{
     _model = model;
-    [_img sd_setImageWithURL:IMGURL(model.url) placeholderImage:IMG(@"Icon")];
+    [_img sd_setImageWithURL:IMGURL(model.url) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     [_titleLbl setText:model.name];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

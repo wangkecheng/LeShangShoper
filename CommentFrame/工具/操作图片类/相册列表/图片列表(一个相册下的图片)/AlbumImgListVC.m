@@ -70,7 +70,7 @@ typedef void(^SelectBlock)(NSMutableArray *);
 	[_collectionView registerNib:[UINib nibWithNibName:ImgCell_ bundle:nil] forCellWithReuseIdentifier:ImgCell_];
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(actionRightBar)];
-	self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+	self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
 	
 }
 

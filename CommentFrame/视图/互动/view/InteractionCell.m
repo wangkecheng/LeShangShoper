@@ -34,7 +34,7 @@ static int Btn_Tag = 100;
 
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
-	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon")];
+	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 	_nameLbl.text = model.name;
 	_titLbl.text = model.content;
 	
@@ -73,7 +73,7 @@ static int Btn_Tag = 100;
 		btn.layer.cornerRadius = 10;
 		btn.layer.masksToBounds = YES;
 		[btn addTarget:self action:@selector(bimImgAction:) forControlEvents:UIControlEventTouchUpInside];
-//	 	[btn sd_setImageWithURL:IMGURL(dict[@"url"]) forState:0 placeholderImage:IMG(@"Icon")];
+//	 	[btn sd_setImageWithURL:IMGURL(dict[@"url"]) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 //		[btn setImage:IMG(@"Icon") forState:0];
 		[btn setBackgroundImage:IMG(@"Icon") forState:0];
 		[_imgsContaintView addSubview:btn];

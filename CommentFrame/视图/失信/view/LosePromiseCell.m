@@ -19,7 +19,7 @@
 	_model = model;
 	_titLbl.text = model.title;
 	_timeLbl.text = model.createAt;
-	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon")];
+	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

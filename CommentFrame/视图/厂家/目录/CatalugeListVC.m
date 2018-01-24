@@ -61,7 +61,7 @@
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理 
 		dispatch_async(dispatch_get_main_queue(), ^{
-            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon")];
+            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];

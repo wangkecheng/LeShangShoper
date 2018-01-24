@@ -125,7 +125,7 @@ const CGFloat kDuration = 0.3f;
             
             if (animated) {
                 sself.imageView.frame = sself.imageModel.originPosition;
-                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL];
+                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL  placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
                 [UIView animateWithDuration:kDuration
                                       delay:0.0f
                      usingSpringWithDamping:0.7
@@ -136,7 +136,7 @@ const CGFloat kDuration = 0.3f;
                                         
                                     }];
             } else {
-                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL];
+                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL  placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
                 sself.imageView.frame = destinationRect;
             }
         }

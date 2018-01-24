@@ -54,7 +54,7 @@ typedef void(^SelectBlock)(NSMutableArray *);
 	_tableView.rowHeight = 50;
 	[_tableView registerNib:[UINib nibWithNibName:AlbumListCell_ bundle:nil] forCellReuseIdentifier:AlbumListCell_];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(actionRightBar)];
-	self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+	self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
 }
 
 - (void)actionRightBar {

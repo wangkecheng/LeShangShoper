@@ -38,6 +38,7 @@
 	[BaseServer postObjc:m path:@"/commodity/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 	__strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.detailModel = [CollectionModel yy_modelWithJSON:result[@"data"]];
+		strongSelf.detailModel.imageUrls = result[@"data"][@"imageUrls"];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[strongSelf setViewData];
 		});
@@ -53,7 +54,12 @@
           _specialImg.alpha = 1;
     }
 	_titleLbl.text = _detailModel.name;
-	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH,CGRectGetHeight(_scrollContentView.frame))  imageURLStringsGroup:_detailModel.imageHashs];
+	NSMutableArray * imageUrls = [NSMutableArray array];
+	for (NSString * str in _detailModel.imageUrls) {
+		[imageUrls addObject:IMGURL(str)];
+	}
+	_detailModel.imageUrls = imageUrls;
+	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH,CGRectGetHeight(_scrollContentView.frame))  imageURLStringsGroup:_detailModel.imageUrls];
 	cycleView.showPageControl = NO;
     [cycleView setPlaceholderImage:IMG(@"Icon")];
 	cycleView.autoScroll = NO;
@@ -62,8 +68,8 @@
 	cycleView.clickItemOperationBlock = ^(NSInteger currentIndex) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		NSMutableArray* tmps = [[NSMutableArray alloc] init];
-		for (int i = 0;i< strongSelf.detailModel.imageHashs.count;i++) {//找出所有图片
-			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:strongSelf.detailModel.imageHashs[i]
+		for (int i = 0;i< strongSelf.detailModel.imageUrls.count;i++) {//找出所有图片
+			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:strongSelf.detailModel.imageUrls[i]
 																				 thumbnailURL:nil
 																						HDURL:nil
 																				containerView:self.view
@@ -80,7 +86,7 @@
 	};
 	cycleView.itemDidScrollOperationBlock = ^(NSInteger currentIndex) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		strongSelf.indicatorLbl.text = [NSString stringWithFormat:@"%ld/6",currentIndex+1];
+		strongSelf.indicatorLbl.text = [NSString stringWithFormat:@"%ld/%ld",currentIndex+1,strongSelf.detailModel.imageUrls.count];
 	};
 	_specificationLbl.text = _detailModel.spec;//规格
 //	_usePlaceLbl.text = _detailModel //使用位置

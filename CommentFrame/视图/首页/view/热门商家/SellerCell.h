@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface SellerModel:NSObject
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *mid;
-@property(nonatomic,strong)NSString *logoUrl;
-@end
+#import "ManufacturersModel.h"
 @interface SellerCell : UITableViewCell
 @property(nonatomic,strong)NSArray *sellerArr;
-@property(nonatomic,copy)void(^clickBlock)(NSInteger index,SellerModel *model);
+@property(nonatomic,copy)void(^clickBlock)(NSInteger index,ManufacturersModel *model);
 @end
 
 

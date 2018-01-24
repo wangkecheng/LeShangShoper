@@ -66,8 +66,8 @@ typedef enum ViewTagIndentifyer{
 	
 	_loginBtn.userInteractionEnabled = NO;
 	HDModel *m = [HDModel model];
-	m.mobile = @"18408246301";_userField.text;
-	m.verCode = @"123456";_vercodeField.text;
+	m.mobile = _userField.text;
+	m.verCode = _vercodeField.text;
 	
 	weakObj;
 	[BaseServer postObjc:m path:@"/user/login" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
