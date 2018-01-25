@@ -71,14 +71,9 @@
              if ([model.sex integerValue] == 2) {
                   [weakSelf.switchSex setOn:YES];
              }
-<<<<<<< HEAD
              if (model.headImgData) {
 				 UIImage *image = [UIImage imageWithData:model.headImgData];
 				[weakSelf.headerBtn  setImage:image forState:0];
-=======
-             if (weakSelf.headImg) {
-                  [weakSelf.headerBtn  setImage:weakSelf.headImg forState:0];
->>>>>>> 6018926900051bfdb4c6233fe32e20e6c3fbcbe2
              }else{
                [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
              }
@@ -165,12 +160,8 @@
 
 - (void)finishSelectImg:(UIImage *)image{
     UserInfoModel * model =  [CacheTool getUserModel];
-<<<<<<< HEAD
     model.headImgData = UIImagePNGRepresentation(image);
-    [CacheTool writeToDB:model];
-=======
-    _headImg = image;
->>>>>>> 6018926900051bfdb4c6233fe32e20e6c3fbcbe2
+    [CacheTool writeToDB:model]; 
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
 	[[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息

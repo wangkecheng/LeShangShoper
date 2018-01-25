@@ -44,8 +44,6 @@
 		186E6E3A2019DF9700D40E95 /* XHLaunchAdButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E2E2019DF9600D40E95 /* XHLaunchAdButton.m */; };
 		186E6E3B2019DF9700D40E95 /* XHLaunchAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E2F2019DF9600D40E95 /* XHLaunchAdView.m */; };
 		186E6E3C2019DF9700D40E95 /* XHLaunchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E312019DF9700D40E95 /* XHLaunchImageView.m */; };
-		186E6E422019DFB500D40E95 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E3F2019DFB500D40E95 /* FLAnimatedImage.m */; };
-		186E6E432019DFB500D40E95 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E412019DFB500D40E95 /* FLAnimatedImageView.m */; };
 		186E6E502019DFF900D40E95 /* image0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 186E6E452019DFF800D40E95 /* image0.jpg */; };
 		186E6E512019DFF900D40E95 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 186E6E462019DFF800D40E95 /* image1.jpg */; };
 		186E6E522019DFF900D40E95 /* image11.gif in Resources */ = {isa = PBXBuildFile; fileRef = 186E6E472019DFF800D40E95 /* image11.gif */; };
@@ -413,6 +411,8 @@
 		20A5D9161FB9908300534868 /* JRMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A5D90D1FB9908200534868 /* JRMessageView.m */; };
 		20A5D9171FB9908300534868 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A5D90E1FB9908200534868 /* UIView+Toast.m */; };
 		20A5D91A1FB9977300534868 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A5D9191FB9977300534868 /* UIView+Extension.m */; };
+		20BFA2E7201A12CC00F9DD53 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BFA2E3201A12CC00F9DD53 /* FLAnimatedImage.m */; };
+		20BFA2E8201A12CC00F9DD53 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BFA2E4201A12CC00F9DD53 /* FLAnimatedImageView.m */; };
 		20DDE1761EA9ABB800E4CC04 /* AYCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE1751EA9ABB800E4CC04 /* AYCheckManager.m */; };
 		20DDE2CD1EA9B2F100E4CC04 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */; };
 		9474A308D61E15583E4D8E73 /* libPods-CommentFrameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E54E55B851F1B1848FA0706 /* libPods-CommentFrameTests.a */; };
@@ -509,10 +509,6 @@
 		186E6E2F2019DF9600D40E95 /* XHLaunchAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLaunchAdView.m; sourceTree = "<group>"; };
 		186E6E302019DF9600D40E95 /* XHLaunchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLaunchImageView.h; sourceTree = "<group>"; };
 		186E6E312019DF9700D40E95 /* XHLaunchImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLaunchImageView.m; sourceTree = "<group>"; };
-		186E6E3E2019DFB500D40E95 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
-		186E6E3F2019DFB500D40E95 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
-		186E6E402019DFB500D40E95 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
-		186E6E412019DFB500D40E95 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		186E6E452019DFF800D40E95 /* image0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image0.jpg; sourceTree = "<group>"; };
 		186E6E462019DFF800D40E95 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
 		186E6E472019DFF800D40E95 /* image11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image11.gif; sourceTree = "<group>"; };
@@ -1028,6 +1024,10 @@
 		20A5D90E1FB9908200534868 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		20A5D9181FB9977300534868 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		20A5D9191FB9977300534868 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		20BFA2E3201A12CC00F9DD53 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		20BFA2E4201A12CC00F9DD53 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		20BFA2E5201A12CC00F9DD53 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		20BFA2E6201A12CC00F9DD53 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		20DDE1741EA9ABB800E4CC04 /* AYCheckManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYCheckManager.h; sourceTree = "<group>"; };
 		20DDE1751EA9ABB800E4CC04 /* AYCheckManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYCheckManager.m; sourceTree = "<group>"; };
 		20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -1122,6 +1122,7 @@
 		186E6DF62019D65E00D40E95 /* LWImageBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				20BFA2E2201A12CC00F9DD53 /* FLAnimatedImage */,
 				186E6DF72019D65E00D40E95 /* LWActionSheetTableViewCell.h */,
 				186E6DF82019D65E00D40E95 /* LWActionSheetTableViewCell.m */,
 				186E6DF92019D65E00D40E95 /* LWActionSheetView.h */,
@@ -1149,18 +1150,6 @@
 				186E6E0F2019D65E00D40E95 /* UIImage+ImageEffects.m */,
 			);
 			path = LWImageBrowser;
-			sourceTree = "<group>";
-		};
-		186E6E3D2019DFB500D40E95 /* FLAnimatedImage */ = {
-			isa = PBXGroup;
-			children = (
-				186E6E3E2019DFB500D40E95 /* FLAnimatedImage.h */,
-				186E6E3F2019DFB500D40E95 /* FLAnimatedImage.m */,
-				186E6E402019DFB500D40E95 /* FLAnimatedImageView.h */,
-				186E6E412019DFB500D40E95 /* FLAnimatedImageView.m */,
-			);
-			name = FLAnimatedImage;
-			path = "../../../../../Downloads/XHLaunchAd-master/XHLaunchAd/Lib/FLAnimatedImage";
 			sourceTree = "<group>";
 		};
 		186E6E442019DFF800D40E95 /* Source */ = {
@@ -1495,11 +1484,11 @@
 			isa = PBXGroup;
 			children = (
 				200D7EB11FF742CB00B97979 /* AlbumListVC.xib */,
-				200D7EB21FF742CB00B97979 /* 图片列表(一个相册下的图片) */,
 				200D7EBD1FF742CB00B97979 /* AlbumListVC.h */,
+				200D7EC51FF742CB00B97979 /* AlbumListVC.m */,
+				200D7EB21FF742CB00B97979 /* 图片列表(一个相册下的图片) */,
 				200D7EBE1FF742CB00B97979 /* model */,
 				200D7EC11FF742CB00B97979 /* view */,
-				200D7EC51FF742CB00B97979 /* AlbumListVC.m */,
 				200D7EC61FF742CB00B97979 /* 图片 */,
 			);
 			path = "相册列表";
@@ -1577,7 +1566,6 @@
 			isa = PBXGroup;
 			children = (
 				186E6E442019DFF800D40E95 /* Source */,
-				186E6E3D2019DFB500D40E95 /* FLAnimatedImage */,
 				186E6E242019DF9400D40E95 /* XHLaunchAd.h */,
 				186E6E1F2019DF9300D40E95 /* XHLaunchAd.m */,
 				186E6E222019DF9400D40E95 /* XHLaunchAdButton.h */,
@@ -2630,6 +2618,18 @@
 			path = "应用内通知提示框";
 			sourceTree = "<group>";
 		};
+		20BFA2E2201A12CC00F9DD53 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				20BFA2E3201A12CC00F9DD53 /* FLAnimatedImage.m */,
+				20BFA2E4201A12CC00F9DD53 /* FLAnimatedImageView.m */,
+				20BFA2E5201A12CC00F9DD53 /* FLAnimatedImage.h */,
+				20BFA2E6201A12CC00F9DD53 /* FLAnimatedImageView.h */,
+			);
+			name = FLAnimatedImage;
+			path = "CommentFrame/视图/启动页广告/FLAnimatedImage";
+			sourceTree = SOURCE_ROOT;
+		};
 		20DDE1731EA9ABB800E4CC04 /* 版本更新 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3204,6 +3204,7 @@
 				20A5D8B81FB98F1300534868 /* NSDate+Extension.m in Sources */,
 				20A5D9171FB9908300534868 /* UIView+Toast.m in Sources */,
 				200D7F811FF743E100B97979 /* LoginVC.m in Sources */,
+				20BFA2E8201A12CC00F9DD53 /* FLAnimatedImageView.m in Sources */,
 				200D7FC61FF7541000B97979 /* UICollectionView+LOExtension.m in Sources */,
 				206FA0402000F61100DB7998 /* BRPlaceholderTextView.m in Sources */,
 				18AC013E2015C4B70072868B /* SearchProductVC.m in Sources */,
@@ -3259,17 +3260,16 @@
 				1840EEC3201208A800A341F7 /* CommentInteractionModel.m in Sources */,
 				20A5D8AA1FB98B9200534868 /* UINavigation+SXFixSpace.m in Sources */,
 				186E6E392019DF9700D40E95 /* XHLaunchAdDownloader.m in Sources */,
-				186E6E432019DFB500D40E95 /* FLAnimatedImageView.m in Sources */,
 				186E6E132019D65E00D40E95 /* LWAlertView.m in Sources */,
 				207418B42003BE57007C4F36 /* SearchManufacturersVC.m in Sources */,
 				200C800C1FFFC7AB00C6A2AA /* InteractionCell.m in Sources */,
 				186E6E342019DF9700D40E95 /* XHLaunchAd.m in Sources */,
 				200D7FA91FF747A000B97979 /* ManufacturersVC.m in Sources */,
 				20A5D8C61FB98FD200534868 /* LWActiveIncatorAnimationView.m in Sources */,
-				186E6E422019DFB500D40E95 /* FLAnimatedImage.m in Sources */,
 				200C80311FFFD93C00C6A2AA /* CollectionVC.m in Sources */,
 				200D7FCA1FF7541000B97979 /* NSString+Category.m in Sources */,
 				200D7FC71FF7541000B97979 /* UITableView+LOExtension.m in Sources */,
+				20BFA2E7201A12CC00F9DD53 /* FLAnimatedImage.m in Sources */,
 				200D7F7C1FF7439900B97979 /* CacheTool.m in Sources */,
 				207418DF20066426007C4F36 /* ProductDetailListCell.m in Sources */,
 				207418C520051E4F007C4F36 /* SearchManufacturersCell.m in Sources */,

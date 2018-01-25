@@ -148,7 +148,14 @@
 	m.content = comment;
     [BaseServer postObjc:m path:@"/interact/comment/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
+		
+		CommentInteractionModel *model = [CommentInteractionModel yy_modelWithJSON:result[@"data"]];
+	    UserInfoModel * userModel =	[CacheTool getUserModel];
+		model.headUrl = userModel.headUrl;
+		model.name = userModel.name;
+		[strongSelf.arrModel addObject:model];
 		dispatch_async(dispatch_get_main_queue(), ^{
+			[strongSelf.tableview reloadData];
             strongSelf.commentTextView.text = @"";
             strongSelf.placeholder.alpha = 1;
 			if(strongSelf.finishComBlock){
