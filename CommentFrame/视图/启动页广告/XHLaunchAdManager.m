@@ -9,9 +9,10 @@
 
 #import "XHLaunchAdManager.h"
 #import "XHLaunchAd.h"
-#import "LaunchAdModel.h" 
+#import "Network.h"
+#import "LaunchAdModel.h"
 #import "WebViewController.h"
-#import "HDMainTBC.h"
+
 /** 以下连接供测试使用 */
 
 /** 静态图 */
@@ -62,60 +63,35 @@
 
 -(void)setupXHLaunchAd{
     
-    //1.******图片开屏广告 - 网络数据******
+    /** 1.图片开屏广告 - 网络数据 */
     [self example01];
-	
-    //2.******图片开屏广告 - 本地数据******
+    
+    /** 2.图片开屏广告 - 本地数据 */
 //    [self example02];
     
-    //3.******视频开屏广告 - 网络数据(网络视频只支持缓存OK后下次显示,看效果请二次运行)******
+    /** 3.视频开屏广告 - 网络数据(网络视频只支持缓存OK后下次显示,看效果请二次运行) */
     //[self example03];
     
-    //4.******视频开屏广告 - 本地数据******
-//    [self example04];
-	
-    //5.******如需自定义跳过按钮,请看这个示例******
+    /** 4.视频开屏广告 - 本地数据 */
+    //[self example04];
+    
+    /** 5.如需自定义跳过按钮,请看这个示例 */
     //[self example05];
     
-    //6.******使用默认配置快速初始化,请看下面两个示例******
+    /** 6.使用默认配置快速初始化,请看下面两个示例 */
     //[self example06];//图片
     //[self example07];//视频
     
-    //7.******如果你想提前缓存图片/视频请看下面两个示例*****
-    //批量下载并缓存图片
-//    [self batchDownloadImageAndCache];
-	
-    //批量下载并缓存视频
-    //[self batchDownloadVideoAndCache];
+    /** 7.如果你想提前批量缓存图片/视频请看下面两个示例 */
+    //[self batchDownloadImageAndCache]; //批量下载并缓存图片
+    //[self batchDownloadVideoAndCache]; //批量下载并缓存视频
     
 }
 
-//-(void)setLaunchImg{//设置启动页
-//    HDModel * m = [HDModel model];
-//    m.type = @"2";
-//    weakObj;
-//    [BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-//        //       result[@"data"]
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            //这一步是获取LaunchScreen.storyboard里的UIViewController,UIViewController 的identifer是LaunchScreen
-//            UIView *launchView = [DDFactory getVCById:@"LaunchScreen"].view;
-//
-//            UIImageView  * Imageview= [[UIImageView  alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//            [launchView addSubview:Imageview];
-//            [weakSelf.window addSubview:launchView];
-//            [Imageview sd_setImageWithURL:IMGURL(@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2561126900,2607882124&fm=58&bpow=585&bpoh=576") placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [launchView removeFromSuperview];
-//            });
-//        });
-//    } failed:^(NSError *error) {
-//
-//    }];
-//}
 #pragma mark - 图片开屏广告-网络数据-示例
 //图片开屏广告 - 网络数据
 -(void)example01{
-	
+    
     //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
     [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
     
@@ -124,51 +100,50 @@
     //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
     //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
     [XHLaunchAd setWaitDataDuration:3];
-	weakObj;
+    
     //广告数据请求
-    HDModel * m = [HDModel model];
-      m.type = @"2";
-	[BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
-		
-        NSDictionary *dict = @{@"content":@"http://yun.it7090.com/image/XHLaunchAd/pic01.jpg",@"url":@"http://yun.it7090.com/image/XHLaunchAd/pic01.jpg"};
-		//广告数据转模型
-		LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:dict];
-		//配置广告数据
-		XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
-		//广告停留时间
-		imageAdconfiguration.duration = model.duration;
-		//广告frame
-		imageAdconfiguration.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.8);
-		//广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-		imageAdconfiguration.imageNameOrURLString = model.content;
-		//设置GIF动图是否只循环播放一次(仅对动图设置有效)
-		imageAdconfiguration.GIFImageCycleOnce = NO;
-		//缓存机制(仅对网络图片有效)
-		//为告展示效果更好,可设置为XHLaunchAdImageCacheInBackground,先缓存,下次显示
-		imageAdconfiguration.imageOption = XHLaunchAdImageDefault;
-		//图片填充模式
-		imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
-		//广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-		imageAdconfiguration.openModel = model.openUrl;
-		//广告显示完成动画
-		imageAdconfiguration.showFinishAnimate =ShowFinishAnimateLite;
-		//广告显示完成动画时间
-		imageAdconfiguration.showFinishAnimateTime = 0.8;
-		//跳过按钮类型
-		imageAdconfiguration.skipButtonType = SkipTypeTimeText;
-		//后台返回时,是否显示广告
-		imageAdconfiguration.showEnterForeground = NO;
-		
-		//图片已缓存 - 显示一个 "已预载" 视图 (可选)
-		if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
-			//设置要添加的自定义视图(可选)
-			imageAdconfiguration.subViews = [weakSelf launchAdSubViews_alreadyView];
-		}
-		//显示开屏广告
-		[XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-	} failed:^(NSError *error) {
-		
-	}];
+    [Network getLaunchAdImageDataSuccess:^(NSDictionary * response) {
+        NSLog(@"广告数据 = %@",response);
+        //广告数据转模型
+        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:response[@"data"]];
+        //配置广告数据
+        XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
+        //广告停留时间
+        imageAdconfiguration.duration = model.duration;
+        //广告frame
+        imageAdconfiguration.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.8);
+        //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
+        imageAdconfiguration.imageNameOrURLString = model.content;
+        //设置GIF动图是否只循环播放一次(仅对动图设置有效)
+        imageAdconfiguration.GIFImageCycleOnce = NO;
+        //缓存机制(仅对网络图片有效)
+        //为告展示效果更好,可设置为XHLaunchAdImageCacheInBackground,先缓存,下次显示
+        imageAdconfiguration.imageOption = XHLaunchAdImageDefault;
+        //图片填充模式
+        imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
+        //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
+        imageAdconfiguration.openModel = model.openUrl;
+        //广告显示完成动画
+        imageAdconfiguration.showFinishAnimate =ShowFinishAnimateLite;
+        //广告显示完成动画时间
+        imageAdconfiguration.showFinishAnimateTime = 0.8;
+        //跳过按钮类型
+        imageAdconfiguration.skipButtonType = SkipTypeTimeText;
+        //后台返回时,是否显示广告
+        imageAdconfiguration.showEnterForeground = NO;
+        
+        //图片已缓存 - 显示一个 "已预载" 视图 (可选)
+        if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
+            //设置要添加的自定义视图(可选)
+            imageAdconfiguration.subViews = [self launchAdSubViews_alreadyView];
+            
+        }
+        //显示开屏广告
+        [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
+        
+    } failure:^(NSError *error) {
+    }];
+    
 }
 
 #pragma mark - 图片开屏广告-本地数据-示例
@@ -221,11 +196,12 @@
     [XHLaunchAd setWaitDataDuration:3];
     
     //广告数据请求
-    NSData *JSONData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"LaunchVideoAd" ofType:@"json"]];
-    NSDictionary *json =  [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingAllowFragments error:nil];
+    [Network getLaunchAdVideoDataSuccess:^(NSDictionary * response) {
+        
+        NSLog(@"广告数据 = %@",response);
         
         //广告数据转模型
-        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:json[@"data"]];
+        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:response[@"data"]];
         
         //配置广告数据
         XHLaunchVideoAdConfiguration *videoAdconfiguration = [XHLaunchVideoAdConfiguration new];
@@ -237,7 +213,7 @@
         //注意:视频广告只支持先缓存,下次显示(看效果请二次运行)
         videoAdconfiguration.videoNameOrURLString = model.content;
         //视频缩放模式
-        videoAdconfiguration.scalingMode = MPMovieScalingModeAspectFill;
+        videoAdconfiguration.videoGravity = AVLayerVideoGravityResizeAspectFill;
         //是否只循环播放一次
         videoAdconfiguration.videoCycleOnce = NO;
         //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
@@ -258,6 +234,10 @@
         }
         
         [XHLaunchAd videoAdWithVideoAdConfiguration:videoAdconfiguration delegate:self];
+        
+    } failure:^(NSError *error) {
+        
+    }];
     
 }
 
@@ -266,18 +246,18 @@
 -(void)example04{
     
     //设置你工程的启动页使用的是:LaunchImage 还是 LaunchScreen.storyboard(不设置默认:LaunchImage)
-    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchImage];
+    [XHLaunchAd setLaunchSourceType:SourceTypeLaunchScreen];
     
     //配置广告数据
     XHLaunchVideoAdConfiguration *videoAdconfiguration = [XHLaunchVideoAdConfiguration new];
     //广告停留时间
-    videoAdconfiguration.duration = 1;
+    videoAdconfiguration.duration = 5;
     //广告frame
     videoAdconfiguration.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     //广告视频URLString/或本地视频名(请带上后缀)
-    videoAdconfiguration.videoNameOrURLString = @"video1.mp4";
+    videoAdconfiguration.videoNameOrURLString = @"video0.mp4";
     //视频填充模式
-    videoAdconfiguration.scalingMode = MPMovieScalingModeAspectFill;
+    videoAdconfiguration.videoGravity = AVLayerVideoGravityResizeAspectFill;
     //是否只循环播放一次
     videoAdconfiguration.videoCycleOnce = NO;
     //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
@@ -337,7 +317,6 @@
     //显示开屏广告
     [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
     
-    
 }
 
 #pragma mark - 使用默认配置快速初始化 - 示例
@@ -387,7 +366,7 @@
         
         //url:图片的url字符串,
         //result:0表示该图片下载失败,1表示该图片下载并缓存完成或本地缓存中已有该图片
-        NSLog(@"批量下载缓存结果 = %@" ,completedArray);
+        NSLog(@"批量下载缓存图片结果 = %@" ,completedArray);
     }];
 }
 
@@ -402,7 +381,7 @@
         
         //url:视频的url字符串,
         //result:0表示该视频下载失败,1表示该视频下载并缓存完成或本地缓存中已有该视频
-        NSLog(@"批量下载缓存结果 = %@" ,completedArray);
+        NSLog(@"批量下载缓存视频结果 = %@" ,completedArray);
         
     }];
     
@@ -484,21 +463,17 @@
 -(void)xhLaunchAd:(XHLaunchAd *)launchAd clickAndOpenModel:(id)openModel clickPoint:(CGPoint)clickPoint{
     
     NSLog(@"广告点击事件");
-    /**
-     openModel即配置广告数据设置的点击广告时打开页面参数
-     */
+    
+    /** openModel即配置广告数据设置的点击广告时打开页面参数(configuration.openModel) */
+     if(openModel==nil) return;
     
     WebViewController *VC = [[WebViewController alloc] init];
     NSString *urlString = (NSString *)openModel;
     VC.URLString = urlString;
+    //此处不要直接取keyWindow
+    UIViewController* rootVC = [[UIApplication sharedApplication].delegate window].rootViewController;
+    [rootVC.navigationController pushViewController:VC animated:YES];
     
-    HDMainNavC * navi = (HDMainNavC *)CurrentAppDelegate.window.rootViewController;
-    if ([navi isKindOfClass:[HDMainTBC class]]) {
-        navi = [navi.viewControllers firstObject];
-    }
-    if ([navi isKindOfClass:[HDMainNavC class]]) {
-        [navi pushViewController:VC animated:YES];
-    }
 }
 
 /**
@@ -509,6 +484,7 @@
  *  @param imageData 读取/下载的imageData
  */
 -(void)xhLaunchAd:(XHLaunchAd *)launchAd imageDownLoadFinish:(UIImage *)image imageData:(NSData *)imageData{
+    
     NSLog(@"图片下载完成/或本地图片读取完成回调");
 }
 
@@ -520,15 +496,15 @@
  */
 -(void)xhLaunchAd:(XHLaunchAd *)launchAd videoDownLoadFinish:(NSURL *)pathURL{
     
-    NSLog(@"video下载/加载完成/保存path = %@",pathURL.absoluteString);
+    NSLog(@"video下载/加载完成 path = %@",pathURL.absoluteString);
 }
 
 /**
  *  视频下载进度回调
  */
 -(void)xhLaunchAd:(XHLaunchAd *)launchAd videoDownLoadProgress:(float)progress total:(unsigned long long)total current:(unsigned long long)current{
-    NSLog(@"总大小=%lld,已下载大小=%lld,下载进度=%f",total,current,progress);
     
+    NSLog(@"总大小=%lld,已下载大小=%lld,下载进度=%f",total,current,progress);
 }
 
 /**
@@ -541,7 +517,7 @@
 
 /**
  如果你想用SDWebImage等框架加载网络广告图片,请实现此代理(注意:实现此方法后,图片缓存将不受XHLaunchAd管理)
-
+ 
  @param launchAd          XHLaunchAd
  @param launchAdImageView launchAdImageView
  @param url               图片url

@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dianJiLoginLbl;//点击登录lbl
 
 @property (weak, nonatomic) IBOutlet UIButton *headerBtn;
+@property (nonatomic, strong) UIImage *headImg;//如果上传了头像 暂时存储下来
 //选择的图片数据
 @property(nonatomic,strong) NSMutableArray *arrSelected;
 @property (nonatomic, strong)UIImagePickerController *imaPicker;
@@ -70,8 +71,8 @@
              if ([model.sex integerValue] == 2) {
                   [weakSelf.switchSex setOn:YES];
              }
-             if (model.headImg) {
-                  [weakSelf.headerBtn  setImage:model.headImg forState:0];
+             if (weakSelf.headImg) {
+                  [weakSelf.headerBtn  setImage:weakSelf.headImg forState:0];
              }else{
                [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
              }
@@ -158,8 +159,7 @@
 
 - (void)finishSelectImg:(UIImage *)image{
     UserInfoModel * model =  [CacheTool getUserModel];
-    model.headImg = image;
-    [CacheTool writeToDB:model];
+    _headImg = image;
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
 }
