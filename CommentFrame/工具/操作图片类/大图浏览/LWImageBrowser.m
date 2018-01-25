@@ -198,13 +198,13 @@ LWActionSheetViewDelegate>
     SDWebImageManager* manager = [SDWebImageManager sharedManager];
     if (index + 1 < self.imageModels.count) {
         LWImageBrowserModel* nextModel = [self.imageModels objectAtIndex:index + 1];
-		[manager loadImageWithURL:nextModel.HDURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+		[manager loadImageWithURL:nextModel.HDURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
 			
 		}];
     }
     if (index - 1 >= 0) {
         LWImageBrowserModel* previousModel = [self.imageModels objectAtIndex:index - 1];
-		[manager loadImageWithURL:previousModel.HDURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+		[manager loadImageWithURL:previousModel.HDURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
 			
 		}]; 
     }
@@ -229,14 +229,17 @@ LWActionSheetViewDelegate>
 #pragma mark - Save Photo
 
 - (void)saveImageToPhotos:(UIImage*)savedImage {
-    __weak typeof (self) weakSelf  = self;
-	[[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"meme" sucessBlock:^(NSString *str, PHAsset *obj) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''新筑建'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-		[alertView show];
+    
+	[[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''乐山商城'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        });
 	} faildBlock:^(NSError *error) {
-		
+		 dispatch_async(dispatch_get_main_queue(), ^{
 			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存失败" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-			[alertView show]; 
+			[alertView show];
+         });
 	}];
 }
 
@@ -289,7 +292,10 @@ LWActionSheetViewDelegate>
 
 -(void)setIsShowSaveImgBtn:(BOOL)isShowSaveImgBtn{
     _isShowSaveImgBtn  = isShowSaveImgBtn;
-    self.button.alpha = 0;
+      self.button.alpha = 0;
+    if (_isShowSaveImgBtn) {
+          self.button.alpha = 1;
+    } 
 }
 - (LWImageBrowserButton *)button {
     if (!_button) {

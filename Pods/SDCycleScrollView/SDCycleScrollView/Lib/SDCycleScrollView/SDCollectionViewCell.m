@@ -44,11 +44,25 @@
     if (self = [super initWithFrame:frame]) {
         [self setupImageView];
         [self setupTitleLabel];
+        [self setLongPress];
     }
     
     return self;
 }
 
+-(void)setLongPress{
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    longPress.minimumPressDuration = 1.5;
+   
+    [self.contentView addGestureRecognizer:longPress];
+}
+-(void)longPressAction:(UILongPressGestureRecognizer *)longPress{
+    if (longPress.state == UIGestureRecognizerStateEnded) {
+        if (_longTouchBlock) {
+            _longTouchBlock(_imagePath);
+        }
+    } 
+}
 - (void)setTitleLabelBackgroundColor:(UIColor *)titleLabelBackgroundColor
 {
     _titleLabelBackgroundColor = titleLabelBackgroundColor;

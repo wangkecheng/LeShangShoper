@@ -451,5 +451,38 @@
 	CGRect rect=  [text boundingRectWithSize:CGSizeMake(W,MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
 	return rect.size.height;
 }
+/**
+ *  根据图片url获取图片尺寸
+ */
++ (CGSize)getImageSizeWithURL:(id)URL{
+    NSURL * url = nil;
+    if ([URL isKindOfClass:[NSURL class]]) {
+        url = URL;
+    }
+    if ([URL isKindOfClass:[NSString class]]) {
+        url = [NSURL URLWithString:URL];
+    }
+    if (!URL) {
+        return CGSizeZero;
+    }
+    CGImageSourceRef imageSourceRef =     CGImageSourceCreateWithURL((CFURLRef)url, NULL);
+    CGFloat width = 0, height = 0;
+    if (imageSourceRef) {
+        CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+        if (imageProperties != NULL) {
+            CFNumberRef widthNumberRef = CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelWidth);
+            if (widthNumberRef != NULL) {
+                CFNumberGetValue(widthNumberRef, kCFNumberFloat64Type, &width);
+            }
+            CFNumberRef heightNumberRef = CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelHeight);
+            if (heightNumberRef != NULL) {
+                CFNumberGetValue(heightNumberRef, kCFNumberFloat64Type, &height);
+            }
+            CFRelease(imageProperties);
+        }
+        CFRelease(imageSourceRef);
+    }
+    return CGSizeMake(width, height);
+}
 @end
 

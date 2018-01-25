@@ -10,7 +10,7 @@
 #define  POST_HOST @"https://120.79.169.197:3000"
 //图片基地址
 #define  POST_HOST_image @""
-#define LeftSildeAction @"LeftSildeAction" 
+#define LeftSildeAction @"LeftSildeAction"
 // 当前应用AppDelegate  ==========
 #define CurrentAppDelegate [[UIApplication sharedApplication] delegate]
 
@@ -41,6 +41,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define weakObj       __weak __typeof(self) weakSelf = self
 #define SAFE_BLOCK_CALL(b, p) (b == nil ? : b(p) )
 #define CountDownTime  60
+#import "WSPHPhotoLibrary.h"
 #import "UICollectionView+LOExtension.h"
 #import "NSDate+Category.h"
 #import "UIButton+EnlargeEdge.h"

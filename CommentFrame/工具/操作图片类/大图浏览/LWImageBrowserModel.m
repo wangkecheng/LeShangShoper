@@ -73,7 +73,7 @@
     __weak typeof(self) weakSelf = self;
     SDWebImageManager* manager = [SDWebImageManager sharedManager];
 	
-	[manager loadImageWithURL:self.thumbnailURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+	[manager loadImageWithURL:self.thumbnailURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
 		
 	}]; 
 }
