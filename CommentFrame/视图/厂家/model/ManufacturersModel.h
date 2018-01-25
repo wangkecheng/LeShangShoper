@@ -31,7 +31,7 @@
 @property(nonatomic,strong)NSMutableArray<SeriesModel *> *seriesArr;//商家系列品牌列表
 @property(nonatomic,strong)NSString *logoUrl;//商家logo
 @property(nonatomic,strong)NSString *coverUrl;//
-
+@property(nonatomic,strong)NSString *typeName;
 @end
 
 

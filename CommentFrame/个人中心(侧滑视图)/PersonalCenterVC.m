@@ -153,6 +153,7 @@
 
 - (void)finishSelectImg:(UIImage *)image{
 	[_headerBtn setImage:image forState:0];
+	[self resetUserInfo:image];
 }
 
 - (IBAction)resetUserName:(id)sender {
@@ -165,7 +166,7 @@
 		UserInfoModel * model = [CacheTool getUserModel];
 		model.name = weakSelf.userNameLbl.text = str;
 		[CacheTool writeToDB:model];
-         [weakSelf resetUserInfo];
+		[weakSelf resetUserInfo:nil];
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
@@ -180,7 +181,7 @@
 		UserInfoModel * model = [CacheTool getUserModel];
 		model.addr = weakSelf.addressLbl.text = str;
 		[CacheTool writeToDB:model];
-        [weakSelf resetUserInfo];
+		[weakSelf resetUserInfo:nil];
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
@@ -188,13 +189,13 @@
 }
 
 
--(void)resetUserInfo{
-	UserInfoModel * model = [CacheTool getUserModel];
-	[BaseServer postObjc:model path:@"/user/update" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-		
-	} failed:^(NSError *error) {
-		
-	}];
+-(void)resetUserInfo:(UIImage *)image{
+	[BaseServer uploadImages:@[image] path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES
+					 success:^(id result) {
+						 
+					 } failed:^(NSError *error) {
+						 
+	 }];
 }
  
 - (IBAction)switchAction:(UISwitch *)sender {
@@ -204,7 +205,7 @@
         model.sex = @"2";//女
     }
     [CacheTool writeToDB:model];
-    [self resetUserInfo];
+	[self resetUserInfo:nil];
 }
 
 - (IBAction)toCollectionVC:(id)sender {

@@ -34,7 +34,7 @@ static int Btn_Tag = 100;
 
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
-	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 	_nameLbl.text = model.name;
 	_titLbl.text = model.content;
 	
@@ -57,10 +57,10 @@ static int Btn_Tag = 100;
 	CGFloat margin = 5;
     w = (CGRectGetWidth(self.contentView.frame)  - 4*margin ) / 3.0;
 	h = w;
-	NSInteger imgCount =  3;//model.imageUrls.count;
+	NSInteger imgCount =  model.imageUrls.count;
 	UIButton * lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, margin, 0, 0)];
 	for (int i = 0;i<imgCount;i++ ) {
-		NSDictionary *dict =nil;// _model.imageUrls[i];
+		NSString *imgUrl = _model.imageUrls[i];
 		CGFloat x =  CGRectGetMaxX(lastBtn.frame) + margin;
 		CGFloat y = CGRectGetMinY(lastBtn.frame);
 		if(i%3 == 0 ){
@@ -69,13 +69,11 @@ static int Btn_Tag = 100;
 		}
 		UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, w, h)];
 		btn.tag = i + Btn_Tag;
-		btn.backgroundColor = [UIColor redColor];
 		btn.layer.cornerRadius = 10;
 		btn.layer.masksToBounds = YES;
 		[btn addTarget:self action:@selector(bimImgAction:) forControlEvents:UIControlEventTouchUpInside];
-//	 	[btn sd_setImageWithURL:IMGURL(dict[@"url"]) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-//		[btn setImage:IMG(@"Icon") forState:0];
-		[btn setBackgroundImage:IMG(@"Icon") forState:0];
+	 	[btn sd_setImageWithURL:IMGURL(imgUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+		
 		[_imgsContaintView addSubview:btn];
 		lastBtn = btn;
 	}
@@ -102,7 +100,7 @@ static int Btn_Tag = 100;
 	H += [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 10];//文字高度
 	CGFloat margin = 5;
 	CGFloat w = (SCREENWIDTH   - 4*margin )/ 3.0;//图片高宽
-	NSInteger imgCount =  3;//model.imageUrls.count;
+	NSInteger imgCount = model.imageUrls.count;
 	NSInteger rows = imgCount/3;//图片共几排
 
 	if(imgCount%3!=0 &&imgCount!=0){

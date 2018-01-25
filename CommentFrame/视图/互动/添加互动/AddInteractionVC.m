@@ -26,7 +26,6 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewH;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, strong)NSMutableArray *arrImgUrl;
 @property (nonatomic, copy)void(^publishedBlock)(void);
 
 @end
@@ -44,6 +43,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"添加互动";
+	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishAction)];
 	self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0, 132, 249);
 	
@@ -104,20 +104,14 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)publishAction{//发布操作
 	weakObj;
- //上传图片
+    //上传图片
 	HDModel *m = [HDModel model];
-	m.content = _noteTextView.text;
-//	[BaseServer postObjc:m path:@"/interact/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//			if (weakSelf.publishedBlock) {
-//				weakSelf.publishedBlock();
-//			}
-//			[weakSelf.navigationController popViewControllerAnimated:YES];
-//		});
-//	} failed:^(NSError *error) {
-//		
-//	}];
-	[BaseServer uploadImages:_arrImgUrl path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+	m.content = _noteTextView.text; 
+	NSMutableArray *arrImg = [NSMutableArray array];
+	for (ImgModel  *model in _arrSelected) {
+		[arrImg addObject:model.image];
+	}
+	[BaseServer uploadImages:arrImg path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (weakSelf.publishedBlock) {
 				weakSelf.publishedBlock();
@@ -147,6 +141,7 @@ UICollectionViewDelegateFlowLayout>
 							   maxCout:9
 							   selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
 								   dispatch_async(dispatch_get_main_queue(), ^{
+									  
 									   [weakSelf.collectionView reloadData];
 								   });
 							   }];

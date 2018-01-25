@@ -33,7 +33,7 @@
 	_titleLbl.text  = model.name;
 	_priceLbl.text = [NSString stringWithFormat:@"￥ %@",model.price];
 	_specificationLbl.text = model.spec;
-//	_usePlaceLbl.text = model.
+		_usePlaceLbl.text = model.typeName;
 	_factoryLbl.text = model.merchantName;
 }
 -(void)setSpecialModel:(CollectionModel *)model{
@@ -43,11 +43,11 @@
         [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];//如果已经收藏了
     }
   
-    [_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+    [_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
     _titleLbl.text  = model.name;
     _priceLbl.text = model.price;
     _specificationLbl.text = model.spec;
-    //    _usePlaceLbl.text = model.
+	_usePlaceLbl.text = model.typeName;
     _factoryLbl.text = model.merchantName;
 }
 

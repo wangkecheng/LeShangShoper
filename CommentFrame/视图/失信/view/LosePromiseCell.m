@@ -23,7 +23,7 @@
     [formatter setDateFormat:@"yy-HH-dd hh:mm:ss"];
     _timeLbl.text = [formatter stringFromDate:confromTimesp];
  
-	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
