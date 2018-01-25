@@ -21,6 +21,14 @@
 		1840EEC3201208A800A341F7 /* CommentInteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840EEC2201208A800A341F7 /* CommentInteractionModel.m */; };
 		1840EEC7201208BF00A341F7 /* CommentInteractionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840EEC5201208BF00A341F7 /* CommentInteractionCell.m */; };
 		1840EEC8201208BF00A341F7 /* CommentInteractionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1840EEC6201208BF00A341F7 /* CommentInteractionCell.xib */; };
+		1898B85520196CFC005E679F /* WSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B85320196CFC005E679F /* WSAlertView.m */; };
+		1898B85620196CFC005E679F /* WSAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1898B85420196CFC005E679F /* WSAlertView.xib */; };
+		1898B86720197030005E679F /* DYPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B85920197030005E679F /* DYPickerView.m */; };
+		1898B86820197030005E679F /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1898B85B20197030005E679F /* address.plist */; };
+		1898B86920197030005E679F /* DYAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B85D20197030005E679F /* DYAddressModel.m */; };
+		1898B86A20197030005E679F /* DYCountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86020197030005E679F /* DYCountyModel.m */; };
+		1898B86B20197030005E679F /* DYCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86320197030005E679F /* DYCityModel.m */; };
+		1898B86C20197030005E679F /* DYProvenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86620197030005E679F /* DYProvenceModel.m */; };
 		18AC012D2015B88A0072868B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC012C2015B88A0072868B /* Icon.png */; };
 		18AC01322015BDA10072868B /* ico_paihangDescending@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC012E2015BDA00072868B /* ico_paihangDescending@2x.png */; };
 		18AC01332015BDA10072868B /* ico_paihangAssent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC012F2015BDA00072868B /* ico_paihangAssent@3x.png */; };
@@ -452,6 +460,20 @@
 		1840EEC4201208BF00A341F7 /* CommentInteractionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentInteractionCell.h; sourceTree = "<group>"; };
 		1840EEC5201208BF00A341F7 /* CommentInteractionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentInteractionCell.m; sourceTree = "<group>"; };
 		1840EEC6201208BF00A341F7 /* CommentInteractionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentInteractionCell.xib; sourceTree = "<group>"; };
+		1898B85220196CFC005E679F /* WSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSAlertView.h; sourceTree = "<group>"; };
+		1898B85320196CFC005E679F /* WSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSAlertView.m; sourceTree = "<group>"; };
+		1898B85420196CFC005E679F /* WSAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSAlertView.xib; sourceTree = "<group>"; };
+		1898B85820197030005E679F /* DYPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYPickerView.h; sourceTree = "<group>"; };
+		1898B85920197030005E679F /* DYPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYPickerView.m; sourceTree = "<group>"; };
+		1898B85B20197030005E679F /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
+		1898B85C20197030005E679F /* DYAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYAddressModel.h; sourceTree = "<group>"; };
+		1898B85D20197030005E679F /* DYAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYAddressModel.m; sourceTree = "<group>"; };
+		1898B85F20197030005E679F /* DYCountyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYCountyModel.h; sourceTree = "<group>"; };
+		1898B86020197030005E679F /* DYCountyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYCountyModel.m; sourceTree = "<group>"; };
+		1898B86220197030005E679F /* DYCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYCityModel.h; sourceTree = "<group>"; };
+		1898B86320197030005E679F /* DYCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYCityModel.m; sourceTree = "<group>"; };
+		1898B86520197030005E679F /* DYProvenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYProvenceModel.h; sourceTree = "<group>"; };
+		1898B86620197030005E679F /* DYProvenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYProvenceModel.m; sourceTree = "<group>"; };
 		18AC012C2015B88A0072868B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		18AC012E2015BDA00072868B /* ico_paihangDescending@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_paihangDescending@2x.png"; sourceTree = "<group>"; };
 		18AC012F2015BDA00072868B /* ico_paihangAssent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_paihangAssent@3x.png"; sourceTree = "<group>"; };
@@ -1089,6 +1111,66 @@
 				1840EEC2201208A800A341F7 /* CommentInteractionModel.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		1898B85120196CFC005E679F /* WSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				1898B85220196CFC005E679F /* WSAlertView.h */,
+				1898B85320196CFC005E679F /* WSAlertView.m */,
+				1898B85420196CFC005E679F /* WSAlertView.xib */,
+			);
+			path = WSAlertView;
+			sourceTree = "<group>";
+		};
+		1898B8572019702F005E679F /* 地址选择 */ = {
+			isa = PBXGroup;
+			children = (
+				1898B85820197030005E679F /* DYPickerView.h */,
+				1898B85920197030005E679F /* DYPickerView.m */,
+				1898B85A20197030005E679F /* 省市区地址模型 */,
+			);
+			path = "地址选择";
+			sourceTree = "<group>";
+		};
+		1898B85A20197030005E679F /* 省市区地址模型 */ = {
+			isa = PBXGroup;
+			children = (
+				1898B85B20197030005E679F /* address.plist */,
+				1898B85C20197030005E679F /* DYAddressModel.h */,
+				1898B85D20197030005E679F /* DYAddressModel.m */,
+				1898B85E20197030005E679F /* 区 */,
+				1898B86120197030005E679F /* 市 */,
+				1898B86420197030005E679F /* 省 */,
+			);
+			path = "省市区地址模型";
+			sourceTree = "<group>";
+		};
+		1898B85E20197030005E679F /* 区 */ = {
+			isa = PBXGroup;
+			children = (
+				1898B85F20197030005E679F /* DYCountyModel.h */,
+				1898B86020197030005E679F /* DYCountyModel.m */,
+			);
+			path = "区";
+			sourceTree = "<group>";
+		};
+		1898B86120197030005E679F /* 市 */ = {
+			isa = PBXGroup;
+			children = (
+				1898B86220197030005E679F /* DYCityModel.h */,
+				1898B86320197030005E679F /* DYCityModel.m */,
+			);
+			path = "市";
+			sourceTree = "<group>";
+		};
+		1898B86420197030005E679F /* 省 */ = {
+			isa = PBXGroup;
+			children = (
+				1898B86520197030005E679F /* DYProvenceModel.h */,
+				1898B86620197030005E679F /* DYProvenceModel.m */,
+			);
+			path = "省";
 			sourceTree = "<group>";
 		};
 		18AC013A2015C4970072868B /* 搜索商品 */ = {
@@ -1847,6 +1929,8 @@
 				20A5D9191FB9977300534868 /* UIView+Extension.m */,
 				200C80241FFFD2A800C6A2AA /* EaseChineseToPinyin.h */,
 				200C80251FFFD2A900C6A2AA /* EaseChineseToPinyin.m */,
+				1898B8572019702F005E679F /* 地址选择 */,
+				1898B85120196CFC005E679F /* WSAlertView */,
 				206865332009C429008C50A2 /* DSAlert */,
 				206FA0372000F61100DB7998 /* 输入框 */,
 				2064C54E1FFB5D570073C2EC /* 自定按钮 */,
@@ -2696,6 +2780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20787AAA2000AB4000183749 /* IQButtonBarArrowRight@3x.png in Resources */,
+				1898B85620196CFC005E679F /* WSAlertView.xib in Resources */,
 				2079EB2A1EA9CC44004DE68B /* home_shouyeb.png in Resources */,
 				18B543122011839500A40C4E /* ic_my_set@3x.png in Resources */,
 				18B542D32011839500A40C4E /* bg_login@2x.png in Resources */,
@@ -2811,6 +2896,7 @@
 				200D7EEC1FF742CC00B97979 /* pic_xiangmuquan_fazhaopian.png in Resources */,
 				18AC012D2015B88A0072868B /* Icon.png in Resources */,
 				18AC013F2015C4B70072868B /* SearchProductVC.xib in Resources */,
+				1898B86820197030005E679F /* address.plist in Resources */,
 				18B543292011839500A40C4E /* ic_rise@2x.png in Resources */,
 				18B5432E2011839500A40C4E /* bg_pop@3x.png in Resources */,
 				200D7F5D1FF7434E00B97979 /* video1.mp4 in Resources */,
@@ -3122,8 +3208,10 @@
 				207418D420066242007C4F36 /* CatalugeListHeaderView.m in Sources */,
 				20A5D8EF1FB9901A00534868 /* GYDBUtil.m in Sources */,
 				2064C54C1FFB5BA60073C2EC /* HomeHeaderCell.m in Sources */,
+				1898B86B20197030005E679F /* DYCityModel.m in Sources */,
 				200D7F661FF7434F00B97979 /* WebViewController.m in Sources */,
 				207418E320066735007C4F36 /* ProductDetailListModel.m in Sources */,
+				1898B86720197030005E679F /* DYPickerView.m in Sources */,
 				200D7F9F1FF7476000B97979 /* HomeVC.m in Sources */,
 				206865302009BF52008C50A2 /* ResetPersonInfoView.m in Sources */,
 				207418DA200663E0007C4F36 /* ProductDetailListVC.m in Sources */,
@@ -3151,6 +3239,7 @@
 				200D7FC81FF7541000B97979 /* NSString+PinYin.m in Sources */,
 				20A5D8F21FB9901A00534868 /* GYDBSqlGenerator.m in Sources */,
 				2079EB241EA9CB37004DE68B /* HDMainTBC.m in Sources */,
+				1898B86C20197030005E679F /* DYProvenceModel.m in Sources */,
 				206865412009C429008C50A2 /* CALayer+Animation.m in Sources */,
 				200D7FCC1FF7541000B97979 /* NSString+StringSize.m in Sources */,
 				200D7EE01FF742CC00B97979 /* ImgCell.m in Sources */,
@@ -3180,6 +3269,7 @@
 				20DDE1761EA9ABB800E4CC04 /* AYCheckManager.m in Sources */,
 				200D7F6C1FF7434F00B97979 /* XHLaunchAd.m in Sources */,
 				200C80081FFFC79800C6A2AA /* InteractionModel.m in Sources */,
+				1898B85520196CFC005E679F /* WSAlertView.m in Sources */,
 				200C801F1FFFD23A00C6A2AA /* AlphabetTitleView.m in Sources */,
 				2064C53F1FFB56E00073C2EC /* NewsCell.m in Sources */,
 				20A5D8F71FB9901A00534868 /* NSObject+GYDB.m in Sources */,
@@ -3214,6 +3304,7 @@
 				200D7ED71FF742CC00B97979 /* LWImageBrowserCell.m in Sources */,
 				200D7EE41FF742CC00B97979 /* AlbumListModel.m in Sources */,
 				200C80171FFFD11B00C6A2AA /* ManufacturersCell.m in Sources */,
+				1898B86920197030005E679F /* DYAddressModel.m in Sources */,
 				200D7EDF1FF742CC00B97979 /* ImgModel.m in Sources */,
 				20A5D9111FB9908300534868 /* HUD.m in Sources */,
 				2090C62A200B196900CC07F9 /* HomeHeaderModel.m in Sources */,
@@ -3233,6 +3324,7 @@
 				200D7F5A1FF7434E00B97979 /* FLAnimatedImageView.m in Sources */,
 				200D7F731FF7434F00B97979 /* LaunchAdModel.m in Sources */,
 				1840EEB32011BF6400A341F7 /* InteligentServiceAlertView.m in Sources */,
+				1898B86A20197030005E679F /* DYCountyModel.m in Sources */,
 				200D7ED31FF742CC00B97979 /* LWActionSheetView.m in Sources */,
 				20A5D8A81FB98B9200534868 /* UIViewController+BarButton.m in Sources */,
 				200C80121FFFC8CB00C6A2AA /* AddInteractionVC.m in Sources */,

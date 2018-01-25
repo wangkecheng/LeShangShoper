@@ -83,15 +83,17 @@
             [browser show];
         });
 	};
+ 
     cycleView.longTouchBlock = ^(NSString *imagePath) {//先下载图片然后保存
-         SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:nil cancelTitle:nil destructiveTitle:nil otherTitles:@[ @"是否保存到本地相册",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
-             __strong typeof (weakSelf) strongSelf = weakSelf;
-            if (index == 0) {//保存
-                [strongSelf saveImgModule:imagePath];
-            }
+ 
+        WSAlertView *alertView = [WSAlertView instanceWithTitle:@"提示" content:@"是否保存到本地相册" attachInfo:imagePath leftBtnTitle:@"取消" rightBtnTitle:@"确定" leftBtnBlock:^(id attachInfo) {
+           
+            
+        } rightBtnBlock:^(id attachInfo) {
+               __strong typeof (weakSelf) strongSelf = weakSelf;
+             [strongSelf saveImgModule:imagePath];//保存
         }];
-        actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
-        [actionSheet show]; 
+        [alertView show];
     };
 	cycleView.itemDidScrollOperationBlock = ^(NSInteger currentIndex) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
@@ -111,6 +113,7 @@
 	    [_collectBtn setTitle:@"已收藏" forState:0];
 	}
 }
+
 -(void)saveImgModule:(NSString *)imagePath{//保存图片
     weakObj;
     

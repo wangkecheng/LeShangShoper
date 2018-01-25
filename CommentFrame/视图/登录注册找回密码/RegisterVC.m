@@ -11,6 +11,8 @@ typedef enum ViewTagIndentifyer{
 	
 	TagFieldPhone = 1001,
 	TagFieldVerCode, //验证码输入框
+    TagFieldUserName,
+    TagFieldAddress
 }Tag;
 @interface RegisterVC ()<UIGestureRecognizerDelegate,UITextFieldDelegate>
 @property (nonatomic,assign)BOOL isShutDownCountTime;
@@ -23,7 +25,7 @@ typedef enum ViewTagIndentifyer{
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
 @property (copy, nonatomic)void(^finishBlock)(NSString *phoneNum);
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
-
+@property (nonatomic, strong) DYPickerView *pickerView; // pickerView
 
 @end
 
@@ -41,8 +43,8 @@ typedef enum ViewTagIndentifyer{
 	[super viewDidLoad];
 	_phoneField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
-	[_phoneField setClearButtonMode:UITextFieldViewModeWhileEditing];
-	[_vercodeField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    _userNameField.tag = TagFieldUserName;
+    _addressField.tag = TagFieldUserName;
 	
 	[_phoneField setKeyboardType:UIKeyboardTypeNumberPad];
 	
@@ -165,6 +167,27 @@ typedef enum ViewTagIndentifyer{
 		}
 	});
 	dispatch_resume(_timer);
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (textField.tag == TagFieldAddress) {
+        [self.pickerView show];
+        return NO;
+    }
+    return YES;
+}
+
+-(DYPickerView *)pickerView{
+    if (!_pickerView) {
+        weakObj;
+        _pickerView = [[DYPickerView alloc] initWithSheetH:250 cancelBlock:^{
+            
+        } okBlock:^(SelectInfoModel * model) {
+           
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            strongSelf.addressField.text = [NSString stringWithFormat:@"%@%@%@",model.provenceName,model.cityName,model.countyName];
+        }];
+    }
+    return _pickerView;
 }
 
 - (IBAction)toUserProtocol:(id)sender {

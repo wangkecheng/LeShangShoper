@@ -121,6 +121,9 @@
         
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
+        NSString *str =@"weixin://qr/JnXv90fE6hqVrQOU9yA0";
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 
         return YES;
     } PhClickBlock:^BOOL{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18783999629"]];

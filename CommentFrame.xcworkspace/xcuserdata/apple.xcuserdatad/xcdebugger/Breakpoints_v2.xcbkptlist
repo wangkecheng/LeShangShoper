@@ -49,52 +49,51 @@
             endingLineNumber = "106"
             landmarkName = "+uploadImages:path:param:isShowHud:success:failed:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CommentFrame/&#x89c6;&#x56fe;/&#x7279;&#x4ef7;/&#x5546;&#x54c1;&#x8be6;&#x60c5;/ProductDetailVC.m"
-            timestampString = "538484533.785123"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-saveImgModule:"
-            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33-[ProductDetailVC saveImgModule:]_block_invoke_4"
+                  symbolName = "+[BaseServer uploadImages:path:param:isShowHud:success:failed:]"
                   moduleName = "CommentFrame"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/LeShangShoper/CommentFrame/%E8%A7%86%E5%9B%BE/%E7%89%B9%E4%BB%B7/%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/ProductDetailVC.m"
-                  timestampString = "538484533.955271"
+                  urlString = "file:///Users/apple/Desktop/LeShangShoper/CommentFrame/%E5%B7%A5%E5%85%B7/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/BaseServer.m"
+                  timestampString = "538539234.047276"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "64">
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "1320">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33-[ProductDetailVC saveImgModule:]_block_invoke_5"
+                  symbolName = "__63+[BaseServer uploadImages:path:param:isShowHud:success:failed:]_block_invoke.126"
                   moduleName = "CommentFrame"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/LeShangShoper/CommentFrame/%E8%A7%86%E5%9B%BE/%E7%89%B9%E4%BB%B7/%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85/ProductDetailVC.m"
-                  timestampString = "538484533.957781"
+                  urlString = "file:///Users/apple/Desktop/LeShangShoper/CommentFrame/%E5%B7%A5%E5%85%B7/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/BaseServer.m"
+                  timestampString = "538539234.049578"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "36">
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__63+[BaseServer uploadImages:path:param:isShowHud:success:failed:]_block_invoke_2"
+                  moduleName = "CommentFrame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/LeShangShoper/CommentFrame/%E5%B7%A5%E5%85%B7/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/BaseServer.m"
+                  timestampString = "538539234.052054"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>
