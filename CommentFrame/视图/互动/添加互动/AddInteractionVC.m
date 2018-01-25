@@ -49,13 +49,19 @@ UICollectionViewDelegateFlowLayout>
 	
 	//文字样式
 	[_noteTextView setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
-  //_noteTextView.maxTextLength = 400;
+    _noteTextView.maxTextLength = 500;
 	_noteTextView.delegate = self;
 	_noteTextView.font = [UIFont boldSystemFontOfSize:14];
 	_noteTextView.placeholder= @"这一刻的想法...";
 	[_noteTextView setPlaceholderColor:[UIColor lightGrayColor]];
 	[_noteTextView setPlaceholderOpacity:1];
-	
+    weakObj;
+    _noteTextView.didAttachMaxLength = ^(BRPlaceholderTextView *textView, NSInteger maxTextLength) {
+        [textView resignFirstResponder];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.view makeToast:[NSString stringWithFormat:@"最多只能输入%ld字",maxTextLength]];
+    };
+    
 	_imaPicker = [[UIImagePickerController alloc] init];
 	_imaPicker.delegate = self;
 	_collectionView.delegate = self;

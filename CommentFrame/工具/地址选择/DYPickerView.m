@@ -21,7 +21,10 @@
 @property (nonatomic,strong)UIView *sheetContentView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 
-
+// 获取当前选中的信息
+@property (nonatomic, assign)NSInteger proviceIndex  ;
+@property (nonatomic, assign)NSInteger cityIndex     ;
+@property (nonatomic, assign)NSInteger countryIndex  ;
 @end
 
 @implementation SelectInfoModel
@@ -64,13 +67,13 @@
         line.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1];
         [_sheetContentView addSubview:line];
         
-    
         
-       
+        
+        
         [self initData];//初始化
         _cancelBlock = cancelBlock;
         _okBlock = okBlock;
-      
+        
     }
     return self;
 }
@@ -89,7 +92,7 @@
     DYProvenceModel *provencesModel = [_provinceArray firstObject];
     _cityArray = provencesModel.arrCtiys;
     _countyArray = nil;
-  
+    
 }
 
 //初始化 或者重置
@@ -108,7 +111,7 @@
         _coverView.frame = [UIScreen mainScreen].bounds;
         _coverView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.33];
         [_coverView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dissmiss)]];
-          _coverView.alpha = 0;
+        _coverView.alpha = 0;
     }
     return _coverView;
 }
@@ -122,7 +125,7 @@
         [_toolbar setBarTintColor:[UIColor whiteColor]];
         [_toolbar setBackgroundColor:[UIColor whiteColor]];
         
-         UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"   取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"   取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
         [cancel setTintColor:[UIColor blackColor]];
         UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
         UIBarButtonItem *certain = [[UIBarButtonItem alloc] initWithTitle:@"完成   " style:UIBarButtonItemStylePlain target:self action:@selector(certain)];
@@ -134,8 +137,8 @@
 
 // 点击了取消
 - (void)cancel{
-     [self dissmiss];//关闭
-     [self reset];//重新设置位置
+    [self dissmiss];//关闭
+    [self reset];//重新设置位置
     if (_cancelBlock) {
         _cancelBlock();
     }
@@ -152,7 +155,7 @@
 
 -(void)show{//显示sheet框
     
-     UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
+    UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
     [keywindow addSubview:self];//将其自身添加到_window上去
     __weak typeof (self) weakSelf = self;
     [UIView animateKeyframesWithDuration:0.3 delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
@@ -161,19 +164,19 @@
         strongSelf.sheetContentView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, [UIScreen mainScreen].bounds.size.height-125);
     } completion:^(BOOL finished) {
         if (finished) {
-
+            
         }
     }];
 }
 
 -(void)dissmiss{//移除sheet框
-     __weak typeof (self) weakSelf = self;
+    __weak typeof (self) weakSelf = self;
     [UIView animateWithDuration:0.3 animations:^{
-            __strong typeof (weakSelf) strongSelf = weakSelf;
+        __strong typeof (weakSelf) strongSelf = weakSelf;
         strongSelf.sheetContentView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, [UIScreen mainScreen].bounds.size.height+125);
         strongSelf.coverView.alpha = 0.0;
     }completion:^(BOOL finished) {
-         __strong typeof (weakSelf) strongSelf = weakSelf;
+        __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf removeFromSuperview];//记得每次都要从父视图移除，这样子可以节约一部分的资源
     }];
 }
@@ -185,11 +188,11 @@
         _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.toolbar.frame), [UIScreen mainScreen].bounds.size.width, CGRectGetHeight(self.sheetContentView.frame) - CGRectGetMaxY(self.toolbar.frame))];
         //设置背景色
         _pickerView.backgroundColor = [UIColor whiteColor];
-       
-//        UIView *layer = [[UIView alloc]init];
-//        layer.backgroundColor = [UIColor blackColor];
-//        layer.frame = CGRectMake(0, 0, CGRectGetWidth(_pickerView.frame ), 1);
-//        [_pickerView addSubview:layer];
+        
+        //        UIView *layer = [[UIView alloc]init];
+        //        layer.backgroundColor = [UIColor blackColor];
+        //        layer.frame = CGRectMake(0, 0, CGRectGetWidth(_pickerView.frame ), 1);
+        //        [_pickerView addSubview:layer];
         
         //设置代理
         _pickerView.delegate = self;
@@ -204,7 +207,7 @@
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 3;
 }
- 
+
 //设置列里边组件的个数 component:组件
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     //如果是第一列
@@ -214,7 +217,7 @@
     }
     //如果是第二列
     else if (component == 1){
-      
+        
         return self.cityArray.count;
     }
     else{
@@ -235,8 +238,8 @@
         [customLabel setFont:[UIFont systemFontOfSize:18]];
         customLabel.textColor = [UIColor blackColor];
     }
-     NSString *title;
-  
+    NSString *title;
+    
     if (component == 0) {
         // 设置第0列的标题信息
         DYProvenceModel * provencesModel  = [self.provinceArray objectAtIndex:row];
@@ -244,7 +247,7 @@
     } else if (component == 1) {
         // 设置第1列的标题信息
         DYCityModel * cityModel = [self.cityArray objectAtIndex:row];
-       title = cityModel.name;
+        title = cityModel.name;
     } else {
         // 设置第2列的标题信息
         DYCountyModel * distractModel = [self.countyArray objectAtIndex:row];
@@ -261,55 +264,61 @@
     //选择第0列执行的方法
     if (component == 0) {
         [pickerView selectedRowInComponent:0];
-        
+        _proviceIndex = row;
+        _cityIndex = 0;
+        _countryIndex = 0;
         /**
          *  选中第0列时需要刷新第1列和第二列的数据
          */
         DYProvenceModel * provencesModel = [self.provinceArray objectAtIndex:row];
         _cityArray = provencesModel.arrCtiys;
         [pickerView reloadComponent:1];
-      
+        
         DYCityModel * cityModel = [provencesModel.arrCtiys firstObject];
         _countyArray = nil;
         if ([cityModel isKindOfClass:[DYCityModel class]]) {
             _countyArray = cityModel.arrCountry;
         }
-         [pickerView reloadComponent:2];
+        [pickerView reloadComponent:2];
     } else if (component == 1) {
         [pickerView selectedRowInComponent:1];
-        
+        _cityIndex = row;
+        _countryIndex = 0;
         /**
          *  选中第一列时需要刷新第二列的数据信息
          */
-         DYCityModel * cityModel = [self.cityArray objectAtIndex:row];
-         _countyArray = nil;//这里加了个判断 所以得先把这里置空
+        DYCityModel * cityModel = [self.cityArray objectAtIndex:row];
+        _countyArray = nil;//这里加了个判断 所以得先把这里置空
         if ([cityModel isKindOfClass:[DYCityModel class]]) {//防止为空的时候报错
-             _countyArray = cityModel.arrCountry;
+            _countyArray = cityModel.arrCountry;
         }
         [pickerView reloadComponent:2];
     } else if (component == 2) {
+        _countryIndex = row;
         [pickerView selectedRowInComponent:2];
     }
     
 }
 
-- (SelectInfoModel *)getCurrentSelectedInfo{
+- (SelectInfoModel *)getCurrentSelectedInfo{// 获取当前选中的信息
     
-    // 获取当前选中的信息
-    NSInteger proviceIndex = [self.pickerView selectedRowInComponent:0];
-    NSInteger cityIndex = [self.pickerView selectedRowInComponent:1];
-    NSInteger countryIndex = [self.pickerView selectedRowInComponent:2];
+    DYProvenceModel * provenceModel = _provinceArray[_proviceIndex];
     
-    DYProvenceModel * provenceModel = _provinceArray[proviceIndex];
+    DYCityModel *cityModel = provenceModel.arrCtiys[_cityIndex];
     
-    DYCityModel *cityModel = _cityArray.count != 0 ? _cityArray[cityIndex] : @"";
-    
-    DYCountyModel *countyModel = _countyArray.count != 0 ? _countyArray[countryIndex] : @"";
+    NSString * cityName = @"";
     NSString * countyName = @"";
-    if ([countyModel isKindOfClass:[DYCityModel class]]) {
+    if ([cityModel isKindOfClass:[DYCityModel class]]) {//说明这个省是一个直辖市
+        cityName = cityModel.name;
+        DYCountyModel *countyModel = cityModel.arrCountry[_countryIndex];
         countyName = countyModel.name;
+    }else{
+        cityName = ((DYCountyModel *)cityModel).name;
     }
-    return [SelectInfoModel modelByProvenceName:provenceModel.name cityName:cityModel.name countyName:countyName];
+    
+    SelectInfoModel * model = [SelectInfoModel modelByProvenceName:provenceModel.name cityName:cityName countyName:countyName];
+    return model;
 }
- 
+
 @end
+

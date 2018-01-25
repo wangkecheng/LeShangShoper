@@ -101,7 +101,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    if (_model.seriesArr.count == 0) {//没有数据的时候 就直接弹出
+        ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
+        VC.mid = self.model.mid;
+        [self.navigationController pushViewController:VC animated:YES];
+        return;
+    }
     [self.sheetView showWithSeriesModel:_model.seriesArr[indexPath.row]];
 }
 

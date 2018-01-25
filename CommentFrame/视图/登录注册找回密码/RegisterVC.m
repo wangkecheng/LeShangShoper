@@ -44,12 +44,14 @@ typedef enum ViewTagIndentifyer{
 	_phoneField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
     _userNameField.tag = TagFieldUserName;
-    _addressField.tag = TagFieldUserName;
+    _addressField.tag = TagFieldAddress;
 	
 	[_phoneField setKeyboardType:UIKeyboardTypeNumberPad];
 	
 	_phoneField.delegate = self;
-	_vercodeField.delegate = self; 
+	_vercodeField.delegate = self;
+    _userNameField.delegate = self;
+    _addressField.delegate = self;
 }
 
 - (IBAction)goLogin:(UIButton *)sender {//注册
@@ -185,7 +187,11 @@ typedef enum ViewTagIndentifyer{
         } okBlock:^(SelectInfoModel * model) {
            
             __strong typeof (weakSelf) strongSelf = weakSelf;
-            strongSelf.addressField.text = [NSString stringWithFormat:@"%@%@%@",model.provenceName,model.cityName,model.countyName];
+            NSString *countyName = [NSString stringWithFormat:@"-%@",model.countyName];
+            if (model.countyName.length==0) {
+                countyName =@"";
+            }
+            strongSelf.addressField.text = [NSString stringWithFormat:@"%@-%@%@",model.provenceName,model.cityName,countyName];
         }];
     }
     return _pickerView;

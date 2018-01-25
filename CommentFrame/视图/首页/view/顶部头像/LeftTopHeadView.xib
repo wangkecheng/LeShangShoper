@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="LeftTopHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="412" height="313"/>
+            <rect key="frame" x="0.0" y="0.0" width="412" height="330"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SNr-bf-0nA">
-                    <rect key="frame" x="0.0" y="3" width="307" height="307"/>
+                    <rect key="frame" x="0.0" y="3" width="324" height="324"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="SNr-bf-0nA" secondAttribute="height" multiplier="20:20" id="UuY-OW-RnA"/>
                     </constraints>
@@ -26,20 +26,20 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LV.6.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-ul-668">
-                    <rect key="frame" x="309" y="159" width="103" height="16"/>
+                    <rect key="frame" x="326" y="167.5" width="86" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.99283117055892944" green="0.55900299549102783" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Be7-QC-czD">
-                    <rect key="frame" x="307" y="156" width="105" height="1"/>
+                    <rect key="frame" x="324" y="164.5" width="88" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="9OF-kH-9oQ"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9l-nC-3SG">
-                    <rect key="frame" x="309" y="140" width="103" height="16"/>
+                    <rect key="frame" x="326" y="148.5" width="86" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                 <outlet property="nameLbl" destination="J9l-nC-3SG" id="Rhy-Qp-0YP"/>
                 <outlet property="rankLbl" destination="Kpg-ul-668" id="Pvu-Us-kat"/>
             </connections>
-            <point key="canvasLocation" x="-2636" y="-798"/>
+            <point key="canvasLocation" x="-2771" y="-825"/>
         </view>
     </objects>
     <resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,14 +92,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOS-pA-yrd">
-                            <rect key="frame" x="5" y="37" width="33" height="16"/>
+                            <rect key="frame" x="37" y="37" width="33" height="16"/>
                             <color key="backgroundColor" red="0.93703609700000001" green="0.94117802380000004" blue="0.94519203900000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5d-Zo-OPF">
-                            <rect key="frame" x="43" y="37" width="33" height="16"/>
+                            <rect key="frame" x="75" y="37" width="33" height="16"/>
                             <color key="backgroundColor" red="0.93703609700000001" green="0.94117802380000004" blue="0.94519203900000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
@@ -124,6 +124,12 @@
                                 <constraint firstAttribute="width" constant="35" id="YKi-QC-Buv"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="规格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj4-rW-oCx">
+                            <rect key="frame" x="5" y="37.5" width="27" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -133,11 +139,13 @@
                         <constraint firstItem="gCU-Ln-UuP" firstAttribute="centerY" secondItem="K5d-Zo-OPF" secondAttribute="centerY" id="6ha-pU-bsp"/>
                         <constraint firstItem="gCU-Ln-UuP" firstAttribute="trailing" secondItem="E1e-ce-lem" secondAttribute="trailing" id="JB4-vd-W8h"/>
                         <constraint firstItem="Zq0-7L-V7Q" firstAttribute="top" secondItem="JOS-pA-yrd" secondAttribute="bottom" constant="10" id="Kgo-Cq-2Wy"/>
+                        <constraint firstItem="JOS-pA-yrd" firstAttribute="centerY" secondItem="Wj4-rW-oCx" secondAttribute="centerY" id="Mvi-TG-mvP"/>
+                        <constraint firstItem="JOS-pA-yrd" firstAttribute="leading" secondItem="Wj4-rW-oCx" secondAttribute="trailing" constant="5" id="WcD-lK-iJx"/>
                         <constraint firstItem="JOS-pA-yrd" firstAttribute="top" secondItem="E1e-ce-lem" secondAttribute="bottom" constant="10" id="WrO-MA-zWh"/>
-                        <constraint firstItem="Zq0-7L-V7Q" firstAttribute="leading" secondItem="JOS-pA-yrd" secondAttribute="leading" id="YAW-Iq-Bzf"/>
                         <constraint firstItem="W8b-pS-dVh" firstAttribute="trailing" secondItem="gCU-Ln-UuP" secondAttribute="trailing" id="YLA-zv-geu"/>
                         <constraint firstItem="E1e-ce-lem" firstAttribute="leading" secondItem="7jE-mk-VlJ" secondAttribute="leading" constant="5" id="aYZ-yL-Ojy"/>
-                        <constraint firstItem="JOS-pA-yrd" firstAttribute="leading" secondItem="E1e-ce-lem" secondAttribute="leading" id="laK-Si-iJG"/>
+                        <constraint firstItem="Wj4-rW-oCx" firstAttribute="leading" secondItem="E1e-ce-lem" secondAttribute="leading" id="acB-Iv-pn6"/>
+                        <constraint firstItem="Zq0-7L-V7Q" firstAttribute="leading" secondItem="E1e-ce-lem" secondAttribute="leading" id="cj3-Z3-6nr"/>
                         <constraint firstItem="K5d-Zo-OPF" firstAttribute="centerY" secondItem="JOS-pA-yrd" secondAttribute="centerY" id="lxu-Nl-AeL"/>
                         <constraint firstItem="E1e-ce-lem" firstAttribute="top" secondItem="7jE-mk-VlJ" secondAttribute="top" constant="10" id="tr9-B3-Nhz"/>
                     </constraints>
@@ -179,7 +187,7 @@
                 <constraint firstAttribute="bottom" secondItem="o4N-ob-13f" secondAttribute="bottom" id="wcH-ND-ipX"/>
                 <constraint firstItem="o4N-ob-13f" firstAttribute="top" secondItem="7jE-mk-VlJ" secondAttribute="bottom" id="ygu-bP-6uA"/>
             </constraints>
-            <point key="canvasLocation" x="-540" y="-372"/>
+            <point key="canvasLocation" x="-644" y="-365"/>
         </view>
     </objects>
     <resources>

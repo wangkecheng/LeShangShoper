@@ -23,7 +23,8 @@
 	view.rankLbl.layer.borderWidth = 1;
 	view.rankLbl.layer.masksToBounds = YES;
 	CGFloat headerImgW =  (CGRectGetHeight(frame) - 6);
-	view.headerImg.layer.cornerRadius = headerImgW/2.0 ;
+    headerImgW = 10;
+    view.headerImg.layer.cornerRadius = headerImgW/2.0 ;
 	view.rankLbl.layer.borderColor = UIColorFromRGB(251, 142, 0).CGColor; 
 	view.backgroundColor = [UIColor clearColor];
 	

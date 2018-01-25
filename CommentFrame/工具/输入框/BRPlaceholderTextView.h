@@ -21,7 +21,7 @@
 
 //更新高度的时候
 @property(assign,nonatomic) float updateHeight;
-
+@property(copy,nonatomic)void(^didAttachMaxLength)(BRPlaceholderTextView*text, NSInteger maxTextLength);//达到最大高度
 /**
  *  增加text 长度限制
  *

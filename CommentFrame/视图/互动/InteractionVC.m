@@ -128,11 +128,16 @@
             [browser show];
         });
     };
+    cell.seeAllBlock = ^(InteractionModel *model) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
 	cell.pardiseBlock = ^(InteractionModel *model) {
+          __strong typeof (weakSelf) strongSelf = weakSelf;
 		HDModel * m = [HDModel model];
 		m.interactId = model.interactId;
 		model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
-		[weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[weakSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
+		[strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
 		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 			
 		} failed:^(NSError *error) {
@@ -140,13 +145,14 @@
 		}];
 	};
 	cell.commentBlock = ^(InteractionModel *model) {
+            __strong typeof (weakSelf) strongSelf = weakSelf;
         CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
 		VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
 			interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
-			[weakSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[weakSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
+			[strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
 		};
         VC.interactionModel = model;
-        [weakSelf.navigationController pushViewController:VC animated:YES]; 
+        [strongSelf.navigationController pushViewController:VC animated:YES];
 	};
 	return cell;
 }

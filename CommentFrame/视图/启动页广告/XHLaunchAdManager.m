@@ -130,7 +130,7 @@
       m.type = @"2";
 	[BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		
-        NSDictionary *dict = @{@"content":@"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=2683998181,2607033056&fm=202&gp=0.jpg&w_h=121_75&cs=2683998181,2607033056&ow_h=121_75&src=801&mola=new&crop=v1",@"url":@"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=2683998181,2607033056&fm=202&gp=0.jpg&w_h=121_75&cs=2683998181,2607033056&ow_h=121_75&src=801&mola=new&crop=v1"};
+        NSDictionary *dict = @{@"content":@"http://yun.it7090.com/image/XHLaunchAd/pic01.jpg",@"url":@"http://yun.it7090.com/image/XHLaunchAd/pic01.jpg"};
 		//广告数据转模型
 		LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:dict];
 		//配置广告数据

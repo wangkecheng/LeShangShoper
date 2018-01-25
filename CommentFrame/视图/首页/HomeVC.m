@@ -264,6 +264,7 @@
 		[headerCell setClickBlock:^(NSString *str) {
 			
 		}];
+         cell.selectionStyle = 0;
 		cell = headerCell;
 	}else if (indexPath.section == 1){
 		SellerCell *sellerCell = [tableView dequeueReusableCellWithIdentifier:SellerCell_ forIndexPath:indexPath];
@@ -275,7 +276,7 @@
 			VC.model = model;
 			[strongSelf.navigationController pushViewController:VC animated:YES];
 		};
-		
+		 cell.selectionStyle = 0;
 		cell = sellerCell;
 	}else if (indexPath.section == 2){
 		AdvertCell *advertCell = [tableView dequeueReusableCellWithIdentifier:AdvertCell_ forIndexPath:indexPath];
@@ -287,12 +288,14 @@
 			VC.model  = model;
 			[strongSelf.navigationController pushViewController:VC animated:YES];
 		};
+         cell.selectionStyle = 0;
 		cell = advertCell;
 	}else if (indexPath.section == 3){
 		NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:NewsCell_ forIndexPath:indexPath];
         [newsCell setNewsModel:_arrNewsModel[indexPath.row]];
          cell = newsCell;
 	}
+   
 	return cell;
 }
 

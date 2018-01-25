@@ -198,12 +198,12 @@
         }
     }
     // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-    else{
-        if (self.text.length > self.maxTextLength) {
+        if (self.text.length >= self.maxTextLength) {
              self.text = [ self.text substringToIndex:self.maxTextLength];
+            if (_didAttachMaxLength) {
+                _didAttachMaxLength(self,self.maxTextLength);
+            }
         }
-    }
-    
     
     if (_eventBlock && self.text.length > self.maxTextLength) {
         

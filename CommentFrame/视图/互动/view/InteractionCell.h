@@ -15,6 +15,7 @@
 @property(nonatomic,copy)void(^pardiseBlock)(InteractionModel *model);
 
 @property(nonatomic,copy)void(^commentBlock)(InteractionModel *model);
+@property(nonatomic,copy)void(^seeAllBlock)(InteractionModel *model);
 
 @property(nonatomic,copy)void(^seeBigImgBlock)(InteractionModel * model,NSInteger index);
 

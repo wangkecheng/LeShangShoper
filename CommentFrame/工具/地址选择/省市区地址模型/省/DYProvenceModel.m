@@ -19,7 +19,9 @@
                 ||[cityDict[@"name"] containsString:@"天津市"]
                 ||[cityDict[@"name"] containsString:@"上海市"]
                 ||[cityDict[@"name"] containsString:@"重庆市"]
-                ||[cityDict[@"name"] containsString:@"台湾"]) {//这里的 _arrCtiys是三级城市
+                ||[cityDict[@"name"] containsString:@"台湾"]
+                ||[cityDict[@"name"] containsString:@"澳门"]
+                ||[cityDict[@"name"] containsString:@"香港"]) {//这里的 _arrCtiys是三级城市
                 for (NSString *disName in cityDict[@"sub"]) {
                     DYCountyModel *model = [[DYCountyModel alloc]initWithCountyName:disName];
                     [_arrCtiys addObject:model];
