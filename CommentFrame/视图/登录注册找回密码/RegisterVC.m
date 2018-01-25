@@ -71,6 +71,10 @@ typedef enum ViewTagIndentifyer{
 	weakObj;
 	[BaseServer postObjc:m path:@"/sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		weakSelf.getVercodeBtn.userInteractionEnabled = YES;
+		if ([result[@"code"] integerValue] == 1152) {
+			[weakSelf alertViewWithMeg:@"用户已存在"];
+			return ;
+		}
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[weakSelf openCountdown];
 		});
@@ -79,6 +83,12 @@ typedef enum ViewTagIndentifyer{
 	}];
 }
 
+-(void)alertViewWithMeg:(NSString *)msg{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+		[alertView show];
+	});
+}
 - (IBAction)registerAction:(id)sender {
     if (_phoneField.text.length == 0) {
         [self.view makeToast:@"请输入手机号"];

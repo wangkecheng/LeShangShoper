@@ -33,5 +33,5 @@
 @property (nonatomic,strong)NSString *hot;//1，非热门，2，热门，默认全部
 @property (nonatomic,strong)NSString *sort;//排序方式 1，正序，2，逆序
 @property (nonatomic,strong)NSString *brand;
-@property (nonatomic,strong)NSString *sortkey;
+@property (nonatomic,strong)NSString *sortKey;
 @end

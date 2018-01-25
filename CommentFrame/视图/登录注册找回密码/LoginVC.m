@@ -58,13 +58,19 @@ typedef enum ViewTagIndentifyer{
     m.type = @"2";///1,注册，2，登陆。默认1，如果为2，可能返回1151用户不存在的状态码
 	weakObj;
 	[BaseServer postObjc:m path:@"sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-        if ([result[@"code"] integerValue] == 1151) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未注册" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alertView show];
-            });
-        }
 		weakSelf.getVercodeBtn.userInteractionEnabled = YES;
+		if ([result[@"code"] integerValue] == 1150) {
+			[weakSelf alertViewWithMeg:@"用户正在审核"];
+			return ;
+        }
+		if ([result[@"code"] integerValue] == 1151) {
+			[weakSelf alertViewWithMeg:@"您尚未注册"];
+			return ;
+		}
+		if ([result[@"code"] integerValue] == 1201) {
+			[weakSelf alertViewWithMeg:@"发送手机验证码失败"];
+			return ;
+		}
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[weakSelf openCountdown];
 		});
@@ -73,6 +79,12 @@ typedef enum ViewTagIndentifyer{
 	}];
 }
 
+-(void)alertViewWithMeg:(NSString *)msg{
+	dispatch_async(dispatch_get_main_queue(), ^{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+		[alertView show];
+	});
+}
 - (IBAction)login:(UIButton *)sender {
     if (_userField.text.length == 0) {
         [self.view makeToast:@"请输入手机号"];
@@ -91,6 +103,10 @@ typedef enum ViewTagIndentifyer{
 	[BaseServer postObjc:m path:@"/user/login" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.loginBtn.userInteractionEnabled = YES;
+		if ([result[@"code"] integerValue] == 1200) {
+			[weakSelf alertViewWithMeg:@"手机验证码不正确"];
+			return ;
+		}
 		[[NSUserDefaults standardUserDefaults] setObject:result[@"data"][@"token"] forKey:@"token"];
 		HDModel *m = [HDModel model];
         m.mobile =  strongSelf.userField.text;

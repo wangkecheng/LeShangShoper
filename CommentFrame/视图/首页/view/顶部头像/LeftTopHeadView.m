@@ -33,16 +33,23 @@
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(headerViewClick)];
 	[view addGestureRecognizer:tap];
+	[[DDFactory factory] addObserver:view selector:@selector(setUserInfo) channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 	return view;
 }
 
 -(void)setUserInfo{
+	[[DDFactory factory] removeChannel:@"ReInitUserInfo"];//移除通知源
 	UserInfoModel * model  = [CacheTool getUserModel];
 	_rankLbl.alpha = 1;
 	if (model.isMember == 1) {//如果存在
 		_nameLbl.text = model.name;
 		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
-		[_headerImg  sd_setImageWithURL:IMGURL(model.headUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+		if (model.headImgData) {
+			UIImage *image = [UIImage imageWithData:model.headImgData];
+			[_headerImg setImage:image];
+		}else{
+			[_headerImg sd_setImageWithURL:IMGURL(model.headUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+		}
 	}else{
 		_rankLbl.alpha = 0;
 	}

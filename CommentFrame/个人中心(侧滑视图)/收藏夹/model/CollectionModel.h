@@ -24,6 +24,7 @@
 @property (nonatomic,strong)NSArray  *imageUrls;
 @property (nonatomic,strong)NSString *typeName;
 @property (nonatomic,strong)NSString *broseNumber;
+@property (nonatomic,strong)NSString *iden;//编号
 @end
 
 //bargain = 1;

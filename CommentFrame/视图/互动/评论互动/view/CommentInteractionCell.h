@@ -10,4 +10,5 @@
 #import "CommentInteractionModel.h"
 @interface CommentInteractionCell : UITableViewCell
 @property(nonatomic,strong)CommentInteractionModel * model;
++(CGFloat)cellHByModel:(CommentInteractionModel *)model;
 @end

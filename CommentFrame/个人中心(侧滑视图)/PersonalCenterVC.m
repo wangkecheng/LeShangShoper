@@ -70,8 +70,9 @@
              if ([model.sex integerValue] == 2) {
                   [weakSelf.switchSex setOn:YES];
              }
-             if (model.headImg) {
-                  [weakSelf.headerBtn  setImage:model.headImg forState:0];
+             if (model.headImgData) {
+				 UIImage *image = [UIImage imageWithData:model.headImgData];
+				[weakSelf.headerBtn  setImage:image forState:0];
              }else{
                [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
              }
@@ -135,7 +136,8 @@
 }
 #pragma mark - 拍照获得数据
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-	weakObj;
+ 
+	 [picker dismissViewControllerAnimated:YES completion:nil];
 	UIImage *theImage = nil;
 	// 判断，图片是否允许修改
 	if ([picker allowsEditing]){
@@ -151,17 +153,17 @@
 		} faildBlock:^(NSError *error) {
 			
 		}];
-		[picker dismissViewControllerAnimated:YES completion:nil]; 
 		[self finishSelectImg:theImage];
 	}
 }
 
 - (void)finishSelectImg:(UIImage *)image{
     UserInfoModel * model =  [CacheTool getUserModel];
-    model.headImg = image;
+    model.headImgData = UIImagePNGRepresentation(image);
     [CacheTool writeToDB:model];
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
+	[[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 }
 
 - (IBAction)resetUserName:(id)sender {

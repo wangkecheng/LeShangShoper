@@ -70,9 +70,8 @@
 	m.interactId = _interactionModel.interactId;
 //    m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
-    return;
     [BaseServer postObjc:m path:@"/interact/comment/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-        NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CommentInteractionModel class] json:result[@"data"][@"rows"]];
+        NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CommentInteractionModel class] json:result[@"data"]];
         if (weakSelf.page == 1) {
             [weakSelf.arrModel removeAllObjects];
         }
@@ -81,10 +80,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableview reloadData];
             [weakSelf.tableview.mj_header endRefreshing];
-            [weakSelf.tableview.mj_footer endRefreshing];
-            if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
-                [weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
-            }
+//            [weakSelf.tableview.mj_footer endRefreshing];
+//            if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
+//                [weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
+//            }
             [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
             if (weakSelf.arrModel.count == 0) {
                 [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
@@ -109,7 +108,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return  120;
+    return  [CommentInteractionCell cellHByModel:_arrModel[indexPath.section]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -132,10 +131,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 30;
-    }
-    return 10;
+	
+    return 5;
 }
 
 - (IBAction)sendComment:(UIButton *)sender {
@@ -181,8 +178,6 @@
 //        _commentView.frame = CGRectMake(0, SCREENHEIGHT - keyboardRect.size.height - CGRectGetHeight(_commentView.frame), SCREENHEIGHT, CGRectGetHeight(_commentView.frame));
         self.commentViewBottom.constant =  keyboardRect.size.height;
     }];
-    
-    
 }
 - (void)keyboardWillBeHidden:(NSNotification *)noti {
     NSTimeInterval animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];  //键盘动画时间

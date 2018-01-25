@@ -80,7 +80,7 @@
          _sort = @"1";// 排序方式 1，正序 从高到低，2，逆序
         [_priceImg setImage:IMG(@"ico_paihangDescending")];
     }else{
-        _sort = @"2";
+        _sort = @"-1";
         [_priceImg setImage:IMG(@"ico_paihangAssent")];
     }
     [self getPage];
@@ -115,7 +115,7 @@
 	HDModel *m = [HDModel model];
 	m.pageNumber = [NSString stringFromInt:pageIndex];
     m.sort = _sort;
-    m.sortkey = _sortkey;
+    m.sortKey = _sortkey;
 	weakObj;
 	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
