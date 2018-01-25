@@ -27,8 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 10, 30)];
+  
+	_searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 100, 30)];
 	[_searchBar setPlaceholder:@"搜索厂家"];
+    self.navigationItem.leftBarButtonItem.customView = nil;
 	_searchBar.delegate = self;
 	_searchBar.layer.cornerRadius = 5;
 	_searchBar.layer.masksToBounds = YES;
@@ -51,7 +53,7 @@
     searchField.rightViewMode=UITextFieldViewModeWhileEditing;
 	searchField.leftViewMode=UITextFieldViewModeAlways;
 	self.navigationItem.titleView = _searchBar;
-	
+	 
 	[self addRightBarButtonItemWithTitle:@"取消" action:@selector(back)];
 
 	_arrModel = [NSMutableArray array];

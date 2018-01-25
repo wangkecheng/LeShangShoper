@@ -56,7 +56,7 @@
 //通过xib文件 初始化对象
 +(id)getXibObjc:(NSString *)xibName;
 
-+ (id)getVCById:(NSString *)Id;
++ (UIViewController *)getVCById:(NSString *)Id;
 
 /**
  通过Storyboard名及其ID获取控制器

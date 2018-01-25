@@ -11,6 +11,8 @@
 #import "AddInteractionVC.h"
 #define InteractionCell_ @"InteractionCell"
 #import "CommentInteractionVC.h"
+#import "LWImageBrowserModel.h"
+#import "LWImageBrowser.h"
 @interface InteractionVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic)NSMutableArray *arrModel;
@@ -108,6 +110,24 @@
 	[cell setModel:_arrModel[indexPath.section]];
 	[cell setSelectionStyle:0];
 	weakObj;
+    cell.seeBigImgBlock = ^(InteractionModel *model, NSInteger index) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        NSMutableArray* tmps = [NSMutableArray array];
+        
+        for (int i = 0;i< model.imageUrls.count;i++) {//找出所有图片
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:nil HDURL:IMGURL(model.imageUrls[i]) containerView:self.view
+                positionInContainer:self.view.frame index:i];
+            [tmps addObject:broModel];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LWImageBrowser* browser = [[LWImageBrowser alloc]
+                                       initWithImageBrowserModels:tmps
+                                       currentIndex:index];
+            browser.isScalingToHide = NO;
+            browser.isShowSaveImgBtn = YES;
+            [browser show];
+        });
+    };
 	cell.pardiseBlock = ^(InteractionModel *model) {
 		HDModel * m = [HDModel model];
 		m.interactId = model.interactId;

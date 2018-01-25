@@ -40,7 +40,7 @@
     _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",model.cid];
     _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",model.spec];
     _priceLbl.text = [NSString stringWithFormat:@"￥%@",model.price];
-//    [_focusBtn setTitle:[NSString stringWithFormat:@" %@",model.] forState:0];
+    [_focusBtn setTitle:[NSString stringWithFormat:@" %@",model.broseNumber] forState:0];
 }
 
 - (IBAction)collectionAction:(id)sender {

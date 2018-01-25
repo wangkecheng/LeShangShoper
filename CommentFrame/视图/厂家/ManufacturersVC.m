@@ -155,13 +155,13 @@
 	view.foldedBlock = ^(AlphabetTitleModel *model) {
 		NSInteger section =  [_sectionTitles indexOfObject:model];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			 [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+//             [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
 		});
 	};
-	if (section <=  self.sectionTitles.count ) {
+//    if (section <=  self.sectionTitles.count ) {
  
 		[view setModel:_arrModel[section]];
-	}
+//    }
 	return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

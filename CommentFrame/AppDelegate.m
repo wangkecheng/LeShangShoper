@@ -38,7 +38,9 @@
     [self setShareSDK];//配置分享 和登陆
     [self updateVersion];//版本更新
 //    //推送
-//    [self jPushAddAndOptions:launchOptions];
+    [self jPushAddAndOptions:launchOptions];
+    
+   
     return YES;
 }
 -(void)updateVersion{

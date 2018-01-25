@@ -106,7 +106,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 	weakObj;
 	ProductDetailListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ProductDetailListCell_ forIndexPath:indexPath];
-//	[cell setModel: _arrModel[indexPath.row]];
+    [cell setModel: _arrModel[indexPath.row]];
 	cell.collectionBlock = ^(CollectionModel *model) {
 		
 	};
