@@ -1612,10 +1612,10 @@
 		200D7F541FF7434E00B97979 /* 导航页 */ = {
 			isa = PBXGroup;
 			children = (
-				200D7F551FF7434E00B97979 /* GuideVC.m */,
 				200D7F561FF7434E00B97979 /* PageControl.h */,
 				200D7F571FF7434E00B97979 /* PageControl.m */,
 				200D7F581FF7434E00B97979 /* GuideVC.h */,
+				200D7F551FF7434E00B97979 /* GuideVC.m */,
 			);
 			path = "导航页";
 			sourceTree = "<group>";
@@ -1956,8 +1956,8 @@
 		2031F6EA1EA9A33F0075E7F3 /* 视图 */ = {
 			isa = PBXGroup;
 			children = (
-				2079EB141EA9C8E6004DE68B /* BaseVC */,
 				200D7F541FF7434E00B97979 /* 导航页 */,
+				2079EB141EA9C8E6004DE68B /* BaseVC */,
 				200D7F251FF7434E00B97979 /* 启动页广告 */,
 				2090C624200B15BD00CC07F9 /* 左滑控制器 */,
 				200D7F7D1FF743D200B97979 /* 登录注册找回密码 */,

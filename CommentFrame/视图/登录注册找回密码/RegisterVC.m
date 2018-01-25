@@ -65,6 +65,7 @@ typedef enum ViewTagIndentifyer{
 	_getVercodeBtn.userInteractionEnabled = NO;
 	HDModel *m = [HDModel model];
 	m.mobile = _phoneField.text;
+    m.type = @"1";///1,注册，2，登陆。默认1，如果为2，可能返回1151用户不存在的状态码
 	weakObj;
 	[BaseServer postObjc:m path:@"/sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		weakSelf.getVercodeBtn.userInteractionEnabled = YES;

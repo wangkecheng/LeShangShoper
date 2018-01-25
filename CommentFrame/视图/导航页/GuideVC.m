@@ -9,7 +9,7 @@
 #import "GuideVC.h"
 #import "PageControl.h"
 #import <objc/runtime.h>
-
+#import "HomeHeaderModel.h"
 #define CollectionView_Tag 15
 #define RemoveBtn_tag 16
 #define Control_tag 17
@@ -45,6 +45,7 @@
 
 @interface GuideVC()
 
+@property(nonatomic,strong)NSMutableArray * arrImgModel;
 @property (nonatomic,copy)GuideBlock guideBlock;
 @end
 /*******以上是KSGuidViewCell,以下才是UIViewController+LBGuideView********/
@@ -70,7 +71,23 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    [self setupSubViews];
+    HDModel * m = [HDModel model];
+    m.type = @"1";
+    weakObj;
+    _arrImgModel = [NSMutableArray array];
+    [BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+        
+        NSArray *arr =  [NSArray yy_modelArrayWithClass:[HomeHeaderModel class] json:result[@"data"]];
+        [weakSelf.arrImgModel removeAllObjects];
+        for (HomeHeaderModel *model in arr) {
+            [weakSelf.arrImgModel addObject:IMGURL(model.imageUrl)];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+              [weakSelf setupSubViews];
+        });
+    } failed:^(NSError *error) {
+        
+    }]; 
 }
  
 #pragma mark 初始化视图
@@ -100,12 +117,12 @@
     
     [self.view addSubview:self.removeBtn];
     
-    PageControl *pageControl= [[PageControl alloc] initWithFrame:CGRectMake(0,0,ImageArray.count*15,30) pageStyle:Q_PageControlStyleDefaoult];
+    PageControl *pageControl= [[PageControl alloc] initWithFrame:CGRectMake(0,0,_arrImgModel.count*15,30) pageStyle:Q_PageControlStyleDefaoult];
     pageControl.center = CGPointMake(self.view.bounds.size.width/2,CGRectGetMaxY(self.view.frame) - CGRectGetHeight(pageControl.frame)/2.0 - 30);
     pageControl.backgroundColor = [UIColor clearColor];
     pageControl.Q_backageColor = [UIColor lightGrayColor];
     pageControl.Q_selectionColor = UIColorFromRGB(251, 205, 32);
-    pageControl.Q_numberPags = ImageArray.count;
+    pageControl.Q_numberPags = _arrImgModel.count;
     pageControl.tag = Control_tag;
     [self.view addSubview:pageControl];
     [self creatSkipBtn];
@@ -127,7 +144,7 @@
     //移除按钮样式
     UIButton* removeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [removeBtn addTarget:self action:@selector(removeGuidView) forControlEvents:UIControlEventTouchUpInside];
-    removeBtn.hidden = (self.imageArray.count != 1);
+    removeBtn.hidden = (self.arrImgModel.count != 1);
     removeBtn.tag = RemoveBtn_tag;      //注意这里的tag
     
     //***********************这里面可以自定义*******************************//
@@ -153,29 +170,23 @@
 }
 
 #pragma mark-
-#pragma mark 这里填充图片的名称
-- (NSArray<NSString*>*)imageArray{
-    return ImageArray;
-}
-
-#pragma mark-
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.imageArray.count;
+    return self.arrImgModel.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     KSGuidViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KSGuidViewCell" forIndexPath:indexPath];
-    cell.imageName = self.imageArray[indexPath.row];
-    
+//    cell.imageName = self.arrHomeHeaderModel[indexPath.row];
+    [cell.imageView sd_setImageWithURL:IMGURL(self.arrImgModel[indexPath.row]) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     return cell;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     NSUInteger index = scrollView.contentOffset.x / CGRectGetWidth(self.view.frame);
-    [self.view viewWithTag:RemoveBtn_tag].hidden = (index != self.imageArray.count - 1);
+    [self.view viewWithTag:RemoveBtn_tag].hidden = (index != self.arrImgModel.count - 1);
     for (UIView *view in self.view.subviews) {
         if ([view isKindOfClass:[PageControl class]]) {
             PageControl *pageControl = (PageControl *)view;

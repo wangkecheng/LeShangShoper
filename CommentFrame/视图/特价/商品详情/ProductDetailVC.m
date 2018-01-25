@@ -148,6 +148,8 @@
 	[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.view makeToast:@"加入成功"];
+            [weakSelf.collectBtn setTitle:@"已收藏" forState:0];
+             weakSelf.collectBtn.userInteractionEnabled = NO;
         });
 	} failed:^(NSError *error) {
 		

@@ -81,7 +81,7 @@ static int Btn_Tag = 100;
 
 -(void)bimImgAction:(UIButton *)btn{
 	if(_seeBigImgBlock){
-		_seeBigImgBlock(btn.tag - Btn_Tag);
+		_seeBigImgBlock(_model,btn.tag - Btn_Tag);
 	}
 }
 - (IBAction)commentAction:(id)sender {

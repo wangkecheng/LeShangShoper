@@ -70,6 +70,7 @@
 	m.interactId = _interactionModel.interactId;
 //    m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
+    return;
     [BaseServer postObjc:m path:@"/interact/comment/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CommentInteractionModel class] json:result[@"data"][@"rows"]];
         if (weakSelf.page == 1) {

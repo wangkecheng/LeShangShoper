@@ -63,10 +63,10 @@
 -(void)setupXHLaunchAd{
     
     //1.******图片开屏广告 - 网络数据******
-//    [self example01];
+    [self example01];
 	
     //2.******图片开屏广告 - 本地数据******
-    [self example02];
+//    [self example02];
     
     //3.******视频开屏广告 - 网络数据(网络视频只支持缓存OK后下次显示,看效果请二次运行)******
     //[self example03];
@@ -90,6 +90,28 @@
     
 }
 
+//-(void)setLaunchImg{//设置启动页
+//    HDModel * m = [HDModel model];
+//    m.type = @"2";
+//    weakObj;
+//    [BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+//        //       result[@"data"]
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            //这一步是获取LaunchScreen.storyboard里的UIViewController,UIViewController 的identifer是LaunchScreen
+//            UIView *launchView = [DDFactory getVCById:@"LaunchScreen"].view;
+//
+//            UIImageView  * Imageview= [[UIImageView  alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//            [launchView addSubview:Imageview];
+//            [weakSelf.window addSubview:launchView];
+//            [Imageview sd_setImageWithURL:IMGURL(@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2561126900,2607882124&fm=58&bpow=585&bpoh=576") placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [launchView removeFromSuperview];
+//            });
+//        });
+//    } failed:^(NSError *error) {
+//
+//    }];
+//}
 #pragma mark - 图片开屏广告-网络数据-示例
 //图片开屏广告 - 网络数据
 -(void)example01{
@@ -104,10 +126,13 @@
     [XHLaunchAd setWaitDataDuration:3];
 	weakObj;
     //广告数据请求
-	[BaseServer postObjc:nil path:@"advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+    HDModel * m = [HDModel model];
+      m.type = @"2";
+	[BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		
+        NSDictionary *dict = @{@"content":@"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=2683998181,2607033056&fm=202&gp=0.jpg&w_h=121_75&cs=2683998181,2607033056&ow_h=121_75&src=801&mola=new&crop=v1",@"url":@"https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=2683998181,2607033056&fm=202&gp=0.jpg&w_h=121_75&cs=2683998181,2607033056&ow_h=121_75&src=801&mola=new&crop=v1"};
 		//广告数据转模型
-		LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:result[@"data"]];
+		LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:dict];
 		//配置广告数据
 		XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
 		//广告停留时间

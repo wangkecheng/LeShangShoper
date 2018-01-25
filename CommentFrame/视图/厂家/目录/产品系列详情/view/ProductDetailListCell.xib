@@ -55,8 +55,8 @@
                             <action selector="collectionAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="do2-Ye-tvm"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-kS-Stu">
-                        <rect key="frame" x="201" y="326" width="48" height="22"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-kS-Stu">
+                        <rect key="frame" x="197" y="327" width="44" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title=" 126" image="ic_views.png">

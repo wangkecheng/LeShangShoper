@@ -23,6 +23,7 @@
 @property (nonatomic,strong)NSString *collect;////1,未收藏，2，已收藏
 @property (nonatomic,strong)NSArray  *imageUrls;
 @property (nonatomic,strong)NSString *typeName;
+@property (nonatomic,strong)NSString *broseNumber;
 @end
 
 //bargain = 1;
