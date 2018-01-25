@@ -578,6 +578,14 @@ NSString * const ID = @"SDCycleScrollViewCell";
     }
     
     NSString *imagePath = self.imagePathsGroup[itemIndex];
+    cell.imagePath = imagePath;
+    __weak typeof (self) weakSelf = self;
+    cell.longTouchBlock = ^(NSString *imagePath) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        if (strongSelf.longTouchBlock) {
+            strongSelf.longTouchBlock(imagePath); 
+        }
+    };
     
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
         if ([imagePath hasPrefix:@"http"]) {
@@ -608,7 +616,6 @@ NSString * const ID = @"SDCycleScrollViewCell";
         cell.clipsToBounds = YES;
         cell.onlyDisplayText = self.onlyDisplayText;
     }
-    
     return cell;
 }
 

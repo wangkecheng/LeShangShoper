@@ -241,24 +241,34 @@
                                                                 <constraint firstAttribute="height" constant="1" id="GuP-o8-31s"/>
                                                             </constraints>
                                                         </view>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fmi-1X-t1Y">
-                                                            <rect key="frame" x="42" y="0.0" width="263" height="38"/>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择详细地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fmi-1X-t1Y">
+                                                            <rect key="frame" x="42" y="0.0" width="245" height="38"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IQButtonBarArrowRight.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hir-LY-VSz">
+                                                            <rect key="frame" x="297" y="12" width="8" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="8" id="DPC-wf-FSV"/>
+                                                                <constraint firstAttribute="width" secondItem="Hir-LY-VSz" secondAttribute="height" multiplier="4:7" id="Vws-Ol-TIk"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Cun-vV-Vgm" firstAttribute="leading" secondItem="av4-cD-142" secondAttribute="leading" constant="20" id="0EN-xv-OsX"/>
+                                                        <constraint firstItem="Hir-LY-VSz" firstAttribute="centerY" secondItem="av4-cD-142" secondAttribute="centerY" id="9V9-ar-ylY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Huj-N3-ynD" secondAttribute="bottom" id="AYj-QV-EN9"/>
                                                         <constraint firstAttribute="trailing" secondItem="Huj-N3-ynD" secondAttribute="trailing" id="Fm6-Zk-AdQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Fmi-1X-t1Y" secondAttribute="trailing" constant="10" id="Jqc-0L-Vve"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Hir-LY-VSz" secondAttribute="trailing" constant="10" id="QcZ-Qh-k2R"/>
                                                         <constraint firstItem="Cun-vV-Vgm" firstAttribute="centerY" secondItem="av4-cD-142" secondAttribute="centerY" id="W5Z-FE-v9u"/>
                                                         <constraint firstAttribute="bottom" secondItem="Fmi-1X-t1Y" secondAttribute="bottom" id="jQM-mT-Bey"/>
                                                         <constraint firstItem="Huj-N3-ynD" firstAttribute="leading" secondItem="av4-cD-142" secondAttribute="leading" id="jvo-kZ-Fdx"/>
                                                         <constraint firstItem="Fmi-1X-t1Y" firstAttribute="leading" secondItem="Cun-vV-Vgm" secondAttribute="trailing" constant="10" id="nfB-Qo-wLe"/>
                                                         <constraint firstItem="Fmi-1X-t1Y" firstAttribute="top" secondItem="av4-cD-142" secondAttribute="top" id="pCs-fk-6tP"/>
+                                                        <constraint firstItem="Hir-LY-VSz" firstAttribute="leading" secondItem="Fmi-1X-t1Y" secondAttribute="trailing" constant="10" id="t2c-FI-3wo"/>
+                                                        <constraint firstItem="Hir-LY-VSz" firstAttribute="width" secondItem="Hir-LY-VSz" secondAttribute="height" multiplier="4:7" id="tTw-vZ-uHN"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -395,11 +405,12 @@
                 <constraint firstItem="Hho-fi-p17" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ooJ-Se-Tvy"/>
                 <constraint firstItem="ysr-2J-PJ6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sgK-0i-GfU"/>
             </constraints>
-            <point key="canvasLocation" x="-516" y="-1071"/>
+            <point key="canvasLocation" x="-516.5" y="-1071"/>
         </view>
     </objects>
     <resources>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
+        <image name="IQButtonBarArrowRight.png" width="12" height="21"/>
         <image name="Icon.png" width="87" height="87"/>
         <image name="bg_login.png" width="375" height="161"/>
         <image name="ic_input_address.png" width="13" height="16"/>

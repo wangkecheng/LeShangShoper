@@ -202,4 +202,6 @@ typedef enum {
 /** 清除图片缓存（兼容旧版本方法） */
 - (void)clearCache;
 
+@property(nonatomic,copy)void(^longTouchBlock)(NSString *imagePath);
+
 @end

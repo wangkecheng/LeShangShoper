@@ -64,26 +64,37 @@
     [cycleView setPlaceholderImage:IMG(@"Icon")];
 	cycleView.autoScroll = NO;
 	[self.scrollContentView addSubview:cycleView];
+    _indicatorLbl.text = [NSString stringWithFormat:@"1/%ld",_detailModel.imageUrls.count];
 	weakObj;
 	cycleView.clickItemOperationBlock = ^(NSInteger currentIndex) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		NSMutableArray* tmps = [[NSMutableArray alloc] init];
+		NSMutableArray* tmps = [NSMutableArray array];
 		for (int i = 0;i< strongSelf.detailModel.imageUrls.count;i++) {//找出所有图片
-			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:strongSelf.detailModel.imageUrls[i]
-																				 thumbnailURL:nil
-																						HDURL:nil
-																				containerView:self.view
-																		  positionInContainer:self.view.frame
-																						index:i];
+			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:nil HDURL:strongSelf.detailModel.imageUrls[i] containerView:self.view
+				positionInContainer:self.view.frame index:i];
 			[tmps addObject:broModel];
 		}
-		LWImageBrowser* browser = [[LWImageBrowser alloc]
-								   initWithImageBrowserModels:tmps
-								   currentIndex:currentIndex];
-		browser.isScalingToHide = NO;
-		browser.isShowSaveImgBtn = NO;
-		[browser show];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LWImageBrowser* browser = [[LWImageBrowser alloc]
+                                       initWithImageBrowserModels:tmps
+                                       currentIndex:currentIndex];
+            browser.isScalingToHide = NO;
+            browser.isShowSaveImgBtn = YES;
+            [browser show];
+        });
 	};
+ 
+    cycleView.longTouchBlock = ^(NSString *imagePath) {//先下载图片然后保存
+ 
+        WSAlertView *alertView = [WSAlertView instanceWithTitle:@"提示" content:@"是否保存到本地相册" attachInfo:imagePath leftBtnTitle:@"取消" rightBtnTitle:@"确定" leftBtnBlock:^(id attachInfo) {
+           
+            
+        } rightBtnBlock:^(id attachInfo) {
+               __strong typeof (weakSelf) strongSelf = weakSelf;
+             [strongSelf saveImgModule:imagePath];//保存
+        }];
+        [alertView show];
+    };
 	cycleView.itemDidScrollOperationBlock = ^(NSInteger currentIndex) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.indicatorLbl.text = [NSString stringWithFormat:@"%ld/%ld",currentIndex+1,strongSelf.detailModel.imageUrls.count];
@@ -103,11 +114,41 @@
 	}
 }
 
+-(void)saveImgModule:(NSString *)imagePath{//保存图片
+    weakObj;
+    
+    for ( int i = 0; i <weakSelf.detailModel.imageUrls.count; i++) {
+        NSURL * imgUrl = weakSelf.detailModel.imageUrls[i];
+        if ([imgUrl.absoluteString isEqualToString:imagePath]) {
+            if ([imagePath containsString:@"http"]) {
+                UIImageView *gtp = [[UIImageView alloc] init];
+                [gtp sd_setImageWithURL:imgUrl placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    
+                    [[WSPHPhotoLibrary library]saveImage:image assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''乐山商城'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [alertView show];
+                        });
+                    } faildBlock:^(NSError *error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存失败" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [alertView show];
+                        });
+                    }];
+                }];
+            }
+            break;
+        }
+    }
+}
 - (IBAction)addToCartAction:(id)sender {//加入收藏夹
 	HDModel *m = [HDModel model];
 	m.cid = _model.cid;
+    weakObj;
 	[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-		
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.view makeToast:@"加入成功"];
+        });
 	} failed:^(NSError *error) {
 		
 	}];

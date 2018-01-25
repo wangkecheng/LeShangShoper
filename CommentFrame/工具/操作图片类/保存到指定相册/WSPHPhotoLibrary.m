@@ -38,7 +38,6 @@
 		
 		[PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
 			
-			
 			// 如果用户选择授权, 则保存图片
 			if (status == PHAuthorizationStatusAuthorized) {
 				dispatch_async(dispatch_get_main_queue(), ^{

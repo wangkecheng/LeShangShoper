@@ -50,6 +50,7 @@
     _tableview.backgroundColor = self.view.backgroundColor = UIColorFromRGB(242, 242, 242);
     _tableview.delegate = self;
     _tableview.dataSource = self;
+    _commentTextView.delegate = self;
     [_tableview setSeparatorStyle:0];
     
     [_tableview hideSurplusLine];
@@ -69,7 +70,6 @@
 	m.interactId = _interactionModel.interactId;
 //    m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
-    return;
     [BaseServer postObjc:m path:@"/interact/comment/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         NSArray *tempArr = [NSArray yy_modelArrayWithClass:[CommentInteractionModel class] json:result[@"data"][@"rows"]];
         if (weakSelf.page == 1) {
@@ -172,6 +172,7 @@
 }
 
 - (void)keyboardWasShown:(NSNotification *)noti {
+   
     CGRect keyboardRect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]; //键盘尺寸
     NSTimeInterval animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];  //键盘动画时间
     

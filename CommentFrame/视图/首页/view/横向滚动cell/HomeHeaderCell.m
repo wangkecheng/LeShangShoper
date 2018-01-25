@@ -28,7 +28,7 @@
 	}
 	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH,200)  imageURLStringsGroup:_arrimageUrlModel];
 	cycleView.backgroundColor=[UIColor whiteColor];
-    [cycleView setPlaceholderImage:IMG(@"Icon")];
+//    [cycleView setPlaceholderImage:IMG(@"Icon")];
 	cycleView.currentPageDotImage = [DDFactory circleImage:[DDFactory imageWithColor:[UIColor whiteColor]] size:CGSizeMake(10,10)];
 	
 	cycleView.pageDotImage = [DDFactory circleImage:[DDFactory imageWithColor:[UIColor lightGrayColor]] size:CGSizeMake(10,10)];;

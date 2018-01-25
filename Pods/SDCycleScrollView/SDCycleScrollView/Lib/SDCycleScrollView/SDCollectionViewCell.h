@@ -35,8 +35,8 @@
 @interface SDCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) UIImageView *imageView;
-@property (copy, nonatomic) NSString *title;
 
+@property (copy, nonatomic) NSString *title;
 @property (nonatomic, strong) UIColor *titleLabelTextColor;
 @property (nonatomic, strong) UIFont *titleLabelTextFont;
 @property (nonatomic, strong) UIColor *titleLabelBackgroundColor;
@@ -48,4 +48,7 @@
 /** 只展示文字轮播 */
 @property (nonatomic, assign) BOOL onlyDisplayText;
 
+//warron修改
+@property (copy, nonatomic) NSString *imagePath;
+@property(nonatomic,copy)void(^longTouchBlock)(NSString *imagePath);
 @end
