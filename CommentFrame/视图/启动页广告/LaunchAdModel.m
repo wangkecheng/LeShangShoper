@@ -10,15 +10,14 @@
 
 @implementation LaunchAdModel
 
-- (instancetype)initWithDict:(NSDictionary *)dict
-{
+- (instancetype)initWithDict:(NSDictionary *)dict{
     self = [super init];
     if (self) {
         
-        self.content = dict[@"imageUrl"];
-        self.openUrl = dict[@"url"];
-        self.duration = 3;
-        self.contentSize =  @"1242*1786";
+        self.content = dict[@"content"];
+        self.openUrl = dict[@"openUrl"];
+        self.duration = [dict[@"duration"] integerValue];
+        self.contentSize = dict[@"contentSize"];
     }
     return self;
 }

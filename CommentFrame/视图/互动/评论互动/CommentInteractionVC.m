@@ -147,11 +147,12 @@
     m.interactId = _interactionModel.interactId;
 	m.content = comment;
     [BaseServer postObjc:m path:@"/interact/comment/add" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.commentTextView.text = @"";
-            weakSelf.placeholder.alpha = 1;
-			if(weakSelf.finishComBlock){
-				weakSelf.finishComBlock(weakSelf.interactionModel);
+		__strong typeof (weakSelf) strongSelf = weakSelf;
+		dispatch_async(dispatch_get_main_queue(), ^{
+            strongSelf.commentTextView.text = @"";
+            strongSelf.placeholder.alpha = 1;
+			if(strongSelf.finishComBlock){
+				strongSelf.finishComBlock(weakSelf.interactionModel);
 			}
         });
     } failed:^(NSError *error) {
