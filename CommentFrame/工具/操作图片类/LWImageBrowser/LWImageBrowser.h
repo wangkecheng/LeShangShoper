@@ -25,16 +25,17 @@
 
 #import <UIKit/UIKit.h>
 #import "LWImageBrowserModel.h"
-#import "HDBaseVC.h"
+
 
 /**
  *  图片浏览器
  */
-@interface LWImageBrowser : HDBaseVC
+@interface LWImageBrowser : UIViewController
 
 @property (nonatomic,assign) BOOL isScalingToHide;//消失的时候是否启动缩放动画
 @property (nonatomic,assign) BOOL isShowPageControl;//是否显示页码
-@property (nonatomic,assign) BOOL isShowSaveImgBtn ;//是否显示保存按钮图片 setter方法
+
+@property (nonatomic,assign) BOOL isShowSaveImgBtn ;//是否显示保存按钮图片
 /*
  *  构造方法
  *

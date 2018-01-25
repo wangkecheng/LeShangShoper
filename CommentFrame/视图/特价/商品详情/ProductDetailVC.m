@@ -70,8 +70,8 @@
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		NSMutableArray* tmps = [NSMutableArray array];
 		for (int i = 0;i< strongSelf.detailModel.imageUrls.count;i++) {//找出所有图片
-			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:nil HDURL:strongSelf.detailModel.imageUrls[i] containerView:self.view
-				positionInContainer:self.view.frame index:i];
+			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:strongSelf.detailModel.imageUrls[i] HDURL:strongSelf.detailModel.imageUrls[i] containerView:self.view
+				positionInContainer:self.view.frame index:i];//
 			[tmps addObject:broModel];
 		}
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -79,7 +79,7 @@
                                        initWithImageBrowserModels:tmps
                                        currentIndex:currentIndex];
             browser.isScalingToHide = NO;
-            browser.isShowSaveImgBtn = YES;
+            browser.isShowSaveImgBtn = NO;
             [browser show];
         });
 	};

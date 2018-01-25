@@ -35,5 +35,9 @@
 		_deleteBlock(_model);
 	}
 }
-
+-(void)setImgUrlStr:(NSString *)imgUrlStr{
+    _closeButton.hidden = YES;
+    _imgUrlStr = imgUrlStr;
+    [_profilePhoto sd_setImageWithURL:IMGURL(imgUrlStr) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+}
 @end

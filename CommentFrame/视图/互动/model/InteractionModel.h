@@ -21,4 +21,6 @@
 
 @property (nonatomic,assign)BOOL isStatusSeeAll;//是否是查看全部的状态
 @property (nonatomic,assign)BOOL needHideSeeAllBtn;//是否是需要隐藏
+
+@property (nonatomic,assign)BOOL ceshi; 
 @end

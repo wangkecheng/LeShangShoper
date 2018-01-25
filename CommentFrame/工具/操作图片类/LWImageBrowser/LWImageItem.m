@@ -125,7 +125,7 @@ const CGFloat kDuration = 0.3f;
             
             if (animated) {
                 sself.imageView.frame = sself.imageModel.originPosition;
-                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL  placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL];
                 [UIView animateWithDuration:kDuration
                                       delay:0.0f
                      usingSpringWithDamping:0.7
@@ -136,7 +136,7 @@ const CGFloat kDuration = 0.3f;
                                         
                                     }];
             } else {
-                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL  placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+                [sself.imageView sd_setImageWithURL:sself.imageModel.HDURL];
                 sself.imageView.frame = destinationRect;
             }
         }
@@ -150,28 +150,36 @@ const CGFloat kDuration = 0.3f;
     SDWebImageManager* manager = [SDWebImageManager sharedManager];
     SDWebImageOptions options = SDWebImageRetryFailed | SDWebImageLowPriority;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		[manager loadImageWithURL:self.imageModel.HDURL options:options progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-			 progressHUD.progress = (float)receivedSize/expectedSize;
-		} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-			__strong typeof(weakSelf) sself = weakSelf;
-			if (finished && image) {
-				[LWProgeressHUD hideAllHUDForView:sself];
-				sself.imageView.image = image;
-				sself.imageModel.thumbnailImage = image;
-				if ([sself.eventDelegate respondsToSelector:@selector(didFinishedDownLoadHDImage)]) {
-					[sself.eventDelegate didFinishedDownLoadHDImage];
-				}
-				[UIView animateWithDuration:kDuration
-									  delay:0.0f
-					 usingSpringWithDamping:0.7
-					  initialSpringVelocity:0.0f
-									options:0 animations:^{
-										sself.imageView.frame = destinationRect;
-									} completion:^(BOOL finished) {
-									}];
-			}
-		}]; 
-	}); 
+        [manager loadImageWithURL:self.imageModel.HDURL
+                          options:options
+                         progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                             progressHUD.progress = (float)receivedSize/expectedSize;
+                         } completed:^(UIImage * _Nullable image,
+                                       NSData * _Nullable data,
+                                       NSError * _Nullable error,
+                                       SDImageCacheType cacheType,
+                                       BOOL finished,
+                                       NSURL * _Nullable imageURL) {
+                             
+                             __strong typeof(weakSelf) sself = weakSelf;
+                             if (finished && image) {
+                                 [LWProgeressHUD hideAllHUDForView:sself];
+                                 sself.imageView.image = image;
+                                 sself.imageModel.thumbnailImage = image;
+                                 if ([sself.eventDelegate respondsToSelector:@selector(didFinishedDownLoadHDImage)]) {
+                                     [sself.eventDelegate didFinishedDownLoadHDImage];
+                                 }
+                                 [UIView animateWithDuration:kDuration
+                                                       delay:0.0f
+                                      usingSpringWithDamping:0.7
+                                       initialSpringVelocity:0.0f
+                                                     options:0 animations:^{
+                                                         sself.imageView.frame = destinationRect;
+                                                     } completion:^(BOOL finished) {
+                                                     }];
+                             }
+                         }];
+    });
 }
 
 

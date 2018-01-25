@@ -18,4 +18,6 @@ typedef void(^HWCellDelegateBlock)(ImgModel * model);
 @property (strong, nonatomic)ImgModel * addImgModel;
 
 @property (nonatomic,copy)HWCellDelegateBlock deleteBlock;
+
+@property (nonatomic,strong)NSString * imgUrlStr;
 @end

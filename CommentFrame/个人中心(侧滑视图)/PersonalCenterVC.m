@@ -69,7 +69,12 @@
              [weakSelf.switchSex setOn:NO];
              if ([model.sex integerValue] == 2) {
                   [weakSelf.switchSex setOn:YES];
-             } 
+             }
+             if (model.headImg) {
+                  [weakSelf.headerBtn  setImage:model.headImg forState:0];
+             }else{
+               [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+             }
 			weakSelf.dianJiLoginLbl.alpha = 0;
 			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 1;
 			weakSelf.userNameLbl.text =weakSelf.nameLbl.text = model.name;
@@ -77,7 +82,7 @@
 			weakSelf.addressLbl.text = model.addr;
 			weakSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
 			weakSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分",model.integral];
-			[weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+			
 		}else{
 			weakSelf.dianJiLoginLbl.alpha = 1;
 			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;
@@ -152,8 +157,11 @@
 }
 
 - (void)finishSelectImg:(UIImage *)image{
-	[_headerBtn setImage:image forState:0];
-	[self resetUserInfo:image];
+    UserInfoModel * model =  [CacheTool getUserModel];
+    model.headImg = image;
+    [CacheTool writeToDB:model];
+    [_headerBtn setImage:image forState:0];
+    [self resetUserInfo:image];
 }
 
 - (IBAction)resetUserName:(id)sender {

@@ -113,9 +113,9 @@
     cell.seeBigImgBlock = ^(InteractionModel *model, NSInteger index) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
         NSMutableArray* tmps = [NSMutableArray array];
-        
+       
         for (int i = 0;i< model.imageUrls.count;i++) {//找出所有图片
-            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:nil HDURL:IMGURL(model.imageUrls[i]) containerView:self.view
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:IMG(@"Icon") thumbnailURL:IMGURL(model.imageUrls[i]) HDURL:IMGURL(model.imageUrls[i]) containerView:self.view
                 positionInContainer:self.view.frame index:i];
             [tmps addObject:broModel];
         }

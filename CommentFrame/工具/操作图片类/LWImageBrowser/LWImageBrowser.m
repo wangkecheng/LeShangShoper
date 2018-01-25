@@ -27,10 +27,11 @@
 #import "LWImageBrowserCell.h"
 #import "LWImageBrowserButton.h"
 #import "LWActionSheetView.h"
+#import "LWAlertView.h"
 #import "LWImageBrowserDefine.h"
 #import "UIImage+ImageEffects.h"
 #import "LWImageItem.h"
-#import "WSPHPhotoLibrary.h"
+
 
 
 @interface LWImageBrowser ()
@@ -99,7 +100,8 @@ LWActionSheetViewDelegate>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LWImageBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
+    LWImageBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier
+                                                                         forIndexPath:indexPath];
     cell.imageItem.firstShow = self.isFirstShow;
     cell.imageModel = [self.imageModels objectAtIndex:indexPath.row];
     cell.imageItem.eventDelegate = self;
@@ -198,15 +200,28 @@ LWActionSheetViewDelegate>
     SDWebImageManager* manager = [SDWebImageManager sharedManager];
     if (index + 1 < self.imageModels.count) {
         LWImageBrowserModel* nextModel = [self.imageModels objectAtIndex:index + 1];
-		[manager loadImageWithURL:nextModel.HDURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-			
-		}];
+        [manager loadImageWithURL:nextModel.HDURL
+                          options:SDWebImageAllowInvalidSSLCertificates
+                         progress:nil
+                        completed:^(UIImage * _Nullable image,
+                                    NSData * _Nullable data,
+                                    NSError * _Nullable error,
+                                    SDImageCacheType cacheType,
+                                    BOOL finished,
+                                    NSURL * _Nullable imageURL) {}];
     }
     if (index - 1 >= 0) {
         LWImageBrowserModel* previousModel = [self.imageModels objectAtIndex:index - 1];
-		[manager loadImageWithURL:previousModel.HDURL options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-			
-		}]; 
+        
+        [manager loadImageWithURL:previousModel.HDURL
+                          options:SDWebImageAllowInvalidSSLCertificates
+                         progress:nil
+                        completed:^(UIImage * _Nullable image,
+                                    NSData * _Nullable data,
+                                    NSError * _Nullable error,
+                                    SDImageCacheType cacheType,
+                                    BOOL finished,
+                                    NSURL * _Nullable imageURL) {}];
     }
 }
 
@@ -229,21 +244,21 @@ LWActionSheetViewDelegate>
 #pragma mark - Save Photo
 
 - (void)saveImageToPhotos:(UIImage*)savedImage {
-    
-	[[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+    [[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
         dispatch_async(dispatch_get_main_queue(), ^{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''乐山商城'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         });
-	} faildBlock:^(NSError *error) {
-		 dispatch_async(dispatch_get_main_queue(), ^{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存失败" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-			[alertView show];
-         });
-	}];
+    } faildBlock:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存失败" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+        });
+    }];
 }
 
 #pragma mark - Setter & Getter
+
 - (void)setIsShowPageControl:(BOOL)isShowPageControl {
     _isShowPageControl = isShowPageControl;
     self.pageControl.hidden = !self.isShowPageControl;
@@ -289,13 +304,12 @@ LWActionSheetViewDelegate>
     }
     return _pageControl;
 }
-
 -(void)setIsShowSaveImgBtn:(BOOL)isShowSaveImgBtn{
     _isShowSaveImgBtn  = isShowSaveImgBtn;
-      self.button.alpha = 0;
+    self.button.alpha = 0;
     if (_isShowSaveImgBtn) {
-          self.button.alpha = 1;
-    } 
+        self.button.alpha = 1;
+    }
 }
 - (LWImageBrowserButton *)button {
     if (!_button) {
@@ -329,6 +343,7 @@ LWActionSheetViewDelegate>
 }
 
 #pragma mark - Initial
+
 - (id)initWithImageBrowserModels:(NSArray *)imageModels
                     currentIndex:(NSInteger)index {
     self  = [super init];
