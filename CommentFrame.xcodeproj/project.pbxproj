@@ -272,12 +272,12 @@
 		2031F6B91EA99BA30075E7F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6B81EA99BA30075E7F3 /* AppDelegate.m */; };
 		2031F6BF1EA99BA30075E7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6BD1EA99BA30075E7F3 /* Main.storyboard */; };
 		2031F6C11EA99BA30075E7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6C01EA99BA30075E7F3 /* Assets.xcassets */; };
-		2031F6C41EA99BA30075E7F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */; };
 		2031F6CF1EA99BA30075E7F3 /* CommentFrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6CE1EA99BA30075E7F3 /* CommentFrameTests.m */; };
 		2031F6DA1EA99BA30075E7F3 /* CommentFrameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6D91EA99BA30075E7F3 /* CommentFrameUITests.m */; };
 		2031F6EF1EA9A3720075E7F3 /* DDFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6EE1EA9A3720075E7F3 /* DDFactory.m */; };
 		203F992D2016401900AE85CA /* IQButtonBarArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */; };
 		203F992E2016401900AE85CA /* IQButtonBarArrowLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */; };
+		20487073201B597C004064CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20487072201B597C004064CC /* LaunchScreen.storyboard */; };
 		2064C5351FFB53B90073C2EC /* SellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5331FFB53B90073C2EC /* SellerCell.m */; };
 		2064C5361FFB53B90073C2EC /* SellerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064C5341FFB53B90073C2EC /* SellerCell.xib */; };
 		2064C53A1FFB56D10073C2EC /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5381FFB56D10073C2EC /* AdvertCell.m */; };
@@ -794,7 +794,6 @@
 		2031F6B81EA99BA30075E7F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2031F6BE1EA99BA30075E7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2031F6C01EA99BA30075E7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2031F6C31EA99BA30075E7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2031F6C51EA99BA30075E7F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2031F6CA1EA99BA30075E7F3 /* CommentFrameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommentFrameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2031F6CE1EA99BA30075E7F3 /* CommentFrameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentFrameTests.m; sourceTree = "<group>"; };
@@ -807,6 +806,7 @@
 		2031F6EE1EA9A3720075E7F3 /* DDFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFactory.m; sourceTree = "<group>"; };
 		203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@2x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@2x.png"; sourceTree = SOURCE_ROOT; };
 		203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@3x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@3x.png"; sourceTree = SOURCE_ROOT; };
+		20487072201B597C004064CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2064C5321FFB53B90073C2EC /* SellerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerCell.h; sourceTree = "<group>"; };
 		2064C5331FFB53B90073C2EC /* SellerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerCell.m; sourceTree = "<group>"; };
 		2064C5341FFB53B90073C2EC /* SellerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerCell.xib; sourceTree = "<group>"; };
@@ -1904,7 +1904,7 @@
 			isa = PBXGroup;
 			children = (
 				2031F6BD1EA99BA30075E7F3 /* Main.storyboard */,
-				2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */,
+				20487072201B597C004064CC /* LaunchScreen.storyboard */,
 				2031F6C51EA99BA30075E7F3 /* Info.plist */,
 				2031F6C01EA99BA30075E7F3 /* Assets.xcassets */,
 				2031F6B51EA99BA30075E7F3 /* main.m */,
@@ -2804,7 +2804,6 @@
 				18B543122011839500A40C4E /* ic_my_set@3x.png in Resources */,
 				18B542D32011839500A40C4E /* bg_login@2x.png in Resources */,
 				207418C620051E4F007C4F36 /* SearchManufacturersCell.xib in Resources */,
-				2031F6C41EA99BA30075E7F3 /* LaunchScreen.storyboard in Resources */,
 				2031F6C11EA99BA30075E7F3 /* Assets.xcassets in Resources */,
 				18B542DE2011839500A40C4E /* btn_foot_factory_n@3x.png in Resources */,
 				2064C5451FFB592B0073C2EC /* NewsHeaderView.xib in Resources */,
@@ -2976,6 +2975,7 @@
 				200D7F871FF7442C00B97979 /* RegisterVC.xib in Resources */,
 				18B543182011839500A40C4E /* ic_service@3x.png in Resources */,
 				1840EEB52011BF7400A341F7 /* InteligentServiceAlertView.xib in Resources */,
+				20487073201B597C004064CC /* LaunchScreen.storyboard in Resources */,
 				20787AA82000AB3B00183749 /* IQButtonBarArrowRight@2x.png in Resources */,
 				18B543442011839500A40C4E /* ic_top_add@3x.png in Resources */,
 				18B5430F2011839500A40C4E /* ic_my_phone@2x.png in Resources */,
@@ -3402,14 +3402,6 @@
 				2031F6BE1EA99BA30075E7F3 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2031F6C31EA99BA30075E7F3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
