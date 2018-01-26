@@ -92,7 +92,7 @@
                 <outlet property="tableView" destination="mZm-H0-fkl" id="zqC-tB-Mdd"/>
                 <outlet property="titleLbl" destination="EGW-d9-66Q" id="1d0-W6-mGj"/>
             </connections>
-            <point key="canvasLocation" x="-640" y="25"/>
+            <point key="canvasLocation" x="-834" y="-101"/>
         </view>
     </objects>
     <resources>

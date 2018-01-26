@@ -44,8 +44,8 @@
 	if (model.isMember == 1) {//如果存在
 		_nameLbl.text = model.name;
 		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
-		if (model.headImgData) {
-			UIImage *image = [UIImage imageWithData:model.headImgData];
+        UIImage *image = [UIImage imageWithData:model.headImgData];
+		if (image) { 
 			[_headerImg setImage:image];
 		}else{
 			[_headerImg sd_setImageWithURL:IMGURL(model.headUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];

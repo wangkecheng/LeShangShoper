@@ -24,9 +24,10 @@
 	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - 60)/3.0;
 	CGFloat btnH = btnW + 20;
 	CGFloat imgW = btnW;
-	for (int i  = 0 ;i< sellerArr.count;i++) {
+    NSInteger count = sellerArr.count;
+	for (int i  = 0 ;i< count;i++) {
 		ManufacturersModel *model = sellerArr[i];
-		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + 20,CGRectGetMinY(lastBtn.frame),btnW, btnH)
+		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + 15,CGRectGetMinY(lastBtn.frame),btnW, btnH)
 												titleX:0 titleY:imgW + 5 titleW:btnW titleH:btnH - imgW
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
@@ -56,10 +57,17 @@
 	
 	_scrollView.showsHorizontalScrollIndicator = NO;
 	_scrollView.pagingEnabled = YES;
+        _scrollView.pagingEnabled = YES;
 	_scrollView.alwaysBounceHorizontal = YES;
-	_scrollView.bounces = NO;
+	_scrollView.bounces = YES;
 	_scrollView.delegate = self;
-	_scrollView.contentSize = CGSizeMake(CGRectGetMaxX(lastBtn.frame) + 20, 0);
+
+     pageCount = count/3;//共多少页
+    
+    if(pageCount%3!=0 &&pageCount!=0){
+        pageCount += 1;//如果有余数 说名可能为 5 8 那么就要再加一页
+    }
+	_scrollView.contentSize = CGSizeMake(pageCount * CGRectGetWidth(_scrollView.frame), 0);
 }
 -(void)btnClick:(UIButton *)btn{
 	if (_clickBlock) {

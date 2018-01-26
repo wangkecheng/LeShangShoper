@@ -42,7 +42,7 @@
 @implementation PersonalCenterVC
 -(instancetype)initWithBackgroundImage:(UIImage *)image{
 	if(self){
-		self.view.backgroundColor = [UIColor redColor];
+		self.view.backgroundColor = [UIColor whiteColor];
 		[_imgBackground setImage:image];
 	}
 	return self;
@@ -71,8 +71,8 @@
              if ([model.sex integerValue] == 2) {
                   [weakSelf.switchSex setOn:YES];
              }
-             if (model.headImgData) {
-				 UIImage *image = [UIImage imageWithData:model.headImgData];
+              UIImage *image = [UIImage imageWithData:model.headImgData];
+             if (image) { 
 				[weakSelf.headerBtn  setImage:image forState:0];
              }else{
                [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
@@ -201,7 +201,11 @@
 
 
 -(void)resetUserInfo:(UIImage *)image{
-	[BaseServer uploadImages:@[image] path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES
+    NSArray *imgsArr = nil;
+    if (image) {//当 图片数据有的时候才传入
+        imgsArr = @[image];
+    }
+	[BaseServer uploadImages:imgsArr path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES
 					 success:^(id result) {
 						 
 					 } failed:^(NSError *error) {
@@ -212,7 +216,7 @@
 - (IBAction)switchAction:(UISwitch *)sender {
     UserInfoModel * model = [CacheTool getUserModel];
     model.sex = @"1";//男
-    if (sender.isSelected) {
+    if (sender.isOn) {
         model.sex = @"2";//女
     }
     [CacheTool writeToDB:model];

@@ -26,9 +26,9 @@
     [_headBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     _nameLbl.text = model.name;
   
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yy-HH-dd hh:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; 
     _timeLbl.text = [formatter stringFromDate:confromTimesp];
     _contentLbl.text = model.content;
 }

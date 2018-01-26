@@ -57,9 +57,9 @@ UICollectionViewDelegateFlowLayout>
 	_nameLbl.text = model.name;
 	_titLbl.text = model.content;
 	
-	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]];
+	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-	[formatter setDateFormat:@"yy-HH-dd hh:mm:ss"];
+	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
 	
 	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
