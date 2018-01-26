@@ -403,7 +403,7 @@
 	
 	return [[NSBundle mainBundle]loadNibNamed:xibName owner:nil options:nil][0];
 }
-+ (id)getVCById:(NSString *)Id{
++ (UIViewController *)getVCById:(NSString *)Id{
 	
 	return [self getVCById:Id storyboardName:Id];
 }

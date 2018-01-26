@@ -168,27 +168,39 @@
 }
 
 - (IBAction)resetUserName:(id)sender {
+    [self registeKeyboardNotifications];
 	weakObj;
 	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeUserName cancelBlock:^BOOL{
-		[weakSelf.alertControl ds_dismissAlertView];
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+		[strongSelf.alertControl ds_dismissAlertView];
+        [strongSelf unregisteKeyboardNotification];
 		return YES;
 	} okBlock:^BOOL(NSString *str) {
-		[weakSelf.alertControl ds_dismissAlertView];
+         __strong typeof (weakSelf) strongSelf = weakSelf;
+		 [strongSelf.alertControl ds_dismissAlertView];
+         [strongSelf unregisteKeyboardNotification];
 		UserInfoModel * model = [CacheTool getUserModel];
-		model.name = weakSelf.userNameLbl.text = str;
+		model.name = strongSelf.userNameLbl.text = str;
 		[CacheTool writeToDB:model];
-		[weakSelf resetUserInfo:nil];
+		[strongSelf resetUserInfo:nil];
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
 }
+
 - (IBAction)resetAddress:(id)sender {
+    
+    [self registeKeyboardNotifications];
 	weakObj;
 	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeAddress cancelBlock:^BOOL{
-		[weakSelf.alertControl ds_dismissAlertView];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        [strongSelf unregisteKeyboardNotification];
 		return YES;
 	} okBlock:^BOOL(NSString *str) {
-		[weakSelf.alertControl ds_dismissAlertView];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        [strongSelf unregisteKeyboardNotification];
 		UserInfoModel * model = [CacheTool getUserModel];
 		model.addr = weakSelf.addressLbl.text = str;
 		[CacheTool writeToDB:model];
@@ -196,7 +208,36 @@
 		return YES;
 	}];
 	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+}
 
+#pragma mark - 键盘处理
+- (void)registeKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+- (void)unregisteKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification *)noti {
+    
+    CGRect keyboardRect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]; //键盘尺寸
+    NSTimeInterval animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];  //键盘动画时间
+    weakObj;
+    [UIView animateWithDuration:animationDuration animations:^{
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        strongSelf.alertControl.center = CGPointMake(SCREENWIDTH/2.0, SCREENHEIGHT/2.0-keyboardRect.size.height/2.0);
+    }];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)noti {
+    NSTimeInterval animationDuration = [[[noti userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];  //键盘动画时间
+    weakObj;
+    [UIView animateKeyframesWithDuration:animationDuration delay:0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        strongSelf.alertControl.center = CGPointMake(SCREENWIDTH/2.0, SCREENHEIGHT/2.0);
+    } completion:nil];
 }
 
 
@@ -242,8 +283,7 @@
 	 model.isMember = 0;
      model.isRecentLogin = 1;
 	[CacheTool writeToDB:model];//状态设置为NO，表示登出
-	LoginVC * loginVC = [[LoginVC alloc]init];
-	[self presentViewController:loginVC animated:YES completion:nil];
+    [CacheTool setRootVCByIsMainVC:NO];
 }
 
 
