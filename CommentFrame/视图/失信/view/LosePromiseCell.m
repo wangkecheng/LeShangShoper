@@ -18,9 +18,9 @@
 -(void)setModel:(LosePromissAndNewsModel *)model{
 	_model = model;
 	_titLbl.text = model.title; 
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yy-HH-dd hh:mm:ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     _timeLbl.text = [formatter stringFromDate:confromTimesp];
  
 	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];

@@ -27,22 +27,25 @@
 +(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model))clickBlock{
     CatalugeSheetView * view = [DDFactory getXibObjc:@"CatalugeSheetView"];
     view.frame = frame;
-    view.clickBlock = clickBlock;
-    view.tableView.delegate  = view;
-    view.tableView.dataSource = view;
-   [view.tableView registerNib:[UINib nibWithNibName:CatalugeSheetViewCell_ bundle:nil] forCellReuseIdentifier:CatalugeSheetViewCell_];
-    [view.dissmissBtn setEnlargeEdgeWithTop:10 right:300 bottom:10 left:10];
-    //点击背景是否影藏
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(dissmiss)];
-    tap.delegate = view;
-    [view.coverView addGestureRecognizer:tap];
-    view.bottomConstraint.constant = -CGRectGetHeight(frame);
+    view.clickBlock = clickBlock; 
+    [view setupUI];
     return view;
 }
 
-
+-(void)setupUI{
+    _tableView.delegate   = self;
+    _tableView.dataSource = self;
+    [_tableView registerNib:[UINib nibWithNibName:CatalugeSheetViewCell_ bundle:nil] forCellReuseIdentifier:CatalugeSheetViewCell_];
+    [_dissmissBtn setEnlargeEdgeWithTop:10 right:300 bottom:10 left:10];
+    //点击背景是否影藏
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dissmiss)];
+    tap.delegate = self;
+    [_coverView addGestureRecognizer:tap];
+    self.bottomConstraint.constant = -CGRectGetHeight(self.frame);
+    [self layoutIfNeeded];
+}
 -(void)showWithSeriesModel:(SeriesModel *)model{
-  
+   
     _seriesModel = model;
     _titleLbl.text = model.name;
     weakObj;
@@ -59,6 +62,7 @@
 - (IBAction)dissmissAction:(id)sender {//移除sheet框
     [self dissmiss];
 }
+
 -(void)dissmiss{
     weakObj;
     [UIView animateWithDuration:0.3 animations:^{

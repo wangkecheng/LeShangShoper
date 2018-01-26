@@ -82,11 +82,18 @@
         for (HomeHeaderModel *model in arr) {
             [weakSelf.arrImgModel addObject:IMGURL(model.imageUrl)];
         }
+        if(arr.count == 0){
+            dispatch_async(dispatch_get_main_queue(), ^{
+             [weakSelf removeGuidView];
+            });
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
               [weakSelf setupSubViews];
         });
     } failed:^(NSError *error) {
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf removeGuidView];
+        });
     }]; 
 }
  

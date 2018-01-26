@@ -76,7 +76,7 @@
        _sortkey = @"price";
        _page = 1;
     [_hotImg setImage:IMG(@"ico_paihang")];
-    if ([_sort isEqualToString:@"2"]) {
+    if ([_sort isEqualToString:@"-1"]) {
          _sort = @"1";// 排序方式 1，正序 从高到低，2，逆序
         [_priceImg setImage:IMG(@"ico_paihangDescending")];
     }else{
@@ -90,7 +90,7 @@
          _sortkey = @"hot";
          _page = 1;
         [_priceImg setImage:IMG(@"ico_paihang")];
-    if ([_sort isEqualToString:@"2"]) {
+    if ([_sort isEqualToString:@"-1"]) {
         _sort = @"1"; //1，非热门，2，热门，默认全部
         [_hotImg setImage:IMG(@"ico_paihangAssent")];
     }else{

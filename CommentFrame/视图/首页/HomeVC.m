@@ -21,7 +21,7 @@
 #import "SearchProductVC.h"
 #import "CatalugeListVC.h"
 #import "ProductDetailVC.h"
-#import "LosePromiseDetailVC.h"
+#import "NewsDetailVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -118,12 +118,17 @@
         weakObj;
     
     InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
-        
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
-        NSString *str =@"weixin://qr/JnXv90fE6hqVrQOU9yA0";
-        
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]]; 
+         NSURL *url = [NSURL URLWithString:@"weixin://qr/JnXv90fE6hqVrQOU9yA0"] ;
+        if (![[UIApplication sharedApplication] canOpenURL:url]){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            });
+           return YES;
+        }
+        [[UIApplication sharedApplication] openURL:url];
         return YES;
     } PhClickBlock:^BOOL{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18783999629"]];
@@ -316,7 +321,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 3) {
         LosePromissAndNewsModel * model =  _arrNewsModel[indexPath.row];
-        LosePromiseDetailVC *VC  =[[LosePromiseDetailVC alloc]initWithTitle:model.title];
+        NewsDetailVC *VC  =[[NewsDetailVC alloc]init];
         VC.model = model;
         [self.navigationController pushViewController:VC animated:YES];
     }

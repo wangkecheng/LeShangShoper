@@ -124,15 +124,15 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
-    CGFloat H = 5;
-    [view setFrame:CGRectMake(0, 0, SCREENWIDTH, H)];
+    CGFloat H = 1;
+    [view setFrame:CGRectMake(10, 0, SCREENWIDTH, H)];
     view.backgroundColor = [UIColor clearColor];
     return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	
-    return 5;
+    return 1;
 }
 
 - (IBAction)sendComment:(UIButton *)sender {

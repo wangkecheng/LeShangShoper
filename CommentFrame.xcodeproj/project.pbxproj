@@ -12,6 +12,8 @@
 		180D74C8201722B400B56E5F /* CatalugeSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D74C7201722B400B56E5F /* CatalugeSheetView.xib */; };
 		180D74CC201734F100B56E5F /* CatalugeSheetViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74CA201734F100B56E5F /* CatalugeSheetViewCell.m */; };
 		180D74CD201734F100B56E5F /* CatalugeSheetViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D74CB201734F100B56E5F /* CatalugeSheetViewCell.xib */; };
+		181D9B69201AEDDD000108A7 /* NewsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 181D9B67201AEDDD000108A7 /* NewsDetailVC.m */; };
+		181D9B6A201AEDDD000108A7 /* NewsDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181D9B68201AEDDD000108A7 /* NewsDetailVC.xib */; };
 		1840EEAE20118B5400A341F7 /* icon_touxiang2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1840EEAC20118B5300A341F7 /* icon_touxiang2@2x.png */; };
 		1840EEAF20118B5400A341F7 /* icon_touxiang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1840EEAD20118B5400A341F7 /* icon_touxiang@3x.png */; };
 		1840EEB32011BF6400A341F7 /* InteligentServiceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840EEB22011BF6400A341F7 /* InteligentServiceAlertView.m */; };
@@ -448,6 +450,9 @@
 		180D74C9201734F100B56E5F /* CatalugeSheetViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalugeSheetViewCell.h; sourceTree = "<group>"; };
 		180D74CA201734F100B56E5F /* CatalugeSheetViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CatalugeSheetViewCell.m; sourceTree = "<group>"; };
 		180D74CB201734F100B56E5F /* CatalugeSheetViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalugeSheetViewCell.xib; sourceTree = "<group>"; };
+		181D9B66201AEDDD000108A7 /* NewsDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailVC.h; sourceTree = "<group>"; };
+		181D9B67201AEDDD000108A7 /* NewsDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailVC.m; sourceTree = "<group>"; };
+		181D9B68201AEDDD000108A7 /* NewsDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsDetailVC.xib; sourceTree = "<group>"; };
 		1840EEAC20118B5300A341F7 /* icon_touxiang2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang2@2x.png"; sourceTree = "<group>"; };
 		1840EEAD20118B5400A341F7 /* icon_touxiang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_touxiang@3x.png"; sourceTree = "<group>"; };
 		1840EEB020119F5500A341F7 /* CommentFrame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CommentFrame.entitlements; sourceTree = "<group>"; };
@@ -1088,6 +1093,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181D9B65201AEDC4000108A7 /* 新闻详情 */ = {
+			isa = PBXGroup;
+			children = (
+				181D9B66201AEDDD000108A7 /* NewsDetailVC.h */,
+				181D9B67201AEDDD000108A7 /* NewsDetailVC.m */,
+				181D9B68201AEDDD000108A7 /* NewsDetailVC.xib */,
+			);
+			path = "新闻详情";
+			sourceTree = "<group>";
+		};
 		1840EEB9201207EC00A341F7 /* 评论互动 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1641,6 +1656,7 @@
 				200D7F9C1FF7476000B97979 /* HomeVC.h */,
 				200D7F9D1FF7476000B97979 /* HomeVC.m */,
 				200D7F9E1FF7476000B97979 /* HomeVC.xib */,
+				181D9B65201AEDC4000108A7 /* 新闻详情 */,
 				200D7F8E1FF7473A00B97979 /* model */,
 				200D7F8F1FF7473A00B97979 /* view */,
 			);
@@ -1745,10 +1761,11 @@
 				200D7FAB1FF747C200B97979 /* InteractionVC.h */,
 				200D7FAC1FF747C200B97979 /* InteractionVC.m */,
 				200D7FAD1FF747C200B97979 /* InteractionVC.xib */,
+				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
+				200D7F981FF7473A00B97979 /* view */,
+				200D7F971FF7473A00B97979 /* model */,
 				1840EEB9201207EC00A341F7 /* 评论互动 */,
 				200C800E1FFFC8B600C6A2AA /* 添加互动 */,
-				200D7F971FF7473A00B97979 /* model */,
-				200D7F981FF7473A00B97979 /* view */,
 			);
 			path = "互动";
 			sourceTree = "<group>";
@@ -2013,10 +2030,9 @@
 		2064C52E1FFB53840073C2EC /* 上下滚动cell */ = {
 			isa = PBXGroup;
 			children = (
-				2064C5371FFB56D10073C2EC /* AdvertCell.h */,
-				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
-				2064C5391FFB56D10073C2EC /* AdvertCell.xib */,
 				206865492009EA59008C50A2 /* AdvertItemView.h */,
+				2064C5391FFB56D10073C2EC /* AdvertCell.xib */,
+				2064C5371FFB56D10073C2EC /* AdvertCell.h */,
 				2068654A2009EA59008C50A2 /* AdvertItemView.m */,
 				206865472009E9BE008C50A2 /* AdvertItemView.xib */,
 			);
@@ -2864,6 +2880,7 @@
 				18B5430C2011839500A40C4E /* ic_my_gender@3x.png in Resources */,
 				18B542DC2011839500A40C4E /* btn_foot_discount_p@3x.png in Resources */,
 				206FA0362000F26100DB7998 /* HWCollectionViewCell.xib in Resources */,
+				181D9B6A201AEDDD000108A7 /* NewsDetailVC.xib in Resources */,
 				18B543302011839500A40C4E /* bg_store_ad@3x.png in Resources */,
 				18B542D72011839500A40C4E /* bg_pop_service@2x.png in Resources */,
 				186E6E552019DFF900D40E95 /* image3.jpg in Resources */,
@@ -3202,6 +3219,7 @@
 				200D7F7B1FF7439900B97979 /* UserInfoModel.m in Sources */,
 				20A5D9151FB9908300534868 /* YBPopupMenu.m in Sources */,
 				20A5D8B81FB98F1300534868 /* NSDate+Extension.m in Sources */,
+				181D9B69201AEDDD000108A7 /* NewsDetailVC.m in Sources */,
 				20A5D9171FB9908300534868 /* UIView+Toast.m in Sources */,
 				200D7F811FF743E100B97979 /* LoginVC.m in Sources */,
 				20BFA2E8201A12CC00F9DD53 /* FLAnimatedImageView.m in Sources */,
@@ -3529,7 +3547,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeShangShoppingMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -3565,7 +3583,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeShangShoppingMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

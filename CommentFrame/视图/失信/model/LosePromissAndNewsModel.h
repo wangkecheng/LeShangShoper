@@ -18,5 +18,6 @@
 @property(nonatomic,strong)NSString * logoUrl;//logo地址
 @property(nonatomic,strong)NSString * number;
 @property(nonatomic,strong)NSString * giveNumber;
+@property(nonatomic,strong)NSString * browseNumber;
+@property(nonatomic,strong)NSString * headUrl;
 @end
- 

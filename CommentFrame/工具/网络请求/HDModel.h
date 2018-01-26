@@ -34,4 +34,5 @@
 @property (nonatomic,strong)NSString *sort;//排序方式 1，正序，2，逆序
 @property (nonatomic,strong)NSString *brand;
 @property (nonatomic,strong)NSString *sortKey;
+@property (nonatomic,strong)NSString *did;
 @end
