@@ -65,29 +65,30 @@
 	[_topView addGestureRecognizer:tap];
 	weakObj;
 	self.didLeftSildeAction = ^{
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
 		UserInfoModel * model  = [CacheTool getUserModel];
 		 if (model.isMember == 1) {//如果存在
-             [weakSelf.switchSex setOn:NO];
+             [strongSelf.switchSex setOn:NO];
              if ([model.sex integerValue] == 2) {
-                  [weakSelf.switchSex setOn:YES];
+                  [strongSelf.switchSex setOn:YES];
              }
               UIImage *image = [UIImage imageWithData:model.headImgData];
              if (image) { 
-				[weakSelf.headerBtn  setImage:image forState:0];
+				[strongSelf.headerBtn  setImage:image forState:0];
              }else{
-               [weakSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+               [strongSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
              }
-			weakSelf.dianJiLoginLbl.alpha = 0;
-			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 1;
-			weakSelf.userNameLbl.text =weakSelf.nameLbl.text = model.name;
-            weakSelf.phoneLbl.text = model.mobile;
-			weakSelf.addressLbl.text = model.addr;
-			weakSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
-			weakSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分",model.integral];
+			strongSelf.dianJiLoginLbl.alpha = 0;
+			strongSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 1;
+			strongSelf.userNameLbl.text = weakSelf.nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
+            strongSelf.phoneLbl.text =  [DDFactory getString:model.mobile  withDefault:@"暂无"];
+			strongSelf.addressLbl.text =    [DDFactory getString:model.addr  withDefault:@"暂无"];
+			strongSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@", [DDFactory getString:model.lv  withDefault:@"0"]];
+			strongSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分", [DDFactory getString:model.integral  withDefault:@"0"]];
 			
 		}else{
-			weakSelf.dianJiLoginLbl.alpha = 1;
-			weakSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;
+			strongSelf.dianJiLoginLbl.alpha = 1;
+			strongSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;
 		}
 	};
 	
@@ -164,7 +165,6 @@
     [CacheTool writeToDB:model]; 
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
-	[[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 }
 
 - (IBAction)resetUserName:(id)sender {
@@ -180,7 +180,7 @@
 		 [strongSelf.alertControl ds_dismissAlertView];
          [strongSelf unregisteKeyboardNotification];
 		UserInfoModel * model = [CacheTool getUserModel];
-		model.name = strongSelf.userNameLbl.text = str;
+		model.name = strongSelf.userNameLbl.text = strongSelf.nameLbl.text = str;
 		[CacheTool writeToDB:model];
 		[strongSelf resetUserInfo:nil];
 		return YES;
@@ -242,6 +242,7 @@
 
 
 -(void)resetUserInfo:(UIImage *)image{
+	[[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
     NSArray *imgsArr = nil;
     if (image) {//当 图片数据有的时候才传入
         imgsArr = @[image];

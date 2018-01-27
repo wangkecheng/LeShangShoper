@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = _brandsModel.name;
+    
 	_collectionView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	_collectionView.delegate = self;
 	_collectionView.showsHorizontalScrollIndicator = YES;
@@ -34,7 +34,7 @@
 	[_collectionView registerNib:[UINib nibWithNibName:ProductDetailListCell_ bundle:nil]forCellWithReuseIdentifier:ProductDetailListCell_];
 	
 	[_flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-	_flowlayout.sectionInset = UIEdgeInsetsMake(5, 0, 0, 0);
+	_flowlayout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);
 	_flowlayout.minimumInteritemSpacing = 5;//同一行
 	_flowlayout.minimumLineSpacing = 5;//同一列
 	
@@ -107,8 +107,33 @@
 	weakObj;
 	ProductDetailListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ProductDetailListCell_ forIndexPath:indexPath];
     [cell setModel: _arrModel[indexPath.row]];
-	cell.collectionBlock = ^(CollectionModel *model) {
-		
+	cell.collectionBlock = ^BOOL(CollectionModel *model) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		HDModel *m = [HDModel model];
+		m.cid = model.cid;
+		weakObj;
+		if ([model.collect integerValue] == 1) {
+			    model.collect = @"2";
+			[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					
+				});
+			} failed:^(NSError *error) {
+				
+			}];
+			
+		}else{//取消收藏
+			model.collect = @"1";
+			[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					
+				});
+			} failed:^(NSError *error) {
+				
+			}];
+		}
+		[strongSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[strongSelf.arrModel indexOfObject:model] inSection:0]]];
+		return YES;
 	};
 	return  cell;
 }

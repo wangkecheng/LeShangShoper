@@ -94,7 +94,7 @@
         _sort = @"1"; //1，非热门，2，热门，默认全部
         [_hotImg setImage:IMG(@"ico_paihangAssent")];
     }else{
-        _sort = @"2";
+        _sort = @"-1";
         [_hotImg setImage:IMG(@"ico_paihangDescending")];
     }
        [self getPage];

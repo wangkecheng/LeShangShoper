@@ -1761,7 +1761,6 @@
 				200D7FAB1FF747C200B97979 /* InteractionVC.h */,
 				200D7FAC1FF747C200B97979 /* InteractionVC.m */,
 				200D7FAD1FF747C200B97979 /* InteractionVC.xib */,
-				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
 				200D7F981FF7473A00B97979 /* view */,
 				200D7F971FF7473A00B97979 /* model */,
 				1840EEB9201207EC00A341F7 /* 评论互动 */,
@@ -2030,9 +2029,10 @@
 		2064C52E1FFB53840073C2EC /* 上下滚动cell */ = {
 			isa = PBXGroup;
 			children = (
-				206865492009EA59008C50A2 /* AdvertItemView.h */,
 				2064C5391FFB56D10073C2EC /* AdvertCell.xib */,
 				2064C5371FFB56D10073C2EC /* AdvertCell.h */,
+				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
+				206865492009EA59008C50A2 /* AdvertItemView.h */,
 				2068654A2009EA59008C50A2 /* AdvertItemView.m */,
 				206865472009E9BE008C50A2 /* AdvertItemView.xib */,
 			);

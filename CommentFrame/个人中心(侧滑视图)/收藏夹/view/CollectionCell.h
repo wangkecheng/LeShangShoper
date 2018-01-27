@@ -11,5 +11,5 @@
 @interface CollectionCell : UITableViewCell
 @property(nonatomic,strong)CollectionModel *model;
 @property(nonatomic,strong)CollectionModel *specialModel;
-@property(nonatomic,copy)void(^collectBlock)(CollectionModel * model);
+@property(nonatomic,copy)BOOL(^collectBlock)(CollectionModel * model);
 @end

@@ -37,7 +37,7 @@
             [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
         }
 		
-		[btn setTitle:model.name forState:0];
+		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0];
 		 btn.titleLabel.textAlignment = 1;
          btn.titleLabel.font = [UIFont systemFontOfSize:14];
 		[btn setTitleColor:[UIColor blackColor] forState:0];

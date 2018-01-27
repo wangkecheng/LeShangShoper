@@ -105,6 +105,7 @@
     if (model.brandsArr.count == 0) {//没有数据的时候 就直接弹出
         ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
         VC.mid = self.model.mid;
+		VC.title = model.name;
         [self.navigationController pushViewController:VC animated:YES];
         return;
     }
@@ -120,6 +121,7 @@
             ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
             VC.brandsModel = model;
             VC.mid = strongSelf.model.mid;
+			VC.title = model.name;
             [strongSelf.navigationController pushViewController:VC animated:YES];
         }];
     }

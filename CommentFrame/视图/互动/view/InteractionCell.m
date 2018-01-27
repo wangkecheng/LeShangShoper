@@ -54,8 +54,8 @@ UICollectionViewDelegateFlowLayout>
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
 	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-	_nameLbl.text = model.name;
-	_titLbl.text = model.content;
+	_nameLbl.text = [DDFactory getString:model.name  withDefault:@"未知用户"];
+	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
 	
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
@@ -63,8 +63,8 @@ UICollectionViewDelegateFlowLayout>
 	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
 	
 	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
-	[_commentBtn setTitle:[NSString stringWithFormat:@" %@",model.commentNumber] forState:0];
-	[_pardiseBtn setTitle:[NSString stringWithFormat:@" %@",model.giveNumber] forState:0]; 
+	[_commentBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.commentNumber  withDefault:@"0"]] forState:0];
+	[_pardiseBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.giveNumber  withDefault:@"0"]] forState:0];
 //    CGFloat w = CGRectGetWidth(self.contentView.frame) - 10;//默认一张的时候
 //    CGFloat h = w;//一张的时候
 //	if (imgStrArr.count == 2) {

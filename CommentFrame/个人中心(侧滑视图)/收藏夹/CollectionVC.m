@@ -93,6 +93,22 @@
 	
 	CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionCell_ forIndexPath:indexPath];
 	[cell setModel:_arrModel[indexPath.row]];
+	weakObj;
+	cell.collectBlock = ^BOOL(CollectionModel *model) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		[strongSelf.arrModel removeObject:model];
+		HDModel * m = [HDModel model];
+		m.cid = model.cid;
+		[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+			__strong typeof (weakSelf) strongSelf  = weakSelf;
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[strongSelf.tableView reloadData];//取消收藏
+			});
+		} failed:^(NSError *error) {
+			
+		}];
+		return YES;
+	};
 	[cell setSelectionStyle:0];//不要分割线
 	return cell;
 }
@@ -105,7 +121,27 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
-    CollectionModel * model = _arrModel[indexPath.row];
+	weakObj;
+	VC.collectActionBlock = ^(CollectionModel *model, BOOL isCollect) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			
+		if (isCollect) {//此时就是重新下载数据了
+			
+			[strongSelf getPage];
+		}else{
+			for (int i = 0; i<strongSelf.arrModel.count; i++) {
+				CollectionModel *modelT =	strongSelf.arrModel[i];
+				if ([model.cid isEqualToString:modelT.cid]) {
+					[strongSelf.arrModel removeObject:modelT];
+					[strongSelf.tableView reloadData];
+					break;
+				}
+			}
+		}
+	 });
+	};
+    CollectionModel * model = [_arrModel[indexPath.row] mutableCopy];//这里拷贝一下
     VC.model  = model;
     [self.navigationController pushViewController:VC animated:YES];
 }

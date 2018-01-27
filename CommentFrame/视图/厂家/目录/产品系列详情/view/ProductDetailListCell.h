@@ -10,6 +10,6 @@
 #import "CollectionModel.h"
 @interface ProductDetailListCell : UICollectionViewCell
 
-@property (nonatomic,copy)void(^collectionBlock)(CollectionModel * model);
+@property (nonatomic,copy)BOOL(^collectionBlock)(CollectionModel * model);
 @property(nonatomic,strong)CollectionModel * model;
 @end
