@@ -38,7 +38,7 @@
 	HDModel * m = [HDModel model];
 	m.did = _model.did;
 	weakObj;
-	[BaseServer postObjc:m path:@"/dishonesty/info" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+	[BaseServer postObjc:m path:@"/dishonesty/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		LosePromissAndNewsModel * model  = [LosePromissAndNewsModel yy_modelWithJSON:result[@"data"]];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			__strong typeof (weakSelf) strongSelf  = weakSelf;

@@ -141,8 +141,8 @@
 		}
 	 });
 	};
-    CollectionModel * model = [_arrModel[indexPath.row] mutableCopy];//这里拷贝一下
-    VC.model  = model;
+    CollectionModel * model  = _arrModel[indexPath.row] ;
+    VC.model  =  [CollectionModel yy_modelWithJSON:[model yy_modelToJSONData]];//这里创建个新的
     [self.navigationController pushViewController:VC animated:YES];
 }
 
