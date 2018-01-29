@@ -30,11 +30,11 @@
 	_model = model;
 	_collectionBtn.alpha = _specialImg.alpha = 0;
 	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates] ;
-	_titleLbl.text  = model.name;
+	 _titleLbl.text  = [DDFactory getString: model.name  withDefault:@"未知"];
 	_priceLbl.text = [NSString stringWithFormat:@"￥ %@",model.price];
-	_specificationLbl.text = model.spec;
-		_usePlaceLbl.text = model.typeName;
-	_factoryLbl.text = model.merchantName;
+	_specificationLbl.text =  [DDFactory getString:model.spec  withDefault:@"0 * 0"];
+	_usePlaceLbl.text =  [DDFactory getString:model.typeName  withDefault:@"未知"];
+	_factoryLbl.text = [DDFactory getString:model.merchantName  withDefault:@"未知"];
 }
 -(void)setSpecialModel:(CollectionModel *)model{
     _collectionBtn.alpha = _specialImg.alpha = 1;
@@ -44,16 +44,19 @@
     }
   
     [_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-    _titleLbl.text  = model.name;
-    _priceLbl.text = model.price;
-    _specificationLbl.text = model.spec;
-	_usePlaceLbl.text = model.typeName;
-    _factoryLbl.text = model.merchantName;
+    _titleLbl.text  = [DDFactory getString: model.name  withDefault:@"未知"];
+    _priceLbl.text =   [NSString stringWithFormat:@"￥ %@",[DDFactory getString:model.price  withDefault:@"0"]];;
+    _specificationLbl.text =  [DDFactory getString:model.spec  withDefault:@"0 * 0"];
+	_usePlaceLbl.text =  [DDFactory getString:model.typeName  withDefault:@"未知"];
+    _factoryLbl.text = [DDFactory getString:model.merchantName  withDefault:@"未知"];
 }
 
-- (IBAction)collectionAction:(id)sender {
+- (IBAction)collectionAction:(UIButton *)sender {
+	sender.userInteractionEnabled = NO;
 	if (_collectBlock) {
-		_collectBlock(_model);
+		if (_collectBlock(_model)) {
+			sender.userInteractionEnabled = YES;
+		}
 	}
 }
 

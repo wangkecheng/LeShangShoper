@@ -28,7 +28,7 @@
 
 -(void)setModel:(CollectionModel *)model{
 	_model = model;
-    
+	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     [_collectionBtn setImage:IMG(@"ic_collection_n") forState:0];
     if ([model.collect integerValue] == 2) {////1,未收藏，2，已收藏
        [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];
@@ -36,16 +36,19 @@
     _reminderImg.alpha = 0;
     if ([model.bargain integerValue] == 2) {//1,非特价，2，特价
           _reminderImg.alpha = 1;
-    }
-    _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",model.cid];
-    _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",model.spec];
-    _priceLbl.text = [NSString stringWithFormat:@"￥%@",model.price];
-    [_focusBtn setTitle:[NSString stringWithFormat:@" %@",model.broseNumber] forState:0];
+	}
+    _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",  [DDFactory getString:model.cid withDefault:@"未知"]];
+    _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",[DDFactory getString:model.spec  withDefault:@"0 * 0"]];
+	_priceLbl.text = [NSString stringWithFormat:@"￥%@", [DDFactory getString:model.price withDefault:@"0"]];
+    [_focusBtn setTitle:[NSString stringWithFormat:@" %@", [DDFactory getString:model.broseNumber withDefault:@"0"]] forState:0];
 }
 
-- (IBAction)collectionAction:(id)sender {
+- (IBAction)collectionAction:(UIButton *)sender {
+	sender.userInteractionEnabled = NO;
 	if (_collectionBlock) {
-		_collectionBlock(_model);
+		if (_collectionBlock(_model)) {
+			sender.userInteractionEnabled = YES;
+		}
 	}
 }
 @end

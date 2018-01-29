@@ -58,7 +58,6 @@
 		186E6E592019DFF900D40E95 /* video0.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 186E6E4E2019DFF800D40E95 /* video0.mp4 */; };
 		186E6E5A2019DFF900D40E95 /* video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 186E6E4F2019DFF800D40E95 /* video1.mp4 */; };
 		186E6E5D2019E03100D40E95 /* XHLaunchAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E5B2019E03000D40E95 /* XHLaunchAdManager.m */; };
-		186E6E602019E05100D40E95 /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E5E2019E05000D40E95 /* Network.m */; };
 		186E6E632019E05F00D40E95 /* LaunchAdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E622019E05F00D40E95 /* LaunchAdModel.m */; };
 		186E6E662019E07B00D40E95 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E6E642019E07A00D40E95 /* WebViewController.m */; };
 		1898B85520196CFC005E679F /* WSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B85320196CFC005E679F /* WSAlertView.m */; };
@@ -272,12 +271,12 @@
 		2031F6B91EA99BA30075E7F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6B81EA99BA30075E7F3 /* AppDelegate.m */; };
 		2031F6BF1EA99BA30075E7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6BD1EA99BA30075E7F3 /* Main.storyboard */; };
 		2031F6C11EA99BA30075E7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6C01EA99BA30075E7F3 /* Assets.xcassets */; };
-		2031F6C41EA99BA30075E7F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */; };
 		2031F6CF1EA99BA30075E7F3 /* CommentFrameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6CE1EA99BA30075E7F3 /* CommentFrameTests.m */; };
 		2031F6DA1EA99BA30075E7F3 /* CommentFrameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6D91EA99BA30075E7F3 /* CommentFrameUITests.m */; };
 		2031F6EF1EA9A3720075E7F3 /* DDFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031F6EE1EA9A3720075E7F3 /* DDFactory.m */; };
 		203F992D2016401900AE85CA /* IQButtonBarArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */; };
 		203F992E2016401900AE85CA /* IQButtonBarArrowLeft@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */; };
+		20487073201B597C004064CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20487072201B597C004064CC /* LaunchScreen.storyboard */; };
 		2064C5351FFB53B90073C2EC /* SellerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5331FFB53B90073C2EC /* SellerCell.m */; };
 		2064C5361FFB53B90073C2EC /* SellerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2064C5341FFB53B90073C2EC /* SellerCell.xib */; };
 		2064C53A1FFB56D10073C2EC /* AdvertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2064C5381FFB56D10073C2EC /* AdvertCell.m */; };
@@ -417,6 +416,7 @@
 		20BFA2E8201A12CC00F9DD53 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BFA2E4201A12CC00F9DD53 /* FLAnimatedImageView.m */; };
 		20DDE1761EA9ABB800E4CC04 /* AYCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE1751EA9ABB800E4CC04 /* AYCheckManager.m */; };
 		20DDE2CD1EA9B2F100E4CC04 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */; };
+		20DF67DB201C617F00E0AD01 /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DF67D9201C617E00E0AD01 /* Network.m */; };
 		9474A308D61E15583E4D8E73 /* libPods-CommentFrameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E54E55B851F1B1848FA0706 /* libPods-CommentFrameTests.a */; };
 		C920D8228BA903171BD6736E /* libPods-CommentFrameUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8C1B68C6229497B75C54CC /* libPods-CommentFrameUITests.a */; };
 		CE1B274344DCA769BAAAFBF3 /* libPods-CommentFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEA401560F2461A1BDC6C0D /* libPods-CommentFrame.a */; };
@@ -527,8 +527,6 @@
 		186E6E4F2019DFF800D40E95 /* video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video1.mp4; sourceTree = "<group>"; };
 		186E6E5B2019E03000D40E95 /* XHLaunchAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLaunchAdManager.m; sourceTree = "<group>"; };
 		186E6E5C2019E03000D40E95 /* XHLaunchAdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLaunchAdManager.h; sourceTree = "<group>"; };
-		186E6E5E2019E05000D40E95 /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
-		186E6E5F2019E05100D40E95 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		186E6E612019E05F00D40E95 /* LaunchAdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAdModel.h; sourceTree = "<group>"; };
 		186E6E622019E05F00D40E95 /* LaunchAdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAdModel.m; sourceTree = "<group>"; };
 		186E6E642019E07A00D40E95 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
@@ -794,7 +792,6 @@
 		2031F6B81EA99BA30075E7F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2031F6BE1EA99BA30075E7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2031F6C01EA99BA30075E7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2031F6C31EA99BA30075E7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2031F6C51EA99BA30075E7F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2031F6CA1EA99BA30075E7F3 /* CommentFrameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommentFrameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2031F6CE1EA99BA30075E7F3 /* CommentFrameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentFrameTests.m; sourceTree = "<group>"; };
@@ -807,6 +804,7 @@
 		2031F6EE1EA9A3720075E7F3 /* DDFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFactory.m; sourceTree = "<group>"; };
 		203F992B2016401800AE85CA /* IQButtonBarArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@2x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@2x.png"; sourceTree = SOURCE_ROOT; };
 		203F992C2016401800AE85CA /* IQButtonBarArrowLeft@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IQButtonBarArrowLeft@3x.png"; path = "Pods/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle/IQButtonBarArrowLeft@3x.png"; sourceTree = SOURCE_ROOT; };
+		20487072201B597C004064CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2064C5321FFB53B90073C2EC /* SellerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SellerCell.h; sourceTree = "<group>"; };
 		2064C5331FFB53B90073C2EC /* SellerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SellerCell.m; sourceTree = "<group>"; };
 		2064C5341FFB53B90073C2EC /* SellerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellerCell.xib; sourceTree = "<group>"; };
@@ -1036,6 +1034,8 @@
 		20DDE1741EA9ABB800E4CC04 /* AYCheckManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYCheckManager.h; sourceTree = "<group>"; };
 		20DDE1751EA9ABB800E4CC04 /* AYCheckManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYCheckManager.m; sourceTree = "<group>"; };
 		20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		20DF67D9201C617E00E0AD01 /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
+		20DF67DA201C617F00E0AD01 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		2937D8E43B86C1A42AECE963 /* Pods-CommentFrameUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameUITests/Pods-CommentFrameUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2E54E55B851F1B1848FA0706 /* libPods-CommentFrameTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommentFrameTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8C1B68C6229497B75C54CC /* libPods-CommentFrameUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommentFrameUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1609,8 +1609,8 @@
 				186E6E5B2019E03000D40E95 /* XHLaunchAdManager.m */,
 				186E6E652019E07A00D40E95 /* WebViewController.h */,
 				186E6E642019E07A00D40E95 /* WebViewController.m */,
-				186E6E5F2019E05100D40E95 /* Network.h */,
-				186E6E5E2019E05000D40E95 /* Network.m */,
+				20DF67DA201C617F00E0AD01 /* Network.h */,
+				20DF67D9201C617E00E0AD01 /* Network.m */,
 			);
 			path = "启动页广告";
 			sourceTree = "<group>";
@@ -1761,7 +1761,6 @@
 				200D7FAB1FF747C200B97979 /* InteractionVC.h */,
 				200D7FAC1FF747C200B97979 /* InteractionVC.m */,
 				200D7FAD1FF747C200B97979 /* InteractionVC.xib */,
-				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
 				200D7F981FF7473A00B97979 /* view */,
 				200D7F971FF7473A00B97979 /* model */,
 				1840EEB9201207EC00A341F7 /* 评论互动 */,
@@ -1904,7 +1903,7 @@
 			isa = PBXGroup;
 			children = (
 				2031F6BD1EA99BA30075E7F3 /* Main.storyboard */,
-				2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */,
+				20487072201B597C004064CC /* LaunchScreen.storyboard */,
 				2031F6C51EA99BA30075E7F3 /* Info.plist */,
 				2031F6C01EA99BA30075E7F3 /* Assets.xcassets */,
 				2031F6B51EA99BA30075E7F3 /* main.m */,
@@ -2030,9 +2029,10 @@
 		2064C52E1FFB53840073C2EC /* 上下滚动cell */ = {
 			isa = PBXGroup;
 			children = (
-				206865492009EA59008C50A2 /* AdvertItemView.h */,
 				2064C5391FFB56D10073C2EC /* AdvertCell.xib */,
 				2064C5371FFB56D10073C2EC /* AdvertCell.h */,
+				2064C5381FFB56D10073C2EC /* AdvertCell.m */,
+				206865492009EA59008C50A2 /* AdvertItemView.h */,
 				2068654A2009EA59008C50A2 /* AdvertItemView.m */,
 				206865472009E9BE008C50A2 /* AdvertItemView.xib */,
 			);
@@ -2751,6 +2751,9 @@
 						DevelopmentTeam = 6BGTAD57K8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -2804,7 +2807,6 @@
 				18B543122011839500A40C4E /* ic_my_set@3x.png in Resources */,
 				18B542D32011839500A40C4E /* bg_login@2x.png in Resources */,
 				207418C620051E4F007C4F36 /* SearchManufacturersCell.xib in Resources */,
-				2031F6C41EA99BA30075E7F3 /* LaunchScreen.storyboard in Resources */,
 				2031F6C11EA99BA30075E7F3 /* Assets.xcassets in Resources */,
 				18B542DE2011839500A40C4E /* btn_foot_factory_n@3x.png in Resources */,
 				2064C5451FFB592B0073C2EC /* NewsHeaderView.xib in Resources */,
@@ -2976,6 +2978,7 @@
 				200D7F871FF7442C00B97979 /* RegisterVC.xib in Resources */,
 				18B543182011839500A40C4E /* ic_service@3x.png in Resources */,
 				1840EEB52011BF7400A341F7 /* InteligentServiceAlertView.xib in Resources */,
+				20487073201B597C004064CC /* LaunchScreen.storyboard in Resources */,
 				20787AA82000AB3B00183749 /* IQButtonBarArrowRight@2x.png in Resources */,
 				18B543442011839500A40C4E /* ic_top_add@3x.png in Resources */,
 				18B5430F2011839500A40C4E /* ic_my_phone@2x.png in Resources */,
@@ -3247,6 +3250,7 @@
 				186E6E3C2019DF9700D40E95 /* XHLaunchImageView.m in Sources */,
 				206FA03F2000F61100DB7998 /* PHTextView.m in Sources */,
 				186E6E5D2019E03100D40E95 /* XHLaunchAdManager.m in Sources */,
+				20DF67DB201C617F00E0AD01 /* Network.m in Sources */,
 				186E6E382019DF9700D40E95 /* XHLaunchAdImageView+XHLaunchAdCache.m in Sources */,
 				200D7E901FF740DA00B97979 /* PersonalCenterVC.m in Sources */,
 				2090C63B200DF46C00CC07F9 /* UIButton+EnlargeEdge.m in Sources */,
@@ -3300,7 +3304,6 @@
 				2064C53F1FFB56E00073C2EC /* NewsCell.m in Sources */,
 				20A5D8F71FB9901A00534868 /* NSObject+GYDB.m in Sources */,
 				207418BE20050885007C4F36 /* CollectionCell.m in Sources */,
-				186E6E602019E05100D40E95 /* Network.m in Sources */,
 				200C80051FFFC4F000C6A2AA /* LosePromissAndNewsModel.m in Sources */,
 				200D7EDD1FF742CC00B97979 /* WSPHPhotoLibrary.m in Sources */,
 				200C80261FFFD2AA00C6A2AA /* EaseChineseToPinyin.m in Sources */,
@@ -3402,14 +3405,6 @@
 				2031F6BE1EA99BA30075E7F3 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2031F6C21EA99BA30075E7F3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2031F6C31EA99BA30075E7F3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

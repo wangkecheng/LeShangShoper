@@ -33,7 +33,7 @@
     _searchBar.layer.cornerRadius = 5;
     _searchBar.layer.masksToBounds = YES;
     [_searchBar becomeFirstResponder];
-    
+	self.navigationItem.leftBarButtonItem.customView = nil;
     [DDFactory removeSearhBarBack:_searchBar];
     UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
     searchField.textColor = [UIColor blackColor];

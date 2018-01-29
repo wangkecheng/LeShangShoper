@@ -47,7 +47,7 @@
 -(void)showWithSeriesModel:(SeriesModel *)model{
    
     _seriesModel = model;
-    _titleLbl.text = model.name;
+    _titleLbl.text = [DDFactory getString:model.name  withDefault:@"未知系列"];
     weakObj;
     [[UIApplication sharedApplication].keyWindow addSubview:self];
     [UIView animateWithDuration:0.3 animations:^{

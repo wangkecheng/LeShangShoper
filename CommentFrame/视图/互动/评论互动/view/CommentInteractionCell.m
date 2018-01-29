@@ -24,13 +24,13 @@
 -(void)setModel:(CommentInteractionModel *)model{
     _model = model;
     [_headBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-    _nameLbl.text = model.name;
+    _nameLbl.text = [DDFactory getString:model.name  withDefault:@"未知用户"];
   
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; 
     _timeLbl.text = [formatter stringFromDate:confromTimesp];
-    _contentLbl.text = model.content;
+    _contentLbl.text = [DDFactory getString: model.content withDefault:@""];
 }
 
 - (IBAction)headerBtnAction:(id)sender {

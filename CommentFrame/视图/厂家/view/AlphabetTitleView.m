@@ -22,7 +22,7 @@
 }
 -(void)setModel:(AlphabetTitleModel *)model{
 	_model = model;
-	_titleLbl.text = model.name;
+	_titleLbl.text = [DDFactory getString:model.name  withDefault:@"#"];
 	[_pointImg setImage:IMG(@"IQButtonBarArrowDown") forState:0];
 	if (model.isFolded) {
 	[_pointImg setImage:IMG(@"IQButtonBarArrowUp") forState:0];

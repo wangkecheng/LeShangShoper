@@ -17,7 +17,7 @@
 
 -(void)setModel:(LosePromissAndNewsModel *)model{
 	_model = model;
-	_titLbl.text = model.title; 
+	_titLbl.text = [DDFactory getString:model.title  withDefault:@""]; 
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];

@@ -22,8 +22,8 @@
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;
 	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-	_titleLbl.text = model.name;
-	_locationLbl.text  = model.addr;
+	_titleLbl.text = [DDFactory getString:model.name  withDefault:@"未知"];
+	_locationLbl.text  = [DDFactory getString:model.addr  withDefault:@"未知地点"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

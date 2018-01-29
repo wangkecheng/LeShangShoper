@@ -8,11 +8,10 @@
 //  开屏广告初始化
 
 #import "XHLaunchAdManager.h"
-#import "XHLaunchAd.h"
-#import "Network.h"
+#import "XHLaunchAd.h" 
 #import "LaunchAdModel.h"
 #import "WebViewController.h"
-
+#import "Network.h"
 /** 以下连接供测试使用 */
 
 /** 静态图 */
@@ -100,49 +99,53 @@
     //3.数据获取成功,配置广告数据后,自动结束等待,显示广告
     //注意:请求广告数据前,必须设置此属性,否则会先进入window的的根控制器
     [XHLaunchAd setWaitDataDuration:3];
-    
-    //广告数据请求
-    [Network getLaunchAdImageDataSuccess:^(NSDictionary * response) {
-        NSLog(@"广告数据 = %@",response);
-        //广告数据转模型
-        LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:response[@"data"]];
-        //配置广告数据
-        XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
-        //广告停留时间
-        imageAdconfiguration.duration = model.duration;
-        //广告frame
-        imageAdconfiguration.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.8);
-        //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-        imageAdconfiguration.imageNameOrURLString = model.content;
-        //设置GIF动图是否只循环播放一次(仅对动图设置有效)
-        imageAdconfiguration.GIFImageCycleOnce = NO;
-        //缓存机制(仅对网络图片有效)
-        //为告展示效果更好,可设置为XHLaunchAdImageCacheInBackground,先缓存,下次显示
-        imageAdconfiguration.imageOption = XHLaunchAdImageDefault;
-        //图片填充模式
-        imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
-        //广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
-        imageAdconfiguration.openModel = model.openUrl;
-        //广告显示完成动画
-        imageAdconfiguration.showFinishAnimate =ShowFinishAnimateLite;
-        //广告显示完成动画时间
-        imageAdconfiguration.showFinishAnimateTime = 0.8;
-        //跳过按钮类型
-        imageAdconfiguration.skipButtonType = SkipTypeTimeText;
-        //后台返回时,是否显示广告
-        imageAdconfiguration.showEnterForeground = NO;
-        
-        //图片已缓存 - 显示一个 "已预载" 视图 (可选)
-        if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
-            //设置要添加的自定义视图(可选)
-            imageAdconfiguration.subViews = [self launchAdSubViews_alreadyView];
-            
-        }
-        //显示开屏广告
-        [XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:self];
-        
-    } failure:^(NSError *error) {
-    }];
+	weakObj;
+	HDModel * m = [HDModel model];
+	m.type = @"1"; //广告数据请求
+	[BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+		//广告数据转模型
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		NSArray * arr = result[@"data"];
+		LaunchAdModel *model = [[LaunchAdModel alloc] initWithDict:[arr firstObject]];
+		if (model.content.length == 0) {//默认加载一个
+			model.content = IMGURL(@"/advert/image/5a65be58d56e570b9a46b7ca?hash=fffce5dd4a5ac84989581a3bad8e99f3").absoluteString;
+		} 
+		//配置广告数据
+		XHLaunchImageAdConfiguration *imageAdconfiguration = [XHLaunchImageAdConfiguration new];
+		//广告停留时间
+		imageAdconfiguration.duration = model.duration;
+		//广告frame
+		imageAdconfiguration.frame = CGRectMake(0, 0,model.width,model.height);
+		//广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
+		imageAdconfiguration.imageNameOrURLString = model.content;
+		//设置GIF动图是否只循环播放一次(仅对动图设置有效)
+		imageAdconfiguration.GIFImageCycleOnce = NO;
+		//缓存机制(仅对网络图片有效)
+		//为告展示效果更好,可设置为XHLaunchAdImageCacheInBackground,先缓存,下次显示
+		imageAdconfiguration.imageOption = XHLaunchAdImageDefault;
+		//图片填充模式
+		imageAdconfiguration.contentMode = UIViewContentModeScaleAspectFill;
+		//广告点击打开页面参数(openModel可为NSString,模型,字典等任意类型)
+		imageAdconfiguration.openModel = model.openUrl;
+		//广告显示完成动画
+		imageAdconfiguration.showFinishAnimate =ShowFinishAnimateLite;
+		//广告显示完成动画时间
+		imageAdconfiguration.showFinishAnimateTime = 0.8;
+		//跳过按钮类型
+		imageAdconfiguration.skipButtonType = SkipTypeTimeText;
+		//后台返回时,是否显示广告
+		imageAdconfiguration.showEnterForeground = NO;
+		
+		//图片已缓存 - 显示一个 "已预载" 视图 (可选)
+		if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
+			//设置要添加的自定义视图(可选)
+			imageAdconfiguration.subViews = [strongSelf launchAdSubViews_alreadyView];
+		}
+		//显示开屏广告
+		[XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:strongSelf];
+	} failed:^(NSError *error) {
+		
+	}];
     
 }
 

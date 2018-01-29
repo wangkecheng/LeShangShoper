@@ -33,22 +33,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	_webView.delegate = self;
+	_webView.backgroundColor = [UIColor whiteColor];
+	HDModel * m = [HDModel model];
+	m.did = _model.did;
+	weakObj;
+	[BaseServer postObjc:m path:@"/dishonesty/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+		LosePromissAndNewsModel * model  = [LosePromissAndNewsModel yy_modelWithJSON:result[@"data"]];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			__strong typeof (weakSelf) strongSelf  = weakSelf;
+			[strongSelf setData:model];
+		});
+	} failed:^(NSError *error) { 
+	}];
+}
+
+-(void)setData:(LosePromissAndNewsModel * )model{
 	
-     _webView.delegate = self;
-    _webView.backgroundColor = [UIColor whiteColor];
-    [_headBtn sd_setImageWithURL:IMGURL(_model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-     _nameLbl.text = _model.name;
-    
-    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[_model.createAt integerValue]/1000];
-    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    _timeLbl.text = [formatter stringFromDate:confromTimesp];
-    
-    [_webView loadHTMLString:_model.content baseURL:nil];
-    [_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
-    _paridseNumLbl.text = _model.giveNumber;
-    _seeNumLbl.text = [NSString stringFromInt:[_model.browseNumber integerValue] + 1];
-    
+	[_headBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+	_nameLbl.text = [DDFactory getString:model.name  withDefault:@"未知用户"];
+	
+	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
+	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+	_timeLbl.text = [formatter stringFromDate:confromTimesp];
+	
+	[_webView loadHTMLString:model.content baseURL:nil];
+	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
+	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
+	_seeNumLbl.text = [DDFactory getString:model.browseNumber  withDefault:@"0"];
 }
 
 - (IBAction)pardiseBtnAction:(id)sender {//点赞操作

@@ -24,7 +24,7 @@
 -(void)setModel:(BrandsModel *)model{
     _model = model;
     [_img sd_setImageWithURL:IMGURL(model.url) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-    [_titleLbl setText:model.name];
+    [_titleLbl setText:[DDFactory getString:model.name  withDefault:@"未知品牌"]];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -21,11 +21,11 @@
 }
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;
-	_nameLbl.text = model.name;
+	_nameLbl.text =[DDFactory getString:model.name  withDefault:@"未知"];
 }
 -(void)setSeriesModel:(SeriesModel *)seriesModel{
     _seriesModel = seriesModel;
-    _nameLbl.text = seriesModel.name;
+    _nameLbl.text = [DDFactory getString:seriesModel.name  withDefault:@"未知"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

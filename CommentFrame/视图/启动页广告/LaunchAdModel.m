@@ -14,10 +14,10 @@
     self = [super init];
     if (self) {
         
-        self.content = dict[@"content"];
-        self.openUrl = dict[@"openUrl"];
-        self.duration = [dict[@"duration"] integerValue];
-        self.contentSize = dict[@"contentSize"];
+        self.content = dict[@"imageUrl"];
+        self.openUrl = dict[@"url"];
+        self.duration = 3; 
+        self.contentSize = [NSString stringWithFormat:@"%lf*%lf",SCREENWIDTH,SCREENHEIGHT];
     }
     return self;
 }

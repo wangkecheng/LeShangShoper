@@ -42,8 +42,8 @@
 	UserInfoModel * model  = [CacheTool getUserModel];
 	_rankLbl.alpha = 1;
 	if (model.isMember == 1) {//如果存在
-		_nameLbl.text = model.name;
-		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",model.lv];
+		_nameLbl.text = [DDFactory getString:model.name  withDefault:@"未知"];
+		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",[DDFactory getString:model.lv  withDefault:@"0"]];
         UIImage *image = [UIImage imageWithData:model.headImgData];
 		if (image) { 
 			[_headerImg setImage:image];
