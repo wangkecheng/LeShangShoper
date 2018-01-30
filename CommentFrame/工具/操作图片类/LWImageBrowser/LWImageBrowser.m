@@ -244,9 +244,9 @@ LWActionSheetViewDelegate>
 #pragma mark - Save Photo
 
 - (void)saveImageToPhotos:(UIImage*)savedImage {
-    [[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+    [[WSPHPhotoLibrary library]saveImage:savedImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''乐山商城'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''新易陶'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         });
     } faildBlock:^(NSError *error) {

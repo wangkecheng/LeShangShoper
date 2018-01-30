@@ -50,7 +50,7 @@
 
 -(void)setViewData{
     _specialImg.alpha = 0;
-    if ([_detailModel.collect integerValue] == 2) {
+    if ([_detailModel.bargain integerValue] == 2) {
           _specialImg.alpha = 1;
     }
 	_titleLbl.text = _detailModel.name;
@@ -124,9 +124,9 @@
                 UIImageView *gtp = [[UIImageView alloc] init];
                 [gtp sd_setImageWithURL:imgUrl placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                     
-                    [[WSPHPhotoLibrary library]saveImage:image assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+                    [[WSPHPhotoLibrary library]saveImage:image assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''乐山商城'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"保存成功" message:@"请前往\''新易陶'\'相册查看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                             [alertView show];
                         });
                     } faildBlock:^(NSError *error) {

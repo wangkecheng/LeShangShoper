@@ -173,7 +173,7 @@ UICollectionViewDelegateFlowLayout>
 		theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	}
 	if (theImage) {//保存图片到相册中
-		[[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"乐山商城" sucessBlock:^(NSString *str, PHAsset *obj) {
+		[[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
 			
 		} faildBlock:^(NSError *error) {
 		}];
