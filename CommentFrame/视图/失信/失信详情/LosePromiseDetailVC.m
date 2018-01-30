@@ -61,7 +61,7 @@
 	[_webView loadHTMLString:model.content baseURL:nil];
 	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
 	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
-	_seeNumLbl.text = [DDFactory getString:model.browseNumber  withDefault:@"0"];
+	_seeNumLbl.text = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
 }
 
 - (IBAction)pardiseBtnAction:(id)sender {//点赞操作

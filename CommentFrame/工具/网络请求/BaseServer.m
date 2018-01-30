@@ -43,7 +43,7 @@
     weakObj;
     [manager POST:fullPath parameters:dict progress:^(NSProgress * _Nonnull uploadProgress) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    } success:^(NSURLSessionDataTask *  task, id   responseObject) {
         [LWActiveIncator hideInViwe:CurrentAppDelegate.window];
          if ([responseObject[@"code"] integerValue] == 0) {
             if (isShowSuccessHud)
@@ -152,9 +152,7 @@
         SAFE_BLOCK_CALL(failed, error);
     }];
 }
-
-
-
+ 
 +(void)relogin{
     
 }

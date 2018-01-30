@@ -121,7 +121,6 @@
 			} failed:^(NSError *error) {
 				
 			}];
-			
 		}else{//取消收藏
 			model.collect = @"1";
 			[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
@@ -167,6 +166,8 @@
 	};
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
+    model.broseNumber = [NSString stringFromInt:[model.broseNumber integerValue] + 1];
+    [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[_arrModel indexOfObject:model] inSection:0]]];//点击一次 加一次浏览量
     [self.navigationController pushViewController:VC animated:YES];
 }
 

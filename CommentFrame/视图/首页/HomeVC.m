@@ -101,7 +101,7 @@
     [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serviceBtn];
     
-          [self getPage];
+    [self getPage];
   
 //    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
 //
