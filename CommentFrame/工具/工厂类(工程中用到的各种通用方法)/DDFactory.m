@@ -448,7 +448,11 @@
 	if (text.length == 0  )  {
 		return  0;
 	}
-	CGRect rect=  [text boundingRectWithSize:CGSizeMake(W,MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
+	NSStringDrawingOptions opts =NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
+	NSMutableParagraphStyle*style = [[NSMutableParagraphStyle alloc]init];
+	[style setLineBreakMode:NSLineBreakByWordWrapping];
+	NSDictionary*attribute =@{NSFontAttributeName:[UIFont systemFontOfSize:font],NSParagraphStyleAttributeName:style};
+	CGRect rect=  [text boundingRectWithSize:CGSizeMake(W,MAXFLOAT) options: opts attributes:attribute context:nil];
 	return rect.size.height;
 }
 /**

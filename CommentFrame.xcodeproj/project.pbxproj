@@ -417,6 +417,8 @@
 		20DDE1761EA9ABB800E4CC04 /* AYCheckManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE1751EA9ABB800E4CC04 /* AYCheckManager.m */; };
 		20DDE2CD1EA9B2F100E4CC04 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */; };
 		20DF67DB201C617F00E0AD01 /* Network.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DF67D9201C617E00E0AD01 /* Network.m */; };
+		20DF67DF201C6CDD00E0AD01 /* UserProtocolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DF67DD201C6CDD00E0AD01 /* UserProtocolVC.m */; };
+		20DF67E0201C6CDD00E0AD01 /* UserProtocolVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DF67DE201C6CDD00E0AD01 /* UserProtocolVC.xib */; };
 		9474A308D61E15583E4D8E73 /* libPods-CommentFrameTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E54E55B851F1B1848FA0706 /* libPods-CommentFrameTests.a */; };
 		C920D8228BA903171BD6736E /* libPods-CommentFrameUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8C1B68C6229497B75C54CC /* libPods-CommentFrameUITests.a */; };
 		CE1B274344DCA769BAAAFBF3 /* libPods-CommentFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCEA401560F2461A1BDC6C0D /* libPods-CommentFrame.a */; };
@@ -1036,6 +1038,9 @@
 		20DDE2CC1EA9B2F100E4CC04 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		20DF67D9201C617E00E0AD01 /* Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
 		20DF67DA201C617F00E0AD01 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
+		20DF67DC201C6CDD00E0AD01 /* UserProtocolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserProtocolVC.h; sourceTree = "<group>"; };
+		20DF67DD201C6CDD00E0AD01 /* UserProtocolVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtocolVC.m; sourceTree = "<group>"; };
+		20DF67DE201C6CDD00E0AD01 /* UserProtocolVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProtocolVC.xib; sourceTree = "<group>"; };
 		2937D8E43B86C1A42AECE963 /* Pods-CommentFrameUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameUITests/Pods-CommentFrameUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2E54E55B851F1B1848FA0706 /* libPods-CommentFrameTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommentFrameTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8C1B68C6229497B75C54CC /* libPods-CommentFrameUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommentFrameUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1646,6 +1651,9 @@
 				200D7F831FF7442C00B97979 /* RegisterVC.h */,
 				200D7F841FF7442C00B97979 /* RegisterVC.m */,
 				200D7F851FF7442C00B97979 /* RegisterVC.xib */,
+				20DF67DC201C6CDD00E0AD01 /* UserProtocolVC.h */,
+				20DF67DD201C6CDD00E0AD01 /* UserProtocolVC.m */,
+				20DF67DE201C6CDD00E0AD01 /* UserProtocolVC.xib */,
 			);
 			path = "登录注册找回密码";
 			sourceTree = "<group>";
@@ -2909,6 +2917,7 @@
 				18B543162011839500A40C4E /* ic_right_arrow@3x.png in Resources */,
 				1840EEAF20118B5400A341F7 /* icon_touxiang@3x.png in Resources */,
 				20A5D8B61FB98F1300534868 /* WSDatePickerView.xib in Resources */,
+				20DF67E0201C6CDD00E0AD01 /* UserProtocolVC.xib in Resources */,
 				18B542F42011839500A40C4E /* btn_pop_weixin@3x.png in Resources */,
 				18B5433A2011839500A40C4E /* ic_store_address@3x.png in Resources */,
 				18AC01322015BDA10072868B /* ico_paihangDescending@2x.png in Resources */,
@@ -3320,6 +3329,7 @@
 				200D7EE61FF742CC00B97979 /* AlbumListCell.m in Sources */,
 				2090C636200D865B00CC07F9 /* SpecialOfferListVC.m in Sources */,
 				186E6E192019D65E00D40E95 /* LWImageItem.m in Sources */,
+				20DF67DF201C6CDD00E0AD01 /* UserProtocolVC.m in Sources */,
 				2064C5431FFB56F00073C2EC /* NewsHeaderView.m in Sources */,
 				2064C5351FFB53B90073C2EC /* SellerCell.m in Sources */,
 				20A5D8BF1FB98FB300534868 /* BaseServer.m in Sources */,
