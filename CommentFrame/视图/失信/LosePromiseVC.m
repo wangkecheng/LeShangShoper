@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	_arrModel = [[NSMutableArray alloc]init];
+	 _arrModel = [[NSMutableArray alloc]init];
 	[_tableview registerNib:[UINib nibWithNibName:LosePromiseCell_ bundle:nil]forCellReuseIdentifier:LosePromiseCell_];
 	_tableview.backgroundColor =  UIColorFromRGB(242, 242, 242);
 	_tableview.delegate = self;

@@ -152,9 +152,7 @@
         SAFE_BLOCK_CALL(failed, error);
     }];
 }
-
-
-
+ 
 +(void)relogin{
     
 }

@@ -25,6 +25,7 @@
 	CGFloat btnH = btnW + 20;
 	CGFloat imgW = btnW;
     NSInteger count = sellerArr.count;
+    [_scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	for (int i  = 0 ;i< count;i++) {
 		ManufacturersModel *model = sellerArr[i];
 		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + 15,CGRectGetMinY(lastBtn.frame),btnW, btnH)
@@ -48,7 +49,7 @@
 	}
     NSInteger pageCount = sellerArr.count/3;
     if (sellerArr.count%3!=0 && sellerArr.count!=0) {
-        pageCount+=1;
+        pageCount += 1;
     }
 	_pageContro.numberOfPages = pageCount;
 	_pageContro.currentPage = 0;
@@ -57,24 +58,18 @@
 	
 	_scrollView.showsHorizontalScrollIndicator = NO;
 	_scrollView.pagingEnabled = YES;
-        _scrollView.pagingEnabled = YES;
+    _scrollView.pagingEnabled = YES;
 	_scrollView.alwaysBounceHorizontal = YES;
 	_scrollView.bounces = YES;
 	_scrollView.delegate = self;
-
-     pageCount = count/3;//共多少页
-    
-    if(pageCount%3!=0 &&pageCount!=0){
-        pageCount += 1;//如果有余数 说名可能为 5 8 那么就要再加一页
-    }
 	_scrollView.contentSize = CGSizeMake(pageCount * CGRectGetWidth(_scrollView.frame), 0);
 }
+
 -(void)btnClick:(UIButton *)btn{
 	if (_clickBlock) {
 		_clickBlock(btn.tag,_sellerArr[btn.tag]);
 	}
 }
-
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 	_pageContro.currentPage = (scrollView.contentOffset.x + 20) /CGRectGetWidth(scrollView.frame);
 }
