@@ -120,10 +120,11 @@
     InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
-         NSURL *url = [NSURL URLWithString:@"weixin://qr/JnXv90fE6hqVrQOU9yA0"] ;
-        if (![[UIApplication sharedApplication] canOpenURL:url]){
+         NSURL *url = [NSURL URLWithString:@"weixin://qr/"] ;
+       
+        if ( [WXApi isWXAppInstalled]){
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
             });
            return YES;
