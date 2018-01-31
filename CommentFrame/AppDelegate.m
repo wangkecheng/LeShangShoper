@@ -40,7 +40,6 @@
 //    //推送
     [self jPushAddAndOptions:launchOptions];
     
-   
     return YES;
 }
 -(void)updateVersion{
