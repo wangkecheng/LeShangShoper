@@ -21,6 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	 self.title = @"设置";
+	weakObj;
+	[BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			strongSelf.companyPhoneLbl.text = result[@"data"][@"company"];
+			strongSelf.complaintPhoneLbl.text = result[@"data"][@"complait"];
+		});
+	} failed:^(NSError *error) {
+		
+	}];
 	 self.tableView.backgroundColor = UIColorFromRGB(245, 245, 245);
 	[self.tableView hideSurplusLine];
     _userModel = [CacheTool getUserModel]; 

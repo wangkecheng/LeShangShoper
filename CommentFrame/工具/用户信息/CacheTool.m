@@ -78,7 +78,7 @@ typedef void (^finishBlock)(BOOL isFinish);
 //设置根视图
 + (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC {
     [CurrentAppDelegate.window.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    HDBaseVC * VC = [[LoginVC alloc]init];//(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:[[LoginVC alloc]init]];
+	HDBaseVC * VC =(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:[[LoginVC alloc]init]];// [[LoginVC alloc]init];//
 	if (isMainVC) { 
         WSLeftSlideManagerVC *managerVC =   [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
         managerVC.scaleContent = YES;

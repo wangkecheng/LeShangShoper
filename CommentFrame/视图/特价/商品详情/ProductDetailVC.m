@@ -170,7 +170,7 @@
 			
 			[strongSelf.collectBtn setTitle:@"加入收藏夹" forState:0];
 			strongSelf.collectBtn.userInteractionEnabled = YES;
-			if (strongSelf.collectActionBlock) {//如果是从收藏夹进入这个页面 这里为真
+			if (strongSelf.collectActionBlock) {//如果是从收藏夹或者目录点击系列中的cell进入这个页面 这里为真
 				strongSelf.collectActionBlock(strongSelf.model, NO);//取消收藏操作
 			}
 		});

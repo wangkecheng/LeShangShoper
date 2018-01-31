@@ -32,7 +32,8 @@ typedef enum ViewTagIndentifyer{
 	return self;
 }
 - (void)viewDidLoad {
-    [super viewDidLoad]; 
+    [super viewDidLoad];
+	self.navigationController.navigationBar.hidden = YES;
 	[[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"token"];//登录注册不需要token这个地方置为空
 	_userField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
@@ -57,7 +58,7 @@ typedef enum ViewTagIndentifyer{
 	m.mobile = _userField.text;
     m.type = @"2";///1,注册，2，登陆。默认1，如果为2，可能返回1151用户不存在的状态码
 	weakObj;
-	[BaseServer postObjc:m path:@"sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+	[BaseServer postObjc:m path:@"/sms/send" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 		weakSelf.getVercodeBtn.userInteractionEnabled = YES;
 		if ([result[@"code"] integerValue] == 1150) {
 			[weakSelf alertViewWithMeg:@"用户正在审核"];
@@ -132,8 +133,14 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)goRegister:(UIButton *)sender {//注册
-	
-	[self presentViewController:[[RegisterVC alloc]init] animated:YES completion:nil];
+	weakObj;
+	RegisterVC * VC = [[RegisterVC alloc]initWithPhone:_userField.text finishBlock:^(NSString *phoneNum) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			strongSelf.userField.text = phoneNum;
+		});
+	}];
+	[self presentViewController:[[HDMainNavC alloc]initWithRootViewController:VC] animated:YES completion:nil];
 }
 
 // 开启倒计时效果

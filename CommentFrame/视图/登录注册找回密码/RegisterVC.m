@@ -7,6 +7,7 @@
 //
 
 #import "RegisterVC.h"
+#import "UserProtocolVC.h"
 typedef enum ViewTagIndentifyer{
 	
 	TagFieldPhone = 1001,
@@ -16,6 +17,7 @@ typedef enum ViewTagIndentifyer{
 }Tag;
 @interface RegisterVC ()<UIGestureRecognizerDelegate,UITextFieldDelegate>
 @property (nonatomic,assign)BOOL isShutDownCountTime;
+@property (nonatomic, strong)NSString * phoneNum;
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UITextField *vercodeField;
 @property (weak, nonatomic) IBOutlet UIButton *getVercodeBtn;
@@ -34,13 +36,14 @@ typedef enum ViewTagIndentifyer{
 {
 	self = [super init];
 	if (self) {
-		_phoneField.text = phoneNum;
+		  _phoneNum = phoneNum;
 		_finishBlock = finishBlock;
 	}
 	return self;
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	_phoneField.text = _phoneNum ;
 	_phoneField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
     _userNameField.tag = TagFieldUserName;
@@ -53,9 +56,19 @@ typedef enum ViewTagIndentifyer{
     _userNameField.delegate = self;
     _addressField.delegate = self;
 }
+-(void)viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
+	self.navigationController.navigationBar.hidden = YES;
+}
 
+-(void)viewWillDisappear:(BOOL)animated{
+	[super viewWillDisappear:animated];
+	self.navigationController.navigationBar.hidden = NO;
+}
 - (IBAction)goLogin:(UIButton *)sender {//注册
-	
+	if (_finishBlock) {
+		_finishBlock(_phoneField.text);
+	}
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -208,11 +221,13 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)toUserProtocol:(id)sender {
-
+	UserProtocolVC  * VC = [[UserProtocolVC alloc]initWithType:ProtocolTypeUse];
+	[self.navigationController pushViewController:VC animated:YES];
 }
 
 - (IBAction)toPrivacy:(id)sender {
-
+	UserProtocolVC  * VC = [[UserProtocolVC alloc]initWithType:ProtocolTypePrivacy];
+	[self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

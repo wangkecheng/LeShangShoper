@@ -145,6 +145,25 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+	weakObj;
+	VC.collectActionBlock = ^(CollectionModel *model, BOOL isCollect) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;
+		dispatch_async(dispatch_get_main_queue(), ^{
+			
+				for (int i = 0; i<strongSelf.arrModel.count; i++) {
+					CollectionModel *modelT =	strongSelf.arrModel[i];
+					if ([model.cid isEqualToString:modelT.cid]) {
+						if (isCollect) {//
+							modelT.collect = @"2";
+						}else{
+							modelT.collect = @"1";
+						}
+						[strongSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[strongSelf.arrModel indexOfObject:modelT] inSection:0]]];
+						break;
+					}
+				}
+		});
+	};
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
     model.broseNumber = [NSString stringFromInt:[model.broseNumber integerValue] + 1];
