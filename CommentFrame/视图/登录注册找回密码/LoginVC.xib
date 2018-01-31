@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="M2A-Bg-KgS">
-                                            <rect key="frame" x="147.5" y="85" width="80" height="80"/>
+                                            <rect key="frame" x="147" y="85" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="M2A-Bg-KgS" secondAttribute="height" multiplier="15:15" id="Fo5-8e-BDi"/>
                                                 <constraint firstAttribute="width" constant="80" id="x4D-ps-X9v"/>
@@ -266,7 +266,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Icon.png" width="87" height="87"/>
+        <image name="Icon.png" width="1024" height="1024"/>
         <image name="bg_login.png" width="375" height="161"/>
         <image name="ic_input_lock.png" width="13" height="16"/>
         <image name="ic_input_name.png" width="13" height="16"/>

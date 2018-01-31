@@ -13,9 +13,8 @@
 - (instancetype)initWithDict:(NSDictionary *)dict{
     self = [super init];
     if (self) {
-        
-        self.content = dict[@"imageUrl"];
-        self.openUrl = dict[@"url"];
+        self.content = IMGURL(dict[@"imageUrl"]).absoluteString;
+        self.openUrl = IMGURL(dict[@"url"]).absoluteString;
         self.duration = 3; 
         self.contentSize = [NSString stringWithFormat:@"%lf*%lf",SCREENWIDTH,SCREENHEIGHT];
     }
