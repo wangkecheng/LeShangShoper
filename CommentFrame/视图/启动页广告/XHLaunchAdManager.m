@@ -101,7 +101,7 @@
     [XHLaunchAd setWaitDataDuration:3];
 	weakObj;
 	HDModel * m = [HDModel model];
-	m.type = @"1"; //广告数据请求
+	m.type = @"2"; //广告数据请求
 	[BaseServer postObjc:m path:@"/advert/home/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		//广告数据转模型
 		__strong typeof (weakSelf) strongSelf  = weakSelf;
