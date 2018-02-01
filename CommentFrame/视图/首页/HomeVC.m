@@ -122,7 +122,7 @@
         [strongSelf.alertControl ds_dismissAlertView];
          NSURL *url = [NSURL URLWithString:@"weixin://qr/"] ;
        
-        if ( [WXApi isWXAppInstalled]){
+        if (![WXApi isWXAppInstalled]){
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
