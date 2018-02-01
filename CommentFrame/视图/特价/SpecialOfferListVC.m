@@ -31,6 +31,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    weakObj;
+   
     [_priceBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
     [_hotBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
     _arrModel = [NSMutableArray array];
@@ -41,14 +43,12 @@
 	searchBar.layer.masksToBounds = YES;
 	
 	[DDFactory removeSearhBarBack:searchBar];
-	UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-	searchField.textColor = [UIColor blackColor];
-	[searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-	searchField.font=[UIFont systemFontOfSize:14];
-	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
-	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
-	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
-	
+    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
+    [searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
+    searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+    //    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
+    //    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
+    searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
 	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
 	
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
@@ -159,7 +159,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return 100;
+	return 145;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

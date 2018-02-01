@@ -38,8 +38,8 @@
 }
 
 +(CGFloat)cellHByModel:(CommentInteractionModel *)model{
-	CGFloat H = 60;
-	H += [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 60];
+	CGFloat H = 84;
+	H += [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 82];
 	return H;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -31,7 +31,7 @@
 	} failed:^(NSError *error) {
 		
 	}];
-	 self.tableView.backgroundColor = UIColorFromRGB(245, 245, 245);
+	 self.tableView.backgroundColor = UIColorFromHX(0xf0f0f0);
 	[self.tableView hideSurplusLine];
     _userModel = [CacheTool getUserModel]; 
 }
@@ -61,7 +61,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
-        return 5;
+        return 10;
     }
     return 0.01;
 }

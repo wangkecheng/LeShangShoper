@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	_collectionView.backgroundColor = UIColorFromRGB(242, 242, 242);;
+	_collectionView.backgroundColor = UIColorFromHX(0xf0f0f0);
 	_collectionView.delegate = self;
 	_collectionView.showsHorizontalScrollIndicator = YES;
 	_collectionView.dataSource = self;
@@ -138,7 +138,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-	CGFloat cellW = (CGRectGetWidth(collectionView.frame) - 20) /2.0 ;
+	CGFloat cellW = (CGRectGetWidth(collectionView.frame) - 32) /2.0 ;
 	CGFloat cellH  =  cellW *16.0/11;
 	return   CGSizeMake(cellW,cellH);
 }

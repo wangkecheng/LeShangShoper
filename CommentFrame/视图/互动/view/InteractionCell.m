@@ -123,7 +123,7 @@ UICollectionViewDelegateFlowLayout>
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGFloat w = (CGRectGetWidth(collectionView.frame) - 20) / 3.0;
+    CGFloat w = (CGRectGetWidth(collectionView.frame) - 48) / 3.0;
     return CGSizeMake(w,w);
 }
 
@@ -173,8 +173,8 @@ UICollectionViewDelegateFlowLayout>
 }
 
 +(CGFloat)cellHByModel:(InteractionModel *)model{
-	CGFloat H = 100;
-    CGFloat titltH = [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 10];
+	CGFloat H = 126;
+    CGFloat titltH = [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 24];
  
     if (titltH > 60) {//大于60 那么需要有个 查看全部的按钮
         model.needHideSeeAllBtn = NO;//不能隐藏查看全部按钮

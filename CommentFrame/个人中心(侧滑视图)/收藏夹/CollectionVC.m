@@ -28,7 +28,7 @@
     _arrModel = [NSMutableArray array];
     [_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
 	
-	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
+	_tableView.backgroundColor = [UIColor whiteColor];
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
@@ -115,7 +115,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return 120;
+	return 145;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

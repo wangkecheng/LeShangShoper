@@ -11,6 +11,7 @@
 #import "ManufacturersCell.h"
 @interface ManufacturersCell()
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @end
 @implementation ManufacturersCell
@@ -22,7 +23,9 @@
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;
 	_nameLbl.text =[DDFactory getString:model.name  withDefault:@"未知"];
+    _lineView.alpha = 0;
 }
+
 -(void)setSeriesModel:(SeriesModel *)seriesModel{
     _seriesModel = seriesModel;
     _nameLbl.text = [DDFactory getString:seriesModel.name  withDefault:@"未知"];

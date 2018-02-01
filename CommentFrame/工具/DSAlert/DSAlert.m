@@ -359,7 +359,7 @@
     self.frame                       = [UIScreen mainScreen].bounds;
     self.backgroundColor             = self.bgColor;
     
-    self.subView.layer.shadowColor   = [UIColor colorWithWhite:0 alpha:0.5].CGColor;
+    self.subView.layer.shadowColor   = [UIColor colorWithWhite:0 alpha:0.7].CGColor;
     self.subView.layer.shadowOffset  = CGSizeZero;
     self.subView.layer.shadowOpacity = 1;
     self.subView.layer.shadowRadius  = 10.0f;

@@ -88,7 +88,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return  90;
+	return  148;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -107,7 +107,7 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]init];
-	CGFloat H = 5; 
+	CGFloat H = 0.01; 
 	[view setFrame:CGRectMake(0, 0, SCREENWIDTH, H)];
 	view.backgroundColor = [UIColor clearColor];
 	return view;
@@ -115,7 +115,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	 
-	return 5;
+	return 0.01;
 }
 
 - (void)didReceiveMemoryWarning {

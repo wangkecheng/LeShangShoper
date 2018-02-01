@@ -16,12 +16,14 @@
 #define SellerCell_ @"SellerCell"
 #define AdvertCell_ @"AdvertCell"
 #define NewsCell_ @"NewsCell"
+#define NewsHeaderView_ @"NewsHeaderView"
 #import "LeftTopHeadView.h"
 #import "InteligentServiceView.h"
 #import "SearchProductVC.h"
 #import "CatalugeListVC.h"
 #import "ProductDetailVC.h"
 #import "NewsDetailVC.h"
+#import "NewsModel.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -37,57 +39,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+    weakObj;
 	_arrHomeHeaderModel = [NSMutableArray array];
 	_arrMerchantModel = [NSMutableArray array];
     _arrAdvertModel = [NSMutableArray array];
     _arrNewsModel = [NSMutableArray array];
-	weakObj;
-	LeftTopHeadView * headerView = [LeftTopHeadView headerViewWithFrame:CGRectMake(0, 0, 100, 44)];
-	headerView.leftTopHeaderViewBlock = ^{
-		__strong typeof (weakSelf) strongSelf = weakSelf;
-		UserInfoModel * model  = [CacheTool getUserModel];
-		if (model.isMember) {//如果存在 就是侧滑
-			[[DDFactory factory]broadcast:nil channel:LeftSildeAction];//打开侧滑
-			return;
-		}
-		LoginVC * loginVC = [[LoginVC alloc]init];
-		[strongSelf presentViewController:loginVC animated:YES completion:nil];
-	};
-	 
-	[self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:headerView]];
-	
-	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 100, 30)];
+    LeftTopHeadView * headerView = [LeftTopHeadView headerViewWithFrame:CGRectMake(0, 0, 125, 44)];
+    headerView.leftTopHeaderViewBlock = ^{
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        UserInfoModel * model  = [CacheTool getUserModel];
+        if (model.isMember) {//如果存在 就是侧滑
+            [[DDFactory factory]broadcast:nil channel:LeftSildeAction];//打开侧滑
+            return;
+        }
+        LoginVC * loginVC = [[LoginVC alloc]init];
+        [strongSelf presentViewController:loginVC animated:YES completion:nil];
+    };
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:headerView]];
+    UIView *searchBarView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - CGRectGetWidth(headerView.frame) - 12, 36)]; 
+	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:searchBarView.bounds]; 
 	[searchBar setPlaceholder:@"探索您心仪的宝贝"];
 	searchBar.delegate = self;
 	searchBar.layer.cornerRadius = 5;
 	searchBar.layer.masksToBounds = YES;
-	
 	[DDFactory removeSearhBarBack:searchBar];
 	UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-	searchField.textColor = [UIColor blackColor];
-	[searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-	searchField.font=[UIFont systemFontOfSize:14];
+	[searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
+	searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
 	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
 	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
-	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
-	
+	searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
 	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
-	
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
-	
 	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
-	
 	searchField.leftView = iconView;
 	searchField.leftViewMode=UITextFieldViewModeAlways;
-	
-	self.navigationItem.titleView = searchBar;
-	
+    [searchBarView addSubview:searchBar];
+	self.navigationItem.titleView = searchBarView; 
+    
 	[_tableView registerNib:[UINib nibWithNibName:HomeHeaderCell_ bundle:nil] forCellReuseIdentifier:HomeHeaderCell_];
 	[_tableView registerNib:[UINib nibWithNibName:SellerCell_ bundle:nil] forCellReuseIdentifier:SellerCell_];
 	[_tableView registerNib:[UINib nibWithNibName:AdvertCell_ bundle:nil] forCellReuseIdentifier:AdvertCell_];
 	[_tableView registerNib:[UINib nibWithNibName:NewsCell_ bundle:nil] forCellReuseIdentifier:NewsCell_];
-	
+    
 	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
@@ -113,7 +107,6 @@
 //    [self.view addSubview:alertView]; //改用按钮的方式
   
 }
-
 -(void)serviceAction{//智能服务
         weakObj;
     
@@ -220,24 +213,29 @@
 	[BaseServer postObjc:m path:@"/news/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		NSArray * tempArr = [NSArray yy_modelArrayWithClass:[LosePromissAndNewsModel class] json:result[@"data"][@"rows"]];
-		if (strongSelf.page == 1) {
-			[strongSelf.arrNewsModel removeAllObjects];
-		}
-		[strongSelf.arrNewsModel addObjectsFromArray:tempArr];
-		
+        if (strongSelf.page == 1) {
+            [strongSelf.arrNewsModel removeAllObjects];
+        }
+        for (NSDictionary *dict in result[@"data"][@"rows"]) {
+            if (((NSArray *)dict[@"list"]).count>0) {
+                NewsModel * model = [NewsModel modelByDict:dict];
+                [strongSelf.arrNewsModel addObject:model];
+            }
+        }
 		dispatch_async(dispatch_get_main_queue(), ^{
-            if ( weakSelf.tableView.numberOfSections>3) {
+            if ( strongSelf.tableView.numberOfSections>3) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-					[weakSelf.tableView reloadData];
+                        __strong typeof (weakSelf) strongSelf = weakSelf;
+                    [strongSelf.tableView.mj_header endRefreshing];
+                    [strongSelf.tableView.mj_footer endRefreshing]; 
+                    [strongSelf.tableView reloadData];
+                    if (strongSelf.arrNewsModel.count == [result[@"data"][@"total"] integerValue]) {
+                        [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                    }
 //					[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
                 });
             }
-			[strongSelf.tableView.mj_header endRefreshing];
-			[strongSelf.tableView.mj_footer endRefreshing];
-            if (strongSelf.arrNewsModel.count == [result[@"data"][@"total"] integerValue]) {
-                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-            }
+			
 //            [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
 //            if (strongSelf.arrModel.count == 0) {
 //                [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
@@ -250,15 +248,15 @@
 	}];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	return 4;//
+	return _arrNewsModel.count + 3;//
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	if (section != 3) {
-		return 1;
-	}else{
-		return _arrNewsModel.count;
-	}
+    if (section >= 3) {
+         NewsModel *model = _arrNewsModel[section - 3];
+        return model.arrModel.count;
+    }
+    return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell * cell = nil;
@@ -296,9 +294,10 @@
 		};
          cell.selectionStyle = 0;
 		cell = advertCell;
-	}else if (indexPath.section == 3){
+    }else{
 		NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:NewsCell_ forIndexPath:indexPath];
-        [newsCell setNewsModel:_arrNewsModel[indexPath.row]];
+        NewsModel *model = _arrNewsModel[indexPath.section - 3];
+        [newsCell setNewsModel:model.arrModel[indexPath.row]];
          cell = newsCell;
 	}
    
@@ -308,22 +307,22 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	if (indexPath.section == 0) {
-		return  200;
+		return  SCREENWIDTH *290/750.0;
 	}
 	if (indexPath.section == 1) {
-		return   (CGRectGetWidth(tableView.frame) - 60)/3.0 + 40 + 50 ;
+		return   (CGRectGetWidth(tableView.frame) - 72)/3.0 + 24 + (100 +  90)/2.0;
 	}
 	if (indexPath.section == 2) {
-		return  50;
+		return  70;
 	}
-	return 80;
+	return 70;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 3) {
-        LosePromissAndNewsModel * model =  _arrNewsModel[indexPath.row];
+    if (indexPath.section >= 3) {
         NewsDetailVC *VC  =[[NewsDetailVC alloc]init];
-        VC.model = model;
+        NewsModel *newsModel = _arrNewsModel[indexPath.section - 3];
+        VC.model = newsModel.arrModel[indexPath.row];
         [self.navigationController pushViewController:VC animated:YES];
     }
 }
@@ -335,16 +334,32 @@
 		view.frame = CGRectMake(0, 0, SCREENWIDTH, 0.01);
 		return view;
 	}
-	NewsHeaderView *hewdderView = [NewsHeaderView headerViewWithFrame:CGRectMake(5, 0, SCREENWIDTH - 10, 75)];
-	return hewdderView;
+    CGFloat hederH = 95;
+    BOOL isShowSubTit = YES;
+    if (section != 3) {
+        hederH = 45;
+        isShowSubTit = NO;
+    } 
+    NewsHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NewsHeaderView_];
+    if (!headerView) {
+        headerView = [NewsHeaderView headerViewWithFrame:CGRectMake(5, 0, SCREENWIDTH - 10, hederH)];
+    }
+    NewsModel *model = _arrNewsModel[section - 3];
+    [headerView setTime:model.date isShowSubTit:isShowSubTit];
+	return headerView;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	
 	if (section == 0 || section == 1 || section == 2) {
 		return 0.01;
 	}
-	return 75;
+    CGFloat hederH = 95;
+    if (section != 3) {
+        hederH = 45;
+    }
+	return hederH;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
     view.backgroundColor = [UIColor clearColor];

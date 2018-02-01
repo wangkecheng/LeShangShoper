@@ -35,13 +35,12 @@
 	_searchBar.layer.cornerRadius = 5;
 	_searchBar.layer.masksToBounds = YES;
 	[DDFactory removeSearhBarBack:_searchBar];
-	UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
-	searchField.textColor = [UIColor blackColor];
-	[searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
-	searchField.font=[UIFont systemFontOfSize:14];
-	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
-	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
-	searchField.backgroundColor=UIColorFromRGB(236, 237, 238);
+    UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
+    [searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
+    searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+    //    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
+    //    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
+    searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
 	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
 	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
@@ -53,9 +52,9 @@
     searchField.rightViewMode=UITextFieldViewModeWhileEditing;
 	searchField.leftViewMode=UITextFieldViewModeAlways;
 	self.navigationItem.titleView = _searchBar;
-	 
-	[self addRightBarButtonItemWithTitle:@"取消" action:@selector(back)];
-
+  
+    UIButton * rightBtnBar =  [self addRightBarButtonItemWithTitle:@"取消" action:@selector(back)];
+    [rightBtnBar.titleLabel setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
 	_arrModel = [NSMutableArray array];
 	[_tableView registerNib:[UINib nibWithNibName:SearchManufacturersCell_ bundle:nil] forCellReuseIdentifier:SearchManufacturersCell_];
 	
@@ -140,7 +139,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return 58;
+	return 130;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -159,15 +158,14 @@
 	}
 	UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 5)];
 	view.backgroundColor = [UIColor clearColor];
-
 	return 	view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
 		
-		return 60;
+		return 35;
 	}
-	return 5;
+	return 10;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];

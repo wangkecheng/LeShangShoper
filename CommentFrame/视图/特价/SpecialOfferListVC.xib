@@ -9,6 +9,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PingFang.ttc">
+            <string>PingFangSC-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpecialOfferListVC">
             <connections>
@@ -26,17 +31,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agD-qK-RXH">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHM-fH-oEq">
-                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DB-cW-psX">
-                                    <rect key="frame" x="69" y="10.5" width="50" height="29"/>
+                                    <rect key="frame" x="69" y="3.5" width="50" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="oaj-a9-KNZ"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="价格">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,7 +51,7 @@
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_paihang.png" translatesAutoresizingMaskIntoConstraints="NO" id="HzS-On-710">
-                                    <rect key="frame" x="121" y="18" width="10" height="14"/>
+                                    <rect key="frame" x="123" y="13" width="10" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="Flb-F4-Yku"/>
                                         <constraint firstAttribute="width" secondItem="HzS-On-710" secondAttribute="height" multiplier="19:26" id="GTV-ff-mbm"/>
@@ -58,18 +63,18 @@
                                 <constraint firstItem="HzS-On-710" firstAttribute="centerY" secondItem="5DB-cW-psX" secondAttribute="centerY" id="BxV-dO-bKd"/>
                                 <constraint firstItem="5DB-cW-psX" firstAttribute="centerY" secondItem="NHM-fH-oEq" secondAttribute="centerY" id="OYI-q8-Rso"/>
                                 <constraint firstItem="5DB-cW-psX" firstAttribute="centerX" secondItem="NHM-fH-oEq" secondAttribute="centerX" id="Rrw-gZ-rgg"/>
-                                <constraint firstItem="HzS-On-710" firstAttribute="leading" secondItem="5DB-cW-psX" secondAttribute="trailing" constant="2" id="buU-CQ-HWp"/>
+                                <constraint firstItem="HzS-On-710" firstAttribute="leading" secondItem="5DB-cW-psX" secondAttribute="trailing" constant="4" id="buU-CQ-HWp"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-h1-Bct">
-                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxR-tI-hGE">
-                                    <rect key="frame" x="69" y="11" width="50" height="29"/>
+                                    <rect key="frame" x="69" y="4" width="50" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="66D-Hz-FEi"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="热度">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,7 +84,7 @@
                                     </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_paihang.png" translatesAutoresizingMaskIntoConstraints="NO" id="3Kj-BV-C7Q">
-                                    <rect key="frame" x="121" y="18" width="10" height="14"/>
+                                    <rect key="frame" x="123" y="13" width="10" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="10" id="1oS-4U-5mY"/>
                                         <constraint firstAttribute="width" secondItem="3Kj-BV-C7Q" secondAttribute="height" multiplier="19:26" id="2qH-6e-Wxd"/>
@@ -88,7 +93,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="3Kj-BV-C7Q" firstAttribute="leading" secondItem="lxR-tI-hGE" secondAttribute="trailing" constant="2" id="0BT-tT-M9U"/>
+                                <constraint firstItem="3Kj-BV-C7Q" firstAttribute="leading" secondItem="lxR-tI-hGE" secondAttribute="trailing" constant="4" id="0BT-tT-M9U"/>
                                 <constraint firstItem="3Kj-BV-C7Q" firstAttribute="centerY" secondItem="lxR-tI-hGE" secondAttribute="centerY" id="Nlu-Kh-Dkf"/>
                                 <constraint firstItem="lxR-tI-hGE" firstAttribute="centerY" secondItem="Snc-h1-Bct" secondAttribute="centerY" id="Q4M-jg-PBe"/>
                                 <constraint firstItem="lxR-tI-hGE" firstAttribute="centerX" secondItem="Snc-h1-Bct" secondAttribute="centerX" id="Xqw-5I-oiK"/>
@@ -103,14 +108,14 @@
                         <constraint firstAttribute="trailing" secondItem="Snc-h1-Bct" secondAttribute="trailing" id="YQe-GY-Rs3"/>
                         <constraint firstItem="Snc-h1-Bct" firstAttribute="top" secondItem="NHM-fH-oEq" secondAttribute="top" id="bH9-UY-TWI"/>
                         <constraint firstItem="NHM-fH-oEq" firstAttribute="leading" secondItem="agD-qK-RXH" secondAttribute="leading" id="cE7-sO-TuP"/>
-                        <constraint firstAttribute="height" constant="50" id="cIO-6K-67X"/>
+                        <constraint firstAttribute="height" constant="40" id="cIO-6K-67X"/>
                         <constraint firstItem="Snc-h1-Bct" firstAttribute="leading" secondItem="NHM-fH-oEq" secondAttribute="trailing" id="k79-gE-TbK"/>
                         <constraint firstItem="Snc-h1-Bct" firstAttribute="width" secondItem="NHM-fH-oEq" secondAttribute="width" id="pLQ-Md-ajP"/>
                         <constraint firstItem="Snc-h1-Bct" firstAttribute="height" secondItem="NHM-fH-oEq" secondAttribute="height" id="syG-si-fEB"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pys-bZ-Ksm">
-                    <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -124,7 +129,7 @@
                 <constraint firstAttribute="trailing" secondItem="agD-qK-RXH" secondAttribute="trailing" id="ubr-Ue-nh4"/>
                 <constraint firstItem="agD-qK-RXH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vUf-Q6-KGq"/>
             </constraints>
-            <point key="canvasLocation" x="85" y="14"/>
+            <point key="canvasLocation" x="29" y="-94"/>
         </view>
     </objects>
     <resources>

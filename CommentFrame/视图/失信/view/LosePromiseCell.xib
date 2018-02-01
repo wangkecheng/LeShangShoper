@@ -9,6 +9,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PingFang.ttc">
+            <string>PingFangSC-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,25 +25,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgj-sN-6Ft">
-                        <rect key="frame" x="10" y="10" width="263" height="58.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="10" y="22" width="293" height="25.5"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
+                        <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuA-e9-CDv">
-                        <rect key="frame" x="10" y="90.5" width="263" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="10" y="71.5" width="293" height="20"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sfD-Cw-TbA">
-                        <rect key="frame" x="278" y="10" width="122" height="91.5"/>
+                        <rect key="frame" x="308" y="24" width="90" height="67.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="sfD-Cw-TbA" secondAttribute="height" multiplier="40:30" id="tjb-bN-V1O"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nocredit.png" translatesAutoresizingMaskIntoConstraints="NO" id="I6n-mU-ILg">
-                        <rect key="frame" x="227.5" y="71.5" width="35" height="35"/>
+                        <rect key="frame" x="257.5" y="58.5" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="I6n-mU-ILg" secondAttribute="height" multiplier="163:163" id="Hvg-p3-N7F"/>
                             <constraint firstAttribute="width" constant="35" id="WUQ-CZ-gZw"/>
@@ -47,20 +52,29 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GR6-zU-YtJ">
+                        <rect key="frame" x="10" y="110.5" width="400" height="1"/>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="SU0-Ue-GYg"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="GR6-zU-YtJ" secondAttribute="bottom" id="0Kc-1B-sbR"/>
+                    <constraint firstItem="GR6-zU-YtJ" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="leading" id="A1c-KC-ffw"/>
                     <constraint firstItem="sfD-Cw-TbA" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="trailing" constant="5" id="Awg-WB-djH"/>
                     <constraint firstItem="SuA-e9-CDv" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="leading" id="F0T-Qb-dsS"/>
-                    <constraint firstItem="I6n-mU-ILg" firstAttribute="top" secondItem="Qgj-sN-6Ft" secondAttribute="bottom" constant="3" id="JKe-gu-n4U"/>
+                    <constraint firstAttribute="trailing" secondItem="GR6-zU-YtJ" secondAttribute="trailing" id="GfW-HU-vwF"/>
+                    <constraint firstItem="Qgj-sN-6Ft" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="NIf-lo-VW8"/>
                     <constraint firstItem="Qgj-sN-6Ft" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PIx-Hp-jSI"/>
                     <constraint firstItem="sfD-Cw-TbA" firstAttribute="leading" secondItem="I6n-mU-ILg" secondAttribute="trailing" constant="15" id="Vj2-WM-9bW"/>
-                    <constraint firstAttribute="bottom" secondItem="SuA-e9-CDv" secondAttribute="bottom" constant="5" id="ZhR-sr-ukD"/>
-                    <constraint firstItem="sfD-Cw-TbA" firstAttribute="top" secondItem="Qgj-sN-6Ft" secondAttribute="top" id="aIN-X1-85V"/>
-                    <constraint firstAttribute="bottom" secondItem="sfD-Cw-TbA" secondAttribute="bottom" constant="10" id="dL8-iU-ZBt"/>
+                    <constraint firstAttribute="bottom" secondItem="SuA-e9-CDv" secondAttribute="bottom" constant="20" id="ZhR-sr-ukD"/>
+                    <constraint firstAttribute="bottom" secondItem="sfD-Cw-TbA" secondAttribute="bottom" constant="20" id="dL8-iU-ZBt"/>
+                    <constraint firstAttribute="bottom" secondItem="I6n-mU-ILg" secondAttribute="bottom" constant="18" id="t8c-O7-pkD"/>
                     <constraint firstItem="SuA-e9-CDv" firstAttribute="trailing" secondItem="Qgj-sN-6Ft" secondAttribute="trailing" id="tQb-iR-C3Q"/>
-                    <constraint firstItem="SuA-e9-CDv" firstAttribute="bottom" secondItem="I6n-mU-ILg" secondAttribute="bottom" id="wYm-zf-HiS"/>
-                    <constraint firstItem="sfD-Cw-TbA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wc8-Wr-1Ny"/>
-                    <constraint firstAttribute="trailing" secondItem="sfD-Cw-TbA" secondAttribute="trailing" constant="10" id="xfm-Jr-JPu"/>
+                    <constraint firstItem="sfD-Cw-TbA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="wc8-Wr-1Ny"/>
+                    <constraint firstAttribute="trailing" secondItem="sfD-Cw-TbA" secondAttribute="trailing" constant="12" id="xfm-Jr-JPu"/>
                 </constraints>
             </tableViewCellContentView>
             <userDefinedRuntimeAttributes>
