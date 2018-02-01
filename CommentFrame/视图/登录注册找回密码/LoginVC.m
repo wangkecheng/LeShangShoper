@@ -12,8 +12,7 @@ typedef enum ViewTagIndentifyer{
 	
 	TagFieldPhone = 1001,
 	TagFieldVerCode, //验证码输入框
-}Tag;
-
+}Tag; 
 @interface LoginVC ()<UIGestureRecognizerDelegate,UITextFieldDelegate>
 @property (nonatomic,assign)BOOL isShutDownCountTime;
 @property (weak, nonatomic) IBOutlet UITextField *userField;
@@ -33,7 +32,8 @@ typedef enum ViewTagIndentifyer{
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
+
 	[[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"token"];//登录注册不需要token这个地方置为空
 	_userField.tag = TagFieldPhone;
 	_vercodeField.tag = TagFieldVerCode;
@@ -48,6 +48,7 @@ typedef enum ViewTagIndentifyer{
 	UserInfoModel *model = [CacheTool getRecentLoginUser];
 	_userField.text = model.mobile;
 }
+
 - (IBAction)sendVertiCodeAction:(id)sender {
 	_getVercodeBtn.userInteractionEnabled = NO;
     if (_userField.text.length == 0) {

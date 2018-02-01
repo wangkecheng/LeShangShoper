@@ -47,7 +47,7 @@
     self.title = @"评论";
     _arrModel = [[NSMutableArray alloc]init];
     [_tableview registerNib:[UINib nibWithNibName:CommentInteractionCell_ bundle:nil]forCellReuseIdentifier:CommentInteractionCell_];
-    _tableview.backgroundColor = self.view.backgroundColor = UIColorFromRGB(242, 242, 242);
+    _tableview.backgroundColor = self.view.backgroundColor = UIColorFromHX(0xf0f0f0);
     _tableview.delegate = self;
     _tableview.dataSource = self;
     _commentTextView.delegate = self;
@@ -124,15 +124,21 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
-    CGFloat H = 1;
-    [view setFrame:CGRectMake(10, 0, SCREENWIDTH, H)];
+    CGFloat H = 0.01;
+    if (section!=0) {
+        H = 10;
+    }
+    [view setFrame:CGRectMake(0, 0, SCREENWIDTH, H)];
     view.backgroundColor = [UIColor clearColor];
     return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	
-    return 1;
+    CGFloat H = 0.01;
+    if (section!=0) {
+        H = 10;
+    }
+    return H;
 }
 
 - (IBAction)sendComment:(UIButton *)sender {

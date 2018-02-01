@@ -21,15 +21,19 @@
 -(void)setSellerArr:(NSArray *)sellerArr{
 	_sellerArr = sellerArr;
 	UIButton *lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,0,0,0)];
-	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - 60)/3.0;
-	CGFloat btnH = btnW + 20;
+	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - 72)/3.0;
+	CGFloat btnH = btnW + 25;
 	CGFloat imgW = btnW;
     NSInteger count = sellerArr.count;
     [_scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	for (int i  = 0 ;i< count;i++) {
 		ManufacturersModel *model = sellerArr[i];
-		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + 15,CGRectGetMinY(lastBtn.frame),btnW, btnH)
-												titleX:0 titleY:imgW + 5 titleW:btnW titleH:btnH - imgW
+        CGFloat margin = 18;
+        if (i%3 == 0 && i !=0) {
+            margin = 36;
+        }
+		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + margin,CGRectGetMinY(lastBtn.frame),btnW, btnH)
+												titleX:0 titleY:imgW + 10 titleW:btnW titleH:btnH - imgW - 10
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
 		btn.imageView.layer.masksToBounds = YES;
@@ -38,10 +42,10 @@
             [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
         }
 		
-		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0];
+		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0]; 
 		 btn.titleLabel.textAlignment = 1;
-         btn.titleLabel.font = [UIFont systemFontOfSize:14];
-		[btn setTitleColor:[UIColor blackColor] forState:0];
+         btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:14];;
+		[btn setTitleColor:UIColorFromHX(0x666666) forState:0];
 		 btn.tag = i;
 		[btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
 		[_scrollView addSubview:btn];
@@ -52,9 +56,9 @@
         pageCount += 1;
     }
 	_pageContro.numberOfPages = pageCount;
-	_pageContro.currentPage = 0;
-	_pageContro.pageIndicatorTintColor = [UIColor grayColor];
-	_pageContro.currentPageIndicatorTintColor = UIColorFromRGB(33, 145, 241);
+	_pageContro.currentPage = 0; 
+	_pageContro.pageIndicatorTintColor = UIColorFromHX(0xdcdcdc);
+	_pageContro.currentPageIndicatorTintColor = UIColorFromHX(0x1393fc);
 	
 	_scrollView.showsHorizontalScrollIndicator = NO;
 	_scrollView.pagingEnabled = YES;

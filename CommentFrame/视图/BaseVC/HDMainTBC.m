@@ -26,11 +26,11 @@
 -(void)setTabBarBackColor{
     UIView *view = [[UIView alloc]init];
     view.frame = self.tabBar.bounds;
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = UIColorFromHX(0xf0f0f0);
     [self.tabBar insertSubview:view atIndex:0];
     self.tabBar.opaque = YES;
     // 设置tabbar渲染颜色
-    [UITabBar appearance].tintColor = UIColorFromRGB(0, 132, 249);
+    [UITabBar appearance].tintColor = UIColorFromHX(0x1393fc);
     self.tabBar.translucent = NO;
 }
 //添加TabBar控制器的所有子控制器

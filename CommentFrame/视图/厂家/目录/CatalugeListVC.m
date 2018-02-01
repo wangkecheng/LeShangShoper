@@ -30,11 +30,12 @@
 	 
 	[_tableView registerNib:[UINib nibWithNibName:ManufacturersCell_ bundle:nil] forCellReuseIdentifier:ManufacturersCell_];
 	
-	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
+	_tableView.backgroundColor = [UIColor whiteColor];
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
     _headerView = [CatalugeListHeaderView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH, 240)];
+    [_tableView setSeparatorStyle:0];
     _tableView.tableHeaderView = _headerView;
 	_tableView.tableFooterView=[UIView new];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
@@ -96,7 +97,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	return 58;
+	return 60;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

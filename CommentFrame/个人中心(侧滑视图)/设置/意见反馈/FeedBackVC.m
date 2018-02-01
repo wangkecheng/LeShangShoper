@@ -23,16 +23,17 @@
     [super viewDidLoad];
 	self.title = @"意见反馈";
 	//文字样式
-	[_noteTextView setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
 	//_noteTextView.maxTextLength = 400;
 	_noteTextView.delegate = self;
-	_noteTextView.font = [UIFont boldSystemFontOfSize:14];
+    [_noteTextView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [_noteTextView setPlaceholderColor:UIColorFromHX(0xcacacf)];
+    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 	NSString *version =  [NSString stringWithFormat:@"%@.%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[infoDictionary objectForKey:@"CFBundleVersion"]];
 	_noteTextView.placeholder = [NSString stringWithFormat:@"你正在使用%@版,欢迎反馈宝贵意见",version];
 	[_noteTextView setPlaceholderColor:[UIColor lightGrayColor]];
 	[_noteTextView setPlaceholderOpacity:1];
-	self.tableView.backgroundColor = UIColorFromRGB(245, 245, 245);
+	self.tableView.backgroundColor = UIColorFromHX(0xf0f0f0);
 	[self.tableView hideSurplusLine];
     _typeStr = @"1";//默认为产品建议
 }
@@ -80,7 +81,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	
-		return 5;  
+		return 10;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 	return 0.01; 

@@ -23,14 +23,15 @@
 	view.okBlock = okBlock;
 	view.textView.layer.cornerRadius = 0;
 	view.textView.layer.borderWidth = 1;
-	view.textView.layer.borderColor = [UIColor grayColor].CGColor;
+	view.textView.layer.borderColor = UIColorFromHX(0x808080).CGColor;
 	
 	//文字样式
-	[view.textView setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
+	[view.textView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
 	//_noteTextView.maxTextLength = 400;
 	view.textView.delegate = view;
 	view.textView.font = [UIFont boldSystemFontOfSize:14];
-	[view.textView setPlaceholderColor:[UIColor lightGrayColor]];
+	[view.textView setPlaceholderColor:UIColorFromHX(0xcacacf)];
+    [view.textView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
 	[view.textView setPlaceholderOpacity:1];
 	if (type == TypeUserName) {
 		view.titleLbl.text = @"更改姓名";

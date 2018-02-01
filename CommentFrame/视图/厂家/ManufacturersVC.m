@@ -32,11 +32,12 @@
 	_sectionTitles = [NSMutableArray array];
 	[_tableView registerNib:[UINib nibWithNibName:ManufacturersCell_ bundle:nil] forCellReuseIdentifier:ManufacturersCell_];
 	
-	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
+	_tableView.backgroundColor = UIColorFromHX(0xf0f0f0);
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
 	_tableView.tableFooterView=[UIView new];
+    [_tableView setSeparatorStyle:0];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 //    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
 	[self getPage];
@@ -166,12 +167,12 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	
-	return 30;
+	return 35;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
 	
-	view.backgroundColor = [UIColor clearColor];
+	view.backgroundColor = UIColorFromHX(0xf0f0f0);
 	return view;
 }
 

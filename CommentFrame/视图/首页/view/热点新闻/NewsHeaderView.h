@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsHeaderView : UIView
+@interface NewsHeaderView : UITableViewHeaderFooterView
 +(instancetype)headerViewWithFrame:(CGRect)frame;
+
+/*
+时间
+是否显示热点新闻 1.显示 2 不显示
+ */
+-(void)setTime:(NSString *)time isShowSubTit:(BOOL)isShowSubTit;
 @end

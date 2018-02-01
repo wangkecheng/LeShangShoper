@@ -20,32 +20,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotProductImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-v5-CQ3">
-                        <rect key="frame" x="5" y="26.5" width="80" height="20"/>
+                        <rect key="frame" x="9" y="25" width="80" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Zak-v5-CQ3" secondAttribute="height" multiplier="120:30" id="Jvo-hr-cHA"/>
                             <constraint firstAttribute="width" constant="80" id="mGu-CO-iqn"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eip-uy-8rd">
-                        <rect key="frame" x="90" y="36.5" width="1" height="0.0"/>
+                        <rect key="frame" x="94" y="35" width="1" height="0.0"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="fMA-Q6-nqu"/>
                         </constraints>
                     </view>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWc-OE-hyp">
-                        <rect key="frame" x="101" y="0.0" width="301" height="50"/>
+                        <rect key="frame" x="105" y="0.0" width="297" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="eWA-7a-L9Z"/>
+                            <constraint firstAttribute="height" constant="70" id="jaf-wI-IP5"/>
                         </constraints>
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Zak-v5-CQ3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5kh-F2-JUr"/>
+                    <constraint firstItem="aWc-OE-hyp" firstAttribute="centerY" secondItem="Zak-v5-CQ3" secondAttribute="centerY" id="0zu-i0-fN3"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="bottom" secondItem="Zak-v5-CQ3" secondAttribute="bottom" constant="-10" id="BT7-ZB-M3V"/>
                     <constraint firstItem="aWc-OE-hyp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="R6Z-g9-asD"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="leading" secondItem="Zak-v5-CQ3" secondAttribute="trailing" constant="5" id="RTt-Zi-QoU"/>
-                    <constraint firstItem="Zak-v5-CQ3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="USF-cV-Llt"/>
+                    <constraint firstItem="Zak-v5-CQ3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="USF-cV-Llt"/>
                     <constraint firstItem="aWc-OE-hyp" firstAttribute="leading" secondItem="eip-uy-8rd" secondAttribute="trailing" constant="10" id="hB0-ao-LdG"/>
                     <constraint firstItem="eip-uy-8rd" firstAttribute="top" secondItem="Zak-v5-CQ3" secondAttribute="top" constant="10" id="jal-e8-qMp"/>
                     <constraint firstAttribute="trailing" secondItem="aWc-OE-hyp" secondAttribute="trailing" id="pE4-BC-SKh"/>

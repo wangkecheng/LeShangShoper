@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-	
+ 
 }
 
 -(void)setModel:(CollectionModel *)model{

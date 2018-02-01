@@ -26,7 +26,7 @@
 	[super viewDidLoad];
 	_arrModel = [[NSMutableArray alloc]init];
 	[_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
-	 _tableview.backgroundColor = self.view.backgroundColor = UIColorFromRGB(242, 242, 242);
+	 _tableview.backgroundColor = self.view.backgroundColor = UIColorFromHX(0xf0f0f0);
 	 _tableview.delegate = self;
 	 _tableview.dataSource = self;
 	[_tableview setSeparatorStyle:0];
@@ -162,7 +162,7 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]init];
-	CGFloat H = 5;
+	CGFloat H = 10;
 	[view setFrame:CGRectMake(0, 0, SCREENWIDTH, H)];
 	view.backgroundColor = [UIColor clearColor];
 	return view;
@@ -170,9 +170,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-		return 5;
+		return 0;
 	}
-	return 5;
+	return 10;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -44,16 +44,18 @@ UICollectionViewDelegateFlowLayout>
 	[super viewDidLoad];
 	self.title = @"添加互动";
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(publishAction)];
-	self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0, 132, 249);
+    UIButton *publishBtn = [self addRightBarButtonItemWithTitle:@"发布" action:@selector(publishAction)];
+    publishBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:14] ;
+    [publishBtn setTitleColor:UIColorFromHX(0x1393fc) forState:0];
 	
-	//文字样式
-	[_noteTextView setFont:[UIFont fontWithName:@"Heiti SC" size:14]];
+	//文字样式 
+    [_noteTextView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]]; 
+    [_noteTextView setPlaceholderColor:UIColorFromHX(0xcacacf)];
+    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
     _noteTextView.maxTextLength = 500;
 	_noteTextView.delegate = self;
-	_noteTextView.font = [UIFont boldSystemFontOfSize:14];
 	_noteTextView.placeholder= @"这一刻的想法...";
-	[_noteTextView setPlaceholderColor:[UIColor lightGrayColor]];
+ 
 	[_noteTextView setPlaceholderOpacity:1];
     weakObj;
     _noteTextView.didAttachMaxLength = ^(BRPlaceholderTextView *textView, NSInteger maxTextLength) {
@@ -190,7 +192,7 @@ UICollectionViewDelegateFlowLayout>
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 	
-	CGFloat w = (CGRectGetWidth(collectionView.frame) - 20) / 4.0;
+	CGFloat w = (CGRectGetWidth(collectionView.frame) - 60) / 4.0;
 	return CGSizeMake(w,w);
 }
 
@@ -253,7 +255,7 @@ UICollectionViewDelegateFlowLayout>
 
 //设置CollectionView高度
 -(void)setCollectionViewHeight{
-	_collectionViewH.constant = ((SCREENWIDTH - 30) /4.0)* ((int)(_arrSelected.count)/4+1)+15;
+	_collectionViewH.constant = ((SCREENWIDTH - 60) /4.0)* ((int)(_arrSelected.count)/4+1)+15 + 35;
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
