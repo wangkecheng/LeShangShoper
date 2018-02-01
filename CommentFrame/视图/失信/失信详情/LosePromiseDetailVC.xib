@@ -58,10 +58,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jup-FC-RO6">
-                            <rect key="frame" x="265" y="10" width="100" height="65"/>
+                            <rect key="frame" x="265" y="10" width="100" height="45"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLq-s0-qzT">
-                                    <rect key="frame" x="67.5" y="0.0" width="32.5" height="32.5"/>
+                                    <rect key="frame" x="77.5" y="0.0" width="22.5" height="22.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="hLq-s0-qzT" secondAttribute="height" multiplier="4:4" id="HXK-H3-7r5"/>
                                     </constraints>
@@ -74,20 +74,20 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I0M-UO-55S">
-                                    <rect key="frame" x="67.5" y="32.5" width="32.5" height="32.5"/>
+                                    <rect key="frame" x="77.5" y="22.5" width="22.5" height="22.5"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="ic_detail_views.png">
                                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohH-Pa-KBz">
-                                    <rect key="frame" x="0.0" y="32.5" width="67.5" height="32.5"/>
+                                    <rect key="frame" x="0.0" y="22.5" width="77.5" height="22.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sl-sR-K7j">
-                                    <rect key="frame" x="0.0" y="0.0" width="67.5" height="32.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="22.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -96,6 +96,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="I0M-UO-55S" firstAttribute="top" secondItem="hLq-s0-qzT" secondAttribute="bottom" id="3mj-sA-q9P"/>
+                                <constraint firstAttribute="height" constant="45" id="8zQ-qa-qZh"/>
                                 <constraint firstItem="I0M-UO-55S" firstAttribute="trailing" secondItem="hLq-s0-qzT" secondAttribute="trailing" id="BM7-cq-dg3"/>
                                 <constraint firstItem="9sl-sR-K7j" firstAttribute="leading" secondItem="jup-FC-RO6" secondAttribute="leading" id="Jhj-nT-Rr2"/>
                                 <constraint firstItem="ohH-Pa-KBz" firstAttribute="leading" secondItem="9sl-sR-K7j" secondAttribute="leading" id="Jtu-ep-iUO"/>
@@ -134,7 +135,6 @@
                         <constraint firstItem="WGv-dv-WGQ" firstAttribute="leading" secondItem="Buo-CW-acN" secondAttribute="trailing" constant="8" id="nQo-sk-bLh"/>
                         <constraint firstAttribute="trailing" secondItem="jup-FC-RO6" secondAttribute="trailing" constant="10" id="tA0-Nh-3et"/>
                         <constraint firstItem="wZT-5m-C9E" firstAttribute="leading" secondItem="WGv-dv-WGQ" secondAttribute="leading" id="wq6-SN-gip"/>
-                        <constraint firstAttribute="bottom" secondItem="jup-FC-RO6" secondAttribute="bottom" id="x2e-au-dWF"/>
                     </constraints>
                 </view>
             </subviews>
@@ -148,7 +148,7 @@
                 <constraint firstItem="tZI-nS-sIq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kZ4-bk-Wve"/>
                 <constraint firstItem="tZI-nS-sIq" firstAttribute="top" secondItem="zw1-13-eOa" secondAttribute="bottom" id="rgS-8D-7H1"/>
             </constraints>
-            <point key="canvasLocation" x="-359" y="-87"/>
+            <point key="canvasLocation" x="-501" y="-246"/>
         </view>
     </objects>
     <resources>
