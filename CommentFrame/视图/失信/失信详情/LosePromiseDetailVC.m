@@ -8,8 +8,9 @@
 //
 
 #import "LosePromiseDetailVC.h"
+#import <WebKit/WebKit.h>
+@interface LosePromiseDetailVC ()<WKUIDelegate,WKNavigationDelegate>
 
-@interface LosePromiseDetailVC ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
@@ -18,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paridseNumLbl;//点赞数
 @property (weak, nonatomic) IBOutlet UIButton *paridseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *seeNumLbl;//查看数
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 
 @end
 
@@ -33,7 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_webView.delegate = self;
+	_webView.navigationDelegate = self;
+    _webView.UIDelegate = self;
 	_webView.backgroundColor = [UIColor whiteColor];
 	HDModel * m = [HDModel model];
 	m.did = _model.did;
@@ -80,6 +82,13 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     return YES;
+}
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    if ([challenge previousFailureCount]== 0) {
+        //NSURLCredential 这个类是表示身份验证凭据不可变对象。凭证的实际类型声明的类的构造函数来确定。
+        NSURLCredential* cre = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        [challenge.sender useCredential:cre forAuthenticationChallenge:challenge];
+    }
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     
