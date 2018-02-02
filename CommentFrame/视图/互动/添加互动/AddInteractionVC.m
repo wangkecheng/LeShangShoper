@@ -13,6 +13,7 @@
 #import "HWCollectionViewCell.h"
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
+#import "ImagePrivilegeTool.h"
 @interface AddInteractionVC ()<UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,UIScrollViewDelegate,UITextViewDelegate,
 UICollectionViewDelegate,UICollectionViewDataSource,
@@ -115,11 +116,16 @@ UICollectionViewDelegateFlowLayout>
 	weakObj;
     //上传图片
 	HDModel *m = [HDModel model];
-	m.content = _noteTextView.text; 
+	m.content = _noteTextView.text;
+    
 	NSMutableArray *arrImg = [NSMutableArray array];
 	for (ImgModel  *model in _arrSelected) {
 		[arrImg addObject:model.image];
 	}
+    if (m.content.length == 0 && arrImg.count == 0) {
+        [self.view makeToast:@"请输入文字或者选择图片才能发布互动"];
+        return;
+    }
 	[BaseServer uploadImages:arrImg path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			if (weakSelf.publishedBlock) {
@@ -135,16 +141,20 @@ UICollectionViewDelegateFlowLayout>
 - (void)selectImgFromAlbum{
 	weakObj;
 	SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:nil cancelTitle:nil destructiveTitle:nil otherTitles:@[ @"拍照上传", @"从相册中选择",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
 		if (index == 0) {//拍照
 			if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-				weakSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-				weakSelf.imaPicker.delegate = self;
-				[weakSelf.navigationController presentViewController:weakSelf.imaPicker animated:NO completion:nil];
+				strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+				strongSelf.imaPicker.delegate = self;
+				[strongSelf.navigationController presentViewController:strongSelf.imaPicker animated:NO completion:nil];
 			}
 			
 		}
 		else if(index == 1){//从相册中选择图片
 			weakObj;
+            if (![[ImagePrivilegeTool share]judgePrivilege]) {//判读是否有相册选择权限 类中给提示
+                return;
+            }
 			AlbumListVC *VC = [[AlbumListVC alloc]
 							   initWithArrSelected:self.arrSelected
 							   maxCout:9

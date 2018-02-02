@@ -42,9 +42,10 @@ UICollectionViewDelegateFlowLayout>
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.scrollEnabled  = NO;
-    _flowLayout.sectionInset = UIEdgeInsetsMake(5, 10, 0, 0);
-    _flowLayout.minimumInteritemSpacing = 3;//同一行
-    _flowLayout.minimumLineSpacing = 3;//同一列
+    _flowLayout.sectionInset = UIEdgeInsetsMake(12, 12,0, 12);
+    _flowLayout.minimumInteritemSpacing = 12;//同一行
+    _flowLayout.minimumLineSpacing = 12;//同一列
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -54,15 +55,15 @@ UICollectionViewDelegateFlowLayout>
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
 	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-	_nameLbl.text = [DDFactory getString:model.name  withDefault:@"未知用户"];
-	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
+	_nameLbl.text = [DDFactory getString:model.name     withDefault:@"未知用户"];
+	 _titLbl.text = [DDFactory getString:model.content  withDefault:@""];
 	
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
 	
-	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
+	 _timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
 	[_commentBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.commentNumber  withDefault:@"0"]] forState:0];
 	[_pardiseBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.giveNumber  withDefault:@"0"]] forState:0];
 //    CGFloat w = CGRectGetWidth(self.contentView.frame) - 10;//默认一张的时候
@@ -106,7 +107,7 @@ UICollectionViewDelegateFlowLayout>
         _seeAllBtnH.constant = 30;
     }
     if (_model.isStatusSeeAll) {//是否需要查看全部，如果需要查看全部 那么现实文本实际高度
-        _titLblH.constant = [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 10];
+        _titLblH.constant = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 10];
     }else if(!_model.needHideSeeAllBtn){//不需要隐藏查看全部按钮 表示这段文本有很多，需要有查看全部的按钮，但是此时不是显示全部
         _titLblH.constant = 60;
     }
@@ -131,7 +132,7 @@ UICollectionViewDelegateFlowLayout>
     
     UINib *nib = [UINib nibWithNibName:@"HWCollectionViewCell" bundle: [NSBundle mainBundle]];
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"HWCollectionViewCell"];
-    HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath];
+    HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath]; 
     [cell setImgUrlStr:_model.imageUrls[indexPath.row]];
     return cell;
 }
@@ -173,8 +174,8 @@ UICollectionViewDelegateFlowLayout>
 }
 
 +(CGFloat)cellHByModel:(InteractionModel *)model{
-	CGFloat H = 126;
-    CGFloat titltH = [DDFactory autoHByText:model.content Font:15 W:SCREENWIDTH - 24];
+	CGFloat H = 56 + 14 + 50;
+    CGFloat titltH = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 24];
  
     if (titltH > 60) {//大于60 那么需要有个 查看全部的按钮
         model.needHideSeeAllBtn = NO;//不能隐藏查看全部按钮

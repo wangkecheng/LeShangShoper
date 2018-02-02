@@ -170,7 +170,7 @@
 - (IBAction)resetUserName:(id)sender {
     [self registeKeyboardNotifications];
 	weakObj;
-	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeUserName cancelBlock:^BOOL{
+	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 45,(SCREENWIDTH - 45) * 350/570.0) type:TypeUserName cancelBlock:^BOOL{
             __strong typeof (weakSelf) strongSelf = weakSelf;
 		[strongSelf.alertControl ds_dismissAlertView];
         [strongSelf unregisteKeyboardNotification];
@@ -192,7 +192,7 @@
     
     [self registeKeyboardNotifications];
 	weakObj;
-	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 40,180) type:TypeAddress cancelBlock:^BOOL{
+	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 45,(SCREENWIDTH - 45) * 350/570.0) type:TypeAddress cancelBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
         [strongSelf unregisteKeyboardNotification];
@@ -267,14 +267,14 @@
 
 - (IBAction)toCollectionVC:(id)sender {
 	
-	 CollectionVC *VC = [[CollectionVC alloc]init];
-	 WSLeftSlideManagerVC * managerVC = (WSLeftSlideManagerVC *)CurrentAppDelegate.window.rootViewController;
+    CollectionVC *VC = [[CollectionVC alloc]init];
+    WSLeftSlideManagerVC * managerVC = (WSLeftSlideManagerVC *)CurrentAppDelegate.window.rootViewController;
 	[managerVC pushVC:VC];
 }
 
 - (IBAction)toSettingVC:(id)sender {
 	
-	SettingVC *VC = [DDFactory getVCById:@"SettingVC"];
+	SettingVC *VC = (SettingVC *)[DDFactory getVCById:@"SettingVC"];
 	WSLeftSlideManagerVC * managerVC = (WSLeftSlideManagerVC *)CurrentAppDelegate.window.rootViewController;
 	[managerVC pushVC:VC];
 }

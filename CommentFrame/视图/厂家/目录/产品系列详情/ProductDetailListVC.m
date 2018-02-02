@@ -34,9 +34,9 @@
 	[_collectionView registerNib:[UINib nibWithNibName:ProductDetailListCell_ bundle:nil]forCellWithReuseIdentifier:ProductDetailListCell_];
 	
 	[_flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-	_flowlayout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5);
-	_flowlayout.minimumInteritemSpacing = 5;//同一行
-	_flowlayout.minimumLineSpacing = 5;//同一列
+	_flowlayout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+	_flowlayout.minimumInteritemSpacing = 10;//同一行
+	_flowlayout.minimumLineSpacing = 10;//同一列
 	
 	_arrModel = [[NSMutableArray alloc]init];
 	_collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];

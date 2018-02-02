@@ -116,10 +116,14 @@
 	weakObj;
 	ManufacturersCell *headerCell = [tableView dequeueReusableCellWithIdentifier:ManufacturersCell_ forIndexPath:indexPath];
 	AlphabetTitleModel * alphabetTitleModel = _arrModel[indexPath.section];
-	[headerCell setModel:alphabetTitleModel.childrenArrModel[indexPath.row]];
+    ManufacturersModel *model = alphabetTitleModel.childrenArrModel[indexPath.row];
+	[headerCell setModel:model];
+    [headerCell setLineViewAlpah:YES];
+    if (model == [alphabetTitleModel.childrenArrModel lastObject]) {
+         [headerCell setLineViewAlpah:NO];
+    }
 	[headerCell setSelectionStyle:0];//不要分割线
 	cell = headerCell;
-	
 	return cell;
 }
 

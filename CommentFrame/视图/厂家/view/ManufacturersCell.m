@@ -23,8 +23,15 @@
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;
 	_nameLbl.text =[DDFactory getString:model.name  withDefault:@"未知"];
-    _lineView.alpha = 0;
+   
 }
+-(void)setLineViewAlpah:(BOOL)isShow{
+     _lineView.alpha = 0;
+    if (isShow) {
+         _lineView.alpha = 1;
+    }
+}
+
 
 -(void)setSeriesModel:(SeriesModel *)seriesModel{
     _seriesModel = seriesModel;

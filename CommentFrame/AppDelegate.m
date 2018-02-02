@@ -10,6 +10,7 @@
 #import "CacheTool.h"
 #import "GuideVC.h"
 #import "HDMainTBC.h"
+#import "ImagePrivilegeTool.h"
 @interface AppDelegate ()
 
 @end
@@ -39,7 +40,7 @@
     [self updateVersion];//版本更新
 //    //推送
     [self jPushAddAndOptions:launchOptions];
-    
+    [[ImagePrivilegeTool share]judgePrivilege];//判读是否有相册选择权限
     return YES;
 }
 -(void)updateVersion{
