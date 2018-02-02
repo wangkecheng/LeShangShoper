@@ -38,7 +38,7 @@
 -(void)setContent:(NSString * )content{
 	_contentLbl.text = content;
 	
-	 _scrollViewH.constant = [DDFactory autoHByText:content Font:14 W:SCREENWIDTH - 10] + 20;
+	 _scrollViewH.constant = [DDFactory autoHByText:content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:14] W:SCREENWIDTH - 10] + 20;
 }
 
 - (void)didReceiveMemoryWarning {

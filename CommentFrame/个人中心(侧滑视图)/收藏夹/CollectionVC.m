@@ -24,19 +24,20 @@
     [super viewDidLoad];
 	
 	self.title = @"收藏夹";
-    
-    _arrModel = [NSMutableArray array];
+     _arrModel = [NSMutableArray array];
     [_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
-	
-	_tableView.backgroundColor = [UIColor whiteColor];
+	 self.view.backgroundColor =  _tableView.backgroundColor = [UIColor whiteColor];
 	[_tableView hideSurplusLine];
-	_tableView.delegate = self;
-	_tableView.dataSource = self;
-	
-	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+	 _tableView.delegate = self;
+	 _tableView.dataSource = self;
+	 _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+	 _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     [self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
     [self getPage];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated]; 
 }
 -(void)toSearchManufacturersVC{
     //打开搜索界面
@@ -54,6 +55,7 @@
 	
 	[self getData:_page + 1];
 }
+
 - (void)getData:(NSInteger)pageIndex{
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
@@ -87,12 +89,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 	
-	return _arrModel.count;
+    return _arrModel.count;//10;//
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionCell_ forIndexPath:indexPath];
-	[cell setModel:_arrModel[indexPath.row]];
+    [cell setModel:_arrModel[indexPath.row]];
 	weakObj;
 	cell.collectBlock = ^BOOL(CollectionModel *model) {
 		__strong typeof (weakSelf) strongSelf  = weakSelf;
@@ -147,14 +149,24 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
-	view.backgroundColor = [UIColor clearColor];
+    UIView *view = [[UIView alloc]init];
+    CGFloat H = 0.01;
+//        view.backgroundColor = [UIColor clearColor];
+//    if (section == 0) {
+//        H = 12;//从搜索页面返回后就有一个顶部的留空 不知道为啥 解决这个问题 治标方法
+//        view.backgroundColor = [UIColor whiteColor];
+//    }
+    view.frame = CGRectMake(0, 0, SCREENWIDTH, H);
+
 	return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	 
-	return 0.01;
+	  CGFloat H = 0.01;
+//    if (section == 0) {
+//        H = 12;//从搜索页面返回后就有一个顶部的留空 不知道为啥 解决这个问题 治标方法
+//    }
+	return H;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

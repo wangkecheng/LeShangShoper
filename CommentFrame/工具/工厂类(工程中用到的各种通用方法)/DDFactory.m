@@ -444,14 +444,14 @@
 	return rect.size.width;
 }
 
-+(CGFloat)autoHByText:(NSString *)text Font:(CGFloat)font W:(CGFloat)W{
++(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font W:(CGFloat)W{
 	if (text.length == 0  )  {
 		return  0;
 	}
 	NSStringDrawingOptions opts =NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
 	NSMutableParagraphStyle*style = [[NSMutableParagraphStyle alloc]init];
 	[style setLineBreakMode:NSLineBreakByWordWrapping];
-	NSDictionary*attribute =@{NSFontAttributeName:[UIFont systemFontOfSize:font],NSParagraphStyleAttributeName:style};
+	NSDictionary*attribute =@{NSFontAttributeName:font,NSParagraphStyleAttributeName:style};
 	CGRect rect=  [text boundingRectWithSize:CGSizeMake(W,MAXFLOAT) options: opts attributes:attribute context:nil];
 	return rect.size.height;
 }

@@ -10,5 +10,7 @@
 #import "ManufacturersModel.h"
 @interface ManufacturersCell : UITableViewCell
 @property(nonatomic,strong)ManufacturersModel *model;
+-(void)setLineViewAlpah:(BOOL)isShow;//设置是否显示分割线
+
 @property(nonatomic,strong)SeriesModel *seriesModel;
 @end

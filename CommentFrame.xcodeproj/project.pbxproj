@@ -198,6 +198,9 @@
 		18B543422011839500A40C4E /* ic_praise@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B542CA2011839500A40C4E /* ic_praise@3x.png */; };
 		18B543432011839500A40C4E /* ic_top_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B542CB2011839500A40C4E /* ic_top_add@2x.png */; };
 		18B543442011839500A40C4E /* ic_top_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B542CC2011839500A40C4E /* ic_top_add@3x.png */; };
+		18C0C0CC2024067400C900BE /* NotifyCenterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CA2024067400C900BE /* NotifyCenterTool.m */; };
+		18C0C0CF20240D1D00C900BE /* ImagePrivilegeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */; };
+		18C0C0D120240EB200C900BE /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0C0D020240EB100C900BE /* UserNotifications.framework */; };
 		200C80011FFFC39E00C6A2AA /* LosePromiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */; };
 		200C80021FFFC39E00C6A2AA /* LosePromiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */; };
 		200C80051FFFC4F000C6A2AA /* LosePromissAndNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C80041FFFC4F000C6A2AA /* LosePromissAndNewsModel.m */; };
@@ -680,6 +683,11 @@
 		18B542CA2011839500A40C4E /* ic_praise@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_praise@3x.png"; sourceTree = "<group>"; };
 		18B542CB2011839500A40C4E /* ic_top_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_top_add@2x.png"; sourceTree = "<group>"; };
 		18B542CC2011839500A40C4E /* ic_top_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_top_add@3x.png"; sourceTree = "<group>"; };
+		18C0C0C92024067400C900BE /* NotifyCenterTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyCenterTool.h; sourceTree = "<group>"; };
+		18C0C0CA2024067400C900BE /* NotifyCenterTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyCenterTool.m; sourceTree = "<group>"; };
+		18C0C0CD20240D1D00C900BE /* ImagePrivilegeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePrivilegeTool.h; sourceTree = "<group>"; };
+		18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePrivilegeTool.m; sourceTree = "<group>"; };
+		18C0C0D020240EB100C900BE /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		200C7FFE1FFFC39E00C6A2AA /* LosePromiseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LosePromiseCell.h; sourceTree = "<group>"; };
 		200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LosePromiseCell.m; sourceTree = "<group>"; };
 		200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LosePromiseCell.xib; sourceTree = "<group>"; };
@@ -1058,6 +1066,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C0C0D120240EB200C900BE /* UserNotifications.framework in Frameworks */,
 				2064C55D1FFB679F0073C2EC /* MobileCoreServices.framework in Frameworks */,
 				20DDE2CD1EA9B2F100E4CC04 /* libsqlite3.tbd in Frameworks */,
 				2079EB0E1EA9BA2C004DE68B /* ImageIO.framework in Frameworks */,
@@ -1422,6 +1431,24 @@
 				18B542CC2011839500A40C4E /* ic_top_add@3x.png */,
 			);
 			path = "4互动";
+			sourceTree = "<group>";
+		};
+		18C0C0C42024065A00C900BE /* 图片权限工具 */ = {
+			isa = PBXGroup;
+			children = (
+				18C0C0CD20240D1D00C900BE /* ImagePrivilegeTool.h */,
+				18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */,
+			);
+			path = "图片权限工具";
+			sourceTree = "<group>";
+		};
+		18C0C0C82024067400C900BE /* 通知中心权限工具 */ = {
+			isa = PBXGroup;
+			children = (
+				18C0C0C92024067400C900BE /* NotifyCenterTool.h */,
+				18C0C0CA2024067400C900BE /* NotifyCenterTool.m */,
+			);
+			path = "通知中心权限工具";
 			sourceTree = "<group>";
 		};
 		1F608DFF0BE1D8969B30F5AF /* Pods */ = {
@@ -1945,6 +1972,8 @@
 		2031F6E91EA9A33F0075E7F3 /* 工具 */ = {
 			isa = PBXGroup;
 			children = (
+				18C0C0C82024067400C900BE /* 通知中心权限工具 */,
+				18C0C0C42024065A00C900BE /* 图片权限工具 */,
 				20A5D9181FB9977300534868 /* UIView+Extension.h */,
 				20A5D9191FB9977300534868 /* UIView+Extension.m */,
 				200C80241FFFD2A800C6A2AA /* EaseChineseToPinyin.h */,
@@ -2671,6 +2700,7 @@
 		2624112E3E3E0E3D6E3115F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C0C0D020240EB100C900BE /* UserNotifications.framework */,
 				2064C55C1FFB679F0073C2EC /* MobileCoreServices.framework */,
 				2079EB0D1EA9BA2C004DE68B /* ImageIO.framework */,
 				2079EB0B1EA9BA24004DE68B /* JavaScriptCore.framework */,
@@ -3339,6 +3369,7 @@
 				2064C5431FFB56F00073C2EC /* NewsHeaderView.m in Sources */,
 				2064C5351FFB53B90073C2EC /* SellerCell.m in Sources */,
 				20A5D8BF1FB98FB300534868 /* BaseServer.m in Sources */,
+				18C0C0CF20240D1D00C900BE /* ImagePrivilegeTool.m in Sources */,
 				186E6E172019D65E00D40E95 /* LWImageBrowserFlowLayout.m in Sources */,
 				186E6E352019DF9700D40E95 /* XHLaunchAdConfiguration.m in Sources */,
 				200D7F751FF7434F00B97979 /* PageControl.m in Sources */,
@@ -3370,6 +3401,7 @@
 				186E6E112019D65E00D40E95 /* LWActionSheetView.m in Sources */,
 				1840EEB32011BF6400A341F7 /* InteligentServiceAlertView.m in Sources */,
 				1898B86A20197030005E679F /* DYCountyModel.m in Sources */,
+				18C0C0CC2024067400C900BE /* NotifyCenterTool.m in Sources */,
 				20A5D8A81FB98B9200534868 /* UIViewController+BarButton.m in Sources */,
 				200C80121FFFC8CB00C6A2AA /* AddInteractionVC.m in Sources */,
 				2090C640200DF79400CC07F9 /* ProductDetailVC.m in Sources */,

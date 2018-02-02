@@ -8,7 +8,7 @@
 
 #import "SettingVC.h"
 #import "SDImageCache.h"
- #import "FeedBackVC.h"
+#import "FeedBackVC.h" 
 @interface SettingVC ()
 
 @property (strong, nonatomic)UserInfoModel *userModel;
