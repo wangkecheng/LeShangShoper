@@ -39,7 +39,7 @@
 	}
     _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",  [DDFactory getString:model.cid withDefault:@"未知"]];
     _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",[DDFactory getString:model.spec  withDefault:@"0 * 0"]];
-	_priceLbl.text = [NSString stringWithFormat:@"￥%@", [DDFactory getString:model.price withDefault:@"0"]];
+	_priceLbl.text = [NSString stringWithFormat:@"￥%0.2f", [[DDFactory getString:model.price  withDefault:@"0"] floatValue]];
     [_focusBtn setTitle:[NSString stringWithFormat:@" %@", [DDFactory getString:model.broseNumber withDefault:@"0"]] forState:0];
 }
 

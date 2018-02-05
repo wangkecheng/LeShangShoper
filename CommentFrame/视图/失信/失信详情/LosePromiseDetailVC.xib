@@ -25,7 +25,7 @@
                 <outlet property="timeLbl" destination="wZT-5m-C9E" id="D3V-yv-lm3"/>
                 <outlet property="userInfoContentVY" destination="Fqs-Gy-x0k" id="Ybg-lW-k9n"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="tZI-nS-sIq" id="rYg-px-1Ri"/>
+                <outlet property="webView" destination="vzS-Lq-4CZ" id="wDB-7b-nmi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,10 +33,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZI-nS-sIq">
-                    <rect key="frame" x="0.0" y="75" width="375" height="592"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </webView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zw1-13-eOa">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                     <subviews>
@@ -137,18 +133,26 @@
                         <constraint firstItem="wZT-5m-C9E" firstAttribute="leading" secondItem="WGv-dv-WGQ" secondAttribute="leading" id="wq6-SN-gip"/>
                     </constraints>
                 </view>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-Lq-4CZ">
+                    <rect key="frame" x="0.0" y="75" width="375" height="592"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="tZI-nS-sIq" secondAttribute="bottom" id="ERv-lm-lCP"/>
+                <constraint firstItem="vzS-Lq-4CZ" firstAttribute="top" secondItem="zw1-13-eOa" secondAttribute="bottom" id="1bs-6p-w9V"/>
+                <constraint firstAttribute="trailing" secondItem="vzS-Lq-4CZ" secondAttribute="trailing" id="2vU-oP-pmQ"/>
+                <constraint firstItem="vzS-Lq-4CZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7xg-pm-0VQ"/>
                 <constraint firstItem="zw1-13-eOa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fqs-Gy-x0k"/>
-                <constraint firstAttribute="trailing" secondItem="tZI-nS-sIq" secondAttribute="trailing" id="QsO-Mg-tVH"/>
                 <constraint firstItem="zw1-13-eOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V1A-ux-eDN"/>
                 <constraint firstAttribute="trailing" secondItem="zw1-13-eOa" secondAttribute="trailing" id="jIr-fG-3sV"/>
-                <constraint firstItem="tZI-nS-sIq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kZ4-bk-Wve"/>
-                <constraint firstItem="tZI-nS-sIq" firstAttribute="top" secondItem="zw1-13-eOa" secondAttribute="bottom" id="rgS-8D-7H1"/>
+                <constraint firstAttribute="bottom" secondItem="vzS-Lq-4CZ" secondAttribute="bottom" id="p7z-2g-sGD"/>
             </constraints>
-            <point key="canvasLocation" x="-538" y="-292"/>
+            <point key="canvasLocation" x="-607" y="-302"/>
         </view>
     </objects>
     <resources>

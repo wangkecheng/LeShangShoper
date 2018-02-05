@@ -8,8 +8,9 @@
 //
 
 #import "LosePromiseDetailVC.h"
+#import <WebKit/WebKit.h>
+@interface LosePromiseDetailVC ()<WKUIDelegate,WKNavigationDelegate>
 
-@interface LosePromiseDetailVC ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
@@ -18,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paridseNumLbl;//点赞数
 @property (weak, nonatomic) IBOutlet UIButton *paridseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *seeNumLbl;//查看数
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 
 @end
 
@@ -33,10 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_webView.delegate = self;
+//    _webView.navigationDelegate = self;
+    _webView.navigationDelegate = self;
+    _webView.UIDelegate = self;
 	_webView.backgroundColor = [UIColor whiteColor];
 	HDModel * m = [HDModel model];
-	m.did = _model.did;
+    m.did = _model.did;
 	weakObj;
 	[BaseServer postObjc:m path:@"/dishonesty/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		LosePromissAndNewsModel * model  = [LosePromissAndNewsModel yy_modelWithJSON:result[@"data"]];
@@ -44,7 +47,8 @@
 			__strong typeof (weakSelf) strongSelf  = weakSelf;
 			[strongSelf setData:model];
 		});
-	} failed:^(NSError *error) { 
+	} failed:^(NSError *error){
+        
 	}];
 }
 
@@ -58,7 +62,7 @@
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	_timeLbl.text = [formatter stringFromDate:confromTimesp];
 	
-	[_webView loadHTMLString:model.content baseURL:nil];
+	[_webView loadHTMLString:model.content baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
 	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
 	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
 	_seeNumLbl.text = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
@@ -78,17 +82,24 @@
     }];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    return YES;
-}
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
     
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+        
+    }
 }
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-
-}
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-
+// WKNavigationDelegate 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    //修改字体大小 300%
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+    
+    //修改字体颜色  #9098b8
+//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
