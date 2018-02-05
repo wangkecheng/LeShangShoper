@@ -72,7 +72,10 @@
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.view endEditing:YES];
+}
 -(void)delegateInputText{
     [_searchBar resignFirstResponder];
     _searchBar.text = nil;
