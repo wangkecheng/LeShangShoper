@@ -133,21 +133,7 @@
 	cell = headerCell;
 	return cell;
 }
-
-//- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-//    NSMutableArray *titleArr = [NSMutableArray array];
-//    for (AlphabetTitleModel * model in _arrModel) {
-//        [titleArr addObject:model.name];
-//    }
-//    return titleArr;
-//}
-//响应点击索引时的委托方法
-//-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
-//    if (index + 1 <= _arrModel.count) {
-//        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//    }
-//    return index;
-//}
+ 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	return 58;

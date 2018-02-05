@@ -32,7 +32,7 @@
     if (isShowSubTit) {
        _subTItViewH.constant = 52;
     }
-    for (UIView *view in _subTitView.subviews) {
+    for (UIView *view in self.subviews) {
         view.alpha = 0;
         if (isShowSubTit) {
              view.alpha = 1;

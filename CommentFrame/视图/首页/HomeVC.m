@@ -337,7 +337,7 @@
     CGFloat hederH = 95;
     BOOL isShowSubTit = YES;
     if (section != 3) {
-        hederH = 45;
+        hederH = 0;//不显示 后面的日期了
         isShowSubTit = NO;
     } 
     NewsHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NewsHeaderView_];
