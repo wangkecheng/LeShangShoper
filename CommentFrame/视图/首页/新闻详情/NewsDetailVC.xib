@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsDetailVC">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="k0q-f5-PVP" id="J0E-yH-aiD"/>
+                <outlet property="webView" destination="YWN-HA-RqC" id="7p2-aw-BZu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,18 +20,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0q-f5-PVP">
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWN-HA-RqC">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </webView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="k0q-f5-PVP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="41n-u4-KlU"/>
-                <constraint firstItem="k0q-f5-PVP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Rg-F3-fu5"/>
-                <constraint firstAttribute="bottom" secondItem="k0q-f5-PVP" secondAttribute="bottom" id="LGo-0v-OQL"/>
-                <constraint firstAttribute="trailing" secondItem="k0q-f5-PVP" secondAttribute="trailing" id="ldP-5t-bGK"/>
+                <constraint firstItem="YWN-HA-RqC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5qJ-OR-5K6"/>
+                <constraint firstAttribute="trailing" secondItem="YWN-HA-RqC" secondAttribute="trailing" id="CdZ-5w-GqA"/>
+                <constraint firstAttribute="bottom" secondItem="YWN-HA-RqC" secondAttribute="bottom" id="aue-Yl-kCu"/>
+                <constraint firstItem="YWN-HA-RqC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hjc-z2-bMC"/>
             </constraints>
+            <point key="canvasLocation" x="-111" y="31"/>
         </view>
     </objects>
 </document>

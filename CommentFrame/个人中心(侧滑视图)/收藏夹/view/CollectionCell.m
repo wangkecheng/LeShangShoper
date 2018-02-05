@@ -31,7 +31,7 @@
 	_collectionBtn.alpha = _specialImg.alpha = 0;
 	[_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates] ;
 	 _titleLbl.text  = [DDFactory getString: model.name  withDefault:@"未知"];
-	_priceLbl.text = [NSString stringWithFormat:@"￥ %@",model.price];
+	_priceLbl.text = [NSString stringWithFormat:@"￥ %0.2f",[model.price floatValue]];
 	_specificationLbl.text =  [DDFactory getString:model.spec  withDefault:@"0 * 0"];
 	_usePlaceLbl.text =  [DDFactory getString:model.typeName  withDefault:@"未知"];
 	_factoryLbl.text = [DDFactory getString:model.merchantName  withDefault:@"未知"];
@@ -45,7 +45,7 @@
   
     [_img sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
     _titleLbl.text  = [DDFactory getString: model.name  withDefault:@"未知"];
-    _priceLbl.text =   [NSString stringWithFormat:@"￥ %@",[DDFactory getString:model.price  withDefault:@"0"]];;
+    _priceLbl.text =   [NSString stringWithFormat:@"￥ %0.2f",[[DDFactory getString:model.price  withDefault:@"0"] floatValue]];
     _specificationLbl.text =  [DDFactory getString:model.spec  withDefault:@"0 * 0"];
 	_usePlaceLbl.text =  [DDFactory getString:model.typeName  withDefault:@"未知"];
     _factoryLbl.text = [DDFactory getString:model.merchantName  withDefault:@"未知"];

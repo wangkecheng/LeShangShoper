@@ -10,9 +10,11 @@
 #import "ProductDetailVC.h"
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
-@interface ProductDetailVC ()
+#import <WebKit/WebKit.h>
+@interface ProductDetailVC ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet UILabel *indicatorLbl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewH;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *specificationLbl;//规格
@@ -24,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
 
 @property (strong, nonatomic)CollectionModel * detailModel;
+
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 @end
 
 @implementation ProductDetailVC
@@ -31,7 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"商品详情";
-  
+    _webView.UIDelegate = self;
+    _webView.userInteractionEnabled = NO ;
+    _webView.navigationDelegate = self;
 	HDModel * m = [HDModel model];
 	m.cid  = _model.cid;
 	weakObj;
@@ -103,7 +109,7 @@
 	_usePlaceLbl.text = _detailModel.typeName; //使用位置
 	_numberLbl.text = [NSString stringWithFormat:@"编号：%@",_detailModel.iden];//编号
 	_factoryLbl.text = _detailModel.merchantName;//工厂或者公司
-	_priceLbl.text =  [NSString stringWithFormat:@"￥%@",_detailModel.price];
+	_priceLbl.text =  [NSString stringWithFormat:@"￥%0.2f",[_detailModel.price floatValue]];
 	_specialImg.alpha = 0;
 	if([_detailModel.bargain integerValue] == 2){
 			_specialImg.alpha = 1;
@@ -112,6 +118,17 @@
 	if([_detailModel.collect integerValue] == 2){
 	    [_collectBtn setTitle:@"已收藏" forState:0];
 	}
+    NSMutableString * desStr = [[NSMutableString alloc]init];
+    if (![_detailModel.des containsString:@"<"]) {
+        [desStr appendString:@"<p class=\"one-p\" style=\"margin: 0px 0px 2em; padding: 2px; line-height: 2.2; font-family: &quot;Microsoft Yahei&quot;, Avenir, &quot;Segoe UI&quot;, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 18px;\">"];
+        [desStr appendString:_detailModel.des];
+        [desStr appendString:@"</p>"];
+    }
+    
+   
+    _scrollViewH.constant +=  [DDFactory autoHByText:_detailModel.des Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:18] W:SCREENWIDTH];;
+    //设置webView
+    [_webView loadHTMLString:desStr baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
 }
 
 -(void)saveImgModule:(NSString *)imagePath{//保存图片
@@ -180,6 +197,38 @@
 	}];
 }
 
+
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+    
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+        
+    }
+}
+
+// WKNavigationDelegate 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+   
+    //修改字体大小 300%
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+    
+    //修改字体颜色  #9098b8
+    //    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+    
+//    __block CGFloat webViewHeight;
+//    weakObj; //  document.body.scrollHeigh
+//    [webView evaluateJavaScript:@"document.body.offsetHeight"completionHandler:^(id _Nullable result,NSError * _Nullable error) {
+//        //获取页面高度，并重置webview的frame
+//        webViewHeight = [result doubleValue];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            __strong typeof (weakSelf) strongSelf = weakSelf;
+//            strongSelf.scrollViewH.constant += webViewHeight;
+//        });
+//    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

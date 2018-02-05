@@ -37,8 +37,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated]; 
+    [super viewWillAppear:animated];
+    self.extendedLayoutIncludesOpaqueBars = YES;
 }
+
 -(void)toSearchManufacturersVC{
     //打开搜索界面
     SearchProductVC * VC = [[SearchProductVC alloc]init];

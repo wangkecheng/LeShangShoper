@@ -25,7 +25,7 @@
                 <outlet property="timeLbl" destination="wZT-5m-C9E" id="D3V-yv-lm3"/>
                 <outlet property="userInfoContentVY" destination="Fqs-Gy-x0k" id="Ybg-lW-k9n"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="BrX-Fg-jPj" id="BKI-Ew-olz"/>
+                <outlet property="webView" destination="vzS-Lq-4CZ" id="wDB-7b-nmi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -133,7 +133,7 @@
                         <constraint firstItem="wZT-5m-C9E" firstAttribute="leading" secondItem="WGv-dv-WGQ" secondAttribute="leading" id="wq6-SN-gip"/>
                     </constraints>
                 </view>
-                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrX-Fg-jPj">
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzS-Lq-4CZ">
                     <rect key="frame" x="0.0" y="75" width="375" height="592"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <wkWebViewConfiguration key="configuration">
@@ -144,15 +144,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vzS-Lq-4CZ" firstAttribute="top" secondItem="zw1-13-eOa" secondAttribute="bottom" id="1bs-6p-w9V"/>
+                <constraint firstAttribute="trailing" secondItem="vzS-Lq-4CZ" secondAttribute="trailing" id="2vU-oP-pmQ"/>
+                <constraint firstItem="vzS-Lq-4CZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7xg-pm-0VQ"/>
                 <constraint firstItem="zw1-13-eOa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fqs-Gy-x0k"/>
-                <constraint firstAttribute="bottom" secondItem="BrX-Fg-jPj" secondAttribute="bottom" id="HuN-36-M8u"/>
                 <constraint firstItem="zw1-13-eOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V1A-ux-eDN"/>
-                <constraint firstItem="BrX-Fg-jPj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bBO-Jb-sn9"/>
-                <constraint firstItem="BrX-Fg-jPj" firstAttribute="top" secondItem="zw1-13-eOa" secondAttribute="bottom" id="cGs-e6-4nP"/>
-                <constraint firstAttribute="trailing" secondItem="BrX-Fg-jPj" secondAttribute="trailing" id="eki-BY-AVR"/>
                 <constraint firstAttribute="trailing" secondItem="zw1-13-eOa" secondAttribute="trailing" id="jIr-fG-3sV"/>
+                <constraint firstAttribute="bottom" secondItem="vzS-Lq-4CZ" secondAttribute="bottom" id="p7z-2g-sGD"/>
             </constraints>
-            <point key="canvasLocation" x="-507" y="-423"/>
+            <point key="canvasLocation" x="-607" y="-302"/>
         </view>
     </objects>
     <resources>

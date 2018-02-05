@@ -34,11 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	_webView.navigationDelegate = self;
+//    _webView.navigationDelegate = self;
+    _webView.navigationDelegate = self;
     _webView.UIDelegate = self;
 	_webView.backgroundColor = [UIColor whiteColor];
 	HDModel * m = [HDModel model];
-	m.did = _model.did;
+    m.did = _model.did;
 	weakObj;
 	[BaseServer postObjc:m path:@"/dishonesty/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		LosePromissAndNewsModel * model  = [LosePromissAndNewsModel yy_modelWithJSON:result[@"data"]];
@@ -46,7 +47,8 @@
 			__strong typeof (weakSelf) strongSelf  = weakSelf;
 			[strongSelf setData:model];
 		});
-	} failed:^(NSError *error) { 
+	} failed:^(NSError *error){
+        
 	}];
 }
 
@@ -60,7 +62,7 @@
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	_timeLbl.text = [formatter stringFromDate:confromTimesp];
 	
-	[_webView loadHTMLString:model.content baseURL:nil];
+	[_webView loadHTMLString:model.content baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
 	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
 	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
 	_seeNumLbl.text = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
@@ -80,24 +82,24 @@
     }];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    return YES;
-}
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
-    if ([challenge previousFailureCount]== 0) {
-        //NSURLCredential 这个类是表示身份验证凭据不可变对象。凭证的实际类型声明的类的构造函数来确定。
-        NSURLCredential* cre = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-        [challenge.sender useCredential:cre forAuthenticationChallenge:challenge];
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+    
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+        
     }
 }
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+// WKNavigationDelegate 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    //修改字体大小 300%
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
     
-}
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-
-}
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-
+    //修改字体颜色  #9098b8
+//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

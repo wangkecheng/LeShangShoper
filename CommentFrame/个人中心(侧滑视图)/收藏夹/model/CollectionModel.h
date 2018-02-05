@@ -25,6 +25,7 @@
 @property (nonatomic,strong)NSString *typeName;
 @property (nonatomic,strong)NSString *broseNumber;
 @property (nonatomic,strong)NSString *iden;//编号
+@property (nonatomic,strong)NSString *des;
 @end
 
 //bargain = 1;
