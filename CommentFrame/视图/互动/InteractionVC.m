@@ -13,11 +13,14 @@
 #import "CommentInteractionVC.h"
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
-@interface InteractionVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "YBPopupMenu.h"
+#import "MyInteractionVC.h"
+@interface InteractionVC ()<UITableViewDelegate,UITableViewDataSource,YBPopupMenuDelegate>
 
 @property (strong, nonatomic)NSMutableArray *arrModel;
 @property (assign, nonatomic)NSInteger page;
 @property (weak, nonatomic)IBOutlet UITableView *tableview;
+@property (strong, nonatomic)YBPopupMenu *popMenu;
 @end
 
 @implementation InteractionVC
@@ -31,16 +34,37 @@
 	 _tableview.dataSource = self;
 	[_tableview setSeparatorStyle:0];
 	
-	[_tableview hideSurplusLine];
-	[self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction)];
-	 _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	 _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+	[_tableview hideSurplusLine]; 
+    _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+    _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+    [self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction:)];
 	[self getPage];
 }
 
--(void)addInteraction{//添加互动
-	AddInteractionVC * VC = [[AddInteractionVC alloc]init];
-	[self.navigationController pushViewController:VC animated:YES];
+-(void)addInteraction:(UIButton *)btn{//添加互动
+    weakObj;
+    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"我的互动",@"添加互动"] icons:nil menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        popupMenu.dismissOnSelected = YES;
+        popupMenu.isShowShadow = YES;
+        popupMenu.delegate = strongSelf;
+        popupMenu.offset = 10;
+        popupMenu.type = YBPopupMenuTypeDefault;
+        popupMenu.rectCorner = UIRectCornerAllCorners;
+        popupMenu.priorityDirection = YBPopupMenuPriorityDirectionTop;
+    }];
+}  //推荐用这种写法
+#pragma mark - YBPopupMenuDelegate
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu{
+    HDBaseVC *VC = nil;
+    if (index == 0) {
+         VC  = [[MyInteractionVC alloc]init];
+    }else{
+         VC = [[AddInteractionVC alloc]init];
+    }
+    if (VC) {
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{

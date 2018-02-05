@@ -116,7 +116,7 @@ UICollectionViewDelegateFlowLayout>
         [_seeAllBtn setTitle:@"收起" forState:0];
     }
     [_collectionView reloadData];
-    [self layoutIfNeeded];
+    [super layoutIfNeeded];
 }
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

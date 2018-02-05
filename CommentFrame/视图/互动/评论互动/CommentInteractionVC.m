@@ -164,6 +164,7 @@
 			[strongSelf.tableview reloadData];
             strongSelf.commentTextView.text = @"";
             strongSelf.placeholder.alpha = 1;
+            [strongSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];//在没有数据的时候评论成功需要隐藏图片
 			if(strongSelf.finishComBlock){
 				strongSelf.finishComBlock(weakSelf.interactionModel);
 			}

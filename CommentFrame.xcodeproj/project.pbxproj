@@ -201,6 +201,12 @@
 		18C0C0CC2024067400C900BE /* NotifyCenterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CA2024067400C900BE /* NotifyCenterTool.m */; };
 		18C0C0CF20240D1D00C900BE /* ImagePrivilegeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */; };
 		18C0C0D120240EB200C900BE /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0C0D020240EB100C900BE /* UserNotifications.framework */; };
+		18C4463820283C22004E8669 /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18C4463720283C22004E8669 /* timg.jpg */; };
+		18C4464720283DDC004E8669 /* MyInteractionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464520283DDC004E8669 /* MyInteractionVC.m */; };
+		18C4464820283DDC004E8669 /* MyInteractionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C4464620283DDC004E8669 /* MyInteractionVC.xib */; };
+		18C4465020284702004E8669 /* SCIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464B20284702004E8669 /* SCIndexView.m */; };
+		18C4465120284702004E8669 /* SCIndexViewConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464D20284702004E8669 /* SCIndexViewConfiguration.m */; };
+		18C4465220284702004E8669 /* UITableView+SCIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464F20284702004E8669 /* UITableView+SCIndexView.m */; };
 		200C80011FFFC39E00C6A2AA /* LosePromiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */; };
 		200C80021FFFC39E00C6A2AA /* LosePromiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */; };
 		200C80051FFFC4F000C6A2AA /* LosePromissAndNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C80041FFFC4F000C6A2AA /* LosePromissAndNewsModel.m */; };
@@ -688,6 +694,16 @@
 		18C0C0CD20240D1D00C900BE /* ImagePrivilegeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePrivilegeTool.h; sourceTree = "<group>"; };
 		18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePrivilegeTool.m; sourceTree = "<group>"; };
 		18C0C0D020240EB100C900BE /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		18C4463720283C22004E8669 /* timg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpg; sourceTree = "<group>"; };
+		18C4464420283DDC004E8669 /* MyInteractionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInteractionVC.h; sourceTree = "<group>"; };
+		18C4464520283DDC004E8669 /* MyInteractionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInteractionVC.m; sourceTree = "<group>"; };
+		18C4464620283DDC004E8669 /* MyInteractionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyInteractionVC.xib; sourceTree = "<group>"; };
+		18C4464A20284702004E8669 /* SCIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCIndexView.h; sourceTree = "<group>"; };
+		18C4464B20284702004E8669 /* SCIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCIndexView.m; sourceTree = "<group>"; };
+		18C4464C20284702004E8669 /* SCIndexViewConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCIndexViewConfiguration.h; sourceTree = "<group>"; };
+		18C4464D20284702004E8669 /* SCIndexViewConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCIndexViewConfiguration.m; sourceTree = "<group>"; };
+		18C4464E20284702004E8669 /* UITableView+SCIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SCIndexView.h"; sourceTree = "<group>"; };
+		18C4464F20284702004E8669 /* UITableView+SCIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SCIndexView.m"; sourceTree = "<group>"; };
 		200C7FFE1FFFC39E00C6A2AA /* LosePromiseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LosePromiseCell.h; sourceTree = "<group>"; };
 		200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LosePromiseCell.m; sourceTree = "<group>"; };
 		200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LosePromiseCell.xib; sourceTree = "<group>"; };
@@ -1451,6 +1467,29 @@
 			path = "通知中心权限工具";
 			sourceTree = "<group>";
 		};
+		18C4464320283DB7004E8669 /* 我的互动 */ = {
+			isa = PBXGroup;
+			children = (
+				18C4464420283DDC004E8669 /* MyInteractionVC.h */,
+				18C4464520283DDC004E8669 /* MyInteractionVC.m */,
+				18C4464620283DDC004E8669 /* MyInteractionVC.xib */,
+			);
+			path = "我的互动";
+			sourceTree = "<group>";
+		};
+		18C4464920284702004E8669 /* tableView索引 */ = {
+			isa = PBXGroup;
+			children = (
+				18C4464A20284702004E8669 /* SCIndexView.h */,
+				18C4464B20284702004E8669 /* SCIndexView.m */,
+				18C4464C20284702004E8669 /* SCIndexViewConfiguration.h */,
+				18C4464D20284702004E8669 /* SCIndexViewConfiguration.m */,
+				18C4464E20284702004E8669 /* UITableView+SCIndexView.h */,
+				18C4464F20284702004E8669 /* UITableView+SCIndexView.m */,
+			);
+			path = "tableView索引";
+			sourceTree = "<group>";
+		};
 		1F608DFF0BE1D8969B30F5AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1803,6 +1842,7 @@
 				200D7FAD1FF747C200B97979 /* InteractionVC.xib */,
 				200D7F981FF7473A00B97979 /* view */,
 				200D7F971FF7473A00B97979 /* model */,
+				18C4464320283DB7004E8669 /* 我的互动 */,
 				1840EEB9201207EC00A341F7 /* 评论互动 */,
 				200C800E1FFFC8B600C6A2AA /* 添加互动 */,
 			);
@@ -1972,6 +2012,7 @@
 		2031F6E91EA9A33F0075E7F3 /* 工具 */ = {
 			isa = PBXGroup;
 			children = (
+				18C4464920284702004E8669 /* tableView索引 */,
 				18C0C0C82024067400C900BE /* 通知中心权限工具 */,
 				18C0C0C42024065A00C900BE /* 图片权限工具 */,
 				20A5D9181FB9977300534868 /* UIView+Extension.h */,
@@ -2023,6 +2064,7 @@
 		2031F6EB1EA9A33F0075E7F3 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				18C4463720283C22004E8669 /* timg.jpg */,
 				1881526B20205F0200AD4F1A /* Icon.png */,
 				18B542572011839400A40C4E /* 1首页 */,
 				18B542A22011839500A40C4E /* 2特价 */,
@@ -2872,6 +2914,7 @@
 				18B542E02011839500A40C4E /* btn_foot_factory_p@3x.png in Resources */,
 				18B5432C2011839500A40C4E /* ic_top_search@3x.png in Resources */,
 				18B5431B2011839500A40C4E /* hotProductImg@2x.png in Resources */,
+				18C4464820283DDC004E8669 /* MyInteractionVC.xib in Resources */,
 				18B5433B2011839500A40C4E /* ic_views@2x.png in Resources */,
 				2031F6BF1EA99BA30075E7F3 /* Main.storyboard in Resources */,
 				18B5432B2011839500A40C4E /* ic_top_search@2x.png in Resources */,
@@ -2880,6 +2923,7 @@
 				18B542FB2011839500A40C4E /* ic_home_search@2x.png in Resources */,
 				206865482009E9BE008C50A2 /* AdvertItemView.xib in Resources */,
 				18B543412011839500A40C4E /* ic_praise@2x.png in Resources */,
+				18C4463820283C22004E8669 /* timg.jpg in Resources */,
 				18B542FD2011839500A40C4E /* ic_input_address@2x.png in Resources */,
 				18B542D62011839500A40C4E /* bg_personal_center@3x.png in Resources */,
 				18B543152011839500A40C4E /* ic_right_arrow@2x.png in Resources */,
@@ -3263,6 +3307,7 @@
 				186E6E122019D65E00D40E95 /* LWAlertContentView.m in Sources */,
 				20A5D9101FB9908300534868 /* MBProgressHUD.m in Sources */,
 				20A5D8AB1FB98B9200534868 /* NSObject+SXRuntime.m in Sources */,
+				18C4465020284702004E8669 /* SCIndexView.m in Sources */,
 				200D7F7B1FF7439900B97979 /* UserInfoModel.m in Sources */,
 				20A5D9151FB9908300534868 /* YBPopupMenu.m in Sources */,
 				20A5D8B81FB98F1300534868 /* NSDate+Extension.m in Sources */,
@@ -3376,6 +3421,7 @@
 				20A5D8F41FB9901A00534868 /* NSObject+GYExtension.m in Sources */,
 				200D7FDA1FF7548D00B97979 /* TGWebProgressLayer.m in Sources */,
 				1840EEBD2012080700A341F7 /* CommentInteractionVC.m in Sources */,
+				18C4465220284702004E8669 /* UITableView+SCIndexView.m in Sources */,
 				207418BA2005085D007C4F36 /* CollectionModel.m in Sources */,
 				186E6E362019DF9700D40E95 /* XHLaunchAdController.m in Sources */,
 				186E6E372019DF9700D40E95 /* XHLaunchAdConst.m in Sources */,
@@ -3393,6 +3439,7 @@
 				20A5D9141FB9908300534868 /* YBPopupMenuPath.m in Sources */,
 				2090C627200B15BD00CC07F9 /* WSLeftSlideManagerVC.m in Sources */,
 				206FA03E2000F61100DB7998 /* DDTextField.m in Sources */,
+				18C4464720283DDC004E8669 /* MyInteractionVC.m in Sources */,
 				186E6E102019D65E00D40E95 /* LWActionSheetTableViewCell.m in Sources */,
 				2031F6B61EA99BA30075E7F3 /* main.m in Sources */,
 				186E6E332019DF9700D40E95 /* XHLaunchAdCache.m in Sources */,
@@ -3405,6 +3452,7 @@
 				20A5D8A81FB98B9200534868 /* UIViewController+BarButton.m in Sources */,
 				200C80121FFFC8CB00C6A2AA /* AddInteractionVC.m in Sources */,
 				2090C640200DF79400CC07F9 /* ProductDetailVC.m in Sources */,
+				18C4465120284702004E8669 /* SCIndexViewConfiguration.m in Sources */,
 				20A5D8B71FB98F1300534868 /* WSDatePickerView.m in Sources */,
 				200D7FB31FF747E600B97979 /* LosePromiseVC.m in Sources */,
 				208951041FFBC36C0060DBD4 /* SettingVC.m in Sources */,

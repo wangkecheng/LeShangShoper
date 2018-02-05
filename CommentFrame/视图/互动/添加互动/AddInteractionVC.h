@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddInteractionVC : UIViewController
+@interface AddInteractionVC : HDBaseVC
 -(instancetype)initWithBlock:(void(^)(void))publishedBlock;
 @end

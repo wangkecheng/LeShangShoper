@@ -130,7 +130,9 @@
 			} failed:^(NSError *error) {
 				
 			}];
-		}
+		} 
+        //从我的收藏 或者 厂家下的目录 进入后 点击收藏 需要刷新特价当中的按钮状态
+      [[DDFactory factory]broadcast:model channel:CollectionActionBroadCast];// 总共两个个地方发送 收藏列表发送(商品详情回调block回调，在cell回调中发送 2个)发送给特价 产品系列详情ProductDetailListVC(cell回调block中发送，商品详情回调block回调 2个)
 		[strongSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[strongSelf.arrModel indexOfObject:model] inSection:0]]];
 		return YES;
 	};
@@ -159,6 +161,7 @@
 							modelT.collect = @"1";
 						}
 						[strongSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[strongSelf.arrModel indexOfObject:modelT] inSection:0]]];
+                     [[DDFactory factory]broadcast:model channel:CollectionActionBroadCast];// 总共两个个地方发送 收藏列表发送(商品详情回调block回调，在cell回调中发送 2个)发送给特价 产品系列详情ProductDetailListVC(cell回调block中发送，商品详情回调block回调 2个)
 						break;
 					}
 				}

@@ -9,18 +9,19 @@
 
 #import "SpecialOfferListVC.h"
 #import "ProductDetailVC.h"
-#import "CollectionCell.h"
-#define CollectionCell_ @"CollectionCell"
+#import "ProductDetailListCell.h"
 #import "SearchProductVC.h"
-@interface SpecialOfferListVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+#define ProductDetailListCell_ @"ProductDetailListCell"
+@interface SpecialOfferListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UISearchBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
 @property (weak, nonatomic) IBOutlet UIButton *priceBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *priceImg;
 @property (weak, nonatomic) IBOutlet UIImageView *hotImg;
 
 @property (weak, nonatomic) IBOutlet UIButton *hotBtn;
-
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+ 
 @property (assign, nonatomic)NSInteger page;
 @property(nonatomic,strong)NSMutableArray * arrModel;
 @property(nonatomic,strong)NSString *sortkey;
@@ -59,19 +60,41 @@
 	searchField.leftViewMode=UITextFieldViewModeAlways;
 	
 	self.navigationItem.titleView = searchBar;
-	[_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
-     _tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
-	[_tableView hideSurplusLine];
-	_tableView.delegate = self;
-	_tableView.dataSource = self;
+    _collectionView.backgroundColor = UIColorFromHX(0xf0f0f0);
+    _collectionView.delegate = self;
+    _collectionView.showsHorizontalScrollIndicator = YES;
+    _collectionView.dataSource = self;
+    [_collectionView registerNib:[UINib nibWithNibName:ProductDetailListCell_ bundle:nil]forCellWithReuseIdentifier:ProductDetailListCell_];
+    
+    [_flowlayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    _flowlayout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    _flowlayout.minimumInteritemSpacing = 10;//同一行
+    _flowlayout.minimumLineSpacing = 10;//同一列
 	
-	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
-	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+	_collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+	_collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     UIButton * btn = [self addRightBarButtonWithFirstImage:IMG(@"bg_special_zone") action:nil];
     btn.userInteractionEnabled = NO;
     [self getPage];
+    
+    [[DDFactory factory]addObserver:self selector:@selector(collectionAction:) channel:CollectionActionBroadCast];//接收收藏通知
 }
 
+-(void)collectionAction:(NSNotification *)notify{
+    [[DDFactory factory]removeChannel:CollectionActionBroadCast];;
+    CollectionModel * model = notify.object;
+    if ([model isKindOfClass:[CollectionModel class]]) {
+        for (CollectionModel * modelT in _arrModel) {
+            if ([model.cid isEqualToString:modelT.cid] ) {
+                modelT.collect  = model.collect;
+                [self reloadItemDataIndex:[_arrModel indexOfObject:modelT] section:0];
+                break;
+            }
+        }
+    }else{
+        [_collectionView reloadData];
+    }
+}
 - (IBAction)priceSortAction:(UIButton *)sender {//价格
        _sortkey = @"price";
        _page = 1;
@@ -127,69 +150,105 @@
 		[strongSelf.arrModel addObjectsFromArray:tempArr];
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[strongSelf.tableView reloadData];
-            [strongSelf.tableView.mj_header endRefreshing];
-            [strongSelf.tableView.mj_footer endRefreshing];
+			[strongSelf.collectionView reloadData];
+            [strongSelf.collectionView.mj_header endRefreshing];
+            [strongSelf.collectionView.mj_footer endRefreshing];
             if (strongSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
-                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                [strongSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
             }
-			[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+			[strongSelf.collectionView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
 			if (strongSelf.arrModel.count == 0) {
-				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+				[strongSelf.collectionView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
 			}
 		});
 	} failed:^(NSError *error) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		[strongSelf.tableView.mj_header endRefreshing];
-		[strongSelf.tableView.mj_footer endRefreshing];
+		[strongSelf.collectionView.mj_header endRefreshing];
+		[strongSelf.collectionView.mj_footer endRefreshing];
 	}];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-	
-	return _arrModel.count;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionCell_ forIndexPath:indexPath];
-    [cell setModel:_arrModel[indexPath.row]];
-	[cell setSelectionStyle:0];//不要分割线
-	return cell;
+
+//设置每一组cell的个数(组数默认是1 )
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return  _arrModel.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	return 145;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    weakObj;
+    ProductDetailListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ProductDetailListCell_ forIndexPath:indexPath];
+    [cell setModel: _arrModel[indexPath.row]];
+    cell.collectionBlock = ^BOOL(CollectionModel *model) {
+        __strong typeof (weakSelf) strongSelf  = weakSelf;
+        HDModel *m = [HDModel model];
+        m.cid = model.cid;
+        weakObj;
+        if ([model.collect integerValue] == 1) {
+                model.collect = @"2";
+            [BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            } failed:^(NSError *error) {
+                
+            }];
+        }else{//取消收藏
+            model.collect = @"1";
+            [BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            } failed:^(NSError *error) {
+                
+            }];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+       
+            [strongSelf reloadItemDataIndex:[strongSelf.arrModel indexOfObject:model] section:0];
+        });
+        return YES;
+    };
+    return  cell;
+}
+-(void)reloadItemDataIndex:(NSInteger)index section:(NSInteger)section{
+     [_collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:section]]];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
-	CollectionModel * model = _arrModel[indexPath.row];
-	VC.model  = model;
-	[self.navigationController pushViewController:VC animated:YES];
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat cellW = (CGRectGetWidth(collectionView.frame) - 32) /2.0 ;
+    CGFloat cellH  =  cellW *16.0/11;
+    return   CGSizeMake(cellW,cellH);
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
-	view.backgroundColor = [UIColor clearColor];
-	return view;
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+    weakObj;
+    VC.collectActionBlock = ^(CollectionModel *model, BOOL isCollect) {
+        __strong typeof (weakSelf) strongSelf  = weakSelf;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            for (int i = 0; i<strongSelf.arrModel.count; i++) {
+                CollectionModel *modelT =    strongSelf.arrModel[i];
+                if ([model.cid isEqualToString:modelT.cid]) {
+                    if (isCollect) {//
+                        modelT.collect = @"2";
+                    }else{
+                        modelT.collect = @"1";
+                    }
+                    [strongSelf.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[strongSelf.arrModel indexOfObject:modelT] inSection:0]]];
+                    break;
+                }
+            }
+        });
+    };
+    CollectionModel * model = _arrModel[indexPath.row];
+    VC.model  = model;
+    model.broseNumber = [NSString stringFromInt:[model.broseNumber integerValue] + 1];
+    [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[_arrModel indexOfObject:model] inSection:0]]];//点击一次 加一次浏览量
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	
-	return 0.01;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-	UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
-	view.backgroundColor = [UIColor clearColor];
-	return view;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-	return 0.01;
-}
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 	//打开搜索界面 

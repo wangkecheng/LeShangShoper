@@ -13,6 +13,9 @@
 #import "SearchManufacturersVC.h"
 #import "CatalugeListVC.h"
 #define ManufacturersCell_ @"ManufacturersCell"
+
+
+#import "UITableView+SCIndexView.h"
 @interface ManufacturersVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -44,10 +47,8 @@
 	
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
     
-    //修改索引颜色
-//    _tableView.sectionIndexBackgroundColor = [UIColor redColor];//修改右边索引的背景色
-    _tableView.sectionIndexColor = [UIColor blackColor];//修改右边索引字体的颜色
-//    _tableView.sectionIndexTrackingBackgroundColor = [UIColor blueColor];//修改右边索引点击时候的背景色
+    _tableView.sc_indexViewConfiguration = [SCIndexViewConfiguration configurationWithIndexViewStyle:SCIndexViewStyleCenterToast];
+    _tableView.sc_translucentForTableViewInNavigationBar = YES;
 }
 
 -(void)toSearchManufacturersVC{
@@ -78,7 +79,13 @@
 			alphabetTitleModel.childrenArrModel = [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:dict[@"children"]];
 			[tempArr addObject:alphabetTitleModel];
 		}
-		
+        
+        NSMutableArray *indexNameArr = [NSMutableArray array];
+        for (AlphabetTitleModel * model in tempArr) {
+            [indexNameArr addObject:model.name];
+        }
+        strongSelf.tableView.sc_indexViewDataSource  = indexNameArr.copy;//设置索引
+        
 		if (strongSelf.page == 1) {
 		    [strongSelf.arrModel removeAllObjects];
 		}
@@ -127,20 +134,20 @@
 	return cell;
 }
 
-- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-	NSMutableArray *titleArr = [NSMutableArray array];
-	for (AlphabetTitleModel * model in _arrModel) {
-		[titleArr addObject:model.name];
-	}
-	return titleArr;
-}
+//- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+//    NSMutableArray *titleArr = [NSMutableArray array];
+//    for (AlphabetTitleModel * model in _arrModel) {
+//        [titleArr addObject:model.name];
+//    }
+//    return titleArr;
+//}
 //响应点击索引时的委托方法
--(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
-    if (index + 1 <= _arrModel.count) {
-        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    return index;
-}
+//-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+//    if (index + 1 <= _arrModel.count) {
+//        [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    }
+//    return index;
+//}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	return 58;

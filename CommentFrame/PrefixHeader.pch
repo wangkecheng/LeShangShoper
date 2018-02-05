@@ -10,6 +10,10 @@
 #define  POST_HOST @"https://120.79.169.197:3000"
 //图片基地址
 #define  POST_HOST_image @""
+
+
+#define CollectionActionBroadCast @"CollectionActionBroadCast"
+
 #define LeftSildeAction @"LeftSildeAction"
 // 当前应用AppDelegate  ==========
 #define CurrentAppDelegate [[UIApplication sharedApplication] delegate]

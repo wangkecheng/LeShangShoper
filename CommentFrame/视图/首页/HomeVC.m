@@ -168,7 +168,7 @@
 	[BaseServer postObjc:m path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		NSArray *arr =  [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:result[@"data"]];
 		[weakSelf.arrMerchantModel removeAllObjects];
-		[weakSelf.arrMerchantModel addObjectsFromArray:arr];
+        [weakSelf.arrMerchantModel addObjectsFromArray:arr]; 
 		dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -310,7 +310,7 @@
 		return  SCREENWIDTH *290/750.0;
 	}
 	if (indexPath.section == 1) {
-		return   (CGRectGetWidth(tableView.frame) - 72)/3.0 + 24 + (100 +  90)/2.0;
+		return   ((CGRectGetWidth(tableView.frame) - 90)/4.0 + 24) * 2 + (100 +  90)/2.0 + 20;
 	}
 	if (indexPath.section == 2) {
 		return  70;

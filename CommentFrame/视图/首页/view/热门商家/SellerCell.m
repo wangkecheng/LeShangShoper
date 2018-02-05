@@ -21,27 +21,41 @@
 -(void)setSellerArr:(NSArray *)sellerArr{
 	_sellerArr = sellerArr;
 	UIButton *lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,0,0,0)];
-	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - 72)/3.0;
+    CGFloat marginV = 16;//横向间距
+	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - marginV * 5)/4.0;
 	CGFloat btnH = btnW + 25;
 	CGFloat imgW = btnW;
-    NSInteger count = sellerArr.count;
+    
     [_scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    NSInteger pageCount = sellerArr.count/8;//总页数
+    if (sellerArr.count%8!=0 && sellerArr.count!=0) {
+        pageCount += 1;
+    }
+    NSInteger count = sellerArr.count;
 	for (int i  = 0 ;i< count;i++) {
 		ManufacturersModel *model = sellerArr[i];
-        CGFloat margin = 18;
-        if (i%3 == 0 && i !=0) {
-            margin = 36;
+        marginV = 16;
+        CGFloat marginH = 10;//竖向间距
+        if (i%8 == 0 && i !=0) {
+            marginV = 32;
         }
-		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(lastBtn.frame) + margin,CGRectGetMinY(lastBtn.frame),btnW, btnH)
+        CGFloat x = CGRectGetMaxX(lastBtn.frame) + marginV;
+        CGFloat y = CGRectGetMinY(lastBtn.frame);
+        if (i%4 == 0 && i!=0 && i%8!=0) {//这里是换行
+            x = i/8 * SCREENWIDTH +  marginV;
+            y = CGRectGetMaxY(lastBtn.frame) + marginH;
+        }
+        if (i%8 == 0 && i!=0) {//换页
+             y = 0;
+             x = CGRectGetMaxX(lastBtn.frame) + marginV;
+        }
+     
+		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,y,btnW, btnH)
 												titleX:0 titleY:imgW + 10 titleW:btnW titleH:btnH - imgW - 10
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
 		btn.imageView.layer.masksToBounds = YES;
-       
-        if (model.logoUrl) {
-            [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-        }
-		
+        [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0]; 
 		 btn.titleLabel.textAlignment = 1;
          btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:14];;
@@ -51,10 +65,6 @@
 		[_scrollView addSubview:btn];
 		lastBtn = btn;
 	}
-    NSInteger pageCount = sellerArr.count/3;
-    if (sellerArr.count%3!=0 && sellerArr.count!=0) {
-        pageCount += 1;
-    }
 	_pageContro.numberOfPages = pageCount;
 	_pageContro.currentPage = 0; 
 	_pageContro.pageIndicatorTintColor = UIColorFromHX(0xdcdcdc);

@@ -128,10 +128,9 @@
 	weakObj;
 	VC.collectActionBlock = ^(CollectionModel *model, BOOL isCollect) {
 		__strong typeof (weakSelf) strongSelf  = weakSelf;
-		dispatch_async(dispatch_get_main_queue(), ^{
-			
+     dispatch_async(dispatch_get_main_queue(), ^{
+	  [[DDFactory factory]broadcast:model channel:CollectionActionBroadCast];// 总共两个个地方发送 收藏列表发送(商品详情回调block回调，在cell回调中发送 2个)发送给特价 产品系列详情ProductDetailListVC(cell回调block中发送，商品详情回调block回调 2个)
 		if (isCollect) {//此时就是重新下载数据了
-			
 			[strongSelf getPage];
 		}else{
 			for (int i = 0; i<strongSelf.arrModel.count; i++) {

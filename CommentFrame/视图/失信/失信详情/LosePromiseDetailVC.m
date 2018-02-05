@@ -62,7 +62,25 @@
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	_timeLbl.text = [formatter stringFromDate:confromTimesp];
 	
-	[_webView loadHTMLString:model.content baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
+    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+                       "<head> \n"
+                       "<style type=\"text/css\"> \n"
+                       "body {font-size:15px;}\n"
+                       "</style> \n"
+                       "</head> \n"
+                       "<body>"
+                       "<script type='text/javascript'>"
+                       "window.onload = function(){\n"
+                       "var $img = document.getElementsByTagName('img');\n"
+                       "for(var p in  $img){\n"
+                       " $img[p].style.width = '100%%';\n"
+                       "$img[p].style.height ='auto'\n"
+                       "}\n"
+                       "}"
+                       "</script>%@"
+                       "</body>"
+                       "</html>",model.content];
+	[_webView loadHTMLString:htmls baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
 	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
 	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
 	_seeNumLbl.text = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
