@@ -47,7 +47,7 @@
 	
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
     
-    _tableView.sc_indexViewConfiguration = [SCIndexViewConfiguration configurationWithIndexViewStyle:SCIndexViewStyleCenterToast];
+    _tableView.sc_indexViewConfiguration = [SCIndexViewConfiguration configurationWithIndexViewStyle:SCIndexViewStyleDefault];
     _tableView.sc_translucentForTableViewInNavigationBar = YES;
 }
 
