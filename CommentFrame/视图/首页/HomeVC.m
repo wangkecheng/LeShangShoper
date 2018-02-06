@@ -355,7 +355,7 @@
 	}
     CGFloat hederH = 95;
     if (section != 3) {
-        hederH = 45;
+        hederH = 0;
     }
 	return hederH;
 }
