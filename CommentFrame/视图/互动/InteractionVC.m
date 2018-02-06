@@ -159,11 +159,13 @@
 	cell.pardiseBlock = ^(InteractionModel *model) {
           __strong typeof (weakSelf) strongSelf = weakSelf;
 		HDModel * m = [HDModel model];
-		m.interactId = model.interactId;
-		model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
-		[strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
+		m.interactId = model.interactId; 
 		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-			
+            
+            model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            });
 		} failed:^(NSError *error) {
 			
 		}];

@@ -23,8 +23,9 @@
 }
 
 -(BOOL)judgePrivilege{
-    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
+//
+    PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
+    if (author != PHAuthorizationStatusAuthorized){
         //无权限 引导去开启
         SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:@"发布互动选择图片需要您的同意才能访问系统相册" cancelTitle:nil destructiveTitle:nil otherTitles:@[@"去设置",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index){
             if (index == 0) {//https://www.jianshu.com/p/6de8b464d7f2
@@ -35,12 +36,12 @@
             }
         }];
         actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
-        [actionSheet show];
-      
+        [actionSheet show]; 
         return NO ;
     }
     return YES;
 }
+
 // 判断设备是否有摄像头
 - (BOOL) isCameraAvailable{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];

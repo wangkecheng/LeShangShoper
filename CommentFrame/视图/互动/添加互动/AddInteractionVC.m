@@ -242,12 +242,10 @@ UICollectionViewDelegateFlowLayout>
 		
 		NSMutableArray* tmps = [[NSMutableArray alloc] init];
 		for (int i = 0;i< self.arrSelected.count;i++) {//找出所有图片
-			LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:_arrSelected[i]
-																				 thumbnailURL:nil
-																						HDURL:nil
-																				containerView:cell.contentView
-																		  positionInContainer:cell.contentView.frame 
-																						index:i];
+         ImgModel * imgModel = _arrSelected[i];
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel.bigImage==nil?imgModel.image:imgModel.bigImage thumbnailURL:nil HDURL:nil
+                containerView:cell.contentView positionInContainer:cell.contentView.frame
+				index:i];
 			[tmps addObject:broModel];
 		}
 		LWImageBrowser* browser = [[LWImageBrowser alloc]
