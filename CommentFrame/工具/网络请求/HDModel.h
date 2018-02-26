@@ -35,4 +35,5 @@
 @property (nonatomic,strong)NSString *brand;
 @property (nonatomic,strong)NSString *sortKey;
 @property (nonatomic,strong)NSString *did;
+@property (nonatomic,strong)NSString *own;
 @end

@@ -11,9 +11,10 @@
 @interface InteractionCell : UITableViewCell
 
 @property(nonatomic,strong)InteractionModel *model;
-
+@property(nonatomic,strong)InteractionModel *myInteractionModel;
 @property(nonatomic,copy)void(^pardiseBlock)(InteractionModel *model);
 
+@property(nonatomic,copy)void(^deleteBlock)(InteractionModel *model);
 @property(nonatomic,copy)void(^commentBlock)(InteractionModel *model);
 @property(nonatomic,copy)void(^seeAllBlock)(InteractionModel *model);
 

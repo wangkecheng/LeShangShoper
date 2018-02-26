@@ -43,13 +43,13 @@
 
 -(void)addInteraction:(UIButton *)btn{//添加互动
     weakObj;
-    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"我的互动",@"添加互动"] icons:nil menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"添加互动",@"我的互动"] icons:@[@"message",@"dongtai"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
         popupMenu.dismissOnSelected = YES;
         popupMenu.isShowShadow = YES;
         popupMenu.delegate = strongSelf;
         popupMenu.offset = 10;
-        popupMenu.type = YBPopupMenuTypeDefault;
+        popupMenu.type = YBPopupMenuTypeDark;
         popupMenu.rectCorner = UIRectCornerAllCorners;
         popupMenu.priorityDirection = YBPopupMenuPriorityDirectionTop;
     }];
@@ -58,9 +58,9 @@
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu{
     HDBaseVC *VC = nil;
     if (index == 0) {
-         VC  = [[MyInteractionVC alloc]init];
+		VC = [[AddInteractionVC alloc]init];
     }else{
-         VC = [[AddInteractionVC alloc]init];
+		VC  = [[MyInteractionVC alloc]init]; 
     }
     if (VC) {
         [self.navigationController pushViewController:VC animated:YES];

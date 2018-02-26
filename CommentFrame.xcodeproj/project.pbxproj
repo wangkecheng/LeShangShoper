@@ -206,6 +206,8 @@
 		18C4465020284702004E8669 /* SCIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464B20284702004E8669 /* SCIndexView.m */; };
 		18C4465120284702004E8669 /* SCIndexViewConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464D20284702004E8669 /* SCIndexViewConfiguration.m */; };
 		18C4465220284702004E8669 /* UITableView+SCIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464F20284702004E8669 /* UITableView+SCIndexView.m */; };
+		20079DB6202FF30F00198EF8 /* dongtai.png in Resources */ = {isa = PBXBuildFile; fileRef = 20079DB5202FF30F00198EF8 /* dongtai.png */; };
+		20079DB8202FF31500198EF8 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 20079DB7202FF31500198EF8 /* message.png */; };
 		200C80011FFFC39E00C6A2AA /* LosePromiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */; };
 		200C80021FFFC39E00C6A2AA /* LosePromiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */; };
 		200C80051FFFC4F000C6A2AA /* LosePromissAndNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C80041FFFC4F000C6A2AA /* LosePromissAndNewsModel.m */; };
@@ -703,6 +705,8 @@
 		18C4464D20284702004E8669 /* SCIndexViewConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCIndexViewConfiguration.m; sourceTree = "<group>"; };
 		18C4464E20284702004E8669 /* UITableView+SCIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SCIndexView.h"; sourceTree = "<group>"; };
 		18C4464F20284702004E8669 /* UITableView+SCIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SCIndexView.m"; sourceTree = "<group>"; };
+		20079DB5202FF30F00198EF8 /* dongtai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dongtai.png; sourceTree = "<group>"; };
+		20079DB7202FF31500198EF8 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
 		200C7FFE1FFFC39E00C6A2AA /* LosePromiseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LosePromiseCell.h; sourceTree = "<group>"; };
 		200C7FFF1FFFC39E00C6A2AA /* LosePromiseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LosePromiseCell.m; sourceTree = "<group>"; };
 		200C80001FFFC39E00C6A2AA /* LosePromiseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LosePromiseCell.xib; sourceTree = "<group>"; };
@@ -2064,6 +2068,8 @@
 		2031F6EB1EA9A33F0075E7F3 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				20079DB5202FF30F00198EF8 /* dongtai.png */,
+				20079DB7202FF31500198EF8 /* message.png */,
 				1881526B20205F0200AD4F1A /* Icon.png */,
 				20E933652028549B005EC6A1 /* tempLaunch.png */,
 				18B542572011839400A40C4E /* 1首页 */,
@@ -2916,6 +2922,7 @@
 				18B5431B2011839500A40C4E /* hotProductImg@2x.png in Resources */,
 				18C4464820283DDC004E8669 /* MyInteractionVC.xib in Resources */,
 				18B5433B2011839500A40C4E /* ic_views@2x.png in Resources */,
+				20079DB6202FF30F00198EF8 /* dongtai.png in Resources */,
 				2031F6BF1EA99BA30075E7F3 /* Main.storyboard in Resources */,
 				18B5432B2011839500A40C4E /* ic_top_search@2x.png in Resources */,
 				200D7EEA1FF742CC00B97979 /* ico_check_select@3x.png in Resources */,
@@ -2968,6 +2975,7 @@
 				18B5430C2011839500A40C4E /* ic_my_gender@3x.png in Resources */,
 				18B542DC2011839500A40C4E /* btn_foot_discount_p@3x.png in Resources */,
 				206FA0362000F26100DB7998 /* HWCollectionViewCell.xib in Resources */,
+				20079DB8202FF31500198EF8 /* message.png in Resources */,
 				181D9B6A201AEDDD000108A7 /* NewsDetailVC.xib in Resources */,
 				18B543302011839500A40C4E /* bg_store_ad@3x.png in Resources */,
 				18B542D72011839500A40C4E /* bg_pop_service@2x.png in Resources */,
