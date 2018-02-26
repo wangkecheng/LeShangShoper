@@ -8,13 +8,13 @@
 #import "HomeVC.h"
 #import "HomeHeaderCell.h"
 #import "SellerCell.h"
-#import "AdvertCell.h"
+#import "HotProductCell.h"
 #import "NewsHeaderView.h"
 #import "NewsCell.h"
 #import "LoginVC.h"
 #define HomeHeaderCell_ @"HomeHeaderCell"
 #define SellerCell_ @"SellerCell"
-#define AdvertCell_ @"AdvertCell"
+#define HotProductCell_ @"HotProductCell"
 #define NewsCell_ @"NewsCell"
 #define NewsHeaderView_ @"NewsHeaderView"
 #import "LeftTopHeadView.h"
@@ -79,7 +79,7 @@
     
 	[_tableView registerNib:[UINib nibWithNibName:HomeHeaderCell_ bundle:nil] forCellReuseIdentifier:HomeHeaderCell_];
 	[_tableView registerNib:[UINib nibWithNibName:SellerCell_ bundle:nil] forCellReuseIdentifier:SellerCell_];
-	[_tableView registerNib:[UINib nibWithNibName:AdvertCell_ bundle:nil] forCellReuseIdentifier:AdvertCell_];
+	[_tableView registerNib:[UINib nibWithNibName:HotProductCell_ bundle:nil] forCellReuseIdentifier:HotProductCell_];
 	[_tableView registerNib:[UINib nibWithNibName:NewsCell_ bundle:nil] forCellReuseIdentifier:NewsCell_];
     
 	_tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
@@ -87,11 +87,12 @@
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
 	 
+    [_tableView setSeparatorStyle:0];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     
     UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
-    [serviceBtn setImage:IMG(@"ic_service.png") forState:0];
+    [serviceBtn setImage:IMG(@"ic_service") forState:0];
     [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serviceBtn];
     
@@ -109,13 +110,13 @@
 }
 -(void)serviceAction{//智能服务
         weakObj;
-    
+
     InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
-         NSURL *url = [NSURL URLWithString:@"weixin://qr/"] ;
+         NSURL *url = [NSURL URLWithString:@"weixin://"] ;
        
-        if (![WXApi isWXAppInstalled]){
+        if (![[UIApplication sharedApplication] canOpenURL:url]){
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
@@ -192,8 +193,11 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-						[weakSelf.tableView reloadData];
-//					[weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    if (weakSelf.arrAdvertModel.count >0) {
+                        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    }else{
+                          [weakSelf.tableView reloadData];
+                    } 
                 });
             }
         });
@@ -268,8 +272,8 @@
 		[headerCell setClickBlock:^(NSString *str) {
 			
 		}];
-         cell.selectionStyle = 0;
 		cell = headerCell;
+        cell.selectionStyle = 0;
 	}else if (indexPath.section == 1){
 		SellerCell *sellerCell = [tableView dequeueReusableCellWithIdentifier:SellerCell_ forIndexPath:indexPath];
 		[sellerCell setSellerArr:_arrMerchantModel];
@@ -280,25 +284,38 @@
 			VC.model = model;
 			[strongSelf.navigationController pushViewController:VC animated:YES];
 		};
-		 cell.selectionStyle = 0;
-		cell = sellerCell;
-	}else if (indexPath.section == 2){
-		AdvertCell *advertCell = [tableView dequeueReusableCellWithIdentifier:AdvertCell_ forIndexPath:indexPath];
-		 
-		[advertCell setAlertArr:_arrAdvertModel];
-		advertCell.clickBlock = ^(CollectionModel *model) {
-			__strong typeof (weakSelf) strongSelf = weakSelf;
-			ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
-			VC.model  = model;
-			[strongSelf.navigationController pushViewController:VC animated:YES];
-		};
+		 cell = sellerCell;
          cell.selectionStyle = 0;
-		cell = advertCell;
+	}else if (indexPath.section == 2){
+//        AdvertCell *advertCell = [tableView dequeueReusableCellWithIdentifier:AdvertCell_ forIndexPath:indexPath];
+//
+//        [advertCell setAlertArr:_arrAdvertModel];
+//        advertCell.clickBlock = ^(CollectionModel *model) {
+//            __strong typeof (weakSelf) strongSelf = weakSelf;
+//            ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+//            VC.model  = model;
+//            [strongSelf.navigationController pushViewController:VC animated:YES];
+//        };
+        HotProductCell * hotCell = [tableView dequeueReusableCellWithIdentifier:HotProductCell_ forIndexPath:indexPath];
+        [hotCell setHotProudctArr:_arrAdvertModel];
+        hotCell.clickBlock = ^(NSInteger index, CollectionModel *model) {
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+            VC.model  = model;
+            [strongSelf.navigationController pushViewController:VC animated:YES];
+        };
+        hotCell.refreshBlock = ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getArrAdvertModel];
+        };
+        hotCell.selectionStyle = 0;
+        cell = hotCell;
     }else{
 		NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:NewsCell_ forIndexPath:indexPath];
         NewsModel *model = _arrNewsModel[indexPath.section - 3];
         [newsCell setNewsModel:model.arrModel[indexPath.row]];
          cell = newsCell;
+         cell.selectionStyle = 0;
 	}
    
 	return cell;
@@ -313,7 +330,7 @@
 		return   ((CGRectGetWidth(tableView.frame) - 90)/4.0 + 24) * 2 + (100 +  90)/2.0 + 20;
 	}
 	if (indexPath.section == 2) {
-		return  70;
+		return  58 + SCREENWIDTH / 4.0 + 30 + 8;//20是文字高度 加8 是和热点新闻的间隔
 	}
 	return 70;
 }
@@ -334,7 +351,7 @@
 		view.frame = CGRectMake(0, 0, SCREENWIDTH, 0.01);
 		return view;
 	}
-    CGFloat hederH = 95;
+    CGFloat hederH = 45;
     BOOL isShowSubTit = YES;
     if (section != 3) {
         hederH = 0;//不显示 后面的日期了
@@ -353,7 +370,7 @@
 	if (section == 0 || section == 1 || section == 2) {
 		return 0.01;
 	}
-    CGFloat hederH = 95;
+    CGFloat hederH = 45;
     if (section != 3) {
         hederH = 0;
     }

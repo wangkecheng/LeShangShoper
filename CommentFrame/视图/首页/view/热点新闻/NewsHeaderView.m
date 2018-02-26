@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subTItViewH;
 @property (weak, nonatomic) IBOutlet UIView *subTitView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateH;
 
 @end
 @implementation NewsHeaderView
@@ -19,6 +20,8 @@
 	NewsHeaderView *view = [DDFactory getXibObjc:@"NewsHeaderView"];
 	view.frame  = frame;
     [view setTime];
+    view.timeLbl.alpha = 0;
+    view.dateH.constant = 0;//暂时不显示时间
 	return view;
 }
 -(void)setTime{

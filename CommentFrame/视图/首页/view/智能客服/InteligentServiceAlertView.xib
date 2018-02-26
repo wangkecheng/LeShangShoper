@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -71,11 +70,11 @@
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-574" y="-409"/>
+            <point key="canvasLocation" x="-617" y="-470"/>
         </view>
     </objects>
     <resources>
-        <image name="bg_pop_service.png" width="305" height="241"/>
+        <image name="bg_pop_service.png" width="303" height="290"/>
         <image name="btn_pop_phone.png" width="110" height="40"/>
         <image name="btn_pop_weixin.png" width="110" height="40"/>
     </resources>
