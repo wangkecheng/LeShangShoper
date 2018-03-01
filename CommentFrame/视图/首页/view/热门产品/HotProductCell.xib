@@ -4,7 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,15 +20,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="490" height="157.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remenchangpin.png" translatesAutoresizingMaskIntoConstraints="NO" id="4vL-Lu-mUF">
-                        <rect key="frame" x="155" y="0.0" width="180" height="33"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="33" id="Z5g-kA-Uim"/>
-                            <constraint firstAttribute="width" constant="180" id="aDk-lC-W2L"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBi-hi-Leo">
-                        <rect key="frame" x="246" y="33" width="121.5" height="25"/>
+                        <rect key="frame" x="246" y="30" width="121.5" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remen.png" translatesAutoresizingMaskIntoConstraints="NO" id="YuC-WN-OYh">
                                 <rect key="frame" x="45" y="3" width="32" height="18"/>
@@ -43,7 +38,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AO-ga-LR8">
-                        <rect key="frame" x="0.0" y="33" width="245" height="25"/>
+                        <rect key="frame" x="0.0" y="30" width="245" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xinpin.png" translatesAutoresizingMaskIntoConstraints="NO" id="KNY-ly-hsj">
                                 <rect key="frame" x="106.5" y="3.5" width="32" height="18"/>
@@ -61,11 +56,11 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wr-Wn-6h4">
-                        <rect key="frame" x="0.0" y="58" width="490" height="99.5"/>
+                        <rect key="frame" x="0.0" y="55" width="490" height="102.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lu-nt-FcN">
-                        <rect key="frame" x="368.5" y="33" width="121.5" height="25"/>
+                        <rect key="frame" x="368.5" y="30" width="121.5" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jingxuan.png" translatesAutoresizingMaskIntoConstraints="NO" id="EQO-XU-8Pn">
                                 <rect key="frame" x="45" y="3.5" width="32" height="18"/>
@@ -81,6 +76,13 @@
                             <constraint firstItem="EQO-XU-8Pn" firstAttribute="centerY" secondItem="8lu-nt-FcN" secondAttribute="centerY" id="ld4-lJ-QsM"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remenchangpin.png" translatesAutoresizingMaskIntoConstraints="NO" id="4vL-Lu-mUF">
+                        <rect key="frame" x="164" y="0.0" width="162" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Z5g-kA-Uim"/>
+                            <constraint firstAttribute="width" secondItem="4vL-Lu-mUF" secondAttribute="height" multiplier="357:66" id="wRr-XQ-q4f"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.94107431173324585" green="0.94123536348342896" blue="0.94106405973434448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,7 +114,7 @@
             <connections>
                 <outlet property="btnContentView" destination="0wr-Wn-6h4" id="Ma4-aj-fj9"/>
             </connections>
-            <point key="canvasLocation" x="-231" y="-268"/>
+            <point key="canvasLocation" x="-390" y="-295"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -17,13 +18,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_pop_service.png" translatesAutoresizingMaskIntoConstraints="NO" id="Swk-4e-wQA">
-                    <rect key="frame" x="0.0" y="0.0" width="325" height="257"/>
+                    <rect key="frame" x="0.0" y="0.0" width="325" height="311"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Swk-4e-wQA" secondAttribute="height" multiplier="610:482" id="kJu-nc-Npw"/>
+                        <constraint firstAttribute="width" secondItem="Swk-4e-wQA" secondAttribute="height" multiplier="606:580" id="c1X-tD-K9K"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEt-Ft-gxE">
-                    <rect key="frame" x="0.0" y="184.5" width="325" height="60"/>
+                    <rect key="frame" x="0.0" y="229.5" width="325" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-4Z-aBW">
                             <rect key="frame" x="28" y="10" width="110" height="40"/>
@@ -70,7 +71,7 @@
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="0"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-617" y="-470"/>
+            <point key="canvasLocation" x="-870" y="-438"/>
         </view>
     </objects>
     <resources>

@@ -21,9 +21,9 @@
 -(void)setSellerArr:(NSArray *)sellerArr{
 	_sellerArr = sellerArr;
 	UIButton *lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,0,0,0)];
-    CGFloat marginV = 16;//横向间距
+    CGFloat marginV = 35;//横向间距
 	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - marginV * 5)/4.0;
-	CGFloat btnH = btnW + 25;
+	CGFloat btnH = btnW + 15;
 	CGFloat imgW = btnW;
     
     [_scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -34,10 +34,10 @@
     NSInteger count = sellerArr.count;
 	for (int i  = 0 ;i< count;i++) {
 		ManufacturersModel *model = sellerArr[i];
-        marginV = 16;
+        marginV = 35;
         CGFloat marginH = 10;//竖向间距
         if (i%8 == 0 && i !=0) {
-            marginV = 32;
+            marginV = 2 * marginV;
         }
         CGFloat x = CGRectGetMaxX(lastBtn.frame) + marginV;
         CGFloat y = CGRectGetMinY(lastBtn.frame);
@@ -51,14 +51,14 @@
         }
      
 		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,y,btnW, btnH)
-												titleX:0 titleY:imgW + 10 titleW:btnW titleH:btnH - imgW - 10
+												titleX:-20 titleY:imgW + 5 titleW:btnW + 40 titleH:btnH - imgW - 5
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
 		btn.imageView.layer.masksToBounds = YES;
         [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0]; 
 		 btn.titleLabel.textAlignment = 1;
-         btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:14];;
+         btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];;
 		[btn setTitleColor:UIColorFromHX(0x666666) forState:0];
 		 btn.tag = i;
 		[btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];

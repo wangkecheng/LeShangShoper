@@ -78,7 +78,7 @@ static AYCheckManager *checkManager = nil;
             return ;
         }
         if (urlResponse.statusCode == REQUEST_SUCCEED) {
-            NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
             if ([responseDic[@"resultCount"] intValue] == 1) {
                 

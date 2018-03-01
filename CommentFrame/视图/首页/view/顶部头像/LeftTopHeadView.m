@@ -15,14 +15,15 @@
 @end
 
 @implementation LeftTopHeadView
+
 +(instancetype)headerViewWithFrame:(CGRect)frame{
 	LeftTopHeadView *view = [DDFactory getXibObjc:@"LeftTopHeadView"];
 
     [view setUserInfo];
-    view.rankLbl.layer.cornerRadius = 2;
-    view.rankLbl.layer.borderWidth = 1;
+    view.rankLbl.layer.cornerRadius = 3;
+//  view.rankLbl.layer.borderWidth = 1;
     view.rankLbl.layer.masksToBounds = YES;
-    view.rankLbl.layer.borderColor = UIColorFromRGB(251, 142, 0).CGColor;
+//  view.rankLbl.layer.borderColor = UIColorFromRGB(251, 142, 0).CGColor;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(headerViewClick)];
     [view addGestureRecognizer:tap];
     

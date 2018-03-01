@@ -3709,7 +3709,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CommentFrame/PrefixHeader.pch";
 				INFOPLIST_FILE = CommentFrame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3720,7 +3720,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeShangShoppingMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -3745,7 +3745,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CommentFrame/PrefixHeader.pch";
 				INFOPLIST_FILE = CommentFrame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3756,7 +3756,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.LeShangShoppingMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
