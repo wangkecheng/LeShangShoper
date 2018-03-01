@@ -181,7 +181,9 @@
         cell.textLabel.text = nil;
     }
     cell.separatorColor = _separatorColor;
+	 
     if (_images.count >= indexPath.row + 1) {
+		
         if ([_images[indexPath.row] isKindOfClass:[NSString class]]) {
             cell.imageView.image = [UIImage imageNamed:_images[indexPath.row]];
         }else if ([_images[indexPath.row] isKindOfClass:[UIImage class]]){

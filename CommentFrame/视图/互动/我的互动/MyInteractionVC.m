@@ -55,6 +55,7 @@
     _page = pageIndex;
     HDModel *m = [HDModel model];
     m.pageNumber = [NSString stringFromInt:pageIndex];
+	m.own = @"2";
     weakObj;
     [BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
@@ -100,9 +101,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
-    [cell setModel:_arrModel[indexPath.section]];
+    [cell setMyInteractionModel:_arrModel[indexPath.section]];
     [cell setSelectionStyle:0];
     weakObj;
+	cell.deleteBlock = ^(InteractionModel *model) {
+		
+		HDModel * m = [HDModel model];
+		m.did = model.interactId;
+		
+		[BaseServer postObjc:m path:@"/interact/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+			__strong typeof (weakSelf) strongSelf = weakSelf;
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[strongSelf.arrModel removeObject:model];
+				[strongSelf.tableview reloadData];
+			});
+		} failed:^(NSError *error) {
+			
+		}];
+	};
     cell.seeBigImgBlock = ^(InteractionModel *model, NSInteger index) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
         NSMutableArray* tmps = [NSMutableArray array];

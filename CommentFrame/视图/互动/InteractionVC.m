@@ -21,6 +21,7 @@
 @property (assign, nonatomic)NSInteger page;
 @property (weak, nonatomic)IBOutlet UITableView *tableview;
 @property (strong, nonatomic)YBPopupMenu *popMenu;
+@property (assign, nonatomic)BOOL isMyInteraction;// NO 全部 YES 我的
 @end
 
 @implementation InteractionVC
@@ -43,24 +44,31 @@
 
 -(void)addInteraction:(UIButton *)btn{//添加互动
     weakObj;
-    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"我的互动",@"添加互动"] icons:nil menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"发布动态",@"我的互动",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+ 
         __strong typeof (weakSelf) strongSelf = weakSelf;
         popupMenu.dismissOnSelected = YES;
         popupMenu.isShowShadow = YES;
         popupMenu.delegate = strongSelf;
         popupMenu.offset = 10;
-        popupMenu.type = YBPopupMenuTypeDefault;
+        popupMenu.type = YBPopupMenuTypeDark;
         popupMenu.rectCorner = UIRectCornerAllCorners;
         popupMenu.priorityDirection = YBPopupMenuPriorityDirectionTop;
     }];
 }  //推荐用这种写法
+
 #pragma mark - YBPopupMenuDelegate
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu{
     HDBaseVC *VC = nil;
     if (index == 0) {
-         VC  = [[MyInteractionVC alloc]init];
+		VC = [[AddInteractionVC alloc]init];
+ 
+    }else if (index == 1){
+        _isMyInteraction = YES;
+         [self getPage];
     }else{
-         VC = [[AddInteractionVC alloc]init];
+        _isMyInteraction = NO;
+        [self getPage];
     }
     if (VC) {
         [self.navigationController pushViewController:VC animated:YES];
@@ -85,7 +93,11 @@
 - (void)getData:(NSInteger)pageIndex {
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
-    m.pageNumber = [NSString stringFromInt:pageIndex];
+     m.pageNumber = [NSString stringFromInt:pageIndex];
+     m.own = @"1";//看所有的
+    if (_isMyInteraction) {
+        m.own = @"2";//看自己的
+    }
 	weakObj;
 	[BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
@@ -115,7 +127,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-	
+   
 	return _arrModel.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -131,7 +143,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
-	[cell setModel:_arrModel[indexPath.section]];
+    if (_isMyInteraction) {
+        [cell setMyInteractionModel:_arrModel[indexPath.section]];
+    }else{
+        [cell setModel:_arrModel[indexPath.section]];
+    }
 	[cell setSelectionStyle:0];
 	weakObj;
     cell.seeBigImgBlock = ^(InteractionModel *model, NSInteger index) {
@@ -180,6 +196,20 @@
         VC.interactionModel = model;
         [strongSelf.navigationController pushViewController:VC animated:YES];
 	};
+    cell.deleteBlock = ^(InteractionModel *model) {
+        
+        HDModel * m = [HDModel model];
+        m.did = model.interactId;
+        [BaseServer postObjc:m path:@"/interact/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.arrModel removeObject:model];
+                [strongSelf.tableview reloadData];
+            });
+        } failed:^(NSError *error) {
+            
+        }];
+    };
 	return cell;
 }
 

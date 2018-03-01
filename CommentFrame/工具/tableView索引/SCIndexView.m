@@ -173,10 +173,10 @@ static inline NSInteger SCSectionOfTextLayerInY(CGFloat y, CGFloat margin, CGFlo
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     
     if (self.isTouchingIndexView) {
-        if (@available(iOS 10.0, *)) {
+        
             [self.generator prepare];
             [self.generator impactOccurred];
-        }
+        
     }
 }
 

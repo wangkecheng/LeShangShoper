@@ -37,7 +37,7 @@
 	} 
     NSString *fullPath = [POST_HOST stringByAppendingString:path];
 	
-    if (isShowHud){
+    if (NO){//isShowHud
         [LWActiveIncator showInView:CurrentAppDelegate.window]; 
     }
     weakObj;
