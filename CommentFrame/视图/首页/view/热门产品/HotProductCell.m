@@ -29,20 +29,21 @@
         CollectionModel *model = hotProudctArr[i];
         CGFloat w = SCREENWIDTH/4.0;
         CGFloat x = CGRectGetMaxX(lastBtn.frame);
+        CGFloat h = w;
         if (i == 2 || i == 3) {
             w -= 1;
             x += 1;
         }
-        DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,0,w, w + 30)  titleX:0 titleY:w + 8 titleW:w titleH:14  imageX:2 imageY:0 imageW:w - 4 imageH:w];
-        btn.imageView.layer.cornerRadius = 0;
+        DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,0,w, h + 15)  titleX:0 titleY:h + 2 titleW:w titleH:11  imageX:2 imageY:0 imageW:w - 4 imageH:w];
+        btn.imageView.layer.cornerRadius = 5;
         btn.imageView.layer.masksToBounds = YES;
         [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
         [btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0]; 
-        btn.titleLabel.textAlignment = 1;
-        btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12];;
+         btn.titleLabel.textAlignment = 1;
+         btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:11];
         [btn setTitleColor:UIColorFromHX(0x666666) forState:0];
-        btn.tag = i;
-        btn.backgroundColor = [UIColor whiteColor];
+         btn.tag = i;
+         btn.backgroundColor = [UIColor whiteColor];
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_btnContentView addSubview:btn];
         lastBtn = btn;

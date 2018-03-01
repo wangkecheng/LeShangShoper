@@ -33,7 +33,7 @@
     _timeLbl.text = time;
       _subTItViewH.constant = 0;
     if (isShowSubTit) {
-       _subTItViewH.constant = 52;
+       _subTItViewH.constant = 30;
     }
     for (UIView *view in self.subviews) {
         view.alpha = 0;

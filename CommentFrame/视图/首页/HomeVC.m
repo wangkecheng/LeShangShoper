@@ -24,7 +24,7 @@
 #import "ProductDetailVC.h"
 #import "NewsDetailVC.h"
 #import "NewsModel.h"
-@interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
 
@@ -56,26 +56,24 @@
         [strongSelf presentViewController:loginVC animated:YES completion:nil];
     };
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:headerView]];
-    UIView *searchBarView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - CGRectGetWidth(headerView.frame) - 12, 36)]; 
-	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:searchBarView.bounds]; 
-	[searchBar setPlaceholder:@"探索您心仪的宝贝"];
-	searchBar.delegate = self;
-	searchBar.layer.cornerRadius = 5;
-	searchBar.layer.masksToBounds = YES;
-	[DDFactory removeSearhBarBack:searchBar];
-	UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-	[searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
+	UITextField *searchField =  [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - CGRectGetWidth(headerView.frame) - 12, 36)];
+    [searchField setPlaceholder:@"    探索您心仪的宝贝"];
+    searchField.delegate = self;
+    searchField.layer.cornerRadius = 18;
+    searchField.layer.masksToBounds = YES;
+	[searchField setTextColor:UIColorFromHX(0xaaaaaa)];
 	searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
-	//    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
-	//    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
 	searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
 	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
-	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
-	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
-	searchField.leftView = iconView;
-	searchField.leftViewMode=UITextFieldViewModeAlways;
-    [searchBarView addSubview:searchBar];
-	self.navigationItem.titleView = searchBarView; 
+    
+    UIView * iconView =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width  + 20, image.size.height)];
+    iconView.userInteractionEnabled = NO;
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+	imgView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
+    [iconView addSubview:imgView];
+	[searchField setRightView:iconView];
+	searchField.rightViewMode = UITextFieldViewModeAlways;
+	self.navigationItem.titleView = searchField;
     
 	[_tableView registerNib:[UINib nibWithNibName:HomeHeaderCell_ bundle:nil] forCellReuseIdentifier:HomeHeaderCell_];
 	[_tableView registerNib:[UINib nibWithNibName:SellerCell_ bundle:nil] forCellReuseIdentifier:SellerCell_];
@@ -111,7 +109,7 @@
 -(void)serviceAction{//智能服务
         weakObj;
 
-    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*482/610.0) WXClickBlock:^BOOL{
+    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
          NSURL *url = [NSURL URLWithString:@"weixin://"] ;
@@ -126,12 +124,20 @@
         [[UIApplication sharedApplication] openURL:url];
         return YES;
     } PhClickBlock:^BOOL{
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18783999629"]];
+        weakObj;
+        [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+            __strong typeof (weakSelf) strongSelf  = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+            });
+        } failed:^(NSError *error) {
+        }];
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
         return YES;
     }];
     _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+    _alertControl.isTouchEdgeHide = YES;
 }
 - (void)getPage{
 	
@@ -324,16 +330,17 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	if (indexPath.section == 0) {
-		return  SCREENWIDTH *290/750.0;
+		return  SCREENWIDTH *175/750.0;
 	}
 	if (indexPath.section == 1) {
-		return   ((CGRectGetWidth(tableView.frame) - 90)/4.0 + 24) * 2 + (100 +  90)/2.0 + 20;
+		return ((CGRectGetWidth(tableView.frame) - 5 * 25)/4.0) * 2 + 60 + 10;
 	}
 	if (indexPath.section == 2) {
-		return  58 + SCREENWIDTH / 4.0 + 30 + 8;//20是文字高度 加8 是和热点新闻的间隔
+		return  45 + SCREENWIDTH / 4.0 + 25 + 4;//
 	}
 	return 70;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section >= 3) {
@@ -351,7 +358,7 @@
 		view.frame = CGRectMake(0, 0, SCREENWIDTH, 0.01);
 		return view;
 	}
-    CGFloat hederH = 45;
+    CGFloat hederH = 30;
     BOOL isShowSubTit = YES;
     if (section != 3) {
         hederH = 0;//不显示 后面的日期了
@@ -370,7 +377,7 @@
 	if (section == 0 || section == 1 || section == 2) {
 		return 0.01;
 	}
-    CGFloat hederH = 45;
+    CGFloat hederH = 30;
     if (section != 3) {
         hederH = 0;
     }
@@ -385,11 +392,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 	
- return 0.01;
+    return 0.01;
 }
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-	
-	  //打开搜索界面
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+   //打开搜索界面
     SearchProductVC * VC = [[SearchProductVC alloc]init];
     HDMainNavC * navi = (HDMainNavC *)self.navigationController;
     [navi pushVC:VC isHideBack:YES animated:YES];

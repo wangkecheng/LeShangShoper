@@ -25,7 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _isShowSeparator = YES;
-        _separatorColor = [UIColor lightGrayColor];
+        _separatorColor = UIColorFromRGB(78, 78, 80);
         [self setNeedsDisplay];
     }
     return self;
@@ -46,7 +46,8 @@
 - (void)drawRect:(CGRect)rect
 {
     if (!_isShowSeparator) return;
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, rect.size.height - 0.5, rect.size.width, 0.5)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:CGRectMake(15, rect.size.height - 0.5, rect.size.width - 30, 0.5)];
+    _separatorColor = UIColorFromRGB(86, 86, 86);
     [_separatorColor setFill];
     [bezierPath fillWithBlendMode:kCGBlendModeNormal alpha:1];
     [bezierPath closePath];
@@ -330,15 +331,15 @@
         case YBPopupMenuTypeDark:
         {
             _textColor = [UIColor whiteColor];
-            _backColor = [UIColor blackColor];
-            _separatorColor = [UIColor whiteColor];
+            _backColor = UIColorFromRGB(73, 73, 75);
+            _separatorColor = UIColorFromRGB(78, 78, 80);
         }
             break;
             
         default:{
             _textColor = [UIColor blackColor];
             _backColor = [UIColor whiteColor];
-            _separatorColor = [UIColor lightGrayColor];
+            _separatorColor = UIColorFromRGB(78, 78, 80);
         }
             break;
     }

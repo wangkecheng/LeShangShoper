@@ -44,13 +44,14 @@
 
 -(void)addInteraction:(UIButton *)btn{//添加互动
     weakObj;
-    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0, CGRectGetMaxY(btn.frame)) titles:@[@"发布动态",@"我的互动",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0 + 1, CGRectGetMaxY(btn.frame)) titles:@[@"发布动态",@"我的动态",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
  
         __strong typeof (weakSelf) strongSelf = weakSelf;
         popupMenu.dismissOnSelected = YES;
         popupMenu.isShowShadow = YES;
         popupMenu.delegate = strongSelf;
         popupMenu.offset = 10;
+        popupMenu.cornerRadius = 0;
         popupMenu.type = YBPopupMenuTypeDark;
         popupMenu.rectCorner = UIRectCornerAllCorners;
         popupMenu.priorityDirection = YBPopupMenuPriorityDirectionTop;

@@ -428,7 +428,7 @@
         </view>
     </objects>
     <resources>
-        <image name="bg_personal_center.png" width="750" height="1334"/>
+        <image name="bg_personal_center.png" width="562" height="1000"/>
         <image name="ic_my_address.png" width="13" height="17"/>
         <image name="ic_my_collection.png" width="13" height="17"/>
         <image name="ic_my_exit.png" width="14" height="14"/>

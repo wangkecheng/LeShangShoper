@@ -37,7 +37,9 @@
 	
     [IQKeyboardManager sharedManager];//键盘
     [self setShareSDK];//配置分享 和登陆
-    [self updateVersion];//版本更新
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self updateVersion];//版本更新
+    });
 //    //推送
     [self jPushAddAndOptions:launchOptions];
     [[ImagePrivilegeTool share]judgePrivilege];//判读是否有相册选择权限

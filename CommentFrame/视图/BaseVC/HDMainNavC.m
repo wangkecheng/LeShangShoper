@@ -24,6 +24,10 @@
     self.navigationBar.translucent = NO;
     self.view.translatesAutoresizingMaskIntoConstraints = YES;
     
+    //导航NavigationBar的黑线条
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+  
 }
 
 /*VC:弹出的视图 isHideBack:是否隐藏返回按钮， 如果需要自定义左边按钮，那么就用
