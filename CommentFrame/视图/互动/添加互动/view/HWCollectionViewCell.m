@@ -20,16 +20,18 @@
     [super awakeFromNib];
 }
 
--(void)setModel:(ImgModel *)model{
+-(void)setModel:(UIImage *)model{
 	 _model = model;
-	[_profilePhoto setImage:model.image];
+	[_profilePhoto setImage:model];
 	 _closeButton.hidden = NO;
 }
--(void)setAddImgModel:(ImgModel *)addImgModel{
+
+-(void)setAddImgModel:(UIImage *)addImgModel{
 	_addImgModel = addImgModel;
 	_closeButton.hidden = YES;
-	[_profilePhoto setImage:addImgModel.image];
+	[_profilePhoto setImage:addImgModel];
 }
+
 - (IBAction)deletePhoto:(id)sender {
 	if (_deleteBlock) {
 		_deleteBlock(_model);

@@ -20,11 +20,11 @@
 	_titLbl.text = [DDFactory getString:model.title  withDefault:@""]; 
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [formatter setDateFormat:@"HH-mm-ss"];
     _timeLbl.text = [formatter stringFromDate:confromTimesp];
- 
-	[_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+   [_imgView sd_setImageWithURL:IMGURL(model.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 }
+
 - (void)awakeFromNib {
     [super awakeFromNib];
 }

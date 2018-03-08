@@ -67,6 +67,14 @@ UICollectionViewDelegateFlowLayout>
     
 	_imaPicker = [[UIImagePickerController alloc] init];
 	_imaPicker.delegate = self;
+    if ([_imaPicker.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
+        [_imaPicker.navigationBar setBarTintColor:UIColorFromHX(0x1393fc)];
+        [_imaPicker.navigationBar setTranslucent:NO];
+        [_imaPicker.navigationBar setTintColor:UIColorFromHX(0x1393fc)];
+    }else{
+        [_imaPicker.navigationBar setBackgroundColor:UIColorFromHX(0x1393fc)];
+    }
+    _imaPicker.navigationBar.tintColor = [UIColor whiteColor];
 	_collectionView.delegate = self;
 	_collectionView.dataSource = self;
 	_collectionView.backgroundColor = [UIColor whiteColor];
@@ -113,28 +121,35 @@ UICollectionViewDelegateFlowLayout>
 }
 
 -(void)publishAction{//发布操作
+    [self.view endEditing:YES];
 	weakObj;
     //上传图片
 	HDModel *m = [HDModel model];
 	m.content = _noteTextView.text;
     
 	NSMutableArray *arrImg = [NSMutableArray array];
-	for (ImgModel  *model in _arrSelected) {
-		[arrImg addObject:model.image];
+	for (UIImage  *model in _arrSelected) {
+		[arrImg addObject:model];
 	}
     if (m.content.length == 0 && arrImg.count == 0) {
         [self.view makeToast:@"请输入文字或者选择图片才能发布互动"];
         return;
     }
+      [MBProgressHUD showMessage:@"正在发布" toView:self.view];
 	[BaseServer uploadImages:arrImg path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			if (weakSelf.publishedBlock) {
-				weakSelf.publishedBlock();
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [MBProgressHUD hideHUDForView:strongSelf.view];
+			if (strongSelf.publishedBlock) {
+				strongSelf.publishedBlock();
 			}
-			[weakSelf.navigationController popViewControllerAnimated:YES];
+			[strongSelf.navigationController popViewControllerAnimated:YES];
 		});
 	} failed:^(NSError *error) {
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [MBProgressHUD hideHUDForView:strongSelf.view];
+        });
 	}];
 }
 #pragma mark 选择图片
@@ -143,6 +158,9 @@ UICollectionViewDelegateFlowLayout>
 	SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:nil cancelTitle:nil destructiveTitle:nil otherTitles:@[ @"拍照上传", @"从相册中选择",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
 		if (index == 0) {//拍照
+            if (![[ImagePrivilegeTool share]judgeCapturePrivilege]) {//判读是否有相册选择权限 类中给提示
+                return;
+            }
 			if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 				strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 				strongSelf.imaPicker.delegate = self;
@@ -152,20 +170,26 @@ UICollectionViewDelegateFlowLayout>
 		}
 		else if(index == 1){//从相册中选择图片
 			weakObj;
-            if (![[ImagePrivilegeTool share]judgePrivilege]) {//判读是否有相册选择权限 类中给提示
+            if (![[ImagePrivilegeTool share]judgeLibraryPrivilege]) {//判读是否有相册选择权限 类中给提示
                 return;
             }
-			AlbumListVC *VC = [[AlbumListVC alloc]
-							   initWithArrSelected:self.arrSelected
-							   maxCout:9
-							   selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
-								   dispatch_async(dispatch_get_main_queue(), ^{
-									  
-									   [weakSelf.collectionView reloadData];
-								   });
-							   }];
-			HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
-			[weakSelf presentViewController:nav animated:YES completion:nil];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+                strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                strongSelf.imaPicker.delegate = self;
+                strongSelf.imaPicker.allowsEditing = YES;
+                [strongSelf presentViewController:strongSelf.imaPicker animated:NO completion:nil];
+            }
+//            AlbumListVC *VC = [[AlbumListVC alloc]
+//                               initWithArrSelected:self.arrSelected
+//                               maxCout:9
+//                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
+//                                   dispatch_async(dispatch_get_main_queue(), ^{
+//
+//                                       [weakSelf.collectionView reloadData];
+//                                   });
+//                               }];
+//            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
+//            [weakSelf presentViewController:nav animated:YES completion:nil];
 		}
 	}];
 	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
@@ -184,12 +208,14 @@ UICollectionViewDelegateFlowLayout>
 		// 照片的元数据参数
 		theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	}
-	if (theImage) {//保存图片到相册中
-		[[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
-			
-		} faildBlock:^(NSError *error) {
-		}];
-	}
+//    if (theImage) {//保存图片到相册中
+//        [[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
+//
+//        } faildBlock:^(NSError *error) {
+//        }];
+//    }
+    [_arrSelected addObject:theImage];
+    [_collectionView reloadData];
 }
 
 - (void)finishSelectImg:(NSMutableArray *)imgArr{
@@ -210,16 +236,16 @@ UICollectionViewDelegateFlowLayout>
 	
 	UINib *nib = [UINib nibWithNibName:@"HWCollectionViewCell" bundle: [NSBundle mainBundle]];
 	[collectionView registerNib:nib forCellWithReuseIdentifier:@"HWCollectionViewCell"];
-	HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath];
+	HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HWCollectionViewCell" forIndexPath:indexPath];
 	if (indexPath.row == _arrSelected.count) {
-		ImgModel *model = [[ImgModel alloc]init];
-		model.image = [UIImage imageNamed:@"ic_interactive_add"];
-		[cell  setAddImgModel:model];
+		 ImgModel *model = [[ImgModel alloc]init];
+		 model.image = [UIImage imageNamed:@"ic_interactive_add"];
+		[cell  setAddImgModel:[UIImage imageNamed:@"ic_interactive_add"]];
 	}
 	else{
 		[cell setModel:_arrSelected[indexPath.item]];
 		weakObj;
-		cell.deleteBlock = ^(ImgModel * model) {
+		cell.deleteBlock = ^(UIImage * model) {
 			//删除照片
 			if (!model) {
 				return;
@@ -242,8 +268,8 @@ UICollectionViewDelegateFlowLayout>
 		
 		NSMutableArray* tmps = [[NSMutableArray alloc] init];
 		for (int i = 0;i< self.arrSelected.count;i++) {//找出所有图片
-         ImgModel * imgModel = _arrSelected[i];
-            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel.bigImage==nil?imgModel.image:imgModel.bigImage thumbnailURL:nil HDURL:nil
+         UIImage * imgModel = _arrSelected[i];
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel thumbnailURL:nil HDURL:nil
                 containerView:cell.contentView positionInContainer:cell.contentView.frame
 				index:i];
 			[tmps addObject:broModel];

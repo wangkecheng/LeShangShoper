@@ -30,7 +30,7 @@
         CGFloat w = SCREENWIDTH/4.0;
         CGFloat x = CGRectGetMaxX(lastBtn.frame);
         CGFloat h = w;
-        if (i == 2 || i == 3) {
+        if ( i == 2 || i == 3 || i == 6 || i == 7) {
             w -= 1;
             x += 1;
         }

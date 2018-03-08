@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CommentFrame/&#x89c6;&#x56fe;/&#x4e92;&#x52a8;/&#x6dfb;&#x52a0;&#x4e92;&#x52a8;/AddInteractionVC.m"
-            timestampString = "539575228.381694"
+            filePath = "CommentFrame/&#x89c6;&#x56fe;/&#x9996;&#x9875;/HomeVC.m"
+            timestampString = "542191965.839246"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "-serviceAction"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

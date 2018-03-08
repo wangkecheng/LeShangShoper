@@ -14,7 +14,7 @@
 #import "CatalugeListVC.h"
 #define ManufacturersCell_ @"ManufacturersCell"
 
-
+#import "InteligentServiceView.h"
 #import "UITableView+SCIndexView.h"
 @interface ManufacturersVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -23,6 +23,8 @@
 @property (assign, nonatomic)NSInteger page;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
 @property(nonatomic,strong)NSMutableArray * arrModel;
+
+@property (nonatomic, strong)DSAlert *alertControl;
 
 @end
 
@@ -49,6 +51,46 @@
     
     _tableView.sc_indexViewConfiguration = [SCIndexViewConfiguration configurationWithIndexViewStyle:SCIndexViewStyleDefault];
     _tableView.sc_translucentForTableViewInNavigationBar = YES;
+    
+    UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
+    [serviceBtn setImage:IMG(@"ic_service") forState:0];
+    [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:serviceBtn];
+}
+
+-(void)serviceAction{//智能服务
+    weakObj;
+    
+    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        //         NSURL *url = [NSURL URLWithString:@"weixin://"] ;
+        //        if (![[UIApplication sharedApplication] canOpenURL:url]){
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        //                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        //                [alertView show];
+        //            });
+        //           return YES;
+        //        }
+        //        [[UIApplication sharedApplication] openURL:url];
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = @"";
+        return YES;
+    } PhClickBlock:^BOOL{
+        weakObj;
+        [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+            __strong typeof (weakSelf) strongSelf  = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+            });
+        } failed:^(NSError *error) {
+        }];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        return YES;
+    }];
+    _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+    _alertControl.isTouchEdgeHide = YES;
 }
 
 -(void)toSearchManufacturersVC{

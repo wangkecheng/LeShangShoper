@@ -37,7 +37,7 @@
     if ([model.bargain integerValue] == 2) {//1,非特价，2，特价
           _reminderImg.alpha = 1;
 	}
-    _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",  [DDFactory getString:model.cid withDefault:@"未知"]];
+    _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",  [DDFactory getString:model.iden withDefault:@"未知"]];
     _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",[DDFactory getString:model.spec  withDefault:@"0 * 0"]];
 	_priceLbl.text = [NSString stringWithFormat:@"￥%0.2f", [[DDFactory getString:model.price  withDefault:@"0"] floatValue]];
     [_focusBtn setTitle:[NSString stringWithFormat:@" %@", [DDFactory getString:model.broseNumber withDefault:@"0"]] forState:0];

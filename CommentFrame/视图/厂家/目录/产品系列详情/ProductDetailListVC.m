@@ -114,9 +114,10 @@
 		weakObj;
 		if ([model.collect integerValue] == 1) {
 			    model.collect = @"2";
-			[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+			[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 				dispatch_async(dispatch_get_main_queue(), ^{
-					
+                
+                    [strongSelf.view makeToast:@"取消成功"];
 				});
 			} failed:^(NSError *error) {
 				
@@ -125,7 +126,7 @@
 			model.collect = @"1";
 			[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
 				dispatch_async(dispatch_get_main_queue(), ^{
-					
+                    [strongSelf.view makeToast:@"取消成功"];
 				});
 			} failed:^(NSError *error) {
 				
