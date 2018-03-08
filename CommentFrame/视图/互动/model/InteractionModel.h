@@ -19,7 +19,7 @@
 @property (nonatomic,strong)NSString *content;//内容
 @property (nonatomic,strong)NSString *interactId;//互动Id
 @property (nonatomic,strong)NSString *own;//我的动态
-
+@property (nonatomic,strong)NSString *isUser;
 @property (nonatomic,assign)BOOL isStatusSeeAll;//是否是查看全部的状态
 @property (nonatomic,assign)BOOL needHideSeeAllBtn;//是否是需要隐藏
 

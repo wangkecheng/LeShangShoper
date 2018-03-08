@@ -12,5 +12,5 @@
 @property(nonatomic,strong)NSArray *hotProudctArr;
 @property(nonatomic,copy)void(^clickBlock)(NSInteger index,CollectionModel *model);
 @property(nonatomic,copy)void(^refreshBlock)(void);
-
++(CGFloat)getH;
 @end

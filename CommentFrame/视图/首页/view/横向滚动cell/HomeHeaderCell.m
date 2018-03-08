@@ -26,7 +26,7 @@
 		[_arrUrlModel addObject:model.url];
 		[_arrimageUrlModel addObject:IMGURL(model.imageUrl)];
 	}
-	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH *175/750.0)  imageURLStringsGroup:_arrimageUrlModel];
+	SDCycleScrollView *cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH *260/1125.0 )  imageURLStringsGroup:_arrimageUrlModel];
 	cycleView.backgroundColor=[UIColor whiteColor];
 //    [cycleView setPlaceholderImage:IMG(@"Icon")];
 	cycleView.currentPageDotImage = [DDFactory circleImage:[DDFactory imageWithColor:UIColorFromHX(0xe4e3e2)] size:CGSizeMake(12,12)];

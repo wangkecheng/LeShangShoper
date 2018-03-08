@@ -21,8 +21,9 @@
 -(void)setSellerArr:(NSArray *)sellerArr{
 	_sellerArr = sellerArr;
 	UIButton *lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,0,0,0)];
+    CGFloat marginRL = 20;//左右距离屏幕距离
     CGFloat marginV = 35;//横向间距
-	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - marginV * 5)/4.0;
+	CGFloat btnW = (CGRectGetWidth(_scrollView.frame) - marginV * 3  - marginRL * 2)/4.0;
 	CGFloat btnH = btnW + 15;
 	CGFloat imgW = btnW;
     
@@ -36,22 +37,23 @@
 		ManufacturersModel *model = sellerArr[i];
         marginV = 35;
         CGFloat marginH = 10;//竖向间距
-        if (i%8 == 0 && i !=0) {
-            marginV = 2 * marginV;
+        if (i == 0) {
+            marginV = marginRL;
         }
+       
         CGFloat x = CGRectGetMaxX(lastBtn.frame) + marginV;
         CGFloat y = CGRectGetMinY(lastBtn.frame);
         if (i%4 == 0 && i!=0 && i%8!=0) {//这里是换行
-            x = i/8 * SCREENWIDTH +  marginV;
+            x = i/8 * SCREENWIDTH +  marginRL;
             y = CGRectGetMaxY(lastBtn.frame) + marginH;
         }
         if (i%8 == 0 && i!=0) {//换页
              y = 0;
-             x = CGRectGetMaxX(lastBtn.frame) + marginV;
+             x = CGRectGetMaxX(lastBtn.frame) +  2 * marginRL;
         }
      
 		DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,y,btnW, btnH)
-												titleX:-20 titleY:imgW + 5 titleW:btnW + 40 titleH:btnH - imgW - 5
+												titleX:-20 titleY:imgW + 4 titleW:btnW + 40 titleH:btnH - imgW - 5
 												imageX:0 imageY:0 imageW:imgW imageH:imgW];
 		btn.imageView.layer.cornerRadius = 10;
 		btn.imageView.layer.masksToBounds = YES;
@@ -69,7 +71,6 @@
 	_pageContro.currentPage = 0; 
 	_pageContro.pageIndicatorTintColor = UIColorFromHX(0xdcdcdc);
 	_pageContro.currentPageIndicatorTintColor = UIColorFromHX(0x1393fc);
-	
 	_scrollView.showsHorizontalScrollIndicator = NO;
 	_scrollView.pagingEnabled = YES;
     _scrollView.pagingEnabled = YES;
@@ -78,7 +79,9 @@
 	_scrollView.delegate = self;
 	_scrollView.contentSize = CGSizeMake(pageCount * CGRectGetWidth(_scrollView.frame), 0);
 }
-
++(CGFloat)getH{
+   return  ((SCREENWIDTH - 3 * 35 - 2 * 20)/4.0 + 15) * 2 + 50 + 10;
+}
 -(void)btnClick:(UIButton *)btn{
 	if (_clickBlock) {
 		_clickBlock(btn.tag,_sellerArr[btn.tag]);

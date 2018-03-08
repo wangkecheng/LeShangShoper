@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,20 +46,20 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56d-q5-HAj">
-                    <rect key="frame" x="0.0" y="0.0" width="461" height="30"/>
+                    <rect key="frame" x="0.0" y="0.0" width="461" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热点新闻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORx-Sv-aAf">
-                            <rect key="frame" x="201" y="5" width="60" height="21"/>
+                            <rect key="frame" x="201" y="2.5" width="60" height="21"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
                             <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dli-Eo-JQS">
-                            <rect key="frame" x="276" y="14.5" width="20" height="1"/>
+                            <rect key="frame" x="276" y="12" width="20" height="1"/>
                             <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8V-TX-Svj">
-                            <rect key="frame" x="166" y="14.5" width="20" height="1"/>
+                            <rect key="frame" x="166" y="12" width="20" height="1"/>
                             <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="19b-un-oFk"/>
@@ -70,7 +69,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="4iU-0j-p5k"/>
+                        <constraint firstAttribute="height" constant="25" id="4iU-0j-p5k"/>
                         <constraint firstItem="r8V-TX-Svj" firstAttribute="centerY" secondItem="56d-q5-HAj" secondAttribute="centerY" id="5ok-YR-bLg"/>
                         <constraint firstItem="ORx-Sv-aAf" firstAttribute="centerX" secondItem="56d-q5-HAj" secondAttribute="centerX" id="9qB-dV-eed"/>
                         <constraint firstItem="dli-Eo-JQS" firstAttribute="height" secondItem="r8V-TX-Svj" secondAttribute="height" id="Bqn-5I-Hbh"/>

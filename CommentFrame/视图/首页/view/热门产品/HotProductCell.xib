@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -21,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBi-hi-Leo">
-                        <rect key="frame" x="246" y="30" width="121.5" height="25"/>
+                        <rect key="frame" x="247" y="33" width="120.5" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remen.png" translatesAutoresizingMaskIntoConstraints="NO" id="YuC-WN-OYh">
                                 <rect key="frame" x="45" y="3" width="32" height="18"/>
@@ -38,7 +37,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AO-ga-LR8">
-                        <rect key="frame" x="0.0" y="30" width="245" height="25"/>
+                        <rect key="frame" x="0.0" y="33" width="245" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xinpin.png" translatesAutoresizingMaskIntoConstraints="NO" id="KNY-ly-hsj">
                                 <rect key="frame" x="106.5" y="3.5" width="32" height="18"/>
@@ -55,12 +54,8 @@
                             <constraint firstItem="KNY-ly-hsj" firstAttribute="centerX" secondItem="1AO-ga-LR8" secondAttribute="centerX" id="pQi-Jo-mez"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wr-Wn-6h4">
-                        <rect key="frame" x="0.0" y="55" width="490" height="102.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lu-nt-FcN">
-                        <rect key="frame" x="368.5" y="30" width="121.5" height="25"/>
+                        <rect key="frame" x="369.5" y="33" width="120.5" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jingxuan.png" translatesAutoresizingMaskIntoConstraints="NO" id="EQO-XU-8Pn">
                                 <rect key="frame" x="45" y="3.5" width="32" height="18"/>
@@ -77,44 +72,57 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="remenchangpin.png" translatesAutoresizingMaskIntoConstraints="NO" id="4vL-Lu-mUF">
-                        <rect key="frame" x="164" y="0.0" width="162" height="30"/>
+                        <rect key="frame" x="156" y="0.0" width="178" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Z5g-kA-Uim"/>
+                            <constraint firstAttribute="height" constant="33" id="Z5g-kA-Uim"/>
                             <constraint firstAttribute="width" secondItem="4vL-Lu-mUF" secondAttribute="height" multiplier="357:66" id="wRr-XQ-q4f"/>
                         </constraints>
                     </imageView>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEQ-ws-0nH">
+                        <rect key="frame" x="0.0" y="58" width="490" height="69.5"/>
+                    </scrollView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Oq8-yZ-z5L">
+                        <rect key="frame" x="0.0" y="127.5" width="490" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="RHG-qs-Rvt"/>
+                        </constraints>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" red="0.94107431173324585" green="0.94123536348342896" blue="0.94106405973434448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="1AO-ga-LR8" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/2" id="1Nf-01-CVB"/>
-                    <constraint firstItem="8lu-nt-FcN" firstAttribute="leading" secondItem="oBi-hi-Leo" secondAttribute="trailing" constant="1" id="4Rl-Aa-KkD"/>
-                    <constraint firstAttribute="trailing" secondItem="0wr-Wn-6h4" secondAttribute="trailing" id="4qW-7J-h4H"/>
-                    <constraint firstItem="0wr-Wn-6h4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5wv-0i-hV5"/>
-                    <constraint firstItem="8lu-nt-FcN" firstAttribute="leading" secondItem="oBi-hi-Leo" secondAttribute="trailing" constant="1" id="FDd-kY-dAn"/>
+                    <constraint firstItem="8lu-nt-FcN" firstAttribute="leading" secondItem="oBi-hi-Leo" secondAttribute="trailing" constant="2" id="4Rl-Aa-KkD"/>
+                    <constraint firstItem="wEQ-ws-0nH" firstAttribute="top" secondItem="oBi-hi-Leo" secondAttribute="bottom" id="DEy-CP-7G5"/>
+                    <constraint firstItem="Oq8-yZ-z5L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ffa-rU-vMJ"/>
                     <constraint firstItem="1AO-ga-LR8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="InJ-6L-MBA"/>
+                    <constraint firstAttribute="trailing" secondItem="Oq8-yZ-z5L" secondAttribute="trailing" id="OJ0-Yv-CSm"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="height" secondItem="oBi-hi-Leo" secondAttribute="height" id="PUb-sX-mpY"/>
                     <constraint firstItem="oBi-hi-Leo" firstAttribute="top" secondItem="1AO-ga-LR8" secondAttribute="top" id="Psk-TP-3ou"/>
+                    <constraint firstItem="wEQ-ws-0nH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qwx-ac-wph"/>
                     <constraint firstItem="4vL-Lu-mUF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TJf-uF-Ipb"/>
                     <constraint firstItem="oBi-hi-Leo" firstAttribute="bottom" secondItem="1AO-ga-LR8" secondAttribute="bottom" id="Ylf-9K-ACJ"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="width" secondItem="oBi-hi-Leo" secondAttribute="width" id="a9V-0v-czn"/>
-                    <constraint firstItem="oBi-hi-Leo" firstAttribute="leading" secondItem="1AO-ga-LR8" secondAttribute="trailing" constant="1" id="cZt-mM-Bwt"/>
+                    <constraint firstItem="Oq8-yZ-z5L" firstAttribute="top" secondItem="wEQ-ws-0nH" secondAttribute="bottom" id="bCb-EA-sk3"/>
+                    <constraint firstItem="oBi-hi-Leo" firstAttribute="leading" secondItem="1AO-ga-LR8" secondAttribute="trailing" constant="2" id="cZt-mM-Bwt"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="top" secondItem="oBi-hi-Leo" secondAttribute="top" id="cxQ-HZ-ZiK"/>
                     <constraint firstAttribute="trailing" secondItem="8lu-nt-FcN" secondAttribute="trailing" id="dXo-Z4-pkN"/>
-                    <constraint firstItem="0wr-Wn-6h4" firstAttribute="top" secondItem="oBi-hi-Leo" secondAttribute="bottom" id="gsI-sU-Q49"/>
+                    <constraint firstAttribute="trailing" secondItem="wEQ-ws-0nH" secondAttribute="trailing" id="ddM-5X-G6O"/>
+                    <constraint firstAttribute="bottom" secondItem="Oq8-yZ-z5L" secondAttribute="bottom" constant="10" id="iKs-CB-RS5"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="top" secondItem="1AO-ga-LR8" secondAttribute="top" id="m9f-U3-Em1"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="bottom" secondItem="1AO-ga-LR8" secondAttribute="bottom" id="mef-CV-rCj"/>
                     <constraint firstItem="1AO-ga-LR8" firstAttribute="top" secondItem="4vL-Lu-mUF" secondAttribute="bottom" id="pi0-RD-lUc"/>
                     <constraint firstItem="8lu-nt-FcN" firstAttribute="bottom" secondItem="oBi-hi-Leo" secondAttribute="bottom" id="tQ9-2N-93r"/>
-                    <constraint firstAttribute="bottom" secondItem="0wr-Wn-6h4" secondAttribute="bottom" id="xnH-mR-Hx8"/>
                     <constraint firstItem="4vL-Lu-mUF" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ztQ-dZ-JWR"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="btnContentView" destination="0wr-Wn-6h4" id="Ma4-aj-fj9"/>
+                <outlet property="btnScrollview" destination="wEQ-ws-0nH" id="o1j-g6-LGr"/>
+                <outlet property="pageContro" destination="Oq8-yZ-z5L" id="reO-I1-Gk5"/>
             </connections>
-            <point key="canvasLocation" x="-390" y="-295"/>
+            <point key="canvasLocation" x="-739" y="-489"/>
         </tableViewCell>
     </objects>
     <resources>

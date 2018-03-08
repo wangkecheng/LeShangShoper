@@ -81,6 +81,9 @@
 			if (strongSelf.arrModel.count == 0) {
 				[strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
 			}
+            if ([result[@"data"][@"total"] integerValue] <= strongSelf.arrModel.count) {
+                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
 		});
 	} failed:^(NSError *error) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
@@ -96,7 +99,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	CollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectionCell_ forIndexPath:indexPath];
-    [cell setModel:_arrModel[indexPath.row]];
+    [cell setCollectModel:_arrModel[indexPath.row]];
 	weakObj;
 	cell.collectBlock = ^BOOL(CollectionModel *model) {
 		__strong typeof (weakSelf) strongSelf  = weakSelf;

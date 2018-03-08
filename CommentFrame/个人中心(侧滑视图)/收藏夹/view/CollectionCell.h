@@ -10,6 +10,7 @@
 #import "CollectionModel.h"
 @interface CollectionCell : UITableViewCell
 @property(nonatomic,strong)CollectionModel *model;
+@property(nonatomic,strong)CollectionModel *collectModel;
 @property(nonatomic,strong)CollectionModel *specialModel;
 @property(nonatomic,copy)BOOL(^collectBlock)(CollectionModel * model);
 @end

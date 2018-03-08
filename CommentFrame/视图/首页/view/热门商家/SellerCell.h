@@ -12,7 +12,7 @@
 @property(nonatomic,strong)NSArray *sellerArr;
 @property(nonatomic,copy)void(^clickBlock)(NSInteger index,ManufacturersModel *model);
 
-
++(CGFloat)getH;
 @end
 
 

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,7 +84,7 @@
                 <outlet property="pageContro" destination="U07-aE-Rhk" id="x3o-K7-aGy"/>
                 <outlet property="scrollView" destination="UfT-sL-YjM" id="HdZ-57-OOv"/>
             </connections>
-            <point key="canvasLocation" x="-593" y="-335"/>
+            <point key="canvasLocation" x="-708" y="-337"/>
         </tableViewCell>
     </objects>
 </document>

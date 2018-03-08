@@ -18,26 +18,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTabBarBackColor];
-    
     [self addTabBarItems];
 }
 
-// 设置TabBar背景颜色
--(void)setTabBarBackColor{
+-(void)setTabBarBackColorNOLine{//budai xian tiao
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
-//    [[UITabBar appearance] setTintColor:UIColorFromHX(0xf0f0f0)];
+    //    [[UITabBar appearance] setTintColor:UIColorFromHX(0xf0f0f0)];
     [[UITabBar appearance] setBackgroundImage:[DDFactory imageWithColor:UIColorFromHX(0xf0f0f0)]];
-     [UITabBar appearance].clipsToBounds = YES; // 添加的图片大小不匹配的话，加上此句，屏蔽掉tabbar多余部分
+    [UITabBar appearance].clipsToBounds = YES; // 添加的图片大小不匹配的话，加上此句，屏蔽掉tabbar多余部分
     [[UITabBar appearance] setShadowImage:[DDFactory imageWithColor:UIColorFromHX(0xf0f0f0)]];
+} 
+// 设置TabBar背景颜色 dai xiantiao
+-(void)setTabBarBackColor{
     
-//    UIView *view = [[UIView alloc]init];
-//    view.frame = self.tabBar.bounds;
-//    view.backgroundColor = UIColorFromHX(0xf0f0f0);
-//    [self.tabBar insertSubview:view atIndex:0];
-//    self.tabBar.opaque = YES;
-//    // 设置tabbar渲染颜色
-//    [UITabBar appearance].tintColor = UIColorFromHX(0x1393fc);
+    UIView *view = [[UIView alloc]init];
+    view.frame = self.tabBar.bounds;
+    view.backgroundColor = UIColorFromHX(0xf0f0f0);
+    [self.tabBar insertSubview:view atIndex:0];
+    self.tabBar.opaque = YES;
+    // 设置tabbar渲染颜色
+    [UITabBar appearance].tintColor = UIColorFromHX(0x1393fc);
     self.tabBar.translucent = NO;
 }
 //添加TabBar控制器的所有子控制器

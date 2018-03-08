@@ -24,6 +24,7 @@
 #import "ProductDetailVC.h"
 #import "NewsDetailVC.h"
 #import "NewsModel.h"
+#import "WSLeftSlideManagerVC.h"
 @interface HomeVC ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic)NSInteger page;
@@ -39,12 +40,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     weakObj;
 	_arrHomeHeaderModel = [NSMutableArray array];
 	_arrMerchantModel = [NSMutableArray array];
     _arrAdvertModel = [NSMutableArray array];
     _arrNewsModel = [NSMutableArray array];
-    LeftTopHeadView * headerView = [LeftTopHeadView headerViewWithFrame:CGRectMake(0, 0, 125, 44)];
+    LeftTopHeadView * headerView = [LeftTopHeadView headerViewWithFrame:CGRectMake(0, 0, 125, 48)];
     headerView.leftTopHeaderViewBlock = ^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         UserInfoModel * model  = [CacheTool getUserModel];
@@ -56,7 +58,7 @@
         [strongSelf presentViewController:loginVC animated:YES completion:nil];
     };
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:headerView]];
-	UITextField *searchField =  [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - CGRectGetWidth(headerView.frame) - 12, 36)];
+	UITextField *searchField =  [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - 100, 36)];
     [searchField setPlaceholder:@"    探索您心仪的宝贝"];
     searchField.delegate = self;
     searchField.layer.cornerRadius = 18;
@@ -74,6 +76,8 @@
 	[searchField setRightView:iconView];
 	searchField.rightViewMode = UITextFieldViewModeAlways;
 	self.navigationItem.titleView = searchField;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     
 	[_tableView registerNib:[UINib nibWithNibName:HomeHeaderCell_ bundle:nil] forCellReuseIdentifier:HomeHeaderCell_];
 	[_tableView registerNib:[UINib nibWithNibName:SellerCell_ bundle:nil] forCellReuseIdentifier:SellerCell_];
@@ -104,8 +108,20 @@
 //        return YES;
 //    }];
 //    [self.view addSubview:alertView]; //改用按钮的方式
-  
+    
+ }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //去除导航NavigationBar的黑线条
+    [self.navigationController.navigationBar  setShadowImage:[[UIImage alloc] init]];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //设置黑线条
+    [self.navigationController.navigationBar  setShadowImage:[DDFactory imageWithColor:UIColorFromRGB(234, 234, 234)]]; 
+}
+
 -(void)serviceAction{//智能服务
         weakObj;
 
@@ -171,11 +187,11 @@
 -(void)getMerchantData{
 	weakObj;
 	HDModel * m = [HDModel model];
-	m.number = @"6";//查询数量，默认6
+	m.number = @"16";//查询数量，默认6
 	[BaseServer postObjc:m path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		NSArray *arr =  [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:result[@"data"]];
 		[weakSelf.arrMerchantModel removeAllObjects];
-        [weakSelf.arrMerchantModel addObjectsFromArray:arr]; 
+        [weakSelf.arrMerchantModel addObjectsFromArray:arr];
 		dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -192,6 +208,7 @@
 -(void)getArrAdvertModel{//热门商品
     weakObj;
     HDModel * m = [HDModel model];
+    m.number = @"8";
     [BaseServer postObjc:m path:@"/commodity/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
         NSArray *arr =  [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"]];
         [weakSelf.arrAdvertModel removeAllObjects];
@@ -323,20 +340,19 @@
          cell = newsCell;
          cell.selectionStyle = 0;
 	}
-   
 	return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	if (indexPath.section == 0) {
-		return  SCREENWIDTH *175/750.0;
+		return  SCREENWIDTH *260/1125.0;
 	}
 	if (indexPath.section == 1) {
-		return ((CGRectGetWidth(tableView.frame) - 5 * 25)/4.0) * 2 + 60 + 10;
+        return [SellerCell getH];
 	}
 	if (indexPath.section == 2) {
-		return  45 + SCREENWIDTH / 4.0 + 25 + 4;//
+		return  [HotProductCell getH];//
 	}
 	return 70;
 }
@@ -358,7 +374,7 @@
 		view.frame = CGRectMake(0, 0, SCREENWIDTH, 0.01);
 		return view;
 	}
-    CGFloat hederH = 30;
+    CGFloat hederH = 25;
     BOOL isShowSubTit = YES;
     if (section != 3) {
         hederH = 0;//不显示 后面的日期了
@@ -377,7 +393,7 @@
 	if (section == 0 || section == 1 || section == 2) {
 		return 0.01;
 	}
-    CGFloat hederH = 30;
+    CGFloat hederH = 25;
     if (section != 3) {
         hederH = 0;
     }
