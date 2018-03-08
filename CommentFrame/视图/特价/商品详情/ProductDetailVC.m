@@ -165,7 +165,7 @@
 	weakObj;
 	if ([_model.collect integerValue] == 1) {
 		_model.collect = @"2";
-		[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+		[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 			__strong typeof (weakSelf) strongSelf  = weakSelf;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[strongSelf.collectBtn setTitle:@"已收藏" forState:0];
@@ -173,6 +173,7 @@
 				if (strongSelf.collectActionBlock) {//如果是从收藏夹进入这个页面 这里为真
 					strongSelf.collectActionBlock(strongSelf.model, YES);//加入收藏操作
 				}
+                [strongSelf.view makeToast:@"收藏成功"];
 			});
 		} failed:^(NSError *error) {
 			__strong typeof (weakSelf) strongSelf  = weakSelf;
@@ -181,8 +182,9 @@
 		return;
 	}
 	_model.collect = @"1";
-	[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
-		__strong typeof (weakSelf) strongSelf  = weakSelf;//取消收藏
+	[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+		__strong typeof (weakSelf) strongSelf  = weakSelf;//取消收藏 
+        [strongSelf.view makeToast:@"取消成功"];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			
 			[strongSelf.collectBtn setTitle:@"加入收藏夹" forState:0];

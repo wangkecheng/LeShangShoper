@@ -112,15 +112,15 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
 }
 
 - (void)pushVC:(UIViewController *)VC{
-	UINavigationController *nav;
+	HDMainNavC *nav;
     if ([_mainTBC isKindOfClass:[UINavigationController class]]) {
-		nav = (UINavigationController *)_mainTBC;
+		nav = (HDMainNavC *)_mainTBC;
 	}else if ([_mainTBC isKindOfClass:[HDMainTBC class]]){
 		nav = _mainTBC.viewControllers[_mainTBC.selectedIndex];
 	}
 	if (nav) {
-		[nav pushViewController:VC animated:NO];
-		[self hideMenu];
+		[nav pushVC:VC isHideBack:YES animated:YES];
+        [self hideMenu];
 	}
 }
 - (void)hideMenu{

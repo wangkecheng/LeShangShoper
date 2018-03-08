@@ -64,6 +64,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define Image @"image"//控制器是tabBar的图片
 #define SelectImage @"selectImage"//控制器是tabBar的图片
 #define AttachInfo @"attachInfo"//控制器 的附加信息
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+MJ.h"
 #import "GYDB.h"
 #import "DSAlert.h"//弹框 ，可以自定义
 #import "SDCycleScrollView.h"

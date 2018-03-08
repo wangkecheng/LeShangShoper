@@ -34,8 +34,26 @@
 	 _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     [self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
     [self getPage];
+    [self setBackBtn];
 }
 
+-(void)setBackBtn{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    view.backgroundColor = [UIColor clearColor];
+    UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    firstButton.frame = CGRectMake(0, 0, 44, 44);
+    [firstButton setImage:[UIImage imageNamed:@"return"] forState:0];//ios11添加leftBarButtonItem时，图片的像素大小会影响最终的返回位置
+    [firstButton addTarget:self action:@selector(leftBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5 * SCREENWIDTH/375.0, 0, 0)];
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:firstButton];
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+    self.navigationController.hidesBottomBarWhenPushed = YES; // 隐藏底部的工具条
+}
+-(void)leftBtnAction{
+    [self.navigationController popViewControllerAnimated:YES];
+    [[DDFactory factory]broadcast:nil channel:LeftSildeAction];//打开侧滑
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.extendedLayoutIncludesOpaqueBars = YES;
@@ -106,10 +124,12 @@
 		[strongSelf.arrModel removeObject:model];
 		HDModel * m = [HDModel model];
 		m.cid = model.cid;
-		[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+		[BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 			__strong typeof (weakSelf) strongSelf  = weakSelf;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[strongSelf.tableView reloadData];//取消收藏
+           
+                [strongSelf.view makeToast:@"取消成功"];
 			});
 		} failed:^(NSError *error) {
 			

@@ -22,10 +22,10 @@
     return baidu;
 }
 
--(BOOL)judgePrivilege{
+-(BOOL)judgeLibraryPrivilege{
 //
     PHAuthorizationStatus author = [PHPhotoLibrary authorizationStatus];
-    if (author != PHAuthorizationStatusAuthorized){
+    if (author == PHAuthorizationStatusDenied){
         //无权限 引导去开启
         SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:@"发布互动选择图片需要您的同意才能访问系统相册" cancelTitle:nil destructiveTitle:nil otherTitles:@[@"去设置",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index){
             if (index == 0) {//https://www.jianshu.com/p/6de8b464d7f2
@@ -42,6 +42,25 @@
     return YES;
 }
 
+-(BOOL)judgeCapturePrivilege{
+    //判断相机是否能够使用
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeAudio];
+    if (status == AVAuthorizationStatusDenied){
+        //无权限 引导去开启
+        SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:@"发布互动选择图片需要您的同意才能使用相机" cancelTitle:nil destructiveTitle:nil otherTitles:@[@"去设置",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index){
+            if (index == 0) {//https://www.jianshu.com/p/6de8b464d7f2
+                NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                if ([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                }
+            }
+        }];
+        actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
+        [actionSheet show];
+        return NO ;
+    }
+    return  YES;
+}
 // 判断设备是否有摄像头
 - (BOOL) isCameraAvailable{
     return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];

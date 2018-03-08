@@ -43,8 +43,7 @@
         [strongSelf updateVersion];//版本更新
     });
 //    //推送
-    [self jPushAddAndOptions:launchOptions];
-    [[ImagePrivilegeTool share]judgePrivilege];//判读是否有相册选择权限
+    [self jPushAddAndOptions:launchOptions]; 
     return YES;
 }
 -(void)updateVersion{

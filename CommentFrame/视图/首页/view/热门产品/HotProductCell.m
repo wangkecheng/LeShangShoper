@@ -32,9 +32,10 @@
         CGFloat w = SCREENWIDTH/4.0;
         CGFloat x = CGRectGetMaxX(lastBtn.frame);//上个视图横向坐标的最大值
         CGFloat h = w;
-        if (i == 2 || i == 3) {
-            w -= 2;// 如果是第二和第三个 宽度减2
-            x += 2;// 往右偏移两个像素
+ 
+        if ( i == 2 || i == 3 || i == 6 || i == 7) {// 如果是第二和第三个 宽度减2
+            w -= 2;
+            x += 2;// 往右偏移两个像素 
         }
         //下边这里不用管 只是添加视图而已
         DDButton *btn = [[DDButton alloc]initWithFrame:CGRectMake(x,0,w, h + 20)  titleX:0 titleY:h + 3 titleW:w titleH:14  imageX:2 imageY:0 imageW:w - 4 imageH:w];

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -125,6 +124,13 @@
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPK-Nj-8al">
+                                            <rect key="frame" x="0.0" y="148.99999999999994" width="414" height="1"/>
+                                            <color key="backgroundColor" red="0.90970492359999999" green="0.90986090900000005" blue="0.90969508889999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="t51-d9-SJz"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -132,10 +138,13 @@
                                         <constraint firstItem="cqo-CE-sLv" firstAttribute="height" secondItem="lwF-iZ-9Ng" secondAttribute="height" id="7Dy-mA-Wmo"/>
                                         <constraint firstItem="UsY-vB-2zm" firstAttribute="height" secondItem="lwF-iZ-9Ng" secondAttribute="height" id="7R9-bl-xKP"/>
                                         <constraint firstItem="UsY-vB-2zm" firstAttribute="top" secondItem="vPv-Nd-4k8" secondAttribute="bottom" constant="25" id="E9m-ej-Jjx"/>
+                                        <constraint firstAttribute="trailing" secondItem="RPK-Nj-8al" secondAttribute="trailing" id="ELv-vC-Z86"/>
                                         <constraint firstItem="vPv-Nd-4k8" firstAttribute="top" secondItem="0qr-sR-CxC" secondAttribute="top" constant="25" id="HBg-ib-8oU"/>
+                                        <constraint firstAttribute="bottom" secondItem="RPK-Nj-8al" secondAttribute="bottom" id="HSV-Sr-qCE"/>
                                         <constraint firstAttribute="trailing" secondItem="vPv-Nd-4k8" secondAttribute="trailing" constant="5" id="IqS-Ls-FOb"/>
                                         <constraint firstItem="ggp-vP-FDw" firstAttribute="leading" secondItem="vPv-Nd-4k8" secondAttribute="leading" id="NId-RB-gKN"/>
                                         <constraint firstItem="9Rg-fu-1o3" firstAttribute="trailing" secondItem="vPv-Nd-4k8" secondAttribute="trailing" id="Qc0-yA-D63"/>
+                                        <constraint firstItem="RPK-Nj-8al" firstAttribute="leading" secondItem="0qr-sR-CxC" secondAttribute="leading" id="R3w-hH-emv"/>
                                         <constraint firstItem="UsY-vB-2zm" firstAttribute="leading" secondItem="lwF-iZ-9Ng" secondAttribute="trailing" constant="8" id="Unk-xV-sCv"/>
                                         <constraint firstItem="QY8-w8-WgR" firstAttribute="centerY" secondItem="ggp-vP-FDw" secondAttribute="centerY" id="Xui-3X-wLc"/>
                                         <constraint firstItem="QY8-w8-WgR" firstAttribute="trailing" secondItem="9Rg-fu-1o3" secondAttribute="trailing" id="dxZ-ug-vkt"/>

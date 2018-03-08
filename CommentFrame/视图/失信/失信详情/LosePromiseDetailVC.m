@@ -59,7 +59,7 @@
 	
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-	[formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+	[formatter setDateFormat:@"HH-mm-ss"];
 	_timeLbl.text = [formatter stringFromDate:confromTimesp];
 	
     NSString *htmls = [NSString stringWithFormat:@"<html> \n"

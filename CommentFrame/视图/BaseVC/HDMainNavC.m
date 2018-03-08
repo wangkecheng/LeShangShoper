@@ -23,8 +23,13 @@
     self.navigationBar.opaque = NO;
     self.navigationBar.translucent = NO;
     self.view.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault]; 
+ 
+//    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault]; 
+ 
+    //导航NavigationBar的黑线条
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+
 }
 
 /*VC:弹出的视图 isHideBack:是否隐藏返回按钮， 如果需要自定义左边按钮，那么就用
@@ -49,10 +54,10 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         view.backgroundColor = [UIColor clearColor];
         UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        firstButton.frame = CGRectMake(0, 0, 44, 44);
+         firstButton.frame = CGRectMake(0, 0, 44, 44);
         [firstButton setImage:[UIImage imageNamed:@"return"] forState:0];//ios11添加leftBarButtonItem时，图片的像素大小会影响最终的返回位置
         [firstButton addTarget:self action:@selector(leftBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+         firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5 * SCREENWIDTH/375.0, 0, 0)];
         if (isHideBack) {//如果需要隐藏返回按钮
             [firstButton setHidden:YES];

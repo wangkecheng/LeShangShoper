@@ -10,5 +10,6 @@
 #import<AssetsLibrary/AssetsLibrary.h>
 @interface ImagePrivilegeTool : NSObject
 +(instancetype)share;
--(BOOL)judgePrivilege; 
+-(BOOL)judgeLibraryPrivilege;
+-(BOOL)judgeCapturePrivilege;
 @end

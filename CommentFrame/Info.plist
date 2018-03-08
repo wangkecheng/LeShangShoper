@@ -53,13 +53,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许使用相机</string>
+	<string>发布互动需要您的同意才能使用相机</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>是否允许后台访问定位</string>
+	<string>发布互动需要您的同意才能在后台访问定位</string>
 	<key>NSLocationUsageDescription</key>
-	<string>是否允许使用定位权限</string>
+	<string>发布互动需要您的同意才能定位权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许访问相册</string>
+	<string>发布互动需要您的同意才能访问相册</string>
 	<key>UIApplicationShortcutItems</key>
 	<array/>
 	<key>UIBackgroundModes</key>

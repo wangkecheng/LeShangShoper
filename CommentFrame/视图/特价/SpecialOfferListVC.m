@@ -12,6 +12,7 @@
 #import "ProductDetailListCell.h"
 #import "SearchProductVC.h"
 #define ProductDetailListCell_ @"ProductDetailListCell"
+#import "InteligentServiceView.h"
 @interface SpecialOfferListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -26,6 +27,7 @@
 @property(nonatomic,strong)NSMutableArray * arrModel;
 @property(nonatomic,strong)NSString *sortkey;
 @property(nonatomic,strong)NSString *sort;
+@property (nonatomic, strong)DSAlert *alertControl;
 @end
 
 @implementation SpecialOfferListVC
@@ -57,6 +59,9 @@
 	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
 	
 	searchField.leftView = iconView;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toSearchVC)];
+    [iconView addGestureRecognizer:tap];
+    iconView.userInteractionEnabled = YES;
 	searchField.leftViewMode=UITextFieldViewModeAlways;
 	
 	self.navigationItem.titleView = searchBar;
@@ -78,6 +83,46 @@
     [self getPage];
     
     [[DDFactory factory]addObserver:self selector:@selector(collectionAction:) channel:CollectionActionBroadCast];//接收收藏通知
+    
+    UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
+    [serviceBtn setImage:IMG(@"ic_service") forState:0];
+    [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:serviceBtn];
+}
+
+-(void)serviceAction{//智能服务
+    weakObj;
+    
+    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        //         NSURL *url = [NSURL URLWithString:@"weixin://"] ;
+        //        if (![[UIApplication sharedApplication] canOpenURL:url]){
+        //            dispatch_async(dispatch_get_main_queue(), ^{
+        //                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        //                [alertView show];
+        //            });
+        //           return YES;
+        //        }
+        //        [[UIApplication sharedApplication] openURL:url];
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = @"";
+        return YES;
+    } PhClickBlock:^BOOL{
+        weakObj;
+        [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+            __strong typeof (weakSelf) strongSelf  = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+            });
+        } failed:^(NSError *error) {
+        }];
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        [strongSelf.alertControl ds_dismissAlertView];
+        return YES;
+    }];
+    _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+    _alertControl.isTouchEdgeHide = YES;
 }
 
 -(void)collectionAction:(NSNotification *)notify{
@@ -99,11 +144,11 @@
        _sortkey = @"price";
        _page = 1;
     [_hotImg setImage:IMG(@"ico_paihang")];
-    if ([_sort isEqualToString:@"-1"]) {
-         _sort = @"1";// 排序方式 1，正序 从高到低，2，逆序
+    if ([_sort isEqualToString:@"1"]) {
+         _sort = @"-1";// 排序方式 1，正序 从高到低，2，逆序
         [_priceImg setImage:IMG(@"ico_paihangDescending")];
     }else{
-        _sort = @"-1";
+        _sort = @"1";
         [_priceImg setImage:IMG(@"ico_paihangAssent")];
     }
     [self getPage];
@@ -113,11 +158,11 @@
          _sortkey = @"hot";
          _page = 1;
         [_priceImg setImage:IMG(@"ico_paihang")];
-    if ([_sort isEqualToString:@"-1"]) {
-        _sort = @"1"; //1，非热门，2，热门，默认全部
+    if ([_sort isEqualToString:@"1"]) {
+        _sort = @"-1"; //1，非热门，2，热门，默认全部
         [_hotImg setImage:IMG(@"ico_paihangAssent")];
     }else{
-        _sort = @"-1";
+        _sort = @"1";
         [_hotImg setImage:IMG(@"ico_paihangDescending")];
     }
        [self getPage];
@@ -186,18 +231,19 @@
         weakObj;
         if ([model.collect integerValue] == 1) {
                 model.collect = @"2";
-            [BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+            [BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
+                    [strongSelf.view makeToast:@"收藏成功"];
                 });
             } failed:^(NSError *error) {
                 
             }];
         }else{//取消收藏
             model.collect = @"1";
-            [BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
+            [BaseServer postObjc:m path:@"/commodity/collect/remove" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
+            
+                    [strongSelf.view makeToast:@"取消成功"];
                 });
             } failed:^(NSError *error) {
                 
@@ -252,10 +298,13 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 	//打开搜索界面 
-	SearchProductVC * VC = [[SearchProductVC alloc]init];
-	HDMainNavC * navi = (HDMainNavC *)self.navigationController;
-	[navi pushVC:VC isHideBack:YES animated:YES];
+    [self toSearchVC];
 	return NO;
+}
+-(void)toSearchVC{
+    SearchProductVC * VC = [[SearchProductVC alloc]init];
+    HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+    [navi pushVC:VC isHideBack:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

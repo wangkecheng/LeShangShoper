@@ -44,6 +44,10 @@
 	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
 	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
 	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(getPage)];
+    [iconView addGestureRecognizer:tap];
+    iconView.userInteractionEnabled = YES;
 	searchField.leftView = iconView;
     UIButton * rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(searchField.frame) - 10, CGRectGetWidth(searchField.frame) - 10)];
     [rightBtn setImage:IMG(@"ic_search_delete") forState:0];

@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchSex;
 @property (nonatomic, strong)DSAlert *alertControl;
 
+@property (nonatomic, strong) DYPickerView *pickerView; // pickerView
 @end
 
 @implementation PersonalCenterVC
@@ -190,26 +191,46 @@
 
 - (IBAction)resetAddress:(id)sender {
     
-    [self registeKeyboardNotifications];
-	weakObj;
-	ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 45,(SCREENWIDTH - 45) * 350/570.0) type:TypeAddress cancelBlock:^BOOL{
-        __strong typeof (weakSelf) strongSelf = weakSelf;
-        [strongSelf.alertControl ds_dismissAlertView];
-        [strongSelf unregisteKeyboardNotification];
-		return YES;
-	} okBlock:^BOOL(NSString *str) {
-        __strong typeof (weakSelf) strongSelf = weakSelf;
-        [strongSelf.alertControl ds_dismissAlertView];
-        [strongSelf unregisteKeyboardNotification];
-		UserInfoModel * model = [CacheTool getUserModel];
-		model.addr = weakSelf.addressLbl.text = str;
-		[CacheTool writeToDB:model];
-		[weakSelf resetUserInfo:nil];
-		return YES;
-	}];
-	_alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+//    [self registeKeyboardNotifications];
+//    weakObj;
+//    ResetPersonInfoView *alertView = [ResetPersonInfoView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 45,(SCREENWIDTH - 45) * 350/570.0) type:TypeAddress cancelBlock:^BOOL{
+//        __strong typeof (weakSelf) strongSelf = weakSelf;
+//        [strongSelf.alertControl ds_dismissAlertView];
+//        [strongSelf unregisteKeyboardNotification];
+//        return YES;
+//    } okBlock:^BOOL(NSString *str) {
+//        __strong typeof (weakSelf) strongSelf = weakSelf;
+//        [strongSelf.alertControl ds_dismissAlertView];
+//        [strongSelf unregisteKeyboardNotification];
+//        UserInfoModel * model = [CacheTool getUserModel];
+//        model.addr = weakSelf.addressLbl.text = str;
+//        [CacheTool writeToDB:model];
+//        [weakSelf resetUserInfo:nil];
+//        return YES;
+//    }];
+//    _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
+        [self.pickerView show];
 }
-
+-(DYPickerView *)pickerView{
+    if (!_pickerView) {
+        weakObj;
+        _pickerView = [[DYPickerView alloc] initWithSheetH:250 cancelBlock:^{
+            
+        } okBlock:^(SelectInfoModel * model) {
+            
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            NSString *countyName = [NSString stringWithFormat:@"-%@",model.countyName];
+            if (model.countyName.length==0) {
+                countyName =@"";
+            }
+            UserInfoModel * userModel = [CacheTool getUserModel];
+            userModel.addr = weakSelf.addressLbl.text = [NSString stringWithFormat:@"%@-%@%@",model.provenceName,model.cityName,countyName];
+            [CacheTool writeToDB:userModel];
+            [strongSelf resetUserInfo:nil];
+        }];
+    }
+    return _pickerView;
+}
 #pragma mark - 键盘处理
 - (void)registeKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
