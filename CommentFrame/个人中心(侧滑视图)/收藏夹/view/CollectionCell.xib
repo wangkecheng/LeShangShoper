@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -123,13 +122,15 @@
                 <outlet property="collectionBtn" destination="R7N-YS-bRS" id="tls-J2-H5N"/>
                 <outlet property="factoryLbl" destination="rkl-pC-xVu" id="SKC-7G-IGm"/>
                 <outlet property="img" destination="tza-Rk-hAc" id="ddd-3U-T2D"/>
+                <outlet property="marginColleAndSI" destination="Qd6-T4-sfT" id="sMA-UZ-Zyo"/>
                 <outlet property="priceLbl" destination="fO3-hK-FSC" id="ZGB-UE-tcx"/>
                 <outlet property="specialImg" destination="8PN-lf-0Qm" id="epR-vf-z9W"/>
+                <outlet property="specialImgW" destination="CYX-iR-dfi" id="6KU-ta-erG"/>
                 <outlet property="specificationLbl" destination="Vfd-Gp-IVp" id="Iqd-jM-6Hd"/>
                 <outlet property="titleLbl" destination="VKu-r5-MCk" id="mVW-kY-qmf"/>
                 <outlet property="usePlaceLbl" destination="7bO-M8-9fb" id="joi-GE-b5k"/>
             </connections>
-            <point key="canvasLocation" x="-505" y="-164"/>
+            <point key="canvasLocation" x="-428" y="-148"/>
         </tableViewCell>
     </objects>
     <resources>

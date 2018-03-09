@@ -60,6 +60,9 @@ UICollectionViewDelegateFlowLayout>
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
 	_deleteBtn.alpha = 0;
+    if ([_model.isUser integerValue] == 2) {
+         _deleteBtn.alpha = 1;//是用户自己发布的 就不隐藏删除按钮
+    }
 	[self initData:model];
 }
 -(void)initData:(InteractionModel *)model{

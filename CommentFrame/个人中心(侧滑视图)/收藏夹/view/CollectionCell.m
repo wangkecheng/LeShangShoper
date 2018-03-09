@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *factoryLbl;//工厂或者公司
 @property (weak, nonatomic) IBOutlet UIButton *collectionBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *specialImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *specialImgW;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginColleAndSI;//收藏按钮和特价之间的间距
 
 @end
 
@@ -24,6 +26,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+}
+-(void)setCollectModel:(CollectionModel *)collectModel{
+    _collectModel = collectModel;
+    _marginColleAndSI.constant = _specialImgW.constant = 0;
+     _specialImg.alpha = 0;
+    [_collectionBtn setImage:IMG(@"ic_collection_p") forState:0];
+    
+    [_img sd_setImageWithURL:IMGURL(_collectModel.logoUrl) placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates] ;
+    _titleLbl.text  = [DDFactory getString: _collectModel.name  withDefault:@"未知"];
+    _priceLbl.text = [NSString stringWithFormat:@"￥ %0.2f",[_collectModel.price floatValue]];
+    _specificationLbl.text =  [DDFactory getString:_collectModel.spec  withDefault:@"0 * 0"];
+    _usePlaceLbl.text =  [DDFactory getString:_collectModel.typeName  withDefault:@"未知"];
+    _factoryLbl.text = [DDFactory getString:_collectModel.merchantName  withDefault:@"未知"];
 }
 
 -(void)setModel:(CollectionModel *)model{
@@ -53,8 +68,10 @@
 
 - (IBAction)collectionAction:(UIButton *)sender {
 	sender.userInteractionEnabled = NO;
+    CollectionModel *model = _model==nil?_collectModel:_model;
+    model = model==nil? _specialModel:model;
 	if (_collectBlock) {
-		if (_collectBlock(_model)) {
+		if (_collectBlock(model)) {
 			sender.userInteractionEnabled = YES;
 		}
 	}

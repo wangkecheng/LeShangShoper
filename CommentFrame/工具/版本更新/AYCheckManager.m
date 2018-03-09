@@ -119,7 +119,7 @@ static AYCheckManager *checkManager = nil;
 //        return NO;
 //    }
     for (int index = 0; index < lastVersionArray.count; index++) {
-        if ([currentVersionArray[index] integerValue] != [lastVersionArray[index] integerValue]) {
+        if ([currentVersionArray[index] integerValue] < [lastVersionArray[index] integerValue]) {
             return NO;
         }
     }

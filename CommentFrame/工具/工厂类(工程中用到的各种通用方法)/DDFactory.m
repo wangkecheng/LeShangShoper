@@ -349,9 +349,12 @@
     if ([deviceModel isEqualToString:@"iPad7,2"])      return @"iPad Pro";
     if ([deviceModel isEqualToString:@"iPad7,3"])      return @"iPad Pro";
     if ([deviceModel isEqualToString:@"iPad7,4"])      return @"iPad Pro";
+    if ([[deviceModel uppercaseString] containsString:@"X"] && ![[deviceModel uppercaseString] containsString:@"86_64"]&& ![[deviceModel uppercaseString] containsString:@"i386"])      return @"IPX";
+    if ([deviceModel isEqualToString:@"iPhone10,3"])   return @"IPX";
+    if ([deviceModel isEqualToString:@"iPhone10,6"])   return @"IPX";
     
-    if ([deviceModel isEqualToString:@"i386"])         return @"Simulator";
-    if ([deviceModel isEqualToString:@"x86_64"])       return @"Simulator";
+//    if ([deviceModel isEqualToString:@"i386"])         return @"Simulator";
+//    if ([deviceModel isEqualToString:@"x86_64"])       return @"Simulator";
     return deviceModel;
     
 }

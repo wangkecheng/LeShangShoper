@@ -86,7 +86,11 @@
 
 -(void)addInteraction:(UIButton *)btn{//添加互动
     weakObj;
-    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0 + 1, CGRectGetMaxY(btn.frame)) titles:@[@"发布动态",@"我的动态",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+    CGFloat y = CGRectGetMaxY(btn.frame);
+    if ([[[DDFactory getCurrentDeviceModel] uppercaseString]containsString:@"IPX"]) {
+        y += 28;
+    }
+    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0 + 1, y) titles:@[@"发布动态",@"我的动态",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
  
         __strong typeof (weakSelf) strongSelf = weakSelf;
         popupMenu.dismissOnSelected = YES;
