@@ -181,7 +181,7 @@
 -(void)getMerchantData{
 	weakObj;
 	HDModel * m = [HDModel model];
-	m.number = @"6";//查询数量，默认6
+	m.number = @"8";//查询数量，默认6
 	[BaseServer postObjc:m path:@"/merchant/host/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 		NSArray *arr =  [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:result[@"data"]];
 		[weakSelf.arrMerchantModel removeAllObjects];
