@@ -67,35 +67,60 @@
 	weakObj;
 	self.didLeftSildeAction = ^{
 		__strong typeof (weakSelf) strongSelf  = weakSelf;
-		UserInfoModel * model  = [CacheTool getUserModel];
-		 if (model.isMember == 1) {//如果存在
-             [strongSelf.switchSex setOn:NO];
-             if ([model.sex integerValue] == 2) {
-                  [strongSelf.switchSex setOn:YES];
-             }
-              UIImage *image = [UIImage imageWithData:model.headImgData];
-             if (image) { 
-				[strongSelf.headerBtn  setImage:image forState:0];
-             }else{
-               [strongSelf.headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-             }
-			strongSelf.dianJiLoginLbl.alpha = 0;
-			strongSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 1;
-			strongSelf.userNameLbl.text = weakSelf.nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
-            strongSelf.phoneLbl.text =  [DDFactory getString:model.mobile  withDefault:@"暂无"];
-			strongSelf.addressLbl.text =    [DDFactory getString:model.addr  withDefault:@"暂无"];
-			strongSelf.rankLbl.text = [NSString stringWithFormat:@"LV.%@", [DDFactory getString:model.lv  withDefault:@"0"]];
-			strongSelf.totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分", [DDFactory getString:model.integral  withDefault:@"0"]];
-			
-		}else{
-			strongSelf.dianJiLoginLbl.alpha = 1;
-			strongSelf.nameLbl.alpha = weakSelf.rankLbl.alpha = 0;
-		}
+        [strongSelf downloadUserData];
 	};
 	
 	_imaPicker = [[UIImagePickerController alloc] init];
 	
 	_arrSelected = [NSMutableArray array];
+}
+-(void)downloadUserData{
+    HDModel *m = [HDModel model];
+    UserInfoModel * modelUser  = [CacheTool getUserModel];
+    m.mobile = modelUser.mobile;
+    weakObj;
+    [BaseServer postObjc:m path:@"/user/info" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+        if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
+            UserInfoModel *model = [CacheTool getUserModelByID:result[@"data"][@"mobile"]];
+            [model yy_modelSetWithJSON:result[@"data"]];
+            model.isMember = 1;
+            model.isRecentLogin = 0;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [CacheTool writeToDB:model];
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+                [strongSelf resetUserData];
+            });
+        }
+    } failed:^(NSError *error) {
+        
+    }];
+}
+-(void)resetUserData{
+    UserInfoModel * model  = [CacheTool getUserModel];
+    if (model.isMember == 1) {//如果存在
+        [_switchSex setOn:NO];
+        if ([model.sex integerValue] == 2) {
+            [_switchSex setOn:YES];
+        }
+        UIImage *image = [UIImage imageWithData:model.headImgData];
+        if (image) {
+            [_headerBtn  setImage:image forState:0];
+        }else{
+            [_headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+        }
+        _dianJiLoginLbl.alpha = 0;
+        _nameLbl.alpha = _rankLbl.alpha = 1;
+       _userNameLbl.text = _nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
+        _phoneLbl.text =  [DDFactory getString:model.mobile  withDefault:@"暂无"];
+        _addressLbl.text =    [DDFactory getString:model.addr  withDefault:@"暂无"];
+       _rankLbl.text = [NSString stringWithFormat:@"LV.%@", [DDFactory getString:model.lv  withDefault:@"0"]];
+        _totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分", [DDFactory getString:model.integral  withDefault:@"0"]];
+        
+    }else{
+        _dianJiLoginLbl.alpha = 1;
+        _nameLbl.alpha = _rankLbl.alpha = 0;
+    }
+    [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 }
 
 -(void)headerViewClick{

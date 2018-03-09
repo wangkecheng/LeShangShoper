@@ -15,6 +15,7 @@
 #define CollectionActionBroadCast @"CollectionActionBroadCast"
 
 #define LeftSildeAction @"LeftSildeAction"
+
 // 当前应用AppDelegate  ==========
 #define CurrentAppDelegate [[UIApplication sharedApplication] delegate]
 

@@ -148,23 +148,37 @@
 	weakObj;
 	[BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
 		if (weakSelf.page == 1) {
 			[weakSelf.arrModel removeAllObjects];
 		}
 		[weakSelf.arrModel addObjectsFromArray:tempArr];
-		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[weakSelf.tableview reloadData];
-			[weakSelf.tableview.mj_header endRefreshing];
-			[weakSelf.tableview.mj_footer endRefreshing];
-			if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
-				[weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
-			}
-			[weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
-			if (weakSelf.arrModel.count == 0) {
-				[weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
-			}
-		});
+        
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        for (InteractionModel * model in strongSelf.arrModel) {
+            dispatch_group_enter(group);
+            dispatch_group_async(group, queue, ^{
+                model.cellH = [InteractionCell cellHByModel:model];
+                dispatch_group_leave(group);
+            });
+        }
+        dispatch_group_notify(group, queue, ^{
+            dispatch_async(dispatch_get_main_queue(), ^{ //通知主线程刷新
+                [weakSelf.tableview reloadData];
+            });
+        });
+        dispatch_async(dispatch_get_main_queue(), ^{ //通知主线程刷新 
+            [weakSelf.tableview.mj_header endRefreshing];
+            [weakSelf.tableview.mj_footer endRefreshing];
+            if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
+                [weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
+            }
+            [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+            if (weakSelf.arrModel.count == 0) {
+                [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+            }
+        });
 	} failed:^(NSError *error) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[weakSelf.tableview.mj_header endRefreshing];
@@ -183,8 +197,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	return  [InteractionCell cellHByModel:_arrModel[indexPath.section]];
+     InteractionModel *model =  _arrModel[indexPath.section];
+    return  model.cellH;//[InteractionCell cellHByModel:model];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
