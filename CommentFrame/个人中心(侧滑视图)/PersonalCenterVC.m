@@ -15,6 +15,7 @@
 #import "WSPHPhotoLibrary.h"
 #import "AlbumListVC.h"
 #import "ResetPersonInfoView.h"
+#import "ImagePrivilegeTool.h"
 @interface PersonalCenterVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *dianJiLoginLbl;//点击登录lbl
@@ -71,7 +72,6 @@
 	};
 	
 	_imaPicker = [[UIImagePickerController alloc] init];
-	
 	_arrSelected = [NSMutableArray array];
 }
 -(void)downloadUserData{
@@ -89,12 +89,14 @@
                 [CacheTool writeToDB:model];
                 __strong typeof (weakSelf) strongSelf = weakSelf;
                 [strongSelf resetUserData];
+                [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
             });
         }
     } failed:^(NSError *error) {
         
     }];
 }
+
 -(void)resetUserData{
     UserInfoModel * model  = [CacheTool getUserModel];
     if (model.isMember == 1) {//如果存在
@@ -110,17 +112,16 @@
         }
         _dianJiLoginLbl.alpha = 0;
         _nameLbl.alpha = _rankLbl.alpha = 1;
-       _userNameLbl.text = _nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
+        _userNameLbl.text = _nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
         _phoneLbl.text =  [DDFactory getString:model.mobile  withDefault:@"暂无"];
         _addressLbl.text =    [DDFactory getString:model.addr  withDefault:@"暂无"];
-       _rankLbl.text = [NSString stringWithFormat:@"LV.%@", [DDFactory getString:model.lv  withDefault:@"0"]];
+        _rankLbl.text = [NSString stringWithFormat:@"LV.%@", [DDFactory getString:model.lv  withDefault:@"0"]];
         _totalCreditsLbl.text = [NSString stringWithFormat:@"%@ 积分", [DDFactory getString:model.integral  withDefault:@"0"]];
-        
     }else{
+        
         _dianJiLoginLbl.alpha = 1;
         _nameLbl.alpha = _rankLbl.alpha = 0;
     }
-    [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 }
 
 -(void)headerViewClick{
@@ -135,6 +136,9 @@
 	weakObj;
 	SRActionSheet *actionSheet =  [SRActionSheet sr_actionSheetViewWithTitle:nil cancelTitle:nil destructiveTitle:nil otherTitles:@[ @"拍照上传", @"从相册中选择",@"取消"] otherImages:nil selectSheetBlock:^(SRActionSheet *actionSheet, NSInteger index) {
 		if (index == 0) {//拍照
+            if (![[ImagePrivilegeTool share]judgeCapturePrivilege]) {//判读是否有相册选择权限 类中给提示
+                return;
+            }
 			if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 				 weakSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 				 weakSelf.imaPicker.delegate = self;
@@ -143,20 +147,28 @@
 		}
 		else if(index == 1){//从相册中选择图片
 			weakObj;
+            if (![[ImagePrivilegeTool share]judgeLibraryPrivilege]) {//判读是否有相册选择权限 类中给提示
+                return;
+            }
 			[self.arrSelected removeAllObjects];
-			AlbumListVC *VC = [[AlbumListVC alloc]
-							   initWithArrSelected:self.arrSelected
-							   maxCout:1
-							   selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
-								   dispatch_async(dispatch_get_main_queue(), ^{
-									   ImgModel * imageModel = [imgModelArr firstObject];
-									   if (imageModel) {
-										   [weakSelf finishSelectImg:imageModel.image];
-									   }
-								   });
-							   }];
-			HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
-			[weakSelf presentViewController:nav animated:YES completion:nil];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                weakSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                weakSelf.imaPicker.delegate = self;
+                [weakSelf presentViewController:weakSelf.imaPicker animated:NO completion:nil];
+            }
+//            AlbumListVC *VC = [[AlbumListVC alloc]
+//                               initWithArrSelected:self.arrSelected
+//                               maxCout:1
+//                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
+//                                   dispatch_async(dispatch_get_main_queue(), ^{
+//                                       ImgModel * imageModel = [imgModelArr firstObject];
+//                                       if (imageModel) {
+//                                           [weakSelf finishSelectImg:imageModel.image];
+//                                       }
+//                                   });
+//                               }];
+//            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
+//            [weakSelf presentViewController:nav animated:YES completion:nil];
 		}
 	}];
 	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
@@ -176,11 +188,11 @@
 		theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	}
 	if (theImage) {//保存图片到相册中
-		[[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
-		
-		} faildBlock:^(NSError *error) {
-			
-		}];
+//        [[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
+//        
+//        } faildBlock:^(NSError *error) {
+//            
+//        }];
 		[self finishSelectImg:theImage];
 	}
 }
@@ -288,14 +300,17 @@
 
 
 -(void)resetUserInfo:(UIImage *)image{
-	[[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
+ 
     NSArray *imgsArr = nil;
     if (image) {//当 图片数据有的时候才传入
         imgsArr = @[image];
     }
 	[BaseServer uploadImages:imgsArr path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES
 					 success:^(id result) {
-						 
+                         UserInfoModel * model = [CacheTool getUserModel];
+                         model.headUrl = result[@"data"][@"headUrl"];
+                         [CacheTool writeToDB:model];
+                      [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
 					 } failed:^(NSError *error) {
 						 
 	 }];

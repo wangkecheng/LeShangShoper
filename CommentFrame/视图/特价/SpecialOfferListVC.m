@@ -13,7 +13,7 @@
 #import "SearchProductVC.h"
 #define ProductDetailListCell_ @"ProductDetailListCell"
 #import "InteligentServiceView.h"
-@interface SpecialOfferListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UISearchBarDelegate>
+@interface SpecialOfferListVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowlayout;
@@ -39,32 +39,25 @@
     [_priceBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
     [_hotBtn setEnlargeEdgeWithTop:5 right:20 bottom:5 left:20];
     _arrModel = [NSMutableArray array];
-	UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 7, SCREENWIDTH - 100, 30)];
-	[searchBar setPlaceholder:@"探索您心仪的宝贝"];
-	searchBar.delegate = self;
-	searchBar.layer.cornerRadius = 5;
-	searchBar.layer.masksToBounds = YES;
-	
-	[DDFactory removeSearhBarBack:searchBar];
-    UITextField *searchField = [searchBar valueForKey:@"_searchField"];
-    [searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
+    UITextField *searchField =  [[UITextField alloc]initWithFrame:CGRectMake(0,0, SCREENWIDTH - 100, 36)];
+    [searchField setPlaceholder:@"    探索您心仪的宝贝"];
+    searchField.delegate = self;
+    searchField.layer.cornerRadius = 18;
+    searchField.layer.masksToBounds = YES;
+    [searchField setTextColor:UIColorFromHX(0xaaaaaa)];
     searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
-    //    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
-    //    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
     searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
-	UIImage *image = [UIImage imageNamed:@"ic_home_search"];
-	
-	UIImageView *iconView = [[UIImageView alloc] initWithImage:image];
-	
-	iconView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
-	
-	searchField.leftView = iconView;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toSearchVC)];
-    [iconView addGestureRecognizer:tap];
-    iconView.userInteractionEnabled = YES;
-	searchField.leftViewMode=UITextFieldViewModeAlways;
-	
-	self.navigationItem.titleView = searchBar;
+    UIImage *image = [UIImage imageNamed:@"ic_home_search"];
+    
+    UIView * iconView =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width  + 20, image.size.height)];
+    iconView.userInteractionEnabled = NO;
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+    imgView.frame = CGRectMake(0, 0, image.size.width , image.size.height);
+    [iconView addSubview:imgView];
+    [searchField setRightView:iconView];
+    searchField.rightViewMode = UITextFieldViewModeAlways;
+    self.navigationItem.titleView = searchField;
+    
     _collectionView.backgroundColor = UIColorFromHX(0xf0f0f0);
     _collectionView.delegate = self;
     _collectionView.showsHorizontalScrollIndicator = YES;
@@ -96,17 +89,25 @@
     InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
-        //         NSURL *url = [NSURL URLWithString:@"weixin://"] ;
-        //        if (![[UIApplication sharedApplication] canOpenURL:url]){
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        //                [alertView show];
-        //            });
-        //           return YES;
-        //        }
-        //        [[UIApplication sharedApplication] openURL:url];
-        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-        pasteboard.string = @"";
+        [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+            __strong typeof (weakSelf) strongSelf  = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = result[@"data"][@"weixin"];
+                [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    NSURL *url = [NSURL URLWithString:@"weixin://"] ;
+                    if (![[UIApplication sharedApplication] canOpenURL:url]){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertView show];
+                        
+                    }
+                    [[UIApplication sharedApplication] openURL:url];
+                });
+            });
+            
+        } failed:^(NSError *error) {
+        }];
         return YES;
     } PhClickBlock:^BOOL{
         weakObj;
@@ -155,7 +156,7 @@
 }
 
 - (IBAction)hotSortAction:(UIButton *)sender {//热度
-         _sortkey = @"hot";
+         _sortkey = @"browseNumber";
          _page = 1;
         [_priceImg setImage:IMG(@"ico_paihang")];
     if ([_sort isEqualToString:@"1"]) {
@@ -290,16 +291,15 @@
     };
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
-    model.broseNumber = [NSString stringFromInt:[model.broseNumber integerValue] + 1];
+    model.browseNumber = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
     [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[_arrModel indexOfObject:model] inSection:0]]];//点击一次 加一次浏览量
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-	//打开搜索界面 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //打开搜索界面
     [self toSearchVC];
-	return NO;
+    return NO;
 }
 -(void)toSearchVC{
     SearchProductVC * VC = [[SearchProductVC alloc]init];

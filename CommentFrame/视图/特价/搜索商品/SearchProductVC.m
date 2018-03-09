@@ -149,6 +149,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProductDetailVC *VC  = [[ProductDetailVC alloc] init];
+    VC.isNeedResetMargin  = YES;
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
     [self.navigationController pushViewController:VC animated:YES];

@@ -24,6 +24,7 @@
                 <outlet property="numberLbl" destination="9Rg-fu-1o3" id="YL5-BU-0my"/>
                 <outlet property="priceLbl" destination="ggp-vP-FDw" id="7ZV-lh-lrv"/>
                 <outlet property="scrollContentView" destination="zuX-nm-OEG" id="ECf-Vm-u9o"/>
+                <outlet property="scrollContentViewTopMargin" destination="MiQ-kp-hz4" id="2O0-Jv-ss9"/>
                 <outlet property="scrollViewH" destination="P1u-oP-LE1" id="P0e-r6-RGO"/>
                 <outlet property="specialImg" destination="QY8-w8-WgR" id="bTs-jO-mNo"/>
                 <outlet property="specificationLbl" destination="UsY-vB-2zm" id="x3i-3w-oy2"/>
@@ -248,7 +249,7 @@
                 <constraint firstItem="lPK-rm-5Za" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nvW-PC-226"/>
                 <constraint firstItem="lPK-rm-5Za" firstAttribute="top" secondItem="3os-YG-KU7" secondAttribute="bottom" id="rp7-0S-h7R"/>
             </constraints>
-            <point key="canvasLocation" x="-993" y="-377"/>
+            <point key="canvasLocation" x="-1426" y="-420"/>
         </view>
     </objects>
     <resources>

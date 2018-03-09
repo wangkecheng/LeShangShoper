@@ -30,8 +30,7 @@
     if (isShow) {
          _lineView.alpha = 1;
     }
-}
-
+} 
 
 -(void)setSeriesModel:(SeriesModel *)seriesModel{
     _seriesModel = seriesModel;

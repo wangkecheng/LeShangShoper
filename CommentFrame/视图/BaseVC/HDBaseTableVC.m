@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;//TableView的顶部有一部分空白区域 去除
+    self.automaticallyAdjustsScrollViewInsets = YES;//TableView的顶部有一部分空白区域 去除
 }
 
 - (void)didReceiveMemoryWarning {

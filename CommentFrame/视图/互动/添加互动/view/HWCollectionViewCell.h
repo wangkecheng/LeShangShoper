@@ -9,13 +9,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ImgModel.h"
-typedef void(^HWCellDelegateBlock)(UIImage * model);
+typedef void(^HWCellDelegateBlock)(ImgModel * model);
 
 @interface HWCollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic)UIImage * model;
+@property (strong, nonatomic)ImgModel * model;
 
-@property (strong, nonatomic)UIImage * addImgModel;
+@property (strong, nonatomic)ImgModel * addImgModel;
 
 @property (nonatomic,copy)HWCellDelegateBlock deleteBlock;
 

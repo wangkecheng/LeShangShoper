@@ -13,6 +13,8 @@
 #import <WebKit/WebKit.h>
 @interface ProductDetailVC ()<WKUIDelegate,WKNavigationDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentViewTopMargin;
+
 @property (weak, nonatomic) IBOutlet UILabel *indicatorLbl;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewH;
 
@@ -38,6 +40,9 @@
     _webView.UIDelegate = self;
     _webView.userInteractionEnabled = NO ;
     _webView.navigationDelegate = self;
+    if (_isNeedResetMargin) {
+        _scrollContentViewTopMargin.constant = -10;
+    }
 	HDModel * m = [HDModel model];
 	m.cid  = _model.cid;
 	weakObj;
@@ -55,6 +60,7 @@
 }
 
 -(void)setViewData{
+   
     _specialImg.alpha = 0;
     if ([_detailModel.bargain integerValue] == 2) {
           _specialImg.alpha = 1;

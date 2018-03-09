@@ -84,8 +84,7 @@ UICollectionViewDelegateFlowLayout>
     _flowLayout.minimumLineSpacing = 3;//同一列
     
 	_arrSelected = [NSMutableArray array];
-	
-	
+	 
 	UIButton *btn =(UIButton *) self.navigationItem.leftBarButtonItem.customView;
 	[btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -128,7 +127,7 @@ UICollectionViewDelegateFlowLayout>
 	m.content = _noteTextView.text;
     
 	NSMutableArray *arrImg = [NSMutableArray array];
-	for (UIImage  *model in _arrSelected) {
+	for (ImgModel  *model in _arrSelected) {
 		[arrImg addObject:model];
 	}
     if (m.content.length == 0 && arrImg.count == 0) {
@@ -170,26 +169,27 @@ UICollectionViewDelegateFlowLayout>
 		}
 		else if(index == 1){//从相册中选择图片
 			weakObj;
+            
             if (![[ImagePrivilegeTool share]judgeLibraryPrivilege]) {//判读是否有相册选择权限 类中给提示
                 return;
             }
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-                strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-                strongSelf.imaPicker.delegate = self;
-                strongSelf.imaPicker.allowsEditing = YES;
-                [strongSelf presentViewController:strongSelf.imaPicker animated:NO completion:nil];
-            }
-//            AlbumListVC *VC = [[AlbumListVC alloc]
-//                               initWithArrSelected:self.arrSelected
-//                               maxCout:9
-//                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
-//                                   dispatch_async(dispatch_get_main_queue(), ^{
-//
-//                                       [weakSelf.collectionView reloadData];
-//                                   });
-//                               }];
-//            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
-//            [weakSelf presentViewController:nav animated:YES completion:nil];
+//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+//                strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//                strongSelf.imaPicker.delegate = self;
+//                strongSelf.imaPicker.allowsEditing = YES;
+//                [strongSelf presentViewController:strongSelf.imaPicker animated:NO completion:nil];
+//            }
+            AlbumListVC *VC = [[AlbumListVC alloc]
+                               initWithArrSelected:self.arrSelected
+                               maxCout:9
+                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+
+                                       [weakSelf.collectionView reloadData];
+                                   });
+                               }];
+            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
+            [weakSelf presentViewController:nav animated:YES completion:nil];
 		}
 	}];
 	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
@@ -208,14 +208,12 @@ UICollectionViewDelegateFlowLayout>
 		// 照片的元数据参数
 		theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	}
-//    if (theImage) {//保存图片到相册中
-//        [[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
-//
-//        } faildBlock:^(NSError *error) {
-//        }];
-//    }
-    [_arrSelected addObject:theImage];
-    [_collectionView reloadData];
+    if (theImage) {//保存图片到相册中
+        [[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
+
+        } faildBlock:^(NSError *error) {
+        }];
+    }
 }
 
 - (void)finishSelectImg:(NSMutableArray *)imgArr{
@@ -240,12 +238,12 @@ UICollectionViewDelegateFlowLayout>
 	if (indexPath.row == _arrSelected.count) {
 		 ImgModel *model = [[ImgModel alloc]init];
 		 model.image = [UIImage imageNamed:@"ic_interactive_add"];
-		[cell  setAddImgModel:[UIImage imageNamed:@"ic_interactive_add"]];
+		[cell  setAddImgModel:model];
 	}
 	else{
 		[cell setModel:_arrSelected[indexPath.item]];
 		weakObj;
-		cell.deleteBlock = ^(UIImage * model) {
+		cell.deleteBlock = ^(ImgModel * model) {
 			//删除照片
 			if (!model) {
 				return;
@@ -268,8 +266,8 @@ UICollectionViewDelegateFlowLayout>
 		
 		NSMutableArray* tmps = [[NSMutableArray alloc] init];
 		for (int i = 0;i< self.arrSelected.count;i++) {//找出所有图片
-         UIImage * imgModel = _arrSelected[i];
-            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel thumbnailURL:nil HDURL:nil
+         ImgModel * imgModel = _arrSelected[i];
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel.image==nil?imgModel.bigImage:imgModel.image thumbnailURL:nil HDURL:nil
                 containerView:cell.contentView positionInContainer:cell.contentView.frame
 				index:i];
 			[tmps addObject:broModel];

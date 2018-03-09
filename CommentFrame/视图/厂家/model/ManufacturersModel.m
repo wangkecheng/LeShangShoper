@@ -1,5 +1,3 @@
-
-//
 //  ManufacturersModel.m
 //  CommentFrame
 //

@@ -53,7 +53,7 @@ UICollectionViewDelegateFlowLayout>
 -(void)setMyInteractionModel:(InteractionModel *)myInteractionModel{
 	_myInteractionModel = myInteractionModel;
 	_deleteBtn.alpha = 1;
-	[self initData:myInteractionModel];
+    [self initData:myInteractionModel];
 }
 -(void)setModel:(InteractionModel *)model{
 	_model = model;
@@ -69,7 +69,7 @@ UICollectionViewDelegateFlowLayout>
 	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"HH-mm-ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
 	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
 	
 	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
@@ -139,7 +139,9 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (_model.imageUrls.count == 1) {
+        return CGSizeMake(SCREENWIDTH,_model.singleImgH);
+    }
     float wid = CGRectGetWidth(self.collectionView.bounds);
     return CGSizeMake((wid-4*5)/3, (wid-4*5)/3);
 }
@@ -218,8 +220,20 @@ UICollectionViewDelegateFlowLayout>
          H += titltH;
          model.needHideSeeAllBtn = YES;//隐藏查看全部按钮
     }
-   
 	CGFloat margin = 5;
+    if (model.imageUrls.count == 1) {
+        if (model.imageUrls.count == 1) {
+            CGSize size = [DDFactory getImageSizeWithURL:IMGURL([model.imageUrls lastObject])];
+            CGFloat sizew = size.width * 1.0;
+            CGFloat sizeh = size.height * 1.0;
+            if (sizew <=0 || sizeh <=0 ){
+                sizew = 1.0;
+                sizeh = 2/3.0;
+            }
+            model.singleImgH = SCREENWIDTH *sizeh / sizew;
+        }
+        return  H += model.singleImgH + 5;
+    }
 	CGFloat w = (SCREENWIDTH   - 30 )/ 3.0;//图片高宽
 	NSInteger imgCount = model.imageUrls.count;
 	NSInteger rows = imgCount/3;//图片共几排

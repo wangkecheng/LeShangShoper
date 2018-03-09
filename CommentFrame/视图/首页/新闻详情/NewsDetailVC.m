@@ -25,25 +25,36 @@
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
     _webView.backgroundColor = [UIColor whiteColor];
-    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
-                       "<head> \n"
-                       "<style type=\"text/css\"> \n"
-                       "body {font-size:15px;}\n"
-                       "</style> \n"
-                       "</head> \n"
-                       "<body>"
-                       "<script type='text/javascript'>"
-                       "window.onload = function(){\n"
-                       "var $img = document.getElementsByTagName('img');\n"
-                       "for(var p in  $img){\n"
-                       " $img[p].style.width = '100%%';\n"
-                       "$img[p].style.height ='auto'\n"
-                       "}\n"
-                       "}"
-                       "</script>%@"
-                       "</body>"
-                       "</html>",_model.content];
-    [_webView loadHTMLString:htmls baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
+    HDModel *m = [HDModel model];
+    m.did = _model.did;
+    weakObj;
+    [BaseServer postObjc:m path:@"/news/info" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+                               "<head> \n"
+                               "<style type=\"text/css\"> \n"
+                               "body {font-size:15px;}\n"
+                               "</style> \n"
+                               "</head> \n"
+                               "<body>"
+                               "<script type='text/javascript'>"
+                               "window.onload = function(){\n"
+                               "var $img = document.getElementsByTagName('img');\n"
+                               "for(var p in  $img){\n"
+                               " $img[p].style.width = '100%%';\n"
+                               "$img[p].style.height ='auto'\n"
+                               "}\n"
+                               "}"
+                               "</script>%@"
+                               "</body>"
+                               "</html>",result[@"data"][@"content"]];
+            [strongSelf.webView loadHTMLString:htmls baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
+        });
+    } failed:^(NSError *error) {
+        
+    }];
+   
 }
 
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{

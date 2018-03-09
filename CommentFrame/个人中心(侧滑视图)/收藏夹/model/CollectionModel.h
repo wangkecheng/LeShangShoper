@@ -23,7 +23,7 @@
 @property (nonatomic,strong)NSString *collect;////1,未收藏，2，已收藏
 @property (nonatomic,strong)NSArray  *imageUrls;
 @property (nonatomic,strong)NSString *typeName;
-@property (nonatomic,strong)NSString *broseNumber;
+@property (nonatomic,strong)NSString *browseNumber; 
 @property (nonatomic,strong)NSString *iden;//编号
 @property (nonatomic,strong)NSString *des;
 @end

@@ -170,7 +170,7 @@
 	};
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
-    model.broseNumber = [NSString stringFromInt:[model.broseNumber integerValue] + 1];
+    model.browseNumber = [NSString stringFromInt:[model.browseNumber integerValue] + 1];
     [collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:[_arrModel indexOfObject:model] inSection:0]]];//点击一次 加一次浏览量
     [self.navigationController pushViewController:VC animated:YES];
 }

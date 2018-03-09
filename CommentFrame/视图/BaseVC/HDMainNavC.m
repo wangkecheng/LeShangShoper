@@ -15,21 +15,18 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];
-    
+    [super viewDidLoad]; 
     //设置NavigationBar背景颜色
     [self.navigationBar setBackgroundImage:[DDFactory imageWithColor: [UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromHX(0x222222),NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Medium" size:18]}];
     self.navigationBar.opaque = NO;
     self.navigationBar.translucent = NO;
     self.view.translatesAutoresizingMaskIntoConstraints = YES;
- 
-//    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault]; 
- 
+    self.view.backgroundColor = [UIColor whiteColor];
+//    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     //导航NavigationBar的黑线条
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-
+    [[UINavigationBar appearance] setShadowImage:[DDFactory imageWithColor:UIColorFromHX(0xf0f0f0)]];
 }
 
 /*VC:弹出的视图 isHideBack:是否隐藏返回按钮， 如果需要自定义左边按钮，那么就用

@@ -35,7 +35,7 @@
 	
 	_arrModel = [NSMutableArray array];
 	_sectionTitles = [NSMutableArray array];
-	[_tableView registerNib:[UINib nibWithNibName:ManufacturersCell_ bundle:nil] forCellReuseIdentifier:ManufacturersCell_];
+   [_tableView registerNib:[UINib nibWithNibName:ManufacturersCell_ bundle:nil] forCellReuseIdentifier:ManufacturersCell_];
 	
 	_tableView.backgroundColor = UIColorFromHX(0xf0f0f0);
 	[_tableView hideSurplusLine];
@@ -60,21 +60,28 @@
 
 -(void)serviceAction{//智能服务
     weakObj;
-    
     InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
-        //         NSURL *url = [NSURL URLWithString:@"weixin://"] ;
-        //        if (![[UIApplication sharedApplication] canOpenURL:url]){
-        //            dispatch_async(dispatch_get_main_queue(), ^{
-        //                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        //                [alertView show];
-        //            });
-        //           return YES;
-        //        }
-        //        [[UIApplication sharedApplication] openURL:url];
-        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-        pasteboard.string = @"";
+        [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
+            __strong typeof (weakSelf) strongSelf  = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = result[@"data"][@"weixin"];
+                [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    NSURL *url = [NSURL URLWithString:@"weixin://"] ;
+                    if (![[UIApplication sharedApplication] canOpenURL:url]){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertView show];
+                        
+                    }
+                    [[UIApplication sharedApplication] openURL:url];
+                });
+            });
+            
+        } failed:^(NSError *error) {
+        }];
         return YES;
     } PhClickBlock:^BOOL{
         weakObj;
@@ -113,17 +120,19 @@
 	HDModel *m = [HDModel model];
 	weakObj;
 	[BaseServer postObjc:m path:@"/merchant/all" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		NSMutableArray *tempArr = [NSMutableArray array];
+        
 		for (NSDictionary * dict in result[@"data"]) {
 			AlphabetTitleModel * alphabetTitleModel  = [AlphabetTitleModel yy_modelWithJSON:dict];
 			alphabetTitleModel.childrenArrModel = [NSArray yy_modelArrayWithClass:[ManufacturersModel class] json:dict[@"children"]];
 			[tempArr addObject:alphabetTitleModel];
 		}
-        
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        NSArray *descriptors = [NSArray arrayWithObject:descriptor];
+        NSArray *resultArray = [tempArr sortedArrayUsingDescriptors:descriptors];
         NSMutableArray *indexNameArr = [NSMutableArray array];
-        for (AlphabetTitleModel * model in tempArr) {
+        for (AlphabetTitleModel * model in resultArray) {
             [indexNameArr addObject:model.name];
         }
         strongSelf.tableView.sc_indexViewDataSource  = indexNameArr.copy;//设置索引
