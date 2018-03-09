@@ -70,6 +70,8 @@
 		1898B86A20197030005E679F /* DYCountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86020197030005E679F /* DYCountyModel.m */; };
 		1898B86B20197030005E679F /* DYCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86320197030005E679F /* DYCityModel.m */; };
 		1898B86C20197030005E679F /* DYProvenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1898B86620197030005E679F /* DYProvenceModel.m */; };
+		18A2532B2052335400DD0BD1 /* SearchCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A253292052335400DD0BD1 /* SearchCollectionVC.m */; };
+		18A2532C2052335400DD0BD1 /* SearchCollectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A2532A2052335400DD0BD1 /* SearchCollectionVC.xib */; };
 		18AC01322015BDA10072868B /* ico_paihangDescending@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC012E2015BDA00072868B /* ico_paihangDescending@2x.png */; };
 		18AC01332015BDA10072868B /* ico_paihangAssent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC012F2015BDA00072868B /* ico_paihangAssent@3x.png */; };
 		18AC01342015BDA10072868B /* ico_paihangAssent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC01302015BDA00072868B /* ico_paihangAssent@2x.png */; };
@@ -576,6 +578,9 @@
 		1898B86320197030005E679F /* DYCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYCityModel.m; sourceTree = "<group>"; };
 		1898B86520197030005E679F /* DYProvenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYProvenceModel.h; sourceTree = "<group>"; };
 		1898B86620197030005E679F /* DYProvenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYProvenceModel.m; sourceTree = "<group>"; };
+		18A253282052335400DD0BD1 /* SearchCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCollectionVC.h; sourceTree = "<group>"; };
+		18A253292052335400DD0BD1 /* SearchCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionVC.m; sourceTree = "<group>"; };
+		18A2532A2052335400DD0BD1 /* SearchCollectionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionVC.xib; sourceTree = "<group>"; };
 		18AC012E2015BDA00072868B /* ico_paihangDescending@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_paihangDescending@2x.png"; sourceTree = "<group>"; };
 		18AC012F2015BDA00072868B /* ico_paihangAssent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_paihangAssent@3x.png"; sourceTree = "<group>"; };
 		18AC01302015BDA00072868B /* ico_paihangAssent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_paihangAssent@2x.png"; sourceTree = "<group>"; };
@@ -1571,6 +1576,9 @@
 				200C802E1FFFD93C00C6A2AA /* CollectionVC.h */,
 				200C802F1FFFD93C00C6A2AA /* CollectionVC.m */,
 				200C80301FFFD93C00C6A2AA /* CollectionVC.xib */,
+				18A253282052335400DD0BD1 /* SearchCollectionVC.h */,
+				18A253292052335400DD0BD1 /* SearchCollectionVC.m */,
+				18A2532A2052335400DD0BD1 /* SearchCollectionVC.xib */,
 				207418B62005084E007C4F36 /* model */,
 				207418B72005084F007C4F36 /* view */,
 			);
@@ -1613,9 +1621,9 @@
 		200D7EB01FF742CB00B97979 /* 相册列表 */ = {
 			isa = PBXGroup;
 			children = (
-				200D7EB11FF742CB00B97979 /* AlbumListVC.xib */,
 				200D7EBD1FF742CB00B97979 /* AlbumListVC.h */,
 				200D7EC51FF742CB00B97979 /* AlbumListVC.m */,
+				200D7EB11FF742CB00B97979 /* AlbumListVC.xib */,
 				200D7EB21FF742CB00B97979 /* 图片列表(一个相册下的图片) */,
 				200D7EBE1FF742CB00B97979 /* model */,
 				200D7EC11FF742CB00B97979 /* view */,
@@ -1627,9 +1635,9 @@
 		200D7EB21FF742CB00B97979 /* 图片列表(一个相册下的图片) */ = {
 			isa = PBXGroup;
 			children = (
-				200D7EB31FF742CB00B97979 /* AlbumImgListVC.h */,
 				200D7EB41FF742CB00B97979 /* model */,
 				200D7EB71FF742CB00B97979 /* view */,
+				200D7EB31FF742CB00B97979 /* AlbumImgListVC.h */,
 				200D7EBB1FF742CB00B97979 /* AlbumImgListVC.m */,
 				200D7EBC1FF742CB00B97979 /* AlbumImgListVC.xib */,
 			);
@@ -3092,6 +3100,7 @@
 				2079EAF51EA9B875004DE68B /* ShareSDKUI.bundle in Resources */,
 				200D7EDE1FF742CC00B97979 /* AlbumListVC.xib in Resources */,
 				18B543242011839500A40C4E /* ic_details_special@3x.png in Resources */,
+				18A2532C2052335400DD0BD1 /* SearchCollectionVC.xib in Resources */,
 				18B542F22011839500A40C4E /* btn_pop_phone@3x.png in Resources */,
 				186E6E522019DFF900D40E95 /* image11.gif in Resources */,
 				18B542E62011839500A40C4E /* btn_foot_interactive_n@3x.png in Resources */,
@@ -3401,6 +3410,7 @@
 				206FA0402000F61100DB7998 /* BRPlaceholderTextView.m in Sources */,
 				18AC013E2015C4B70072868B /* SearchProductVC.m in Sources */,
 				207418D420066242007C4F36 /* CatalugeListHeaderView.m in Sources */,
+				18A2532B2052335400DD0BD1 /* SearchCollectionVC.m in Sources */,
 				20A5D8EF1FB9901A00534868 /* GYDBUtil.m in Sources */,
 				186E6E662019E07B00D40E95 /* WebViewController.m in Sources */,
 				2064C54C1FFB5BA60073C2EC /* HomeHeaderCell.m in Sources */,

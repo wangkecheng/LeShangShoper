@@ -1,19 +1,18 @@
 
+
 //
-//  SearchProductVC.m
+//  SearchCollectionVC.m
 //  CommentFrame
 //
-//  Created by apple on 2018/1/22.
+//  Created by apple on 2018/3/9.
 //  Copyright © 2018年 warron. All rights reserved.
 //
 
-#import "SearchProductVC.h"
-#import "ProductDetailVC.h"
+#import "SearchCollectionVC.h"
 #import "CollectionCell.h"
 #define CollectionCell_ @"CollectionCell"
-#import "SearchManufacturersVC.h"
-#import "SearchManufacturersHeaderView.h"
-@interface SearchProductVC ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "ProductDetailVC.h"
+@interface SearchCollectionVC ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)UISearchBar *searchBar;
@@ -23,7 +22,7 @@
 
 @end
 
-@implementation SearchProductVC
+@implementation SearchCollectionVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +32,7 @@
     _searchBar.layer.cornerRadius = 5;
     _searchBar.layer.masksToBounds = YES;
     [_searchBar becomeFirstResponder];
-	self.navigationItem.leftBarButtonItem.customView = nil;
+    self.navigationItem.leftBarButtonItem.customView = nil;
     [DDFactory removeSearhBarBack:_searchBar];
     UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
     searchField.textColor = [UIColor blackColor];
@@ -58,7 +57,7 @@
     
     _arrModel = [NSMutableArray array];
     [_tableView registerNib:[UINib nibWithNibName:CollectionCell_ bundle:nil] forCellReuseIdentifier:CollectionCell_];
-    
+    _tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     _tableView.backgroundColor = UIColorFromRGB(242, 242, 242);;
     [_tableView hideSurplusLine];
     _tableView.delegate = self;
@@ -67,8 +66,8 @@
     
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
+    [self getPage];
 }
-
 -(void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -95,7 +94,7 @@
     m.keyword = _searchBar.text;
     m.pageNumber = [NSString stringFromInt:_page];
     weakObj;
-    [BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+    [BaseServer postObjc:m path:@"/commodity/collect/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         
         __strong typeof (weakSelf) strongSelf = weakSelf;
         NSArray * tempArr = [NSArray yy_modelArrayWithClass:[CollectionModel class] json:result[@"data"][@"rows"]];
@@ -113,9 +112,6 @@
             [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
             if (strongSelf.arrModel.count == 0) {
                 [strongSelf.tableView setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
-            }
-            if (strongSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
-                [strongSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
         });
     } failed:^(NSError *error) {
@@ -152,24 +148,17 @@
     CollectionModel * model = _arrModel[indexPath.row];
     VC.model  = model;
     [self.navigationController pushViewController:VC animated:YES];
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        SearchManufacturersHeaderView *headerView= [SearchManufacturersHeaderView instanceByFrame:CGRectMake(0, 0, SCREENHEIGHT, 60)];
-        headerView.serachCountLbl.text = [NSString stringFromInt:_arrModel.count];
-        return headerView;
-    }
+    
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 0.01)];
     view.backgroundColor = [UIColor clearColor];
     
     return  view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 60;
-    }
+   
     return 0.01;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -194,5 +183,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-@end
 
+@end

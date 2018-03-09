@@ -225,11 +225,11 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if ( weakSelf.tableView.numberOfSections>1) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if (weakSelf.arrAdvertModel.count >0) {
-                        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }else{
+//                    if (weakSelf.arrAdvertModel.count >0) {
+//                        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                    }else{
                           [weakSelf.tableView reloadData];
-                    } 
+//                    } 
                 });
             }
         });

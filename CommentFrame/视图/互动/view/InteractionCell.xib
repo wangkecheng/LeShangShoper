@@ -25,19 +25,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3SH-dI-uI6">
-                        <rect key="frame" x="0.0" y="314.5" width="564" height="50"/>
+                        <rect key="frame" x="0.0" y="324.5" width="564" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布：2017-12-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ii8-Xq-hkk">
-                                <rect key="frame" x="12" y="15.5" width="372" height="20"/>
+                                <rect key="frame" x="12" y="10.5" width="372" height="20"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KWI-V8-cPR">
-                                <rect key="frame" x="439" y="0.0" width="125" height="50"/>
+                                <rect key="frame" x="439" y="0.0" width="125" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTt-A2-TVs">
-                                        <rect key="frame" x="57.5" y="0.0" width="57.5" height="50"/>
+                                        <rect key="frame" x="57.5" y="0.0" width="57.5" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="15"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V66-09-GgT">
-                                        <rect key="frame" x="0.0" y="0.0" width="57.5" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="57.5" height="40"/>
                                         <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="15"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title=" 评论" image="ic_comments.png">
@@ -74,7 +74,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlK-hA-Ryk">
-                                <rect key="frame" x="389" y="10" width="50" height="30"/>
+                                <rect key="frame" x="389" y="5" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="6g4-L9-rY6"/>
                                 </constraints>
@@ -96,15 +96,15 @@
                             <constraint firstItem="KWI-V8-cPR" firstAttribute="centerY" secondItem="3SH-dI-uI6" secondAttribute="centerY" id="TfC-aX-Bae"/>
                             <constraint firstAttribute="bottom" secondItem="KWI-V8-cPR" secondAttribute="bottom" id="aSq-6H-C3U"/>
                             <constraint firstItem="ii8-Xq-hkk" firstAttribute="leading" secondItem="3SH-dI-uI6" secondAttribute="leading" constant="12" id="p1r-Eh-ZZz"/>
-                            <constraint firstAttribute="height" constant="50" id="tqo-xL-plu"/>
+                            <constraint firstAttribute="height" constant="40" id="tqo-xL-plu"/>
                             <constraint firstItem="hlK-hA-Ryk" firstAttribute="leading" secondItem="ii8-Xq-hkk" secondAttribute="trailing" constant="5" id="xB9-Tz-VXM"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ven-L4-mac">
-                        <rect key="frame" x="0.0" y="0.0" width="564" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="564" height="45"/>
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gB8-Kf-jdh">
-                                <rect key="frame" x="12" y="20" width="35" height="35"/>
+                                <rect key="frame" x="12" y="10" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="TgD-Sw-kqy"/>
                                     <constraint firstAttribute="width" secondItem="gB8-Kf-jdh" secondAttribute="height" multiplier="4:4" id="gC2-aG-C1x"/>
@@ -115,7 +115,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D50-fw-iws">
-                                <rect key="frame" x="49" y="27.5" width="505" height="21"/>
+                                <rect key="frame" x="49" y="17.5" width="505" height="21"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="15"/>
                                 <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -126,13 +126,13 @@
                             <constraint firstItem="D50-fw-iws" firstAttribute="centerY" secondItem="gB8-Kf-jdh" secondAttribute="centerY" id="3aE-NS-SPX"/>
                             <constraint firstItem="gB8-Kf-jdh" firstAttribute="leading" secondItem="ven-L4-mac" secondAttribute="leading" constant="12" id="L7J-mT-P6A"/>
                             <constraint firstAttribute="trailing" secondItem="D50-fw-iws" secondAttribute="trailing" constant="10" id="TlA-GJ-HKp"/>
-                            <constraint firstItem="gB8-Kf-jdh" firstAttribute="top" secondItem="ven-L4-mac" secondAttribute="top" constant="20" id="gPh-ai-DSG"/>
+                            <constraint firstItem="gB8-Kf-jdh" firstAttribute="top" secondItem="ven-L4-mac" secondAttribute="top" constant="10" id="gPh-ai-DSG"/>
                             <constraint firstItem="D50-fw-iws" firstAttribute="leading" secondItem="gB8-Kf-jdh" secondAttribute="trailing" constant="2" id="jaa-A2-KMz"/>
-                            <constraint firstAttribute="height" constant="56" id="xXU-vH-HIz"/>
+                            <constraint firstAttribute="height" constant="45" id="xXU-vH-HIz"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6n-ph-c0a">
-                        <rect key="frame" x="472" y="90" width="80" height="30"/>
+                        <rect key="frame" x="472" y="75" width="80" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="EpO-rz-Qca"/>
                             <constraint firstAttribute="height" constant="30" id="coq-MO-bK8"/>
@@ -146,7 +146,7 @@
                         </connections>
                     </button>
                     <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4Em-GX-amD">
-                        <rect key="frame" x="0.0" y="120" width="564" height="194.5"/>
+                        <rect key="frame" x="0.0" y="105" width="564" height="219.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vMe-ag-eYX">
                             <size key="itemSize" width="50" height="50"/>
@@ -156,7 +156,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1L-6K-JMm">
-                        <rect key="frame" x="12" y="70" width="540" height="20"/>
+                        <rect key="frame" x="12" y="55" width="540" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="4dJ-N4-q3C"/>
                         </constraints>
@@ -177,7 +177,7 @@
                     <constraint firstItem="Q6n-ph-c0a" firstAttribute="top" secondItem="X1L-6K-JMm" secondAttribute="bottom" id="drh-8O-njJ"/>
                     <constraint firstItem="ven-L4-mac" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gO2-xe-Oad"/>
                     <constraint firstItem="3SH-dI-uI6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hcg-Wq-MJT"/>
-                    <constraint firstItem="X1L-6K-JMm" firstAttribute="top" secondItem="ven-L4-mac" secondAttribute="bottom" constant="14" id="i0q-ve-woP"/>
+                    <constraint firstItem="X1L-6K-JMm" firstAttribute="top" secondItem="ven-L4-mac" secondAttribute="bottom" constant="10" id="i0q-ve-woP"/>
                     <constraint firstItem="3SH-dI-uI6" firstAttribute="top" secondItem="4Em-GX-amD" secondAttribute="bottom" id="qYh-OK-RJo"/>
                     <constraint firstItem="4Em-GX-amD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wqb-C6-pbs"/>
                     <constraint firstItem="X1L-6K-JMm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="yzO-iV-8QX"/>
@@ -197,7 +197,7 @@
                 <outlet property="titLbl" destination="X1L-6K-JMm" id="bnR-Hi-Zdh"/>
                 <outlet property="titLblH" destination="4dJ-N4-q3C" id="wTx-ru-Hhr"/>
             </connections>
-            <point key="canvasLocation" x="-472" y="-876"/>
+            <point key="canvasLocation" x="-661" y="-900"/>
         </tableViewCell>
     </objects>
     <resources>

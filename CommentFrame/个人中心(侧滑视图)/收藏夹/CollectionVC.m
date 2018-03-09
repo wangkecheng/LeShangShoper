@@ -10,7 +10,7 @@
 #import "CollectionVC.h"
 #import "CollectionCell.h"
 #define CollectionCell_ @"CollectionCell"
-#import "SearchProductVC.h"
+#import "SearchCollectionVC.h"
 #import "ProductDetailVC.h"
 @interface CollectionVC ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -61,7 +61,7 @@
 
 -(void)toSearchManufacturersVC{
     //打开搜索界面
-    SearchProductVC * VC = [[SearchProductVC alloc]init];
+    SearchCollectionVC * VC = [[SearchCollectionVC alloc]init];
     HDMainNavC * navi = (HDMainNavC *)self.navigationController;
     [navi pushVC:VC isHideBack:YES animated:YES];
 }

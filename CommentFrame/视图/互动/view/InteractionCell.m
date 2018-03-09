@@ -43,10 +43,8 @@ UICollectionViewDelegateFlowLayout>
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.scrollEnabled  = NO;
-    _flowLayout.sectionInset = UIEdgeInsetsMake(12, 12,0, 12);
-    _flowLayout.minimumInteritemSpacing = 12;//同一行
-    _flowLayout.minimumLineSpacing = 12;//同一列
-    
+    _flowLayout.minimumInteritemSpacing = 5;
+    _flowLayout.minimumLineSpacing = 5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -69,7 +67,6 @@ UICollectionViewDelegateFlowLayout>
 	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 	_nameLbl.text = [DDFactory getString:model.name     withDefault:@"未知用户"];
 	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
-	
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"HH-mm-ss"];
@@ -111,6 +108,7 @@ UICollectionViewDelegateFlowLayout>
 	//        lastBtn = btn;
 	//    }
 	//查看全部 按钮部分
+    _titLblH.constant =  0;
 	if(model.needHideSeeAllBtn){//如果是需要隐藏 就隐藏
 		_seeAllBtn.alpha = 0;
 		_seeAllBtnH.constant = 0;
@@ -118,8 +116,11 @@ UICollectionViewDelegateFlowLayout>
 		_seeAllBtn.alpha = 1;
 		_seeAllBtnH.constant = 30;
 	}
+    if (_titLblH.constant < 60) {//如果小于 60  那么就用文字的高度
+        _titLblH.constant = model.contentH;
+    }
 	if (model.isStatusSeeAll) {//是否需要查看全部，如果需要查看全部 那么现实文本实际高度
-		_titLblH.constant = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 10];
+		_titLblH.constant = model.contentH;
 	}else if(!model.needHideSeeAllBtn){//不需要隐藏查看全部按钮 表示这段文本有很多，需要有查看全部的按钮，但是此时不是显示全部
 		_titLblH.constant = 60;
 	}
@@ -136,10 +137,11 @@ UICollectionViewDelegateFlowLayout>
 	InteractionModel * model = _model == nil? _myInteractionModel:_model;
 	return model.imageUrls.count;
 }
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat w = (CGRectGetWidth(collectionView.frame) - 48) / 3.0;
-    return CGSizeMake(w,w);
+    float wid = CGRectGetWidth(self.collectionView.bounds);
+    return CGSizeMake((wid-4*5)/3, (wid-4*5)/3);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -164,6 +166,7 @@ UICollectionViewDelegateFlowLayout>
 - (IBAction)seeAllBtnAction:(id)sender {//点击时的状态
 	InteractionModel * model = _model == nil? _myInteractionModel:_model;
     model.isStatusSeeAll = !model.isStatusSeeAll;//状态立刻改变
+    model.cellH = [InteractionCell cellHByModel:model];
     [_seeAllBtn setTitle:@"收起" forState:0];
     if (model.isStatusSeeAll) {//状态是 查看全部 那就收起
        [_seeAllBtn setTitle:@"查看全部" forState:0];
@@ -200,9 +203,9 @@ UICollectionViewDelegateFlowLayout>
 }
 
 +(CGFloat)cellHByModel:(InteractionModel *)model{
-	CGFloat H = 56 + 14 + 50;
+	CGFloat H = 45 + 10 + 40;
     CGFloat titltH = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 24];
- 
+    model.contentH = titltH;
     if (titltH > 60) {//大于60 那么需要有个 查看全部的按钮
         model.needHideSeeAllBtn = NO;//不能隐藏查看全部按钮
         H += 30;//加上查看全部 按钮的高度
@@ -211,13 +214,13 @@ UICollectionViewDelegateFlowLayout>
         }else{//否则就是文字的收起高度
             H += 60;
         }
-    }else{//不大于40的情况下 加真实高度 并且隐藏查看全部按钮
+    }else{//不大于60的情况下 加真实高度 并且隐藏查看全部按钮
          H += titltH;
          model.needHideSeeAllBtn = YES;//隐藏查看全部按钮
     }
    
 	CGFloat margin = 5;
-	CGFloat w = (SCREENWIDTH   - 4*margin )/ 3.0;//图片高宽
+	CGFloat w = (SCREENWIDTH   - 30 )/ 3.0;//图片高宽
 	NSInteger imgCount = model.imageUrls.count;
 	NSInteger rows = imgCount/3;//图片共几排
 
