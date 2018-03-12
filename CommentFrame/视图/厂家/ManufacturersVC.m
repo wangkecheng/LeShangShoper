@@ -48,10 +48,8 @@
 	[self getPage];
 	
 	[self addRightBarButtonWithFirstImage:IMG(@"ic_home_search") action:@selector(toSearchManufacturersVC)];
-    
     _tableView.sc_indexViewConfiguration = [SCIndexViewConfiguration configurationWithIndexViewStyle:SCIndexViewStyleDefault];
     _tableView.sc_translucentForTableViewInNavigationBar = YES;
-    
     UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
     [serviceBtn setImage:IMG(@"ic_service") forState:0];
     [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
@@ -140,7 +138,7 @@
 		if (strongSelf.page == 1) {
 		    [strongSelf.arrModel removeAllObjects];
 		}
-		[strongSelf.arrModel addObjectsFromArray:tempArr];
+		[strongSelf.arrModel addObjectsFromArray:resultArray];
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];

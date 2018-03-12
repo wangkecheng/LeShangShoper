@@ -10,8 +10,8 @@
 @interface HDMainNavC : UINavigationController
 
 -(void)pushVC:(UIViewController *)VC;
-
-
-
+ 
 -(void)pushVC:(UIViewController *)VC isHideBack:(BOOL)isHideBack animated:(BOOL)animated;
+
+-(void)pushVC:(UIViewController *)VC isHideBack:(BOOL)isHideBack isHideTabBar:(BOOL)isHideTabBar animated:(BOOL)animated;
 @end

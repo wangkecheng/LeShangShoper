@@ -43,8 +43,6 @@ UICollectionViewDelegateFlowLayout>
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.scrollEnabled  = NO;
-    _flowLayout.minimumInteritemSpacing = 5;
-    _flowLayout.minimumLineSpacing = 5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -69,7 +67,7 @@ UICollectionViewDelegateFlowLayout>
 	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
 	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
 	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
 	
 	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
@@ -131,6 +129,7 @@ UICollectionViewDelegateFlowLayout>
 	[_collectionView reloadData];
 	[super layoutIfNeeded];
 }
+
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	
@@ -139,11 +138,12 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_model.imageUrls.count == 1) {
-        return CGSizeMake(SCREENWIDTH,_model.singleImgH);
+    InteractionModel *model = _model==nil? _myInteractionModel:_model;
+    if (model.imageUrls.count == 1) {
+        return CGSizeMake(SCREENWIDTH,model.singleImgH);
     }
     float wid = CGRectGetWidth(self.collectionView.bounds);
-    return CGSizeMake((wid-4*5)/3, (wid-4*5)/3);
+    return CGSizeMake((wid-3*5)/3, (wid-3*5)/3);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -156,7 +156,19 @@ UICollectionViewDelegateFlowLayout>
 	[cell setImgUrlStr:model.imageUrls[indexPath.row]];
     return cell;
 }
-
+//定义每个Section的四边间距
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(5, 5, 5, 0);//分别为上、左、下、右
+}
+//两个cell之间的间距（同一行的cell的间距）
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+//这个是两行cell之间的间距（上下行cell的间距）
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	InteractionModel * model = _model == nil? _myInteractionModel:_model;

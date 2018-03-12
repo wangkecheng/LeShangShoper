@@ -97,8 +97,8 @@
     CGFloat y = CGRectGetMaxY(btn.frame);
     if ([[[DDFactory getCurrentDeviceModel] uppercaseString]containsString:@"IPX"]) {
         y += 28;
-    }
-    _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0 + 1, y) titles:@[@"发布动态",@"我的动态",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
+    }//,@"全部动态" ,@"message"
+      _popMenu = [YBPopupMenu showAtPoint:CGPointMake(SCREENWIDTH - CGRectGetWidth(btn.frame)/2.0 + 1, y) titles:@[@"发布动态",@"我的动态",@"全部动态"] icons:@[@"publismsg",@"mymsg",@"message"] menuWidth:150 otherSettings:^(YBPopupMenu *popupMenu) {
  
         __strong typeof (weakSelf) strongSelf = weakSelf;
         popupMenu.dismissOnSelected = YES;
@@ -117,17 +117,22 @@
     HDBaseVC *VC = nil;
     if (index == 0) {
 		VC = [[AddInteractionVC alloc]init];
- 
+        [self.navigationController pushViewController:VC animated:YES];
     }else if (index == 1){
         _isMyInteraction = YES;
-         [self getPage];
+        _page = 1;
+        VC  = [[MyInteractionVC alloc]init];
+        HDMainNavC * navi = (HDMainNavC *)self.navigationController;
+        [navi pushVC:VC isHideBack:YES isHideTabBar:NO animated:YES];
+        [self.tabBarController setHidesBottomBarWhenPushed:NO];
     }else{
+         _page = 1;
         _isMyInteraction = NO;
+        [_arrModel removeAllObjects];
+        [_tableview reloadData];
         [self getPage];
     }
-    if (VC) {
-        [self.navigationController pushViewController:VC animated:YES];
-    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -155,12 +160,13 @@
     }
 	weakObj;
 	[BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
 		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-		if (weakSelf.page == 1) {
-			[weakSelf.arrModel removeAllObjects];
+    
+		if (strongSelf.page == 1) {
+			[strongSelf.arrModel removeAllObjects];
 		}
-		[weakSelf.arrModel addObjectsFromArray:tempArr];
+		[strongSelf.arrModel addObjectsFromArray:tempArr];
         
         dispatch_group_t group = dispatch_group_create();
         dispatch_queue_t queue = dispatch_queue_create(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -168,24 +174,25 @@
             dispatch_group_enter(group);
             dispatch_group_async(group, queue, ^{
                 model.cellH = [InteractionCell cellHByModel:model];
-            
                 dispatch_group_leave(group);
             });
         }
         dispatch_group_notify(group, queue, ^{
             dispatch_async(dispatch_get_main_queue(), ^{ //通知主线程刷新
-                [weakSelf.tableview reloadData];
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf.tableview reloadData];
             });
         });
-        dispatch_async(dispatch_get_main_queue(), ^{ //通知主线程刷新 
-            [weakSelf.tableview.mj_header endRefreshing];
-            [weakSelf.tableview.mj_footer endRefreshing];
-            if (weakSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
-                [weakSelf.tableview.mj_footer endRefreshingWithNoMoreData];
+        dispatch_async(dispatch_get_main_queue(), ^{ //通知主线程刷新
+             __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf.tableview.mj_header endRefreshing];
+            [strongSelf.tableview.mj_footer endRefreshing];
+            if (strongSelf.arrModel.count == [result[@"data"][@"total"] integerValue]) {
+                [strongSelf.tableview.mj_footer endRefreshingWithNoMoreData];
             }
-            [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
-            if (weakSelf.arrModel.count == 0) {
-                [weakSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
+            [strongSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:YES];
+            if (strongSelf.arrModel.count == 0) {
+                [strongSelf.tableview setHolderImg:@"alertImg" holderStr:[DDFactory getString:result[@"msg"] withDefault:@"暂无数据"] isHide:NO];
             }
         });
 	} failed:^(NSError *error) {
@@ -206,18 +213,23 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-     InteractionModel *model =  _arrModel[indexPath.section];
-    return  model.cellH;//[InteractionCell cellHByModel:model];
+    if (_arrModel.count >0) {
+        InteractionModel *model =  _arrModel[indexPath.section];
+        return  model.cellH;//[InteractionCell cellHByModel:model];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
-    if (_isMyInteraction) {
-        [cell setMyInteractionModel:_arrModel[indexPath.section]];
-    }else{
-        [cell setModel:_arrModel[indexPath.section]];
-    }
+    if (_arrModel.count > 0) {
+        if (_isMyInteraction) {
+            [cell setMyInteractionModel:_arrModel[indexPath.section]];
+        }else{
+            [cell setModel:_arrModel[indexPath.section]];
+        }
+    } 
 	[cell setSelectionStyle:0];
 	weakObj;
     cell.seeBigImgBlock = ^(InteractionModel *model, NSInteger index) {
@@ -256,6 +268,7 @@
 			
 		}];
 	};
+    
 	cell.commentBlock = ^(InteractionModel *model) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
         CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];

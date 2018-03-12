@@ -43,6 +43,9 @@
 }
 
 -(void)pushVC:(UIViewController *)VC isHideBack:(BOOL)isHideBack animated:(BOOL)animated{
+    [self pushVC:VC isHideBack:isHideBack isHideTabBar:YES animated:animated];
+}
+-(void)pushVC:(UIViewController *)VC isHideBack:(BOOL)isHideBack isHideTabBar:(BOOL)isHideTabBar animated:(BOOL)animated {
     
     if (!VC) {
         return;//为空的时候不弹出
@@ -51,23 +54,22 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         view.backgroundColor = [UIColor clearColor];
         UIButton *firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
-         firstButton.frame = CGRectMake(0, 0, 44, 44);
+        firstButton.frame = CGRectMake(0, 0, 44, 44);
         [firstButton setImage:[UIImage imageNamed:@"return"] forState:0];//ios11添加leftBarButtonItem时，图片的像素大小会影响最终的返回位置
         [firstButton addTarget:self action:@selector(leftBtnAction) forControlEvents:UIControlEventTouchUpInside];
-         firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        firstButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [firstButton setImageEdgeInsets:UIEdgeInsetsMake(0, 5 * SCREENWIDTH/375.0, 0, 0)];
         if (isHideBack) {//如果需要隐藏返回按钮
             [firstButton setHidden:YES];
         }
         UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:firstButton];
         VC.navigationItem.leftBarButtonItem = leftBarButtonItem;
-        VC.hidesBottomBarWhenPushed = YES; // 隐藏底部的工具条
+        VC.hidesBottomBarWhenPushed = isHideTabBar; // 隐藏底部的工具条
     }
     
     // 一旦调用super的pushViewController方法,就会创建子控制器viewController的view并调用viewController的viewDidLoad方法。可以在viewDidLoad方法中重新设置自己想要的左上角按钮样式
     [super pushViewController:VC animated:YES];
 }
-
 -(void)leftBtnAction{
     
     [self popViewControllerAnimated:YES];

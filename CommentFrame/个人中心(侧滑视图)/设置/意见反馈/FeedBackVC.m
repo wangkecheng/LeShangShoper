@@ -51,6 +51,14 @@
 }
 
 - (IBAction)submitAction:(id)sender {
+    if (_accountField.text.length == 0) {
+        [self.view makeToast:@"请填写反馈内容"];
+        return;
+    }
+    if (_accountField.text.length == 0) {
+        [self.view makeToast:@"请输入手机/QQ/邮箱"];
+        return;
+    }
 	HDModel * m = [HDModel model];
 	m.type = _typeStr;
 	m.desc = _noteTextView.text;

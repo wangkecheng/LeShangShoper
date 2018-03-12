@@ -28,7 +28,7 @@
 }
 -(void)setModel:(AlbumListModel *)model{
 	_model = model;
-	_lblInfo.text = [NSString stringWithFormat:@"%@(%ld)",_model.collection.localizedTitle,_model.collection.estimatedAssetCount];
+	_lblInfo.text = [NSString stringWithFormat:@"%@(%ld)",[DDFactory getString:_model.collection.localizedTitle withDefault:@"其他地点"],_model.collection.estimatedAssetCount];
 	if (model.image) {
 		_imavHead.image = model.image;//表示在数据源中已经请求到了图片数据
 	}else{//否则 没有请求到的话，那就cell自己来请求

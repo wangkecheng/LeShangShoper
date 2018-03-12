@@ -131,6 +131,7 @@
 	for (PHAssetCollection *assetCollection in [WSPHPhotoLibrary getAlbumGroup]) {
 		
 		if ([assetCollection.localizedTitle containsString:collectionName]) {
+           
 			return assetCollection;
 		}
 	}
@@ -140,7 +141,11 @@
 
 //获取所有相册
 +(PHFetchResult<PHAssetCollection *> *)getAlbumGroup{
-	return [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    
+    option.includeHiddenAssets = YES;
+    option.includeAllBurstAssets = YES;
+	return [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeMoment subtype:PHAssetCollectionSubtypeAny options:option];
 }
 
 /**
