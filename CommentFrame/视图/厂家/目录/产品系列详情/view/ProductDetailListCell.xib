@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXK-3c-DBh">
-                        <rect key="frame" x="10" y="339" width="176" height="27"/>
+                        <rect key="frame" x="10" y="339" width="43" height="27"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                         <color key="textColor" red="0.99168771505355835" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -61,9 +60,9 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-kS-Stu">
-                        <rect key="frame" x="191" y="343" width="50" height="20"/>
+                        <rect key="frame" x="161" y="343" width="80" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="MId-ga-6m8"/>
+                            <constraint firstAttribute="width" constant="80" id="MId-ga-6m8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,7 +128,6 @@
                 <constraint firstAttribute="trailing" secondItem="K8i-ct-e6N" secondAttribute="trailing" id="kGz-Ho-3c7"/>
                 <constraint firstItem="cA8-tQ-YVo" firstAttribute="top" secondItem="23q-wz-DPx" secondAttribute="bottom" constant="9" id="nWE-j7-Y0z"/>
                 <constraint firstItem="wOC-vT-Wx8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sRq-lT-GI9"/>
-                <constraint firstItem="XGB-kS-Stu" firstAttribute="leading" secondItem="jXK-3c-DBh" secondAttribute="trailing" constant="5" id="sxB-IS-ZHw"/>
                 <constraint firstAttribute="trailing" secondItem="2ig-ud-zpB" secondAttribute="trailing" id="tPJ-XY-nN6"/>
                 <constraint firstItem="jXK-3c-DBh" firstAttribute="height" secondItem="23q-wz-DPx" secondAttribute="height" id="wJo-lS-8rq"/>
                 <constraint firstItem="wOC-vT-Wx8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zDQ-3N-qRI"/>
