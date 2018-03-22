@@ -41,7 +41,7 @@
     _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",[DDFactory getString:model.spec  withDefault:@"0 * 0"]];
 	_priceLbl.text = [NSString stringWithFormat:@"￥%0.2f", [[DDFactory getString:model.price  withDefault:@"0"] floatValue]];
     
-    NSString * browseNumber; 
+    NSString * browseNumber;
     if ([model.browseNumber integerValue] < 10000) {
         browseNumber = model.browseNumber;
     }
