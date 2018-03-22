@@ -1612,8 +1612,8 @@
 		200D7EAD1FF742CB00B97979 /* 保存到指定相册 */ = {
 			isa = PBXGroup;
 			children = (
-				200D7EAE1FF742CB00B97979 /* WSPHPhotoLibrary.m */,
 				200D7EAF1FF742CB00B97979 /* WSPHPhotoLibrary.h */,
+				200D7EAE1FF742CB00B97979 /* WSPHPhotoLibrary.m */,
 			);
 			path = "保存到指定相册";
 			sourceTree = "<group>";

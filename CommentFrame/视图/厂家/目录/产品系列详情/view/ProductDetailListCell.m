@@ -40,7 +40,22 @@
     _serialNumberLbl.text = [NSString stringWithFormat:@"编号:%@",  [DDFactory getString:model.iden withDefault:@"未知"]];
     _specificationLbl.text = [NSString stringWithFormat:@"规格:%@",[DDFactory getString:model.spec  withDefault:@"0 * 0"]];
 	_priceLbl.text = [NSString stringWithFormat:@"￥%0.2f", [[DDFactory getString:model.price  withDefault:@"0"] floatValue]];
-    [_focusBtn setTitle:[NSString stringWithFormat:@" %@", [DDFactory getString:model.browseNumber withDefault:@"0"]] forState:0];
+    
+    NSString * browseNumber;
+    if ([model.browseNumber integerValue] < 10000) {
+        browseNumber = model.browseNumber;
+    }
+    else{
+        NSInteger wan = [model.browseNumber integerValue] / 10000;
+        NSInteger qian = [model.browseNumber integerValue] % 10000 / 1000;
+        if (qian !=0 ) {
+            browseNumber = [NSString stringWithFormat:@"%ld.%ldW",wan,qian];
+        }
+        else{
+            browseNumber = [NSString stringWithFormat:@"%ldW",wan];
+        }
+    }
+    [_focusBtn setTitle:[NSString stringWithFormat:@" %@", [DDFactory getString:browseNumber withDefault:@"0"]] forState:0];
 }
 
 - (IBAction)collectionAction:(UIButton *)sender {
