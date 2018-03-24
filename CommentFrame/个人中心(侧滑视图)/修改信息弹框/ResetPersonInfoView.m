@@ -66,6 +66,10 @@
 		[textView resignFirstResponder];
 		return  NO;
 	}
+    if ([textView.text stringByAppendingString:text].length>8) {
+        [self makeToast:@"请输入8字以内的姓名"];
+        return NO;
+    }
 	return YES;
 }
 @end

@@ -44,6 +44,10 @@
     [self.view addSubview:serviceBtn];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getPage];
+}
 -(void)serviceAction{//智能服务
     weakObj;
     
@@ -85,10 +89,6 @@
     }];
     _alertControl = [[DSAlert alloc]initWithCustomView:alertView];
     _alertControl.isTouchEdgeHide = YES;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-	[super viewWillAppear:animated];
 }
 
 - (void)getPage{

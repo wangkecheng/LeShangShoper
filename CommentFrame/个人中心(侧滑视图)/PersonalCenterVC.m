@@ -200,7 +200,7 @@
 - (void)finishSelectImg:(UIImage *)image{
     UserInfoModel * model =  [CacheTool getUserModel];
     model.headImgData = UIImagePNGRepresentation(image);
-    [CacheTool writeToDB:model]; 
+    [CacheTool writeToDB:model];
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
 }
@@ -347,7 +347,6 @@
 	[CacheTool writeToDB:model];//状态设置为NO，表示登出
     [CacheTool setRootVCByIsMainVC:NO];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; 

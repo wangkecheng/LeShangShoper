@@ -230,6 +230,19 @@ typedef enum ViewTagIndentifyer{
 	[self.navigationController pushViewController:VC animated:YES];
 }
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return  NO;
+    }
+    if (textView.tag == TagFieldUserName) {
+        if ([textView.text stringByAppendingString:text].length>8) {
+            [self.view makeToast:@"请输入8字以内的姓名"];
+            return NO;
+        }
+    }
+    return YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
