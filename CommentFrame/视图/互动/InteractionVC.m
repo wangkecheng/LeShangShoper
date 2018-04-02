@@ -48,7 +48,16 @@
     [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serviceBtn];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated]; 
+    weakObj;
+    self.finishLoginBlock = ^{//登录完成回调
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getPage];
+        });
+    };
+}
 -(void)serviceAction{//智能服务
     weakObj;
     
@@ -134,12 +143,7 @@
     }
     
 }
-
--(void)viewWillAppear:(BOOL)animated{
-	[super viewWillAppear:animated];
-	[self.navigationController setNavigationBarHidden:NO];
-}
-
+ 
 - (void)getPage{
 	
 	[self getData:1];
@@ -256,6 +260,9 @@
     };
 	cell.pardiseBlock = ^(InteractionModel *model) {
           __strong typeof (weakSelf) strongSelf = weakSelf;
+        if ([CacheTool isToLoginVC:strongSelf]) {
+            return;//方法内部做判断
+        }
 		HDModel * m = [HDModel model];
 		m.interactId = model.interactId; 
 		[BaseServer postObjc:m path:@"/interact/give" isShowHud:YES isShowSuccessHud:YES success:^(id result) {
@@ -271,6 +278,9 @@
     
 	cell.commentBlock = ^(InteractionModel *model) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
+        if ([CacheTool isToLoginVC:strongSelf]) {
+            return;//方法内部做判断
+        }
         CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
 		VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
 			interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
@@ -280,7 +290,10 @@
         [strongSelf.navigationController pushViewController:VC animated:YES];
 	};
     cell.deleteBlock = ^(InteractionModel *model) {
-        
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        if ([CacheTool isToLoginVC:strongSelf]) {
+            return;//方法内部做判断
+        }
         HDModel * m = [HDModel model];
         m.did = model.interactId;
         [BaseServer postObjc:m path:@"/interact/remove" isShowHud:YES isShowSuccessHud:YES success:^(id result) {

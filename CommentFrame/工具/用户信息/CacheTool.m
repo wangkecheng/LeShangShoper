@@ -78,35 +78,34 @@ typedef void (^finishBlock)(BOOL isFinish);
 //设置根视图
 + (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC {
     [CurrentAppDelegate.window.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-	HDBaseVC * VC =(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:[[LoginVC alloc]init]];// [[LoginVC alloc]init];//
-	if (isMainVC) { 
+    
+   LoginVC *loginVC  = [[LoginVC alloc]init];
+    loginVC.isLoginOut = YES;
+    HDBaseVC * VC =(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:loginVC];// [[LoginVC alloc]init];//
+    if (isMainVC) {
         WSLeftSlideManagerVC *managerVC =   [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
         managerVC.scaleContent = YES;
         VC = (HDBaseVC *)managerVC;
-	}
+    }
     [CurrentAppDelegate.window setRootViewController:VC];
-	return VC;
+    return VC;
 }
-+(void)showLoginVC:(HDBaseVC *)theVC{
-    
-    [UserInfoModel gy_queryObjsWithCondition:nil completion:^(NSArray *result, GYDBError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            for (UserInfoModel *model in result) {
-                if (model.isMember == 1) {//如果是是登录
-                    model.isMember = 0;
-                    model.isRecentLogin = 1;
-                }
-                else{
-                    model.isRecentLogin = 0;
-                    model.isMember = 0;
-                }
-                [model gy_save];
-            }
-        });
+
++(BOOL)isToLoginVC:(HDBaseVC *)theVC{
+    UserInfoModel * model = [CacheTool getUserModel];
+    if (model.isMember == 1) {
+        return NO;
+    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您暂未登录" message:@"是否前往登录页面？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        LoginVC *VC = [[LoginVC alloc]initWithFinishBlock:theVC.finishLoginBlock];//登录完成后 如果是从该页面弹出，那么block会回到 登录页面 的父视图
+        [theVC presentViewController:VC animated:YES completion:nil];
     }];
-    
-	LoginVC *VC = [[LoginVC alloc]initWithFinishBlock:theVC.finishLoginBlock];//登录完成后 如果是从该页面弹出，那么block会回到 登录页面 的父视图
-	[theVC.navigationController pushViewController:VC animated:YES];
+    [alert addAction:cancel];
+    [alert addAction:sure];
+    [theVC presentViewController:alert animated:YES completion:nil];
+    return YES;
 }
 
 @end

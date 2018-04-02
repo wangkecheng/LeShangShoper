@@ -19,6 +19,8 @@ typedef enum ViewTagIndentifyer{
 @property (weak, nonatomic) IBOutlet UITextField *vercodeField;
 @property (weak, nonatomic) IBOutlet UIButton *getVercodeBtn;
 @property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UIButton *dissmissBtn;
+
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @end
 
@@ -47,6 +49,15 @@ typedef enum ViewTagIndentifyer{
 	
 	UserInfoModel *model = [CacheTool getRecentLoginUser];
 	_userField.text = model.mobile;
+    _dissmissBtn.alpha = 1;
+    if (_isLoginOut) {
+        _dissmissBtn.alpha = 0;
+    }
+}
+
+- (IBAction)dissMissAction:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)sendVertiCodeAction:(id)sender {

@@ -32,9 +32,12 @@
     [manager.requestSerializer setTimeoutInterval:10.0]; // 10秒超时
 	
 	NSString *token = TOKEN;
-	if (token.length!=0) {//登陆的时候是没有TOKEN的  
-		[manager.requestSerializer setValue:TOKEN forHTTPHeaderField:@"Authorization"];
-	} 
+    if (token.length == 0) { 
+        token = @"eyJhbGciOiJIUzI1NiJ9.eyJtb2JpbGUiOiIxODQwODI0NjMwMSIsInVpZCI6IjVhNTg0ZmVhNzNmN2VmN2UwODIyZWM5NiJ9.4wyZytXgK-JjNMilof4903kP_0x9dY13H464szG2UPg";
+    }
+    if (token.length!=0) {//登陆的时候是没有TOKEN的
+        [manager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+    }
     NSString *fullPath = [POST_HOST stringByAppendingString:path];
 	
     if (NO){//isShowHud

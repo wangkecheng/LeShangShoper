@@ -41,7 +41,16 @@
     //移除键盘通知
     [self unregisteKeyboardNotification];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];  
+    weakObj;
+    self.finishLoginBlock = ^{//登录完成回调
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getPage];
+        });
+    };
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"评论";
@@ -142,7 +151,9 @@
 }
 
 - (IBAction)sendComment:(UIButton *)sender {
-    
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
+    }
     NSString *comment = self.commentTextView.text;
     if (!comment.length) {
         [self.view makeToast:@"留言不能为空"];

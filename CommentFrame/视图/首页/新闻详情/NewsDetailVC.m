@@ -63,8 +63,7 @@
         
         NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
         
-        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
-        
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card); 
     }
 }
 // WKNavigationDelegate 页面加载完成之后调用

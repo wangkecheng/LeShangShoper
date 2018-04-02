@@ -50,12 +50,10 @@
     headerView.leftTopHeaderViewBlock = ^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         UserInfoModel * model  = [CacheTool getUserModel];
-        if (model.isMember) {//如果存在 就是侧滑
+        if (![CacheTool isToLoginVC:strongSelf]) {//如果存在 就是侧滑 不是去登录页面的话 ，就是已经登录的状态
             [[DDFactory factory]broadcast:nil channel:LeftSildeAction];//打开侧滑
             return;
         }
-        LoginVC * loginVC = [[LoginVC alloc]init];
-        [strongSelf presentViewController:loginVC animated:YES completion:nil];
     };
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:headerView]];
 	UITextField *searchField =  [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetWidth(headerView.frame),0, SCREENWIDTH - 100, 36)];
@@ -114,7 +112,14 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //去除导航NavigationBar的黑线条
+    weakObj;
     [self.navigationController.navigationBar  setShadowImage:[[UIImage alloc] init]];
+    self.finishLoginBlock = ^{//登录完成回调
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getPage];
+        });
+    };
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

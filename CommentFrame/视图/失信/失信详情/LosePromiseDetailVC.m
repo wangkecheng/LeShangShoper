@@ -87,6 +87,9 @@
 }
 
 - (IBAction)pardiseBtnAction:(id)sender {//点赞操作
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
+    }
     HDModel * m = [HDModel model];
     m.did = _model.did;
     weakObj;

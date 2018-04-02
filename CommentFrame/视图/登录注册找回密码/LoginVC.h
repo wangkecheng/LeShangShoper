@@ -10,4 +10,5 @@
 
 @interface LoginVC : HDBaseVC
 -(instancetype)initWithFinishBlock:(void(^)(void))finishLoginBlock;
+@property (nonatomic,assign)BOOL isLoginOut ;
 @end

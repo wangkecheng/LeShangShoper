@@ -69,8 +69,7 @@
 	self.didLeftSildeAction = ^{
 		__strong typeof (weakSelf) strongSelf  = weakSelf;
         [strongSelf downloadUserData];
-	};
-	
+	}; 
 	_imaPicker = [[UIImagePickerController alloc] init];
 	_arrSelected = [NSMutableArray array];
 }
@@ -345,7 +344,7 @@
 	 model.isMember = 0;
      model.isRecentLogin = 1;
 	[CacheTool writeToDB:model];//状态设置为NO，表示登出
-    [CacheTool setRootVCByIsMainVC:NO];
+    [CacheTool setRootVCByIsMainVC:NO]; 
 }
 
 - (void)didReceiveMemoryWarning {

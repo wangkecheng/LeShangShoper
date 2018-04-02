@@ -121,6 +121,9 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)publishAction{//发布操作
     [self.view endEditing:YES];
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
+    }
 	weakObj;
     //上传图片
 	HDModel *m = [HDModel model];

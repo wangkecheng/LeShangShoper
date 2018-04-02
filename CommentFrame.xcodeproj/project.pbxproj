@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03235D062071BF2200200EC1 /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03235D042071BF2200200EC1 /* PrivacyVC.m */; };
+		03235D072071BF2200200EC1 /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03235D052071BF2200200EC1 /* PrivacyVC.xib */; };
 		180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C120171D2A00B56E5F /* NSDate+Category.m */; };
 		180D74C62017229C00B56E5F /* CatalugeSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C52017229C00B56E5F /* CatalugeSheetView.m */; };
 		180D74C8201722B400B56E5F /* CatalugeSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180D74C7201722B400B56E5F /* CatalugeSheetView.xib */; };
@@ -471,6 +473,9 @@
 
 /* Begin PBXFileReference section */
 		02BE82ABC3A20FB8A2F366DB /* Pods-CommentFrameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameTests/Pods-CommentFrameTests.debug.xcconfig"; sourceTree = "<group>"; };
+		03235D032071BF2200200EC1 /* PrivacyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
+		03235D042071BF2200200EC1 /* PrivacyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
+		03235D052071BF2200200EC1 /* PrivacyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
 		11C318E848A96E01BDB5F867 /* Pods-CommentFrame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrame.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrame/Pods-CommentFrame.release.xcconfig"; sourceTree = "<group>"; };
 		180D74C120171D2A00B56E5F /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		180D74C220171D2A00B56E5F /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
@@ -1772,6 +1777,9 @@
 				20DF67DC201C6CDD00E0AD01 /* UserProtocolVC.h */,
 				20DF67DD201C6CDD00E0AD01 /* UserProtocolVC.m */,
 				20DF67DE201C6CDD00E0AD01 /* UserProtocolVC.xib */,
+				03235D032071BF2200200EC1 /* PrivacyVC.h */,
+				03235D042071BF2200200EC1 /* PrivacyVC.m */,
+				03235D052071BF2200200EC1 /* PrivacyVC.xib */,
 			);
 			path = "登录注册找回密码";
 			sourceTree = "<group>";
@@ -2989,6 +2997,7 @@
 				18B5432C2011839500A40C4E /* ic_top_search@3x.png in Resources */,
 				18B5431B2011839500A40C4E /* hotProductImg@2x.png in Resources */,
 				D278A2062043E506000EC211 /* publismsg@3x.png in Resources */,
+				03235D072071BF2200200EC1 /* PrivacyVC.xib in Resources */,
 				18C4464820283DDC004E8669 /* MyInteractionVC.xib in Resources */,
 				18B5433B2011839500A40C4E /* ic_views@2x.png in Resources */,
 				2031F6BF1EA99BA30075E7F3 /* Main.storyboard in Resources */,
@@ -3466,6 +3475,7 @@
 				186E6E132019D65E00D40E95 /* LWAlertView.m in Sources */,
 				207418B42003BE57007C4F36 /* SearchManufacturersVC.m in Sources */,
 				200C800C1FFFC7AB00C6A2AA /* InteractionCell.m in Sources */,
+				03235D062071BF2200200EC1 /* PrivacyVC.m in Sources */,
 				186E6E342019DF9700D40E95 /* XHLaunchAd.m in Sources */,
 				200D7FA91FF747A000B97979 /* ManufacturersVC.m in Sources */,
 				20A5D8C61FB98FD200534868 /* LWActiveIncatorAnimationView.m in Sources */,

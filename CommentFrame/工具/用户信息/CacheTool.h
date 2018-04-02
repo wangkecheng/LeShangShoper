@@ -19,5 +19,5 @@
 
 //设置根视图
 + (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC;
-+(void)showLoginVC:(HDBaseVC *)theVC;//注销操作
++(BOOL)isToLoginVC:(HDBaseVC *)theVC;
 @end

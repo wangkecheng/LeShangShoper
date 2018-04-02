@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -411,7 +410,7 @@
                 <constraint firstItem="Hho-fi-p17" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ooJ-Se-Tvy"/>
                 <constraint firstItem="ysr-2J-PJ6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sgK-0i-GfU"/>
             </constraints>
-            <point key="canvasLocation" x="-516.5" y="-1071"/>
+            <point key="canvasLocation" x="-710" y="-1092"/>
         </view>
     </objects>
     <resources>

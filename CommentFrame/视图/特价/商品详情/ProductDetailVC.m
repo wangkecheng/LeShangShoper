@@ -43,22 +43,34 @@
     if (_isNeedResetMargin) {
         _scrollContentViewTopMargin.constant = -10;
     }
-	HDModel * m = [HDModel model];
-	m.cid  = _model.cid;
-	weakObj;
-	[BaseServer postObjc:m path:@"/commodity/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-	__strong typeof (weakSelf) strongSelf = weakSelf;
-		strongSelf.detailModel = [CollectionModel yy_modelWithJSON:result[@"data"]];
-		strongSelf.detailModel.imageUrls = result[@"data"][@"imageUrls"];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[strongSelf setViewData];
-		});
-	} failed:^(NSError *error) {
-		
-	}];
-	
+    [self getPage];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    weakObj;
+    self.finishLoginBlock = ^{//登录完成回调
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getPage];
+        });
+    };
+}
+-(void)getPage{
+    HDModel * m = [HDModel model];
+    m.cid  = _model.cid;
+    weakObj;
+    [BaseServer postObjc:m path:@"/commodity/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        strongSelf.detailModel = [CollectionModel yy_modelWithJSON:result[@"data"]];
+        strongSelf.detailModel.imageUrls = result[@"data"][@"imageUrls"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [strongSelf setViewData];
+        });
+    } failed:^(NSError *error) {
+        
+    }];
+}
 -(void)setViewData{
    
     _specialImg.alpha = 0;
@@ -166,6 +178,9 @@
 }
 - (IBAction)addToCartAction:(UIButton *)sender {//加入收藏夹
 	_collectBtn.userInteractionEnabled = NO;
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
+    }
 	HDModel *m = [HDModel model];
 	m.cid = _model.cid;
 	weakObj;

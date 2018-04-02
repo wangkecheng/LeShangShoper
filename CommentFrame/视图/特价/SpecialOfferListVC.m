@@ -83,6 +83,16 @@
     [self.view addSubview:serviceBtn];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    weakObj;
+    self.finishLoginBlock = ^{//登录完成回调
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf getPage];
+        });
+    };
+}
 -(void)serviceAction{//智能服务
     weakObj;
     
@@ -227,6 +237,9 @@
     [cell setModel: _arrModel[indexPath.row]];
     cell.collectionBlock = ^BOOL(CollectionModel *model) {
         __strong typeof (weakSelf) strongSelf  = weakSelf;
+        if ([CacheTool isToLoginVC:strongSelf]) {
+            return YES;//方法内部做判断
+        }
         HDModel *m = [HDModel model];
         m.cid = model.cid;
         weakObj;

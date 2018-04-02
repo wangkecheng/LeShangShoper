@@ -8,6 +8,7 @@
 
 #import "RegisterVC.h"
 #import "UserProtocolVC.h"
+#import "PrivacyVC.h"
 typedef enum ViewTagIndentifyer{
 	
 	TagFieldPhone = 1001,
@@ -225,8 +226,8 @@ typedef enum ViewTagIndentifyer{
 	[self.navigationController pushViewController:VC animated:YES];
 }
 
-- (IBAction)toPrivacy:(id)sender {
-	UserProtocolVC  * VC = [[UserProtocolVC alloc]initWithType:ProtocolTypePrivacy];
+- (IBAction)toPrivacy:(id)sender {//
+	PrivacyVC  * VC = [[PrivacyVC alloc]init];
 	[self.navigationController pushViewController:VC animated:YES];
 }
 
