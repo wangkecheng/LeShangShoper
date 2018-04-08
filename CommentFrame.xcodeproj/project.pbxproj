@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031C122E2079AAAD004C2452 /* IconPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */; };
+		031C122F2079AAAD004C2452 /* IconPlaceholder1.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12292079AAAB004C2452 /* IconPlaceholder1.png */; };
+		031C12302079AAAD004C2452 /* IconPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C122A2079AAAB004C2452 /* IconPlaceholder.png */; };
+		031C12312079AAAD004C2452 /* IconPlaceholder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C122B2079AAAC004C2452 /* IconPlaceholder@3x.png */; };
+		031C12322079AAAD004C2452 /* IconPlaceholder1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C122C2079AAAC004C2452 /* IconPlaceholder1@2x.png */; };
+		031C12332079AAAD004C2452 /* IconPlaceholder1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C122D2079AAAD004C2452 /* IconPlaceholder1@3x.png */; };
+		031C12352079BD72004C2452 /* luanchImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12342079BD71004C2452 /* luanchImg.png */; };
+		031C123F2079F48C004C2452 /* MyInteractionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031C123D2079F48C004C2452 /* MyInteractionCell.m */; };
+		031C12402079F48C004C2452 /* MyInteractionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031C123E2079F48C004C2452 /* MyInteractionCell.xib */; };
 		03235D062071BF2200200EC1 /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03235D042071BF2200200EC1 /* PrivacyVC.m */; };
 		03235D072071BF2200200EC1 /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03235D052071BF2200200EC1 /* PrivacyVC.xib */; };
 		180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C120171D2A00B56E5F /* NSDate+Category.m */; };
@@ -473,6 +482,16 @@
 
 /* Begin PBXFileReference section */
 		02BE82ABC3A20FB8A2F366DB /* Pods-CommentFrameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameTests/Pods-CommentFrameTests.debug.xcconfig"; sourceTree = "<group>"; };
+		031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlaceholder@2x.png"; sourceTree = "<group>"; };
+		031C12292079AAAB004C2452 /* IconPlaceholder1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconPlaceholder1.png; sourceTree = "<group>"; };
+		031C122A2079AAAB004C2452 /* IconPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconPlaceholder.png; sourceTree = "<group>"; };
+		031C122B2079AAAC004C2452 /* IconPlaceholder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlaceholder@3x.png"; sourceTree = "<group>"; };
+		031C122C2079AAAC004C2452 /* IconPlaceholder1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlaceholder1@2x.png"; sourceTree = "<group>"; };
+		031C122D2079AAAD004C2452 /* IconPlaceholder1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlaceholder1@3x.png"; sourceTree = "<group>"; };
+		031C12342079BD71004C2452 /* luanchImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luanchImg.png; sourceTree = "<group>"; };
+		031C123C2079F48C004C2452 /* MyInteractionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInteractionCell.h; sourceTree = "<group>"; };
+		031C123D2079F48C004C2452 /* MyInteractionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInteractionCell.m; sourceTree = "<group>"; };
+		031C123E2079F48C004C2452 /* MyInteractionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyInteractionCell.xib; sourceTree = "<group>"; };
 		03235D032071BF2200200EC1 /* PrivacyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
 		03235D042071BF2200200EC1 /* PrivacyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
 		03235D052071BF2200200EC1 /* PrivacyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
@@ -1169,6 +1188,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031C12362079F3C2004C2452 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				031C123C2079F48C004C2452 /* MyInteractionCell.h */,
+				031C123D2079F48C004C2452 /* MyInteractionCell.m */,
+				031C123E2079F48C004C2452 /* MyInteractionCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		181D9B65201AEDC4000108A7 /* 新闻详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,6 +1553,7 @@
 				18C4464420283DDC004E8669 /* MyInteractionVC.h */,
 				18C4464520283DDC004E8669 /* MyInteractionVC.m */,
 				18C4464620283DDC004E8669 /* MyInteractionVC.xib */,
+				031C12362079F3C2004C2452 /* view */,
 			);
 			path = "我的互动";
 			sourceTree = "<group>";
@@ -2123,6 +2153,13 @@
 		2031F6EB1EA9A33F0075E7F3 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				031C12342079BD71004C2452 /* luanchImg.png */,
+				031C122A2079AAAB004C2452 /* IconPlaceholder.png */,
+				031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */,
+				031C122B2079AAAC004C2452 /* IconPlaceholder@3x.png */,
+				031C12292079AAAB004C2452 /* IconPlaceholder1.png */,
+				031C122C2079AAAC004C2452 /* IconPlaceholder1@2x.png */,
+				031C122D2079AAAD004C2452 /* IconPlaceholder1@3x.png */,
 				D278A2012043E504000EC211 /* message@2x.png */,
 				D278A2022043E504000EC211 /* message@3x.png */,
 				D278A1FE2043E502000EC211 /* mymsg@2x.png */,
@@ -2991,6 +3028,7 @@
 				18B543342011839500A40C4E /* ic_pop_gray_arrow@3x.png in Resources */,
 				18B542F02011839500A40C4E /* btn_option_p@3x.png in Resources */,
 				18B542F82011839500A40C4E /* ic_collection_p@3x.png in Resources */,
+				031C122E2079AAAD004C2452 /* IconPlaceholder@2x.png in Resources */,
 				18B542E52011839500A40C4E /* btn_foot_interactive_n@2x.png in Resources */,
 				18B543422011839500A40C4E /* ic_praise@3x.png in Resources */,
 				18B542E02011839500A40C4E /* btn_foot_factory_p@3x.png in Resources */,
@@ -3026,6 +3064,7 @@
 				200D7EF21FF742CC00B97979 /* ico_check_nomal@2x.png in Resources */,
 				2079EAF21EA9B875004DE68B /* ShareSDKConfigFile.bundle in Resources */,
 				18B543012011839500A40C4E /* ic_input_name@2x.png in Resources */,
+				031C12332079AAAD004C2452 /* IconPlaceholder1@3x.png in Resources */,
 				18AC01382015BE090072868B /* ico_paihang@3x.png in Resources */,
 				18AC01342015BDA10072868B /* ico_paihangAssent@2x.png in Resources */,
 				18B543222011839500A40C4E /* ic_detail_foot_factory@3x.png in Resources */,
@@ -3042,6 +3081,7 @@
 				18B542DD2011839500A40C4E /* btn_foot_factory_n@2x.png in Resources */,
 				186E6E5A2019DFF900D40E95 /* video1.mp4 in Resources */,
 				18AC01352015BDA10072868B /* ico_paihangDescending@3x.png in Resources */,
+				031C12402079F48C004C2452 /* MyInteractionCell.xib in Resources */,
 				D278A2272043ED67000EC211 /* jingxuan@2x.png in Resources */,
 				18B543332011839500A40C4E /* ic_pop_gray_arrow@2x.png in Resources */,
 				18B5433E2011839500A40C4E /* ic_comments@3x.png in Resources */,
@@ -3104,10 +3144,12 @@
 				18B542E22011839500A40C4E /* btn_foot_home_n@3x.png in Resources */,
 				18B542E82011839500A40C4E /* btn_foot_interactive_p@3x.png in Resources */,
 				D278A2242043ED67000EC211 /* remen@3x.png in Resources */,
+				031C12312079AAAD004C2452 /* IconPlaceholder@3x.png in Resources */,
 				200D7FAA1FF747A000B97979 /* ManufacturersVC.xib in Resources */,
 				186E6E592019DFF900D40E95 /* video0.mp4 in Resources */,
 				2079EAF51EA9B875004DE68B /* ShareSDKUI.bundle in Resources */,
 				200D7EDE1FF742CC00B97979 /* AlbumListVC.xib in Resources */,
+				031C12302079AAAD004C2452 /* IconPlaceholder.png in Resources */,
 				18B543242011839500A40C4E /* ic_details_special@3x.png in Resources */,
 				18A2532C2052335400DD0BD1 /* SearchCollectionVC.xib in Resources */,
 				18B542F22011839500A40C4E /* btn_pop_phone@3x.png in Resources */,
@@ -3181,7 +3223,9 @@
 				1840EEBE2012080700A341F7 /* CommentInteractionVC.xib in Resources */,
 				200D7EEF1FF742CC00B97979 /* ico_check_nomal.png in Resources */,
 				18B543002011839500A40C4E /* ic_input_lock@3x.png in Resources */,
+				031C12352079BD72004C2452 /* luanchImg.png in Resources */,
 				18B542EF2011839500A40C4E /* btn_option_p@2x.png in Resources */,
+				031C122F2079AAAD004C2452 /* IconPlaceholder1.png in Resources */,
 				18B543272011839500A40C4E /* ic_list_special@2x.png in Resources */,
 				2079EB321EA9CC67004DE68B /* home_shouye@3x.png in Resources */,
 				D278A2152043E9F6000EC211 /* ic_service@2x.png in Resources */,
@@ -3198,6 +3242,7 @@
 				206865322009BF65008C50A2 /* ResetPersonInfoView.xib in Resources */,
 				200D7FA01FF7476000B97979 /* HomeVC.xib in Resources */,
 				2079EB301EA9CC67004DE68B /* home_shouye.png in Resources */,
+				031C12322079AAAD004C2452 /* IconPlaceholder1@2x.png in Resources */,
 				18B542F92011839500A40C4E /* ic_factory@2x.png in Resources */,
 				18B543382011839500A40C4E /* ic_search_delete@3x.png in Resources */,
 				200D7EE11FF742CC00B97979 /* ImgCell.xib in Resources */,
@@ -3411,6 +3456,7 @@
 				20A5D9151FB9908300534868 /* YBPopupMenu.m in Sources */,
 				20A5D8B81FB98F1300534868 /* NSDate+Extension.m in Sources */,
 				181D9B69201AEDDD000108A7 /* NewsDetailVC.m in Sources */,
+				031C123F2079F48C004C2452 /* MyInteractionCell.m in Sources */,
 				20A5D9171FB9908300534868 /* UIView+Toast.m in Sources */,
 				200D7F811FF743E100B97979 /* LoginVC.m in Sources */,
 				20BFA2E8201A12CC00F9DD53 /* FLAnimatedImageView.m in Sources */,

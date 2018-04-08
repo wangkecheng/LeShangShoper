@@ -137,10 +137,10 @@
 		imageAdconfiguration.showEnterForeground = NO;
 		
 		//图片已缓存 - 显示一个 "已预载" 视图 (可选)
-		if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
-			//设置要添加的自定义视图(可选)
-			imageAdconfiguration.subViews = [strongSelf launchAdSubViews_alreadyView];
-		}
+//        if([XHLaunchAd checkImageInCacheWithURL:[NSURL URLWithString:model.content]]){
+//            //设置要添加的自定义视图(可选)
+//            imageAdconfiguration.subViews = [strongSelf launchAdSubViews_alreadyView];
+//        }
 		//显示开屏广告
 		[XHLaunchAd imageAdWithImageAdConfiguration:imageAdconfiguration delegate:strongSelf];
 	} failed:^(NSError *error) {

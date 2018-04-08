@@ -20,6 +20,7 @@
                 <outlet property="addressField" destination="Fmi-1X-t1Y" id="yhS-aB-BjR"/>
                 <outlet property="getVercodeBtn" destination="8rm-dF-mA8" id="EKy-6F-daA"/>
                 <outlet property="phoneField" destination="aRi-D6-9bx" id="XhQ-Zm-WyZ"/>
+                <outlet property="protocolBtn" destination="DnT-PM-Aa9" id="LRd-Eh-u78"/>
                 <outlet property="registerBtn" destination="9Pj-xd-pfT" id="eZI-4K-9x7"/>
                 <outlet property="time" destination="54R-qc-CZI" id="8Mk-fP-DTh"/>
                 <outlet property="userNameField" destination="cj9-3k-Kmy" id="gVj-Rr-qZF"/>
@@ -302,7 +303,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pj-xd-pfT">
-                                            <rect key="frame" x="20" y="389.33333333333337" width="335" height="44"/>
+                                            <rect key="frame" x="20" y="381" width="335" height="44"/>
                                             <color key="backgroundColor" red="0.074509803921568626" green="0.57647058823529407" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="J75-MM-qKV"/>
@@ -317,8 +318,8 @@
                                                 <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="wyP-wZ-dzq"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册即同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgd-Yh-yff">
-                                            <rect key="frame" x="83" y="296.33333333333337" width="65.333333333333314" height="18.333333333333314"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgd-Yh-yff">
+                                            <rect key="frame" x="121.99999999999999" y="296.33333333333337" width="26.333333333333329" height="19"/>
                                             <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="13"/>
                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -349,23 +350,29 @@
                                                 <action selector="toPrivacy:" destination="-1" eventType="touchUpInside" id="ISL-bp-v0V"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如不同意,请停止注册" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go7-ma-0DA">
-                                            <rect key="frame" x="128" y="321" width="120.66666666666669" height="18.333333333333314"/>
-                                            <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="13"/>
-                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnT-PM-Aa9">
+                                            <rect key="frame" x="67" y="297" width="50" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="R9u-BN-nf5"/>
+                                                <constraint firstAttribute="width" constant="16" id="vjO-x4-51Z"/>
+                                            </constraints>
+                                            <state key="normal" image="IconPlaceholder.png"/>
+                                            <connections>
+                                                <action selector="protocolBtnAction:" destination="-1" eventType="touchUpInside" id="J1P-Fl-ln8"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="UiK-cl-SWB" firstAttribute="leading" secondItem="4cl-ib-4jC" secondAttribute="leading" constant="20" id="0wS-3x-R0N"/>
                                         <constraint firstItem="oYc-re-ldb" firstAttribute="centerY" secondItem="Fgd-Yh-yff" secondAttribute="centerY" id="4P9-Oh-bUQ"/>
-                                        <constraint firstItem="go7-ma-0DA" firstAttribute="centerX" secondItem="4cl-ib-4jC" secondAttribute="centerX" id="6qE-K1-e3Z"/>
                                         <constraint firstItem="UiK-cl-SWB" firstAttribute="top" secondItem="4cl-ib-4jC" secondAttribute="top" constant="20" id="8W8-9w-Blz"/>
                                         <constraint firstItem="oYc-re-ldb" firstAttribute="centerX" secondItem="4cl-ib-4jC" secondAttribute="centerX" id="Art-Zg-BOq"/>
-                                        <constraint firstItem="go7-ma-0DA" firstAttribute="top" secondItem="oYc-re-ldb" secondAttribute="bottom" id="C1w-0K-ix2"/>
                                         <constraint firstAttribute="trailing" secondItem="UiK-cl-SWB" secondAttribute="trailing" constant="20" id="Cre-VY-bAc"/>
+                                        <constraint firstItem="Fgd-Yh-yff" firstAttribute="leading" secondItem="DnT-PM-Aa9" secondAttribute="trailing" constant="5" id="JZM-Xk-3Bu"/>
+                                        <constraint firstItem="Fgd-Yh-yff" firstAttribute="centerY" secondItem="DnT-PM-Aa9" secondAttribute="centerY" id="JwE-ff-44q"/>
                                         <constraint firstItem="tdk-7W-3qT" firstAttribute="leading" secondItem="oYc-re-ldb" secondAttribute="trailing" id="SZL-oi-vMT"/>
+                                        <constraint firstItem="9Pj-xd-pfT" firstAttribute="top" secondItem="oYc-re-ldb" secondAttribute="bottom" constant="60" id="Uvx-Fi-iN5"/>
                                         <constraint firstItem="oYc-re-ldb" firstAttribute="leading" secondItem="Fgd-Yh-yff" secondAttribute="trailing" id="biN-9y-KRc"/>
                                         <constraint firstItem="yXV-vl-A6v" firstAttribute="centerY" secondItem="Fgd-Yh-yff" secondAttribute="centerY" id="bqb-mb-kcU"/>
                                         <constraint firstItem="9Pj-xd-pfT" firstAttribute="trailing" secondItem="UiK-cl-SWB" secondAttribute="trailing" id="d9e-96-kqD"/>
@@ -373,7 +380,6 @@
                                         <constraint firstItem="9Pj-xd-pfT" firstAttribute="leading" secondItem="UiK-cl-SWB" secondAttribute="leading" id="tyv-ro-4mM"/>
                                         <constraint firstItem="tdk-7W-3qT" firstAttribute="centerY" secondItem="Fgd-Yh-yff" secondAttribute="centerY" id="w03-0k-nXJ"/>
                                         <constraint firstItem="yXV-vl-A6v" firstAttribute="leading" secondItem="tdk-7W-3qT" secondAttribute="trailing" id="xQb-Ae-rIS"/>
-                                        <constraint firstItem="9Pj-xd-pfT" firstAttribute="top" secondItem="go7-ma-0DA" secondAttribute="bottom" constant="50" id="y47-6x-iDX"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -410,13 +416,14 @@
                 <constraint firstItem="Hho-fi-p17" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ooJ-Se-Tvy"/>
                 <constraint firstItem="ysr-2J-PJ6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sgK-0i-GfU"/>
             </constraints>
-            <point key="canvasLocation" x="-710" y="-1092"/>
+            <point key="canvasLocation" x="-1081" y="-1063"/>
         </view>
     </objects>
     <resources>
         <image name="IQButtonBarArrowLeft.png" width="12" height="21"/>
         <image name="IQButtonBarArrowRight.png" width="12" height="21"/>
         <image name="Icon.png" width="1024" height="1024"/>
+        <image name="IconPlaceholder.png" width="16" height="16"/>
         <image name="bg_login.png" width="375" height="161"/>
         <image name="ic_input_address.png" width="13" height="16"/>
         <image name="ic_input_lock.png" width="13" height="16"/>

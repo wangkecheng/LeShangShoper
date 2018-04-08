@@ -126,13 +126,17 @@ typedef enum ViewTagIndentifyer{
 		[BaseServer postObjc:m path:@"/user/info" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
 			if ([result[@"data"] isKindOfClass:[NSDictionary class]]) {
 				UserInfoModel *model = [CacheTool getUserModelByID:result[@"data"][@"mobile"]];
+                [[SDImageCache sharedImageCache] removeImageForKey:[NSString stringWithFormat:@"%@%@",POST_HOST,model.headUrl] withCompletion:nil];//清除头像缓存
 				[model yy_modelSetWithJSON:result[@"data"]];
 				model.isMember = 1;
 				model.isRecentLogin = 0;
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[CacheTool writeToDB:model];
-					[CacheTool setRootVCByIsMainVC:YES];
+					[CacheTool setRootVCByIsMainVC:YES finishBlock:strongSelf.finishLoginBlock];
 				});
+                if (strongSelf.finishLoginBlock) {
+                    strongSelf.finishLoginBlock();
+                }
 			}
 		} failed:^(NSError *error) {
 			

@@ -74,5 +74,7 @@
 +(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font W:(CGFloat)W;
 
 + (CGSize)getImageSizeWithURL:(id)URL;
+//判断手机号码格式是否正确
++ (BOOL)valiMobile:(NSString *)mobile;
 @end
 

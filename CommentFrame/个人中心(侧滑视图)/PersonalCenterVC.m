@@ -16,6 +16,8 @@
 #import "AlbumListVC.h"
 #import "ResetPersonInfoView.h"
 #import "ImagePrivilegeTool.h"
+#import "InteractionVC.h"
+#import "HDMainNavC.h"
 @interface PersonalCenterVC ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *dianJiLoginLbl;//点击登录lbl
@@ -102,13 +104,8 @@
         [_switchSex setOn:NO];
         if ([model.sex integerValue] == 2) {
             [_switchSex setOn:YES];
-        }
-        UIImage *image = [UIImage imageWithData:model.headImgData];
-        if (image) {
-            [_headerBtn  setImage:image forState:0];
-        }else{
-            [_headerBtn  sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-        }
+        } 
+        [_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
         _dianJiLoginLbl.alpha = 0;
         _nameLbl.alpha = _rankLbl.alpha = 1;
         _userNameLbl.text = _nameLbl.text =  [DDFactory getString:model.name  withDefault:@"未知"];
@@ -198,7 +195,6 @@
 
 - (void)finishSelectImg:(UIImage *)image{
     UserInfoModel * model =  [CacheTool getUserModel];
-    model.headImgData = UIImagePNGRepresentation(image);
     [CacheTool writeToDB:model];
     [_headerBtn setImage:image forState:0];
     [self resetUserInfo:image];
@@ -304,15 +300,25 @@
     if (image) {//当 图片数据有的时候才传入
         imgsArr = @[image];
     }
-	[BaseServer uploadImages:imgsArr path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES
-					 success:^(id result) {
-                         UserInfoModel * model = [CacheTool getUserModel];
-                         model.headUrl = result[@"data"][@"headUrl"];
-                         [CacheTool writeToDB:model];
-                      [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
-					 } failed:^(NSError *error) {
-						 
-	 }];
+    weakObj;
+    UserInfoModel * model = [CacheTool getUserModel];
+    [[SDImageCache sharedImageCache] removeImageForKey:[NSString stringWithFormat:@"%@%@",POST_HOST,model.headUrl] withCompletion:nil];//清除头像缓存
+    [BaseServer uploadImages:imgsArr path:@"/user/update" param:[CacheTool getUserModel] isShowHud:YES  success:^(id result) {
+        UserInfoModel * model = [CacheTool getUserModel];
+        model.headUrl = result[@"data"][@"headUrl"];
+        [CacheTool writeToDB:model];
+        [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
+        dispatch_async(dispatch_get_main_queue(), ^{ 
+            WSLeftSlideManagerVC *managerVC = (WSLeftSlideManagerVC *)CurrentAppDelegate.window.rootViewController;
+            if ([managerVC isKindOfClass:[WSLeftSlideManagerVC class]]) {
+                HDMainNavC *navi =  managerVC.mainTBC.viewControllers[3];
+                InteractionVC *VC = navi.viewControllers[0];
+                [VC getPage];
+            }
+        });
+    } failed:^(NSError *error) {
+        
+    }];
 }
  
 - (IBAction)switchAction:(UISwitch *)sender {
@@ -344,7 +350,9 @@
 	 model.isMember = 0;
      model.isRecentLogin = 1;
 	[CacheTool writeToDB:model];//状态设置为NO，表示登出
-    [CacheTool setRootVCByIsMainVC:NO]; 
+    [CacheTool setRootVCByIsMainVC:NO finishBlock:^{
+          [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

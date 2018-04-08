@@ -29,6 +29,7 @@ typedef enum ViewTagIndentifyer{
 @property (copy, nonatomic)void(^finishBlock)(NSString *phoneNum);
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (nonatomic, strong) DYPickerView *pickerView; // pickerView
+@property (weak, nonatomic) IBOutlet UIButton *protocolBtn;
 
 @end
 
@@ -74,8 +75,9 @@ typedef enum ViewTagIndentifyer{
 }
 
 - (IBAction)sendVercodeAction:(id)sender {
-    if (_phoneField.text.length == 0) {
-        [self.view makeToast:@"请输入手机号"];
+     
+    if(![DDFactory valiMobile:_phoneField.text]){
+        [self.view makeToast:@"手机号格式错误"];
         return;
     }
 	_getVercodeBtn.userInteractionEnabled = NO;
@@ -104,8 +106,12 @@ typedef enum ViewTagIndentifyer{
 	});
 }
 - (IBAction)registerAction:(id)sender {
-    if (_phoneField.text.length == 0) {
-        [self.view makeToast:@"请输入手机号"];
+    if (!_protocolBtn.selected) {
+        [self.view makeToast:@"请同意用户协议和隐私政策"];
+        return;
+    }
+    if(![DDFactory valiMobile:_phoneField.text]){
+        [self.view makeToast:@"手机号格式错误"];
         return;
     }
     if (_vercodeField.text.length == 0) {
@@ -219,6 +225,13 @@ typedef enum ViewTagIndentifyer{
         }];
     }
     return _pickerView;
+}
+- (IBAction)protocolBtnAction:(UIButton *)sender {
+    [sender setValue:@(!sender.selected) forKey:@"selected"];
+    [sender setImage:IMG(@"IconPlaceholder") forState:0];
+    if (sender.selected) {
+        [sender setImage:IMG(@"IconPlaceholder1") forState:0];
+    }
 }
 
 - (IBAction)toUserProtocol:(id)sender {

@@ -39,8 +39,7 @@
 @implementation HomeVC
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-   
+    [super viewDidLoad]; 
     weakObj;
 	_arrHomeHeaderModel = [NSMutableArray array];
 	_arrMerchantModel = [NSMutableArray array];
@@ -130,7 +129,7 @@
 -(void)serviceAction{//智能服务
         weakObj;
 
-    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{
+    InteligentServiceAlertView *alertView = [InteligentServiceAlertView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH - 50, (SCREENWIDTH - 50)*580/606.0) WXClickBlock:^BOOL{ 
         __strong typeof (weakSelf) strongSelf = weakSelf;
         [strongSelf.alertControl ds_dismissAlertView];
         [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
@@ -139,6 +138,7 @@
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = result[@"data"][@"weixin"];
                 [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"];
+                
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     NSURL *url = [NSURL URLWithString:@"weixin://"] ;
                     if (![[UIApplication sharedApplication] canOpenURL:url]){
@@ -154,11 +154,12 @@
         }];
         return YES;
     } PhClickBlock:^BOOL{
+        
         weakObj;
         [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
             __strong typeof (weakSelf) strongSelf  = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
-                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"custormer"]]]];
             });
         } failed:^(NSError *error) {
         }];
@@ -427,6 +428,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
    //打开搜索界面
     SearchProductVC * VC = [[SearchProductVC alloc]init];
+    VC.isBargin = NO;
     HDMainNavC * navi = (HDMainNavC *)self.navigationController;
     [navi pushVC:VC isHideBack:YES animated:YES];
 	return NO;

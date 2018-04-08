@@ -22,11 +22,13 @@
     view.backgroundColor = [UIColor clearColor];
     view.WXClickBlock = WXClickBlock;
     view.PhClickBlock = PhClickBlock;
+    [BaseServer postObjc:nil path:@"/contact/add" isShowHud:NO isShowSuccessHud:NO success:nil failed:nil];
     return view;
 }
 
 - (IBAction)weiXinAction:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
+
     if (_WXClickBlock) {
         if (_WXClickBlock()) {
              sender.userInteractionEnabled = YES;

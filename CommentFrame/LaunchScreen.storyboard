@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tempLaunch.png" translatesAutoresizingMaskIntoConstraints="NO" id="csj-oO-Dcu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luanchImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="csj-oO-Dcu">
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                             </imageView>
                         </subviews>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tempLaunch.png" width="760" height="1314"/>
+        <image name="luanchImg.png" width="543" height="962"/>
     </resources>
 </document>

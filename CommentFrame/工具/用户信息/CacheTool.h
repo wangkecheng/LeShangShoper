@@ -18,6 +18,6 @@
 +(UserInfoModel *)getUserModelByID:(NSString *)ID;
 
 //设置根视图
-+ (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC;
++ (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC finishBlock:(void(^)(void))finishLoginBlock;
 +(BOOL)isToLoginVC:(HDBaseVC *)theVC;
 @end

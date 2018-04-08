@@ -30,8 +30,7 @@
 	_tableview.backgroundColor =  UIColorFromRGB(242, 242, 242);
 	_tableview.delegate = self;
 	_tableview.dataSource = self;
-	[_tableview setSeparatorStyle:0];
-	
+	[_tableview setSeparatorStyle:0]; 
 	[_tableview hideSurplusLine];
 	
 	_tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
@@ -65,7 +64,6 @@
                     if (![[UIApplication sharedApplication] canOpenURL:url]){
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您尚未安装微信" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                         [alertView show];
-                        
                     }
                     [[UIApplication sharedApplication] openURL:url];
                 });
@@ -79,7 +77,7 @@
         [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
             __strong typeof (weakSelf) strongSelf  = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"custormer"]]]];
             });
         } failed:^(NSError *error) {
         }];

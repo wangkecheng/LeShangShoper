@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,7 +35,7 @@
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="sfD-Cw-TbA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="sfD-Cw-TbA">
                         <rect key="frame" x="308" y="24" width="90" height="67.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="sfD-Cw-TbA" secondAttribute="height" multiplier="40:30" id="tjb-bN-V1O"/>
@@ -89,7 +88,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Icon.png" width="1024" height="1024"/>
         <image name="ic_nocredit.png" width="49" height="49"/>
-        <image name="image0.jpg" width="1242" height="1786"/>
     </resources>
 </document>

@@ -10,4 +10,5 @@
 
 @interface SearchProductVC : HDBaseVC
 
+@property (nonatomic,assign)BOOL  isBargin;//是否是特价
 @end

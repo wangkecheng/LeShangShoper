@@ -23,6 +23,7 @@
 
 -(void)setModel:(BrandsModel *)model{
     _model = model;
+    NSLog(@"%@",IMGURL(model.url));
     [_img sd_setImageWithURL:IMGURL(model.url) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
     [_titleLbl setText:[DDFactory getString:model.name  withDefault:@"未知品牌"]];
 }

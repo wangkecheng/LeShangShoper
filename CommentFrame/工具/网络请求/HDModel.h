@@ -36,4 +36,5 @@
 @property (nonatomic,strong)NSString *sortKey;
 @property (nonatomic,strong)NSString *did;
 @property (nonatomic,strong)NSString *own;
+@property (nonatomic,strong)NSString *bargain;
 @end

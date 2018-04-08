@@ -10,4 +10,5 @@
 
 @interface InteractionVC : HDBaseVC
 
+- (void)getPage;
 @end

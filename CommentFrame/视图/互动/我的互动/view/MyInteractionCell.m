@@ -8,10 +8,10 @@
 //  Copyright © 2018年 warron. All rights reserved.
 //
 
-#import "InteractionCell.h"
+#import "MyInteractionCell.h"
 #import "HWCollectionViewCell.h"
 static int Btn_Tag = 100;
-@interface InteractionCell()<UINavigationControllerDelegate,
+@interface MyInteractionCell()<UINavigationControllerDelegate,
 UIImagePickerControllerDelegate,UIScrollViewDelegate,UITextViewDelegate,
 UICollectionViewDelegate,UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
@@ -35,7 +35,7 @@ UICollectionViewDelegateFlowLayout>
 
 @end
 
-@implementation InteractionCell
+@implementation MyInteractionCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -49,93 +49,93 @@ UICollectionViewDelegateFlowLayout>
     [super setSelected:selected animated:animated];
 }
 -(void)setMyInteractionModel:(InteractionModel *)myInteractionModel{
-	_myInteractionModel = myInteractionModel;
-	_deleteBtn.alpha = 1;
+    _myInteractionModel = myInteractionModel;
+    _deleteBtn.alpha = 1;
     [self initData:myInteractionModel];
 }
 -(void)setModel:(InteractionModel *)model{
-	_model = model;
-	_deleteBtn.alpha = 0;
+    _model = model;
+    _deleteBtn.alpha = 0;
     if ([_model.isUser integerValue] == 2) {
-         _deleteBtn.alpha = 1;//是用户自己发布的 就不隐藏删除按钮
+        _deleteBtn.alpha = 1;//是用户自己发布的 就不隐藏删除按钮
     }
-	[self initData:model];
+    [self initData:model];
 }
 -(void)initData:(InteractionModel *)model{
-     [[SDImageCache sharedImageCache] removeImageForKey:[NSString stringWithFormat:@"%@%@",POST_HOST,model.headUrl] withCompletion:nil];//清除头像缓存
-	[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
-	_nameLbl.text = [DDFactory getString:model.name     withDefault:@"未知用户"];
-	_titLbl.text = [DDFactory getString:model.content  withDefault:@""];
-	NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
-	NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    [[SDImageCache sharedImageCache] removeImageForKey:[NSString stringWithFormat:@"%@%@",POST_HOST,model.headUrl] withCompletion:nil];//清除头像缓存
+    [_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
+    _nameLbl.text = [DDFactory getString:model.name     withDefault:@"未知用户"];
+    _titLbl.text = [DDFactory getString:model.content  withDefault:@""];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[model.createAt integerValue]/1000];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-	NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
-	
-	_timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
-	[_commentBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.commentNumber  withDefault:@"0"]] forState:0];
-	[_pardiseBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.giveNumber  withDefault:@"0"]] forState:0];
-	//    CGFloat w = CGRectGetWidth(self.contentView.frame) - 10;//默认一张的时候
-	//    CGFloat h = w;//一张的时候
-	//	if (imgStrArr.count == 2) {
-	//		w = CGRectGetWidth(self.contentView.frame) / 2.0 - 15;
-	//	}
-	//	if (imgStrArr.count > 2) {
-	//		w = CGRectGetWidth(self.contentView.frame) / 3.0 - 20;
-	//	}
-	//    CGFloat margin = 5;
-	//    w = (CGRectGetWidth(self.contentView.frame)  - 4*margin ) / 3.0;
-	//    h = w;
-	//    [_imgsContaintView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-	//    NSInteger imgCount =  model.imageUrls.count;
-	//    UIButton * lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-	//    for (int i = 0;i<imgCount;i++ ) {
-	//        NSString *imgUrl = _model.imageUrls[i];
-	//        CGFloat x =  CGRectGetMaxX(lastBtn.frame) + margin;
-	//        CGFloat y = CGRectGetMinY(lastBtn.frame);
-	//        if(i%3 == 0 ){
-	//            x = margin;
-	//            y = CGRectGetMaxY(lastBtn.frame) + margin;
-	//        }
-	//        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, w, h)];
-	//        btn.tag = i + Btn_Tag;
-	//        btn.layer.cornerRadius = 10;
-	//        btn.layer.masksToBounds = YES;
-	//        [btn addTarget:self action:@selector(bimImgAction:) forControlEvents:UIControlEventTouchUpInside];
-	//         [btn sd_setImageWithURL:IMGURL(imgUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-	//
-	//        [_imgsContaintView addSubview:btn];
-	//        lastBtn = btn;
-	//    }
-	//查看全部 按钮部分
+    NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+    
+    _timeLbl.text = [NSString stringWithFormat:@"%@",confromTimespStr];
+    [_commentBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.commentNumber  withDefault:@"0"]] forState:0];
+    [_pardiseBtn setTitle:[NSString stringWithFormat:@" %@",[DDFactory getString:model.giveNumber  withDefault:@"0"]] forState:0];
+    //    CGFloat w = CGRectGetWidth(self.contentView.frame) - 10;//默认一张的时候
+    //    CGFloat h = w;//一张的时候
+    //    if (imgStrArr.count == 2) {
+    //        w = CGRectGetWidth(self.contentView.frame) / 2.0 - 15;
+    //    }
+    //    if (imgStrArr.count > 2) {
+    //        w = CGRectGetWidth(self.contentView.frame) / 3.0 - 20;
+    //    }
+    //    CGFloat margin = 5;
+    //    w = (CGRectGetWidth(self.contentView.frame)  - 4*margin ) / 3.0;
+    //    h = w;
+    //    [_imgsContaintView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    //    NSInteger imgCount =  model.imageUrls.count;
+    //    UIButton * lastBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    //    for (int i = 0;i<imgCount;i++ ) {
+    //        NSString *imgUrl = _model.imageUrls[i];
+    //        CGFloat x =  CGRectGetMaxX(lastBtn.frame) + margin;
+    //        CGFloat y = CGRectGetMinY(lastBtn.frame);
+    //        if(i%3 == 0 ){
+    //            x = margin;
+    //            y = CGRectGetMaxY(lastBtn.frame) + margin;
+    //        }
+    //        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(x, y, w, h)];
+    //        btn.tag = i + Btn_Tag;
+    //        btn.layer.cornerRadius = 10;
+    //        btn.layer.masksToBounds = YES;
+    //        [btn addTarget:self action:@selector(bimImgAction:) forControlEvents:UIControlEventTouchUpInside];
+    //         [btn sd_setImageWithURL:IMGURL(imgUrl) forState:0 placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+    //
+    //        [_imgsContaintView addSubview:btn];
+    //        lastBtn = btn;
+    //    }
+    //查看全部 按钮部分
     _titLblH.constant =  0;
-	if(model.needHideSeeAllBtn){//如果是需要隐藏 就隐藏
-		_seeAllBtn.alpha = 0;
-		_seeAllBtnH.constant = 0;
-	}else{
-		_seeAllBtn.alpha = 1;
-		_seeAllBtnH.constant = 30;
-	}
+    if(model.needHideSeeAllBtn){//如果是需要隐藏 就隐藏
+        _seeAllBtn.alpha = 0;
+        _seeAllBtnH.constant = 0;
+    }else{
+        _seeAllBtn.alpha = 1;
+        _seeAllBtnH.constant = 30;
+    }
     if (_titLblH.constant < 60) {//如果小于 60  那么就用文字的高度
         _titLblH.constant = model.contentH;
     }
-	if (model.isStatusSeeAll) {//是否需要查看全部，如果需要查看全部 那么现实文本实际高度
-		_titLblH.constant = model.contentH;
-	}else if(!model.needHideSeeAllBtn){//不需要隐藏查看全部按钮 表示这段文本有很多，需要有查看全部的按钮，但是此时不是显示全部
-		_titLblH.constant = 60;
-	}
-	[_seeAllBtn setTitle:@"查看全部" forState:0];
-	if (model.isStatusSeeAll) {//状态是 查看全部 那就收起
-		[_seeAllBtn setTitle:@"收起" forState:0];
-	}
-	[_collectionView reloadData];
-	[super layoutIfNeeded];
+    if (model.isStatusSeeAll) {//是否需要查看全部，如果需要查看全部 那么现实文本实际高度
+        _titLblH.constant = model.contentH;
+    }else if(!model.needHideSeeAllBtn){//不需要隐藏查看全部按钮 表示这段文本有很多，需要有查看全部的按钮，但是此时不是显示全部
+        _titLblH.constant = 60;
+    }
+    [_seeAllBtn setTitle:@"查看全部" forState:0];
+    if (model.isStatusSeeAll) {//状态是 查看全部 那就收起
+        [_seeAllBtn setTitle:@"收起" forState:0];
+    }
+    [_collectionView reloadData];
+    [super layoutIfNeeded];
 }
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	
-	InteractionModel * model = _model == nil? _myInteractionModel:_model;
-	return model.imageUrls.count;
+    
+    InteractionModel * model = _model == nil? _myInteractionModel:_model;
+    return model.imageUrls.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -151,10 +151,10 @@ UICollectionViewDelegateFlowLayout>
     
     UINib *nib = [UINib nibWithNibName:@"HWCollectionViewCell" bundle: [NSBundle mainBundle]];
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"HWCollectionViewCell"];
-    HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath]; 
-	
-	InteractionModel * model = _model == nil? _myInteractionModel:_model;
-	[cell setImgUrlStr:model.imageUrls[indexPath.row]];
+    HWCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"HWCollectionViewCell" forIndexPath:indexPath];
+    
+    InteractionModel * model = _model == nil? _myInteractionModel:_model;
+    [cell setImgUrlStr:model.imageUrls[indexPath.row]];
     return cell;
 }
 //定义每个Section的四边间距
@@ -172,19 +172,19 @@ UICollectionViewDelegateFlowLayout>
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-	InteractionModel * model = _model == nil? _myInteractionModel:_model;
+    InteractionModel * model = _model == nil? _myInteractionModel:_model;
     if(_seeBigImgBlock){
         _seeBigImgBlock(model,indexPath.row);
     }
 }
 
 - (IBAction)seeAllBtnAction:(id)sender {//点击时的状态
-	InteractionModel * model = _model == nil? _myInteractionModel:_model;
+    InteractionModel * model = _model == nil? _myInteractionModel:_model;
     model.isStatusSeeAll = !model.isStatusSeeAll;//状态立刻改变
-    model.cellH = [InteractionCell cellHByModel:model];
+    model.cellH = [MyInteractionCell cellHByModel:model];
     [_seeAllBtn setTitle:@"收起" forState:0];
     if (model.isStatusSeeAll) {//状态是 查看全部 那就收起
-       [_seeAllBtn setTitle:@"查看全部" forState:0];
+        [_seeAllBtn setTitle:@"查看全部" forState:0];
     }
     if (_seeAllBlock) {
         _seeAllBlock(model);
@@ -197,28 +197,28 @@ UICollectionViewDelegateFlowLayout>
 //    }
 //}
 - (IBAction)deleteAction:(id)sender {
-	if (_deleteBlock) {
-		InteractionModel * model = _model == nil? _myInteractionModel:_model;
-		_deleteBlock(model);
-	}
+    if (_deleteBlock) {
+        InteractionModel * model = _model == nil? _myInteractionModel:_model;
+        _deleteBlock(model);
+    }
 }
 
 - (IBAction)commentAction:(id)sender {
-	if (_commentBlock) {
-		InteractionModel * model = _model == nil? _myInteractionModel:_model;
-		_commentBlock(model);
-	}
+    if (_commentBlock) {
+        InteractionModel * model = _model == nil? _myInteractionModel:_model;
+        _commentBlock(model);
+    }
 }
 
 - (IBAction)pardiseAction:(id)sender {
-	if (_pardiseBlock) {//l
-			InteractionModel * model = _model == nil? _myInteractionModel:_model;
-		_pardiseBlock(model);
-	}
+    if (_pardiseBlock) {//l
+        InteractionModel * model = _model == nil? _myInteractionModel:_model;
+        _pardiseBlock(model);
+    }
 }
 
 +(CGFloat)cellHByModel:(InteractionModel *)model{
-	CGFloat H = 45 + 10 + 40;
+    CGFloat H = 45 + 10 + 40;
     CGFloat titltH = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 24];
     model.contentH = titltH;
     if (titltH > 60) {//大于60 那么需要有个 查看全部的按钮
@@ -230,10 +230,10 @@ UICollectionViewDelegateFlowLayout>
             H += 60;
         }
     }else{//不大于60的情况下 加真实高度 并且隐藏查看全部按钮
-         H += titltH;
-         model.needHideSeeAllBtn = YES;//隐藏查看全部按钮
+        H += titltH;
+        model.needHideSeeAllBtn = YES;//隐藏查看全部按钮
     }
-	CGFloat margin = 5;
+    CGFloat margin = 5;
     if (model.imageUrls.count == 1) {
         if (model.imageUrls.count == 1) {
             CGSize size = [DDFactory getImageSizeWithURL:IMGURL([model.imageUrls lastObject])];
@@ -247,14 +247,15 @@ UICollectionViewDelegateFlowLayout>
         }
         return  H += model.singleImgH + 5;
     }
-	CGFloat w = (SCREENWIDTH   - 30 )/ 3.0;//图片高宽
-	NSInteger imgCount = model.imageUrls.count;
-	NSInteger rows = imgCount/3;//图片共几排
-
-	if(imgCount%3!=0 &&imgCount!=0){
-		rows += 1;//如果有余数 说名可能为 5 8 那么就要再加一排
-	}
-		H += rows * w + (rows + 1)*margin;//图片上 图片之间 最下排的图片的间隙 间隙数 比行数多 1
-	return H;
+    CGFloat w = (SCREENWIDTH   - 30 )/ 3.0;//图片高宽
+    NSInteger imgCount = model.imageUrls.count;
+    NSInteger rows = imgCount/3;//图片共几排
+    
+    if(imgCount%3!=0 &&imgCount!=0){
+        rows += 1;//如果有余数 说名可能为 5 8 那么就要再加一排
+    }
+    H += rows * w + (rows + 1)*margin;//图片上 图片之间 最下排的图片的间隙 间隙数 比行数多 1
+    return H;
 }
 @end
+

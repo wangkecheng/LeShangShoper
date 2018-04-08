@@ -31,11 +31,12 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	_arrModel = [[NSMutableArray alloc]init];
-	[_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
 	 _tableview.backgroundColor = self.view.backgroundColor = UIColorFromHX(0xf0f0f0);
 	 _tableview.delegate = self;
 	 _tableview.dataSource = self;
 	[_tableview setSeparatorStyle:0];
+    
+    [_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
 	
 	[_tableview hideSurplusLine]; 
     _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
@@ -69,7 +70,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = result[@"data"][@"weixin"];
-                [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"];
+                [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"]; 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     NSURL *url = [NSURL URLWithString:@"weixin://"] ;
                     if (![[UIApplication sharedApplication] canOpenURL:url]){
@@ -89,7 +90,7 @@
         [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
             __strong typeof (weakSelf) strongSelf  = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"custormer"]]]];
             });
         } failed:^(NSError *error) {
         }];
@@ -124,8 +125,14 @@
 #pragma mark - YBPopupMenuDelegate
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu{
     HDBaseVC *VC = nil;
+    weakObj;
     if (index == 0) {
-		VC = [[AddInteractionVC alloc]init];
+        VC = [[AddInteractionVC alloc]initWithBlock:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+                [strongSelf getPage];
+            });
+        }];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (index == 1){
         _isMyInteraction = YES;
@@ -137,9 +144,6 @@
     }else{
          _page = 1;
         _isMyInteraction = NO;
-        [_arrModel removeAllObjects];
-        [_tableview reloadData];
-        [self getPage];
     }
     
 }
@@ -159,17 +163,17 @@
 	HDModel *m = [HDModel model];
      m.pageNumber = [NSString stringFromInt:pageIndex];
      m.own = @"1";//看所有的
-    if (_isMyInteraction) {
-        m.own = @"2";//看自己的
+//    if (_isMyInteraction) {
+//        m.own = @"2";//看自己的
+//    }
+    if (_page == 1) {
+        [_arrModel removeAllObjects];
     }
 	weakObj;
 	[BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
 		NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
-    
-		if (strongSelf.page == 1) {
-			[strongSelf.arrModel removeAllObjects];
-		}
+     
 		[strongSelf.arrModel addObjectsFromArray:tempArr];
         
         dispatch_group_t group = dispatch_group_create();
@@ -225,8 +229,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
+    
+//    NSString *CellIdentifier = [NSString stringWithFormat:@"allCell%ld%ld",indexPath.section,indexPath.row];// 定义cell标识  每个cell对应一个自己的标识
+	InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];// 通过不同标识创建cell实例
+//    if (!cell) {// 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+//      cell= (InteractionCell *)[[[NSBundle  mainBundle] loadNibNamed:@"InteractionCell" owner:self options:nil]  lastObject];
+//    }
     if (_arrModel.count > 0) {
         if (_isMyInteraction) {
             [cell setMyInteractionModel:_arrModel[indexPath.section]];

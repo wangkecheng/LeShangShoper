@@ -4,10 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,10 +25,10 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDP-dc-LZx" userLabel="sheetView">
-                    <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                    <rect key="frame" x="0.0" y="368" width="375" height="300"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mZm-H0-fkl">
-                            <rect key="frame" x="0.0" y="50" width="375" height="283.5"/>
+                            <rect key="frame" x="0.0" y="50" width="375" height="250"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYX-up-kz9">
@@ -72,6 +70,7 @@
                         <constraint firstAttribute="bottom" secondItem="mZm-H0-fkl" secondAttribute="bottom" id="Eok-QO-b0d"/>
                         <constraint firstItem="XYX-up-kz9" firstAttribute="top" secondItem="eDP-dc-LZx" secondAttribute="top" id="J2u-Kr-in9"/>
                         <constraint firstItem="mZm-H0-fkl" firstAttribute="leading" secondItem="eDP-dc-LZx" secondAttribute="leading" id="Nhz-FV-S5S"/>
+                        <constraint firstAttribute="height" constant="300" id="VRV-A7-Pv2"/>
                         <constraint firstAttribute="trailing" secondItem="mZm-H0-fkl" secondAttribute="trailing" id="fqt-yv-rqH"/>
                         <constraint firstItem="mZm-H0-fkl" firstAttribute="top" secondItem="XYX-up-kz9" secondAttribute="bottom" id="zPo-xv-52f"/>
                     </constraints>
@@ -82,16 +81,16 @@
                 <constraint firstAttribute="bottom" secondItem="V0U-5W-8zR" secondAttribute="bottom" id="4uS-yL-Qxd"/>
                 <constraint firstAttribute="trailing" secondItem="eDP-dc-LZx" secondAttribute="trailing" id="AWS-yB-Qzq"/>
                 <constraint firstItem="V0U-5W-8zR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ayl-b7-EpI"/>
-                <constraint firstAttribute="bottom" secondItem="eDP-dc-LZx" secondAttribute="bottom" id="DJT-vM-eqK"/>
+                <constraint firstAttribute="bottom" secondItem="eDP-dc-LZx" secondAttribute="bottom" constant="-1" id="DJT-vM-eqK"/>
                 <constraint firstItem="V0U-5W-8zR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HC4-nf-7qJ"/>
                 <constraint firstItem="eDP-dc-LZx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Wol-tE-gHv"/>
-                <constraint firstItem="eDP-dc-LZx" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1/2" id="a3n-vH-rH1"/>
                 <constraint firstAttribute="trailing" secondItem="V0U-5W-8zR" secondAttribute="trailing" id="dWp-1b-EvA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bottomConstraint" destination="DJT-vM-eqK" id="99n-zp-zcN"/>
                 <outlet property="bottomView" destination="XYX-up-kz9" id="lfQ-IM-Mra"/>
+                <outlet property="contentViewH" destination="VRV-A7-Pv2" id="yX8-4I-esU"/>
                 <outlet property="coverView" destination="V0U-5W-8zR" id="iYj-ia-cKH"/>
                 <outlet property="dissmissBtn" destination="PDD-AC-TrG" id="sOK-sd-tnV"/>
                 <outlet property="tableView" destination="mZm-H0-fkl" id="zqC-tB-Mdd"/>

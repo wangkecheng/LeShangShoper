@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *headerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *rankLbl;
+@property (weak, nonatomic) IBOutlet UILabel *loginTipLbl;
+
 @end
 
 @implementation LeftTopHeadView
@@ -34,9 +36,10 @@
 
 -(void)setUserInfo{
 	[[DDFactory factory] removeChannel:@"ReInitUserInfo"];//移除通知源
-	UserInfoModel * model  = [CacheTool getUserModel];
-	_rankLbl.alpha = 1;
+	UserInfoModel * model  = [CacheTool getUserModel]; 
 	if (model.isMember == 1) {//如果存在
+          _nameLbl.alpha = _rankLbl.alpha = 1;
+          _loginTipLbl.alpha = 0;
         NSString * nameStr = [DDFactory getString:model.name  withDefault:@"未知"];
         if (nameStr.length>4) {
             nameStr = [nameStr substringToIndex:3];
@@ -44,14 +47,11 @@
         }
 		_nameLbl.text = nameStr;
 		_rankLbl.text = [NSString stringWithFormat:@"LV.%@",[DDFactory getString:model.lv  withDefault:@"0"]];
-        UIImage *image = [UIImage imageWithData:model.headImgData];
-		if (image) { 
-			[_headerBtn setImage:image forState:0];
-		}else{
-			[_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0  placeholderImage:IMG(@"icon_touxiang")  options:SDWebImageAllowInvalidSSLCertificates];
-		}
+        [_headerBtn sd_setImageWithURL:IMGURL(model.headUrl) forState:0  placeholderImage:IMG(@"icon_touxiang")  options:SDWebImageAllowInvalidSSLCertificates]; 
 	}else{
-		_rankLbl.alpha = 0;
+		
+        _nameLbl.alpha = _rankLbl.alpha = 0;
+        _loginTipLbl.alpha = 1;
 	}
 }
 - (IBAction)headerViewClick:(id)sender {

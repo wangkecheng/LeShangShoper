@@ -92,6 +92,9 @@
     _page = pageIndex;
     HDModel *m = [HDModel model];
     m.keyword = _searchBar.text;
+    if (m.keyword.length == 0) {
+        return;
+    }
     m.pageNumber = [NSString stringFromInt:_page];
     weakObj;
     [BaseServer postObjc:m path:@"/commodity/collect/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
@@ -140,7 +143,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    return 120;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

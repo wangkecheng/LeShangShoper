@@ -30,6 +30,8 @@
 @property (strong, nonatomic)CollectionModel * detailModel;
 
 @property (weak, nonatomic) IBOutlet WKWebView *webView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewH;
+
 @end
 
 @implementation ProductDetailVC
@@ -139,14 +141,32 @@
     NSMutableString * desStr = [[NSMutableString alloc]init];
     if (![_detailModel.des containsString:@"<"]) {
         [desStr appendString:@"<p class=\"one-p\" style=\"margin: 0px 0px 2em; padding: 2px; line-height: 2.2; font-family: &quot;Microsoft Yahei&quot;, Avenir, &quot;Segoe UI&quot;, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 18px;\">"];
-        [desStr appendString:_detailModel.des];
+        [desStr appendString:[DDFactory getString:_detailModel.des withDefault:@""]];
         [desStr appendString:@"</p>"];
+        _scrollViewH.constant +=  [DDFactory autoHByText:_detailModel.des Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:18] W:SCREENWIDTH];
+    }else{
+        [desStr appendString:[DDFactory getString:_detailModel.des withDefault:@""]];
+        desStr = [NSString stringWithFormat:@"<html> \n"
+                           "<head> \n"
+                           "<style type=\"text/css\"> \n"
+                           "body {font-size:15px;}\n"
+                           "</style> \n"
+                           "</head> \n"
+                           "<body>"
+                           "<script type='text/javascript'>"
+                           "window.onload = function(){\n"
+                           "var $img = document.getElementsByTagName('img');\n"
+                           "for(var p in  $img){\n"
+                           " $img[p].style.width = '100%%';\n"
+                           "$img[p].style.height ='auto'\n"
+                           "}\n"
+                           "}"
+                           "</script>%@"
+                           "</body>"
+                           "</html>",desStr];
     }
-    
-   
-    _scrollViewH.constant +=  [DDFactory autoHByText:_detailModel.des Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:18] W:SCREENWIDTH];;
     //设置webView
-    [_webView loadHTMLString:desStr baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
+    [_webView loadHTMLString:desStr baseURL:[NSURL URLWithString:POST_HOST]];
 }
 
 -(void)saveImgModule:(NSString *)imagePath{//保存图片
@@ -234,23 +254,25 @@
 
 // WKNavigationDelegate 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-   
+  
     //修改字体大小 300%
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+    [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'" completionHandler:nil];
     
     //修改字体颜色  #9098b8
     //    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
     
-//    __block CGFloat webViewHeight;
-//    weakObj; //  document.body.scrollHeigh
-//    [webView evaluateJavaScript:@"document.body.offsetHeight"completionHandler:^(id _Nullable result,NSError * _Nullable error) {
-//        //获取页面高度，并重置webview的frame
-//        webViewHeight = [result doubleValue];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            __strong typeof (weakSelf) strongSelf = weakSelf;
-//            strongSelf.scrollViewH.constant += webViewHeight;
-//        });
-//    }];
+    __block CGFloat webViewHeight;
+    weakObj; //  document.body.scrollHeigh
+    [webView evaluateJavaScript:@"document.body.scrollHeight"
+              completionHandler:^(id result, NSError *_Nullable error) {
+                  //获取页面高度，并重置webview的frame
+                  webViewHeight = [result doubleValue];
+                  dispatch_async(dispatch_get_main_queue(), ^{
+                      __strong typeof (weakSelf) strongSelf = weakSelf;
+                      strongSelf.scrollViewH.constant += webViewHeight;
+                      strongSelf.webViewH.constant = webViewHeight;
+                  });
+     }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewH;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (strong, nonatomic)SeriesModel *seriesModel;
 @property (copy, nonatomic)void(^clickBlock)(BrandsModel *model);
@@ -27,7 +29,8 @@
 +(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model))clickBlock{
     CatalugeSheetView * view = [DDFactory getXibObjc:@"CatalugeSheetView"];
     view.frame = frame;
-    view.clickBlock = clickBlock; 
+    view.clickBlock = clickBlock;
+    view.tableView.backgroundColor = [UIColor blackColor];
     [view setupUI];
     return view;
 }
@@ -35,6 +38,7 @@
 -(void)setupUI{
     _tableView.delegate   = self;
     _tableView.dataSource = self;
+    [_tableView setSeparatorStyle:0];
     [_tableView registerNib:[UINib nibWithNibName:CatalugeSheetViewCell_ bundle:nil] forCellReuseIdentifier:CatalugeSheetViewCell_];
     [_dissmissBtn setEnlargeEdgeWithTop:10 right:300 bottom:10 left:10];
     //点击背景是否影藏
@@ -45,7 +49,8 @@
     [self layoutIfNeeded];
 }
 -(void)showWithSeriesModel:(SeriesModel *)model{
-   
+    NSInteger count = model.brandsArr.count > 4? 4:model.brandsArr.count;
+    _contentViewH.constant = 49 + count * 70;
     _seriesModel = model;
     _titleLbl.text = [DDFactory getString:model.name  withDefault:@"未知系列"];
     weakObj;

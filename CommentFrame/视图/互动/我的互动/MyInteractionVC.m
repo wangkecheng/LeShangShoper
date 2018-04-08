@@ -7,9 +7,9 @@
 //
 
 #import "MyInteractionVC.h"
-#import "InteractionCell.h"
+#import "MyInteractionCell.h"
 #import "AddInteractionVC.h"
-#define InteractionCell_ @"InteractionCell"
+#define MyInteractionCell_ @"MyInteractionCell"
 #import "CommentInteractionVC.h"
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.title = @"互动";
     _arrModel = [[NSMutableArray alloc]init];
-    [_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
+    [_tableview registerNib:[UINib nibWithNibName:MyInteractionCell_ bundle:nil]forCellReuseIdentifier:MyInteractionCell_];
     _tableview.backgroundColor = self.view.backgroundColor = UIColorFromHX(0xf0f0f0);
     _tableview.delegate = self;
     _tableview.dataSource = self;
@@ -151,6 +151,9 @@
     m.pageNumber = [NSString stringFromInt:pageIndex];
     m.own = @"2";//看自己的
     weakObj;
+    if (_page == 1) {
+        [_arrModel removeAllObjects];
+    }
     [BaseServer postObjc:m path:@"/interact/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
         NSArray *tempArr = [NSArray yy_modelArrayWithClass:[InteractionModel class] json:result[@"data"][@"rows"]];
@@ -162,7 +165,7 @@
         for (InteractionModel * model in strongSelf.arrModel) {
             dispatch_group_enter(group);
             dispatch_group_async(group, queue, ^{
-                model.cellH = [InteractionCell cellHByModel:model];
+                model.cellH = [MyInteractionCell cellHByModel:model];
                 
                 dispatch_group_leave(group);
             });
@@ -212,7 +215,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    InteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:InteractionCell_ forIndexPath:indexPath];
+//    NSString *CellIdentifier = [NSString stringWithFormat:@"myselfCell%ld%ld",indexPath.section,indexPath.row];// 定义cell标识  每个cell对应一个自己的标识
+    MyInteractionCell* cell =  [tableView dequeueReusableCellWithIdentifier:MyInteractionCell_ forIndexPath:indexPath];// 通过不同标识创建cell实例
+//    if (!cell) {// 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+//        cell= (MyInteractionCell *)[[[NSBundle  mainBundle] loadNibNamed:@"MyInteractionCell" owner:self options:nil]  lastObject];
+//    }
     if (_arrModel.count>0) {
         [cell setMyInteractionModel:_arrModel[indexPath.section]];
     }
@@ -309,7 +316,12 @@
     }
     return 10;
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    for (UIView * view in self.tableview.subviews) {
+        [view removeFromSuperview];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

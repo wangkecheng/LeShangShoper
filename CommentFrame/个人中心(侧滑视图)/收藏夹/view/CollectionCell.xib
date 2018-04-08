@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="367" height="130.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tza-Rk-hAc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="tza-Rk-hAc">
                         <rect key="frame" x="12" y="12" width="106.5" height="106.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="tza-Rk-hAc" secondAttribute="height" multiplier="24:24" id="87Y-8H-uwL"/>
@@ -130,13 +130,13 @@
                 <outlet property="titleLbl" destination="VKu-r5-MCk" id="mVW-kY-qmf"/>
                 <outlet property="usePlaceLbl" destination="7bO-M8-9fb" id="joi-GE-b5k"/>
             </connections>
-            <point key="canvasLocation" x="-428" y="-148"/>
+            <point key="canvasLocation" x="-602" y="-235"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Icon.png" width="1024" height="1024"/>
         <image name="ic_collection_n.png" width="15" height="13"/>
         <image name="ic_detail_foot_factory.png" width="15" height="14"/>
         <image name="ic_details_special.png" width="48" height="20"/>
-        <image name="image0.jpg" width="1242" height="1786"/>
     </resources>
 </document>

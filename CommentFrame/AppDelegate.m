@@ -17,24 +17,22 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
  
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
 	[_window makeKeyAndVisible];
 	if (![GuideVC hadLoaded]) {
 		GuideVC *VC = [GuideVC loadWithBlock:^(BOOL isFinish) {
-			[CacheTool setRootVCByIsMainVC:YES];//
+			[CacheTool setRootVCByIsMainVC:YES finishBlock:nil];//
 		}];
 		_window.rootViewController = VC;//第一次进入会走这里
 	}else{
         if ([CacheTool getUserModel].isMember) {
-            [CacheTool setRootVCByIsMainVC:YES];//主视图
+            [CacheTool setRootVCByIsMainVC:YES finishBlock:nil];//主视图
         }else{
-             [CacheTool setRootVCByIsMainVC:YES];//登录视图
+            [CacheTool setRootVCByIsMainVC:YES finishBlock:nil];//登录视图
         } 
 	}
-	
     [IQKeyboardManager sharedManager];//键盘
     [self setShareSDK];//配置分享 和登陆
     weakObj;

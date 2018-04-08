@@ -131,12 +131,14 @@
     pageControl.Q_selectionColor = UIColorFromRGB(251, 205, 32);
     pageControl.Q_numberPags = _arrImgModel.count;
     pageControl.tag = Control_tag;
+    pageControl.alpha = 0;
     [self.view addSubview:pageControl];
     [self creatSkipBtn];
 }
 -(void)creatSkipBtn{
     //移除按钮样式
     UIButton* skipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    skipBtn.alpha = 0;
     [skipBtn addTarget:self action:@selector(removeGuidView) forControlEvents:UIControlEventTouchUpInside];
     [skipBtn setTitle:@"跳过" forState:UIControlStateNormal];
     [skipBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -153,7 +155,7 @@
     [removeBtn addTarget:self action:@selector(removeGuidView) forControlEvents:UIControlEventTouchUpInside];
     removeBtn.hidden = (self.arrImgModel.count != 1);
     removeBtn.tag = RemoveBtn_tag;      //注意这里的tag
-    
+    removeBtn.alpha = 0;
     //***********************这里面可以自定义*******************************//
     CGFloat btnW = 128;
     CGFloat btnH = 35;
@@ -194,11 +196,18 @@
     
     NSUInteger index = scrollView.contentOffset.x / CGRectGetWidth(self.view.frame);
     [self.view viewWithTag:RemoveBtn_tag].hidden = (index != self.arrImgModel.count - 1);
+   
     for (UIView *view in self.view.subviews) {
         if ([view isKindOfClass:[PageControl class]]) {
             PageControl *pageControl = (PageControl *)view;
             pageControl.Q_currentPag = index;
         }
+    }
+    if (index == self.arrImgModel.count - 1){
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeGuidView)];
+        [self.view addGestureRecognizer:tap];
+    }else if(self.view.gestureRecognizers.count>0){
+        [self.view removeGestureRecognizer:[self.view.gestureRecognizers firstObject]];
     }
 }
 

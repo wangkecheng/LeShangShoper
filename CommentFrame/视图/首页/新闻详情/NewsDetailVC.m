@@ -15,13 +15,19 @@
 -(instancetype)initWithTitle:(NSString *)title{
     self = [super init];
     if (self) {
-        self.title  = title;;
+        
+        self.title  = title;
     }
     return self;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad]; 
+    [super viewDidLoad];
+    NSString *titleStr = _model.title;
+    if(titleStr.length > 10){
+        titleStr =  [NSString stringWithFormat:@"%@...",[titleStr substringToIndex:10]];
+    }
+    self.title = titleStr;
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
     _webView.backgroundColor = [UIColor whiteColor];

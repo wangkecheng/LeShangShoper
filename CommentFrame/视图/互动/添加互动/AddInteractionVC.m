@@ -131,21 +131,24 @@ UICollectionViewDelegateFlowLayout>
     
 	NSMutableArray *arrImg = [NSMutableArray array];
 	for (ImgModel  *model in _arrSelected) {
-		[arrImg addObject:model];
+		[arrImg addObject:model.image];
 	}
-    if (m.content.length == 0 && arrImg.count == 0) {
-        [self.view makeToast:@"请输入文字或者选择图片才能发布互动"];
+    if (m.content.length == 0) {
+        [self.view makeToast:@"请输入文字"];
         return;
     }
       [MBProgressHUD showMessage:@"正在发布" toView:self.view];
-	[BaseServer uploadImages:arrImg path:@"/interact/add" param:m isShowHud:YES success:^(id result) {
+	[BaseServer uploadImages:arrImg path:@"/interact/add" param:m isShowHud:NO success:^(id result) {
 		dispatch_async(dispatch_get_main_queue(), ^{
             __strong typeof (weakSelf) strongSelf = weakSelf;
             [MBProgressHUD hideHUDForView:strongSelf.view];
 			if (strongSelf.publishedBlock) {
 				strongSelf.publishedBlock();
 			}
-			[strongSelf.navigationController popViewControllerAnimated:YES];
+            [strongSelf.view makeToast:@"发布成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [strongSelf.navigationController popViewControllerAnimated:YES];
+            });
 		});
 	} failed:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{

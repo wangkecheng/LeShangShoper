@@ -18,7 +18,6 @@
 @property (nonatomic, copy) NSString *mobile;//电话
 @property (nonatomic, copy) NSString *name;//姓名
 @property (nonatomic, copy) NSString *integral;//积分
-@property (nonatomic, copy) NSString *headUrl;//头像地址 
-@property (nonatomic, strong) NSData *headImgData;//头像
+@property (nonatomic, copy) NSString *headUrl;//头像地址  
 @end
 

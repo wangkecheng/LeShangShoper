@@ -19,7 +19,7 @@ typedef void (^finishBlock)(BOOL isFinish);
 //查找数据库中是否有用户
 +(UserInfoModel *)getUserModelByID:(NSString *)ID{
   
-    NSArray *arr = [UserInfoModel gy_queryObjsWithCondition:[GYWhereCondition condition].Where(@"keyId").Eq(ID) error:nil];
+    NSArray *arr = [UserInfoModel gy_queryObjsWithCondition:[GYWhereCondition condition].Where(@"mobile").Eq(ID) error:nil];
     if (arr.count!=0) {//有就返回
         return  arr[0];
     }
@@ -76,14 +76,14 @@ typedef void (^finishBlock)(BOOL isFinish);
 }
 
 //设置根视图
-+ (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC {
++ (UIViewController *)setRootVCByIsMainVC:(BOOL)isMainVC finishBlock:(void(^)(void))finishLoginBlock{
     [CurrentAppDelegate.window.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-   LoginVC *loginVC  = [[LoginVC alloc]init];
+   LoginVC *loginVC  = [[LoginVC alloc]initWithFinishBlock:finishLoginBlock];
     loginVC.isLoginOut = YES;
-    HDBaseVC * VC =(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:loginVC];// [[LoginVC alloc]init];//
-    if (isMainVC) {
-        WSLeftSlideManagerVC *managerVC =   [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
+    HDBaseVC * VC =(HDBaseVC *)[[HDMainNavC alloc]initWithRootViewController:loginVC];
+    if (isMainVC){
+        WSLeftSlideManagerVC *managerVC = [[WSLeftSlideManagerVC alloc] initWithMainVC:[[HDMainTBC alloc]init] leftVC:[[PersonalCenterVC alloc]initWithBackgroundImage:IMG(@"bg_personal_center")]];
         managerVC.scaleContent = YES;
         VC = (HDBaseVC *)managerVC;
     }

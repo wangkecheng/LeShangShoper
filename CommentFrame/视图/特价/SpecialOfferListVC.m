@@ -105,6 +105,7 @@
                 UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = result[@"data"][@"weixin"];
                 [strongSelf.view makeToast:@"客服微信复制成功，请到微信添加好友"];
+                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     NSURL *url = [NSURL URLWithString:@"weixin://"] ;
                     if (![[UIApplication sharedApplication] canOpenURL:url]){
@@ -124,7 +125,7 @@
         [BaseServer postObjc:nil path:@"/user/contact/tel" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
             __strong typeof (weakSelf) strongSelf  = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"company"]]]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",result[@"data"][@"custormer"]]]];
             });
         } failed:^(NSError *error) {
         }];
@@ -195,6 +196,7 @@
 	m.pageNumber = [NSString stringFromInt:pageIndex];
     m.sort = _sort;
     m.sortKey = _sortkey;
+    m.bargain = @"2";
 	weakObj;
 	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		__strong typeof (weakSelf) strongSelf = weakSelf;
@@ -316,6 +318,7 @@
 }
 -(void)toSearchVC{
     SearchProductVC * VC = [[SearchProductVC alloc]init];
+    VC.isBargin = YES;
     HDMainNavC * navi = (HDMainNavC *)self.navigationController;
     [navi pushVC:VC isHideBack:YES animated:YES];
 }

@@ -34,7 +34,7 @@
 	[_tableView hideSurplusLine];
 	_tableView.delegate = self;
 	_tableView.dataSource = self;
-    _headerView = [CatalugeListHeaderView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH, 240)];
+    _headerView = [CatalugeListHeaderView instanceByFrame:CGRectMake(0, 0, SCREENWIDTH, 120)];
     [_tableView setSeparatorStyle:0];
     _tableView.tableHeaderView = _headerView;
 	_tableView.tableFooterView=[UIView new];
@@ -62,7 +62,16 @@
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理 
 		dispatch_async(dispatch_get_main_queue(), ^{
+            UIImageView *v1 = [[UIImageView alloc]init];
+            [v1 sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {//获取图片大小
+                if (image.size.width!=0) {
+                    [strongSelf.headerView setFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*image.size.height/image.size.width)];
+                }
+            }];
+            
             [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
+  
+            
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];

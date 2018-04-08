@@ -109,7 +109,7 @@
                                     <constraint firstAttribute="width" constant="35" id="TgD-Sw-kqy"/>
                                     <constraint firstAttribute="width" secondItem="gB8-Kf-jdh" secondAttribute="height" multiplier="4:4" id="gC2-aG-C1x"/>
                                 </constraints>
-                                <state key="normal" image="image0.jpg"/>
+                                <state key="normal" image="icon_touxiang.png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
                                 </userDefinedRuntimeAttributes>
@@ -197,12 +197,12 @@
                 <outlet property="titLbl" destination="X1L-6K-JMm" id="bnR-Hi-Zdh"/>
                 <outlet property="titLblH" destination="4dJ-N4-q3C" id="wTx-ru-Hhr"/>
             </connections>
-            <point key="canvasLocation" x="-661" y="-900"/>
+            <point key="canvasLocation" x="-911" y="-1058"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ic_comments.png" width="20" height="17"/>
         <image name="ic_praise.png" width="18" height="18"/>
-        <image name="image0.jpg" width="1242" height="1786"/>
+        <image name="icon_touxiang.png" width="88" height="88"/>
     </resources>
 </document>

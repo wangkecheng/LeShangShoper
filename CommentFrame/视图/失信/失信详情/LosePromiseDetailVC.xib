@@ -40,7 +40,7 @@
                                 <constraint firstAttribute="width" secondItem="Buo-CW-acN" secondAttribute="height" multiplier="4:4" id="4Cb-Cp-Rsy"/>
                                 <constraint firstAttribute="width" constant="35" id="6iK-ij-4VU"/>
                             </constraints>
-                            <state key="normal" image="image0.jpg"/>
+                            <state key="normal" image="icon_touxiang.png"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
                             </userDefinedRuntimeAttributes>
@@ -156,6 +156,6 @@
     <resources>
         <image name="ic_detail_praise.png" width="13" height="13"/>
         <image name="ic_detail_views.png" width="14" height="14"/>
-        <image name="image0.jpg" width="1242" height="1786"/>
+        <image name="icon_touxiang.png" width="88" height="88"/>
     </resources>
 </document>
