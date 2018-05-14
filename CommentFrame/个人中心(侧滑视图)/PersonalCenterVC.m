@@ -89,7 +89,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [CacheTool writeToDB:model];
                 __strong typeof (weakSelf) strongSelf = weakSelf;
-                [strongSelf resetUserData];
+                [strongSelf resetUserData:model];
                 [[DDFactory factory] broadcast:nil channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
             });
         }
@@ -98,8 +98,7 @@
     }];
 }
 
--(void)resetUserData{
-    UserInfoModel * model  = [CacheTool getUserModel];
+-(void)resetUserData:(UserInfoModel *)model{
     if (model.isMember == 1) {//如果存在
         [_switchSex setOn:NO];
         if ([model.sex integerValue] == 2) {

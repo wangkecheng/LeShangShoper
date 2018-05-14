@@ -39,8 +39,19 @@
     _tableView.tableHeaderView = _headerView;
 	_tableView.tableFooterView=[UIView new];
 	_tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+    weakObj;
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
-     [self getPage];
+    [self getPage];
+   
+    UIImageView *v1 = [[UIImageView alloc]init];
+    __strong typeof (weakSelf) strongSelf = weakSelf;
+    [v1 sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl)  placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        if (image.size.width!=0) {//获取图片大小 IMGURL(strongSelf.model.logoUrl)
+            [strongSelf.headerView setFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*image.size.height/image.size.width)];
+        }
+    }];
+    [_headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 - (void)getPage{
@@ -53,25 +64,17 @@
 	[self getData:_page + 1];
 }
 - (void)getData:(NSInteger)pageIndex{
+    weakObj;
 	_page = pageIndex;
-	HDModel *m = [HDModel model];
+	  HDModel *m = [HDModel model];
     m.mid = _model.mid;
-	weakObj;
+    
 	[BaseServer postObjc:m path:@"/merchant/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
 		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
 		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理 
-		dispatch_async(dispatch_get_main_queue(), ^{
-            UIImageView *v1 = [[UIImageView alloc]init];
-            [v1 sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {//获取图片大小
-                if (image.size.width!=0) {
-                    [strongSelf.headerView setFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*image.size.height/image.size.width)];
-                }
-            }];
-            
-            [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
-  
-            
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+          __strong typeof (weakSelf) strongSelf = weakSelf;
 			[strongSelf.tableView reloadData];
 			[strongSelf.tableView.mj_header endRefreshing];
 			[strongSelf.tableView.mj_footer endRefreshing];
@@ -115,7 +118,7 @@
     if (model.brandsArr.count == 0) {//没有数据的时候 就直接弹出
         ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
         VC.mid = self.model.mid;
-		VC.title = model.name;
+	    	VC.title = model.name;
         [self.navigationController pushViewController:VC animated:YES];
         return;
     }
@@ -131,7 +134,7 @@
             ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
             VC.brandsModel = model;
             VC.mid = strongSelf.model.mid;
-			VC.title = model.name;
+			      VC.title = model.name;
             [strongSelf.navigationController pushViewController:VC animated:YES];
         }];
     }

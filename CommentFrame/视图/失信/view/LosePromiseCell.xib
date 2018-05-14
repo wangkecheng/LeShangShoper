@@ -23,14 +23,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="410" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgj-sN-6Ft">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgj-sN-6Ft">
                         <rect key="frame" x="10" y="22" width="293" height="0.0"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
                         <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuA-e9-CDv">
-                        <rect key="frame" x="10" y="91.5" width="293" height="0.0"/>
+                        <rect key="frame" x="10" y="103.5" width="293" height="0.0"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="14"/>
                         <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -42,7 +42,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nocredit.png" translatesAutoresizingMaskIntoConstraints="NO" id="I6n-mU-ILg">
-                        <rect key="frame" x="257.5" y="58.5" width="35" height="35"/>
+                        <rect key="frame" x="257.5" y="68.5" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="I6n-mU-ILg" secondAttribute="height" multiplier="163:163" id="Hvg-p3-N7F"/>
                             <constraint firstAttribute="width" constant="35" id="WUQ-CZ-gZw"/>
@@ -61,6 +61,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="GR6-zU-YtJ" secondAttribute="bottom" id="0Kc-1B-sbR"/>
+                    <constraint firstItem="I6n-mU-ILg" firstAttribute="bottom" secondItem="SuA-e9-CDv" secondAttribute="bottom" id="0iT-Jk-A6U"/>
                     <constraint firstItem="GR6-zU-YtJ" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="leading" id="A1c-KC-ffw"/>
                     <constraint firstItem="sfD-Cw-TbA" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="trailing" constant="5" id="Awg-WB-djH"/>
                     <constraint firstItem="SuA-e9-CDv" firstAttribute="leading" secondItem="Qgj-sN-6Ft" secondAttribute="leading" id="F0T-Qb-dsS"/>
@@ -68,9 +69,8 @@
                     <constraint firstItem="Qgj-sN-6Ft" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="NIf-lo-VW8"/>
                     <constraint firstItem="Qgj-sN-6Ft" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PIx-Hp-jSI"/>
                     <constraint firstItem="sfD-Cw-TbA" firstAttribute="leading" secondItem="I6n-mU-ILg" secondAttribute="trailing" constant="15" id="Vj2-WM-9bW"/>
-                    <constraint firstAttribute="bottom" secondItem="SuA-e9-CDv" secondAttribute="bottom" constant="20" id="ZhR-sr-ukD"/>
+                    <constraint firstAttribute="bottom" secondItem="SuA-e9-CDv" secondAttribute="bottom" constant="8" id="ZhR-sr-ukD"/>
                     <constraint firstAttribute="bottom" secondItem="sfD-Cw-TbA" secondAttribute="bottom" constant="20" id="dL8-iU-ZBt"/>
-                    <constraint firstAttribute="bottom" secondItem="I6n-mU-ILg" secondAttribute="bottom" constant="18" id="t8c-O7-pkD"/>
                     <constraint firstItem="SuA-e9-CDv" firstAttribute="trailing" secondItem="Qgj-sN-6Ft" secondAttribute="trailing" id="tQb-iR-C3Q"/>
                     <constraint firstItem="sfD-Cw-TbA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="wc8-Wr-1Ny"/>
                     <constraint firstAttribute="trailing" secondItem="sfD-Cw-TbA" secondAttribute="trailing" constant="12" id="xfm-Jr-JPu"/>
@@ -84,7 +84,7 @@
                 <outlet property="timeLbl" destination="SuA-e9-CDv" id="DLT-sN-3BW"/>
                 <outlet property="titLbl" destination="Qgj-sN-6Ft" id="mWz-4V-uc7"/>
             </connections>
-            <point key="canvasLocation" x="-590" y="-101"/>
+            <point key="canvasLocation" x="-832" y="-151"/>
         </tableViewCell>
     </objects>
     <resources>

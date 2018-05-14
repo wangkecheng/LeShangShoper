@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	_arrModel = [[NSMutableArray alloc]init];
+	 _arrModel = [[NSMutableArray alloc]init];
 	 _tableview.backgroundColor = self.view.backgroundColor = UIColorFromHX(0xf0f0f0);
 	 _tableview.delegate = self;
 	 _tableview.dataSource = self;
