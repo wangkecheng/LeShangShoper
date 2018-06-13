@@ -16,6 +16,11 @@
 		031C12352079BD72004C2452 /* luanchImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12342079BD71004C2452 /* luanchImg.png */; };
 		031C123F2079F48C004C2452 /* MyInteractionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031C123D2079F48C004C2452 /* MyInteractionCell.m */; };
 		031C12402079F48C004C2452 /* MyInteractionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031C123E2079F48C004C2452 /* MyInteractionCell.xib */; };
+		031FD57F20D0AAA700FAB971 /* bg_personal_center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031FD57E20D0AAA700FAB971 /* bg_personal_center@3x.png */; };
+		031FD58220D0B0CE00FAB971 /* InteracteHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031FD58120D0B0CE00FAB971 /* InteracteHeaderView.m */; };
+		031FD58620D0B3B800FAB971 /* NewCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031FD58420D0B3B800FAB971 /* NewCommentCell.m */; };
+		031FD58720D0B3B800FAB971 /* NewCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031FD58520D0B3B800FAB971 /* NewCommentCell.xib */; };
+		031FD58B20D0B56A00FAB971 /* blackPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 031FD58A20D0B56A00FAB971 /* blackPoint.png */; };
 		03235D062071BF2200200EC1 /* PrivacyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03235D042071BF2200200EC1 /* PrivacyVC.m */; };
 		03235D072071BF2200200EC1 /* PrivacyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03235D052071BF2200200EC1 /* PrivacyVC.xib */; };
 		180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D74C120171D2A00B56E5F /* NSDate+Category.m */; };
@@ -492,6 +497,13 @@
 		031C123C2079F48C004C2452 /* MyInteractionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInteractionCell.h; sourceTree = "<group>"; };
 		031C123D2079F48C004C2452 /* MyInteractionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInteractionCell.m; sourceTree = "<group>"; };
 		031C123E2079F48C004C2452 /* MyInteractionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyInteractionCell.xib; sourceTree = "<group>"; };
+		031FD57E20D0AAA700FAB971 /* bg_personal_center@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_personal_center@3x.png"; sourceTree = "<group>"; };
+		031FD58020D0B0CE00FAB971 /* InteracteHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InteracteHeaderView.h; sourceTree = "<group>"; };
+		031FD58120D0B0CE00FAB971 /* InteracteHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InteracteHeaderView.m; sourceTree = "<group>"; };
+		031FD58320D0B3B800FAB971 /* NewCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCommentCell.h; sourceTree = "<group>"; };
+		031FD58420D0B3B800FAB971 /* NewCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCommentCell.m; sourceTree = "<group>"; };
+		031FD58520D0B3B800FAB971 /* NewCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCommentCell.xib; sourceTree = "<group>"; };
+		031FD58A20D0B56A00FAB971 /* blackPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPoint.png; sourceTree = "<group>"; };
 		03235D032071BF2200200EC1 /* PrivacyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivacyVC.h; sourceTree = "<group>"; };
 		03235D042071BF2200200EC1 /* PrivacyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivacyVC.m; sourceTree = "<group>"; };
 		03235D052071BF2200200EC1 /* PrivacyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyVC.xib; sourceTree = "<group>"; };
@@ -1376,6 +1388,7 @@
 		18B542572011839400A40C4E /* 1首页 */ = {
 			isa = PBXGroup;
 			children = (
+				031FD57E20D0AAA700FAB971 /* bg_personal_center@3x.png */,
 				D278A21F2043ED64000EC211 /* jingxuan@2x.png */,
 				D278A2202043ED64000EC211 /* jingxuan@3x.png */,
 				D278A21D2043ED62000EC211 /* remen@2x.png */,
@@ -1952,6 +1965,11 @@
 				200C80091FFFC7AB00C6A2AA /* InteractionCell.h */,
 				200C800A1FFFC7AB00C6A2AA /* InteractionCell.m */,
 				200C800B1FFFC7AB00C6A2AA /* InteractionCell.xib */,
+				031FD58020D0B0CE00FAB971 /* InteracteHeaderView.h */,
+				031FD58120D0B0CE00FAB971 /* InteracteHeaderView.m */,
+				031FD58320D0B3B800FAB971 /* NewCommentCell.h */,
+				031FD58420D0B3B800FAB971 /* NewCommentCell.m */,
+				031FD58520D0B3B800FAB971 /* NewCommentCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2153,6 +2171,7 @@
 		2031F6EB1EA9A33F0075E7F3 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				031FD58A20D0B56A00FAB971 /* blackPoint.png */,
 				031C12342079BD71004C2452 /* luanchImg.png */,
 				031C122A2079AAAB004C2452 /* IconPlaceholder.png */,
 				031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */,
@@ -3093,6 +3112,7 @@
 				200C800D1FFFC7AB00C6A2AA /* InteractionCell.xib in Resources */,
 				18B543312011839500A40C4E /* ic_pop_down@2x.png in Resources */,
 				18B5430C2011839500A40C4E /* ic_my_gender@3x.png in Resources */,
+				031FD57F20D0AAA700FAB971 /* bg_personal_center@3x.png in Resources */,
 				18B542DC2011839500A40C4E /* btn_foot_discount_p@3x.png in Resources */,
 				206FA0362000F26100DB7998 /* HWCollectionViewCell.xib in Resources */,
 				181D9B6A201AEDDD000108A7 /* NewsDetailVC.xib in Resources */,
@@ -3150,6 +3170,7 @@
 				2079EAF51EA9B875004DE68B /* ShareSDKUI.bundle in Resources */,
 				200D7EDE1FF742CC00B97979 /* AlbumListVC.xib in Resources */,
 				031C12302079AAAD004C2452 /* IconPlaceholder.png in Resources */,
+				031FD58720D0B3B800FAB971 /* NewCommentCell.xib in Resources */,
 				18B543242011839500A40C4E /* ic_details_special@3x.png in Resources */,
 				18A2532C2052335400DD0BD1 /* SearchCollectionVC.xib in Resources */,
 				18B542F22011839500A40C4E /* btn_pop_phone@3x.png in Resources */,
@@ -3216,6 +3237,7 @@
 				D278A2102043E9E1000EC211 /* bg_pop_service@3x.png in Resources */,
 				1840EEC8201208BF00A341F7 /* CommentInteractionCell.xib in Resources */,
 				200D7EE91FF742CC00B97979 /* pic_xiangmuquan_fazhaopian@3x.png in Resources */,
+				031FD58B20D0B56A00FAB971 /* blackPoint.png in Resources */,
 				18B543322011839500A40C4E /* ic_pop_down@3x.png in Resources */,
 				18AC01392015BE090072868B /* ico_paihang@2x.png in Resources */,
 				18B543102011839500A40C4E /* ic_my_phone@3x.png in Resources */,
@@ -3436,6 +3458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031FD58620D0B3B800FAB971 /* NewCommentCell.m in Sources */,
 				200D7FC91FF7541000B97979 /* NSString+Emoji.m in Sources */,
 				200D7FD81FF7548D00B97979 /* HDWebVC.m in Sources */,
 				180D74C320171D2B00B56E5F /* NSDate+Category.m in Sources */,
@@ -3451,6 +3474,7 @@
 				186E6E122019D65E00D40E95 /* LWAlertContentView.m in Sources */,
 				20A5D9101FB9908300534868 /* MBProgressHUD.m in Sources */,
 				20A5D8AB1FB98B9200534868 /* NSObject+SXRuntime.m in Sources */,
+				031FD58220D0B0CE00FAB971 /* InteracteHeaderView.m in Sources */,
 				18C4465020284702004E8669 /* SCIndexView.m in Sources */,
 				200D7F7B1FF7439900B97979 /* UserInfoModel.m in Sources */,
 				20A5D9151FB9908300534868 /* YBPopupMenu.m in Sources */,
@@ -3775,7 +3799,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CommentFrame/PrefixHeader.pch";
 				INFOPLIST_FILE = CommentFrame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3811,7 +3835,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CommentFrame/PrefixHeader.pch";
 				INFOPLIST_FILE = CommentFrame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

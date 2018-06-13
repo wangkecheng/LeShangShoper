@@ -11,4 +11,5 @@
 @interface ProductDetailListVC : HDBaseVC
 @property(nonatomic,strong)BrandsModel *brandsModel;
 @property(nonatomic,strong)NSString *mid;
+@property(nonatomic,strong)NSString *name;// 系列名
 @end

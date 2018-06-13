@@ -127,11 +127,14 @@ UICollectionViewDelegateFlowLayout>
 	weakObj;
     //上传图片
 	HDModel *m = [HDModel model];
-	m.content = _noteTextView.text;
-    
+	m.content = _noteTextView.text; 
 	NSMutableArray *arrImg = [NSMutableArray array];
 	for (ImgModel  *model in _arrSelected) {
-		[arrImg addObject:model.image];
+      if ([model isKindOfClass:[ImgModel class]]) {
+          [arrImg addObject:model.image];
+      }else{
+          [arrImg addObject:model];
+      }
 	}
     if (m.content.length == 0) {
         [self.view makeToast:@"请输入文字"];
@@ -171,11 +174,8 @@ UICollectionViewDelegateFlowLayout>
 				strongSelf.imaPicker.delegate = self;
 				[strongSelf.navigationController presentViewController:strongSelf.imaPicker animated:NO completion:nil];
 			}
-			
 		}
 		else if(index == 1){//从相册中选择图片
-			weakObj;
-            
             if (![[ImagePrivilegeTool share]judgeLibraryPrivilege]) {//判读是否有相册选择权限 类中给提示
                 return;
             }
@@ -185,17 +185,22 @@ UICollectionViewDelegateFlowLayout>
 //                strongSelf.imaPicker.allowsEditing = YES;
 //                [strongSelf presentViewController:strongSelf.imaPicker animated:NO completion:nil];
 //            }
-            AlbumListVC *VC = [[AlbumListVC alloc]
-                               initWithArrSelected:self.arrSelected
-                               maxCout:9
-                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-
-                                       [weakSelf.collectionView reloadData];
-                                   });
-                               }];
-            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
-            [weakSelf presentViewController:nav animated:YES completion:nil];
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+            strongSelf.imaPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            strongSelf.imaPicker.delegate = self;
+            [strongSelf.navigationController presentViewController:strongSelf.imaPicker animated:NO completion:nil];
+        }
+//            AlbumListVC *VC = [[AlbumListVC alloc]
+//                               initWithArrSelected:self.arrSelected
+//                               maxCout:9
+//                               selectBlock:^(NSMutableArray<ImgModel *> *imgModelArr) {
+//                                   dispatch_async(dispatch_get_main_queue(), ^{
+//
+//                                       [weakSelf.collectionView reloadData];
+//                                   });
+//                               }];
+//            HDMainNavC *nav = [[HDMainNavC alloc]initWithRootViewController:VC];
+//            [weakSelf presentViewController:nav animated:YES completion:nil];
 		}
 	}];
 	actionSheet.otherActionItemAlignment = SROtherActionItemAlignmentCenter;
@@ -214,10 +219,15 @@ UICollectionViewDelegateFlowLayout>
 		// 照片的元数据参数
 		theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	}
-    if (theImage) {//保存图片到相册中
+    if (_arrSelected.count<9) {
+         [_arrSelected addObject:theImage];
+         [_collectionView reloadData];
+    }
+    if (theImage && picker.sourceType == UIImagePickerControllerSourceTypeCamera) {//保存图片到相册中
         [[WSPHPhotoLibrary library] saveImage:theImage assetCollectionName:@"新易陶" sucessBlock:^(NSString *str, PHAsset *obj) {
 
         } faildBlock:^(NSError *error) {
+            
         }];
     }
 }
@@ -273,7 +283,15 @@ UICollectionViewDelegateFlowLayout>
 		NSMutableArray* tmps = [[NSMutableArray alloc] init];
 		for (int i = 0;i< self.arrSelected.count;i++) {//找出所有图片
          ImgModel * imgModel = _arrSelected[i];
-            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:imgModel.image==nil?imgModel.bigImage:imgModel.image thumbnailURL:nil HDURL:nil
+        UIImage * image;
+        UIImage * bgiImage;
+        if ([imgModel isKindOfClass:[UIImage class]]) {
+            image = (UIImage *)imgModel;
+        }else{
+            bgiImage = imgModel.bigImage;
+            image = imgModel.image;
+        }
+            LWImageBrowserModel* broModel = [[LWImageBrowserModel alloc]  initWithplaceholder:bgiImage==nil?image:bgiImage thumbnailURL:nil HDURL:nil
                 containerView:cell.contentView positionInContainer:cell.contentView.frame
 				index:i];
 			[tmps addObject:broModel];

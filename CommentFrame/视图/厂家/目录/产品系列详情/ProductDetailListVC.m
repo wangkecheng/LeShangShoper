@@ -68,9 +68,10 @@
 
 - (void)getData:(NSInteger)pageIndex {
 	_page = pageIndex;
-	HDModel *m = [HDModel model];
+	  HDModel *m = [HDModel model];
     m.pageNumber = [NSString stringFromInt:_page];
     m.mid = _mid;
+    m.series = _name;
     m.brand = _brandsModel.name;
 	weakObj;
 	[BaseServer postObjc:m path:@"/commodity/list" isShowHud:NO isShowSuccessHud:NO success:^(id result) {
@@ -121,7 +122,6 @@
         }
 		HDModel *m = [HDModel model];
 		m.cid = model.cid;
-		weakObj;
 		if ([model.collect integerValue] == 1) {
 			    model.collect = @"2";
 			[BaseServer postObjc:m path:@"/commodity/collect" isShowHud:YES isShowSuccessHud:NO success:^(id result) {

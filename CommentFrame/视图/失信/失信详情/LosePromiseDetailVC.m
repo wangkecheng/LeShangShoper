@@ -9,7 +9,7 @@
 
 #import "LosePromiseDetailVC.h"
 #import <WebKit/WebKit.h>
-@interface LosePromiseDetailVC ()<WKUIDelegate,WKNavigationDelegate>
+@interface LosePromiseDetailVC ()<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paridseNumLbl;//点赞数
 @property (weak, nonatomic) IBOutlet UIButton *paridseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *seeNumLbl;//查看数
-@property (weak, nonatomic) IBOutlet WKWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -35,8 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    _webView.navigationDelegate = self;
-    _webView.navigationDelegate = self;
-    _webView.UIDelegate = self;
+    _webView.delegate = self;
 	_webView.backgroundColor = [UIColor whiteColor];
 	HDModel * m = [HDModel model];
     m.did = _model.did;
@@ -103,23 +102,32 @@
     }];
 }
 
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
-    
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        
-        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
-        
-        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
-        
-    }
-}
+//- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+//    
+//    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+//        
+//        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+//        
+//        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+//        
+//    }
+//}
 // WKNavigationDelegate 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-    //修改字体大小 300%
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+//    //修改字体大小 300%
+//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+//
+//    //修改字体颜色  #9098b8
+////    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+//
+//}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '120%'";
+        [_webView stringByEvaluatingJavaScriptFromString:str];
     
-    //修改字体颜色  #9098b8
-//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+    //    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",14.0,[UIColor blackColor]];
+    //
+    //    [webView stringByEvaluatingJavaScriptFromString:jsString];
     
 }
 

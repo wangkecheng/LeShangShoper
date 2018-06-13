@@ -145,7 +145,7 @@
     
     option.includeHiddenAssets = YES;
     option.includeAllBurstAssets = YES;
-	return [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeMoment subtype:PHAssetCollectionSubtypeAny options:option];
+	return [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:option];
 }
 
 /**

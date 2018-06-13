@@ -21,12 +21,13 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (strong, nonatomic)SeriesModel *seriesModel;
-@property (copy, nonatomic)void(^clickBlock)(BrandsModel *model);
+@property (copy, nonatomic)void(^clickBlock)(BrandsModel *model,SeriesModel *seriesModel);
+@property (strong, nonatomic)SeriesModel *model;
 
 @end
 
 @implementation CatalugeSheetView
-+(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model))clickBlock{
++(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model,SeriesModel *seriesModel))clickBlock{
     CatalugeSheetView * view = [DDFactory getXibObjc:@"CatalugeSheetView"];
     view.frame = frame;
     view.clickBlock = clickBlock;
@@ -49,6 +50,7 @@
     [self layoutIfNeeded];
 }
 -(void)showWithSeriesModel:(SeriesModel *)model{
+    _seriesModel = model;
     NSInteger count = model.brandsArr.count > 4? 4:model.brandsArr.count;
     _contentViewH.constant = 49 + count * 70;
     _seriesModel = model;
@@ -105,7 +107,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self dissmiss];
     if (_clickBlock) {
-        _clickBlock(_seriesModel.brandsArr[indexPath.row]);
+        _clickBlock(_seriesModel.brandsArr[indexPath.row],_seriesModel);
     }
 }
 

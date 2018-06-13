@@ -37,4 +37,5 @@
 @property (nonatomic,strong)NSString *did;
 @property (nonatomic,strong)NSString *own;
 @property (nonatomic,strong)NSString *bargain;
+@property (nonatomic,strong)NSString *series;
 @end

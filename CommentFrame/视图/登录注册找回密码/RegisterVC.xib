@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -350,7 +351,7 @@
                                                 <action selector="toPrivacy:" destination="-1" eventType="touchUpInside" id="ISL-bp-v0V"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnT-PM-Aa9">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnT-PM-Aa9">
                                             <rect key="frame" x="67" y="297" width="50" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="R9u-BN-nf5"/>

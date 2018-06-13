@@ -42,16 +42,6 @@
     weakObj;
 	_tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     [self getPage];
-   
-    UIImageView *v1 = [[UIImageView alloc]init];
-    __strong typeof (weakSelf) strongSelf = weakSelf;
-    [v1 sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl)  placeholderImage:nil options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        __strong typeof (weakSelf) strongSelf = weakSelf;
-        if (image.size.width!=0) {//获取图片大小 IMGURL(strongSelf.model.logoUrl)
-            [strongSelf.headerView setFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*image.size.height/image.size.width)];
-        }
-    }];
-    [_headerView.backImg sd_setImageWithURL:IMGURL(strongSelf.model.logoUrl) placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 - (void)getPage{
@@ -65,14 +55,27 @@
 }
 - (void)getData:(NSInteger)pageIndex{
     weakObj;
-	_page = pageIndex;
+	  _page = pageIndex;
 	  HDModel *m = [HDModel model];
     m.mid = _model.mid;
     
 	[BaseServer postObjc:m path:@"/merchant/info" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
-		
 		__strong typeof (weakSelf) strongSelf = weakSelf;
-		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理 
+		strongSelf.model = [[ManufacturersModel alloc]initWithDict:result[@"data"]];//直接用上个页面传过来的model来处理
+      [strongSelf.headerView.backImg sd_setImageWithURL:IMGURL(result[@"data"][@"logoUrl"])  placeholderImage:IMG(@"Icon") options:SDWebImageAllowInvalidSSLCertificates progress:nil completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+          CGFloat H = SCREENWIDTH * 2/3.0;
+          if (image.size.width!=0) {//获取图片大小 IMGURL(strongSelf.model.logoUrl)
+              H = SCREENWIDTH*image.size.height/image.size.width;
+          }
+          if (H > SCREENHEIGHT / 2.0) {
+              H = SCREENHEIGHT / 2.0;
+          }
+          dispatch_async(dispatch_get_main_queue(), ^{//设置封面图片
+              __strong typeof (weakSelf) strongSelf = weakSelf;
+              [strongSelf.headerView setFrame:CGRectMake(0, 0, SCREENWIDTH,H)];
+          });
+      }];
+    
       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
           __strong typeof (weakSelf) strongSelf = weakSelf;
 			[strongSelf.tableView reloadData];
@@ -129,10 +132,11 @@
     
     if (!_sheetView) {
         weakObj;
-        _sheetView = [CatalugeSheetView instanceByFrame:[UIScreen mainScreen].bounds clickBlock:^(BrandsModel *model) {
+        _sheetView = [CatalugeSheetView instanceByFrame:[UIScreen mainScreen].bounds clickBlock:^(BrandsModel *model,SeriesModel *seriesModel) {
             __strong typeof (weakSelf) strongSelf = weakSelf;
             ProductDetailListVC * VC = [[ProductDetailListVC alloc]init];
             VC.brandsModel = model;
+            VC.name = seriesModel.name;
             VC.mid = strongSelf.model.mid;
 			      VC.title = model.name;
             [strongSelf.navigationController pushViewController:VC animated:YES];

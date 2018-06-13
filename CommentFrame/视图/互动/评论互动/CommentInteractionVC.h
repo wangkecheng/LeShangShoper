@@ -10,5 +10,6 @@
 #import "InteractionModel.h"
 @interface CommentInteractionVC : HDBaseVC
 @property (nonatomic,strong)InteractionModel *interactionModel;
+@property (nonatomic,strong)NSString *interactId;//互动Id
 @property (nonatomic,copy)void(^finishComBlock)(InteractionModel *interactionModel);
 @end

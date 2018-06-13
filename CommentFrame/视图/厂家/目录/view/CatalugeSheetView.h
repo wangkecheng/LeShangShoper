@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ManufacturersModel.h"
 @interface CatalugeSheetView : UIView
-+(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model))clickBlock;
++(CatalugeSheetView *)instanceByFrame:(CGRect)frame clickBlock:(void(^)(BrandsModel *model,SeriesModel *seriesModel))clickBlock;
 -(void)showWithSeriesModel:(SeriesModel *)model;
 @end

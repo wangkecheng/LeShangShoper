@@ -15,12 +15,16 @@
 #import "LWImageBrowser.h"
 #import "YBPopupMenu.h"
 #import "InteligentServiceAlertView.h"
+#import "InteracteHeaderView.h"
+
 @interface MyInteractionVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)NSMutableArray *arrModel;
 @property (assign, nonatomic)NSInteger page;
 @property (weak, nonatomic)IBOutlet UITableView *tableview;
 @property (nonatomic, strong)DSAlert *alertControl;
 @property (strong, nonatomic)YBPopupMenu *popMenu;
+@property (nonatomic,strong)InteracteHeaderView * headerView;
+
 @end
 
 @implementation MyInteractionVC
@@ -144,8 +148,32 @@
     
     [self getData:_page + 1];
 }
-
+-(InteracteHeaderView *)headerView{
+    if (!_headerView) {
+        weakObj;
+        _headerView = [[InteracteHeaderView alloc] init];
+        _headerView.toCommentInteractionVCBlock = ^(NSString *interactId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+                [strongSelf.tableview reloadData];
+                for (InteractionModel * model in strongSelf.arrModel) {
+                    if ([model.interactId isEqualToString:interactId]) {
+                        [strongSelf toCommentInteractionVC:model];
+                        return ;// 列表中有model 就不走下边的代码了
+                    }
+                }
+                CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+                VC.interactId = interactId;
+                [strongSelf.navigationController pushViewController:VC animated:YES];
+            });
+        };
+        [self.tableview setTableHeaderView:_headerView];
+    }
+    return _headerView;
+}
 - (void)getData:(NSInteger)pageIndex {
+    
+    [self.headerView refresh];
     _page = pageIndex;
     HDModel *m = [HDModel model];
     m.pageNumber = [NSString stringFromInt:pageIndex];
@@ -267,17 +295,10 @@
     };
     
     cell.commentBlock = ^(InteractionModel *model) {
-        __strong typeof (weakSelf) strongSelf = weakSelf;
-        if ([CacheTool isToLoginVC:strongSelf]) {
-            return;//方法内部做判断
-        }
-        CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
-        VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
-            interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
-            [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        };
-        VC.interactionModel = model;
-        [strongSelf.navigationController pushViewController:VC animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+            [strongSelf toCommentInteractionVC:model];
+        });
     };
     cell.deleteBlock = ^(InteractionModel *model) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
@@ -316,11 +337,19 @@
     }
     return 10;
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    for (UIView * view in self.tableview.subviews) {
-        [view removeFromSuperview];
+-(void)toCommentInteractionVC:(InteractionModel *)model{
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
     }
+    weakObj;
+    CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+    VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
+        __strong typeof (weakSelf) strongSelf = weakSelf;
+        interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
+        [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    VC.interactionModel = model;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

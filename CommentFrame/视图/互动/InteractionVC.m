@@ -15,7 +15,8 @@
 #import "LWImageBrowser.h"
 #import "YBPopupMenu.h"
 #import "MyInteractionVC.h"
-#import "InteligentServiceView.h" 
+#import "InteligentServiceView.h"
+#import "InteracteHeaderView.h"
 @interface InteractionVC ()<UITableViewDelegate,UITableViewDataSource,YBPopupMenuDelegate>
 
 @property (strong, nonatomic)NSMutableArray *arrModel;
@@ -24,6 +25,8 @@
 @property (strong, nonatomic)YBPopupMenu *popMenu;
 @property (assign, nonatomic)BOOL isMyInteraction;// NO 全部 YES 我的
 @property (nonatomic, strong)DSAlert *alertControl;
+
+@property (nonatomic,strong)InteracteHeaderView * headerView;
 @end
 
 @implementation InteractionVC
@@ -36,18 +39,19 @@
 	 _tableview.dataSource = self;
 	[_tableview setSeparatorStyle:0];
     
-    [_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
+  [_tableview registerNib:[UINib nibWithNibName:InteractionCell_ bundle:nil]forCellReuseIdentifier:InteractionCell_];
 	
 	[_tableview hideSurplusLine]; 
     _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
     _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getNextPage)];
     [self addRightBarButtonWithFirstImage:IMG(@"ic_top_add") action:@selector(addInteraction:)];
-	[self getPage];
+	 [self getPage];
     
     UIButton * serviceBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH - 60, SCREENHEIGHT/2.0 + 50, 60,60*23/19.0)];
     [serviceBtn setImage:IMG(@"ic_service") forState:0];
     [serviceBtn addTarget:self action:@selector(serviceAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serviceBtn];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated]; 
@@ -145,7 +149,6 @@
          _page = 1;
         _isMyInteraction = NO;
     }
-    
 }
  
 - (void)getPage{
@@ -158,14 +161,36 @@
 	[self getData:_page + 1];
 }
 
+-(InteracteHeaderView *)headerView{
+    if (!_headerView) {
+        weakObj;
+        _headerView = [[InteracteHeaderView alloc] init];
+        _headerView.toCommentInteractionVCBlock = ^(NSString *interactId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof (weakSelf) strongSelf = weakSelf;
+                [strongSelf.tableview reloadData];
+                for (InteractionModel * model in strongSelf.arrModel) {
+                    if ([model.interactId isEqualToString:interactId]) {
+                        [strongSelf toCommentInteractionVC:model];
+                        return ;// 列表中有model 就不走下边的代码了
+                    }
+                }
+                CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+                VC.interactId = interactId;
+                [strongSelf.navigationController pushViewController:VC animated:YES];
+            });
+        };
+        [self.tableview setTableHeaderView:_headerView];
+    }
+    return _headerView;
+}
 - (void)getData:(NSInteger)pageIndex {
+   
+  [self.headerView refresh];
 	_page = pageIndex;
 	HDModel *m = [HDModel model];
      m.pageNumber = [NSString stringFromInt:pageIndex];
      m.own = @"1";//看所有的
-//    if (_isMyInteraction) {
-//        m.own = @"2";//看自己的
-//    }
     if (_page == 1) {
         [_arrModel removeAllObjects];
     }
@@ -210,7 +235,6 @@
 		});
 	}];
 }
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
    
 	return _arrModel.count;
@@ -285,17 +309,10 @@
 	};
     
 	cell.commentBlock = ^(InteractionModel *model) {
-            __strong typeof (weakSelf) strongSelf = weakSelf;
-        if ([CacheTool isToLoginVC:strongSelf]) {
-            return;//方法内部做判断
-        }
-        CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
-		VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
-			interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
-			[strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
-		};
-        VC.interactionModel = model;
-        [strongSelf.navigationController pushViewController:VC animated:YES];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          __strong typeof (weakSelf) strongSelf = weakSelf;
+          [strongSelf toCommentInteractionVC:model];
+      });
 	};
     cell.deleteBlock = ^(InteractionModel *model) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
@@ -317,9 +334,27 @@
 	return cell;
 }
 
+-(void)toCommentInteractionVC:(InteractionModel *)model{
+    if ([CacheTool isToLoginVC:self]) {
+        return;//方法内部做判断
+    }
+    weakObj;
+    CommentInteractionVC * VC = [[CommentInteractionVC alloc]init];
+    VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
+         __strong typeof (weakSelf) strongSelf = weakSelf;
+        interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
+//        [strongSelf.tableview reloadData];
+        [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+     VC.interactionModel = model;
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	UIView *view = [[UIView alloc]init];
 	CGFloat H = 10;

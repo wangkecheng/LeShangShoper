@@ -11,7 +11,7 @@
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
 #import <WebKit/WebKit.h>
-@interface ProductDetailVC ()<WKUIDelegate,WKNavigationDelegate>
+@interface ProductDetailVC ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentViewTopMargin;
 
@@ -29,7 +29,7 @@
 
 @property (strong, nonatomic)CollectionModel * detailModel;
 
-@property (weak, nonatomic) IBOutlet WKWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewH;
 
 @end
@@ -39,9 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"商品详情";
-    _webView.UIDelegate = self;
+    _webView.delegate = self;
     _webView.userInteractionEnabled = NO ;
-    _webView.navigationDelegate = self;
     if (_isNeedResetMargin) {
         _scrollContentViewTopMargin.constant = -10;
     }
@@ -240,43 +239,21 @@
 	}];
 }
 
-
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+//    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'";
+//    [_webView stringByEvaluatingJavaScriptFromString:str];
     
-    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        
-        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
-        
-        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
-        
-    }
+//    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",14.0,[UIColor blackColor]];
+//
+//    [webView stringByEvaluatingJavaScriptFromString:jsString];
+ 
+    CGFloat webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue] + 50;
+    _scrollViewH.constant += webViewHeight;
+    _webViewH.constant = webViewHeight;
 }
 
-// WKNavigationDelegate 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-  
-    //修改字体大小 300%
-    [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
-    
-    //修改字体颜色  #9098b8
-    //    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
-    
-    __block CGFloat webViewHeight;
-    weakObj; //  document.body.scrollHeigh
-    [webView evaluateJavaScript:@"document.body.scrollHeight"
-              completionHandler:^(id result, NSError *_Nullable error) {
-                  //获取页面高度，并重置webview的frame
-                  webViewHeight = [result doubleValue];
-                  dispatch_async(dispatch_get_main_queue(), ^{
-                      __strong typeof (weakSelf) strongSelf = weakSelf;
-                      strongSelf.scrollViewH.constant += webViewHeight;
-                      strongSelf.webViewH.constant = webViewHeight;
-                  });
-     }];
-}
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning]; 
 }
 
 @end

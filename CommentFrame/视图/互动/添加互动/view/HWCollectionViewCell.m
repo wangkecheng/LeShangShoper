@@ -22,7 +22,11 @@
 
 -(void)setModel:(ImgModel *)model{
 	 _model = model;
-	[_profilePhoto setImage:model.image];
+    if ([model isKindOfClass:[UIImage class]]) {
+        [_profilePhoto setImage:(UIImage *)model];
+    }else if([model isKindOfClass:[ImgModel class]]){
+        [_profilePhoto setImage:model.image];
+    }
 	 _closeButton.hidden = NO;
 }
 

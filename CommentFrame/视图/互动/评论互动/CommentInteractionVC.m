@@ -65,6 +65,9 @@
     [_tableview hideSurplusLine];
     _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
 //    _tableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(getPage)];
+    if (_interactionModel) {
+        _interactId = _interactionModel.interactId;
+    }
     [self getPage];
 }
 
@@ -76,7 +79,7 @@
 - (void)getData:(NSInteger)pageIndex {
     _page = pageIndex;
     HDModel *m = [HDModel model];
-	m.interactId = _interactionModel.interactId;
+    m.interactId = _interactId;;
 //    m.pageNumber = [NSString stringFromInt:pageIndex];
     weakObj;
     [BaseServer postObjc:m path:@"/interact/comment/list" isShowHud:YES isShowSuccessHud:NO success:^(id result) {
