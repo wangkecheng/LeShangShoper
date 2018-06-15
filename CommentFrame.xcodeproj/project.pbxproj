@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0319F90E20D2A45C00A9CE79 /* arrowInKeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 0319F90C20D2A45C00A9CE79 /* arrowInKeyboard.png */; };
+		0319F90F20D2A45C00A9CE79 /* WSKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319F90D20D2A45C00A9CE79 /* WSKeyboardView.m */; };
+		0319F91320D2BEB200A9CE79 /* NSString+DeviceBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 0319F91120D2BEB100A9CE79 /* NSString+DeviceBrand.m */; };
 		031C122E2079AAAD004C2452 /* IconPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */; };
 		031C122F2079AAAD004C2452 /* IconPlaceholder1.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C12292079AAAB004C2452 /* IconPlaceholder1.png */; };
 		031C12302079AAAD004C2452 /* IconPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 031C122A2079AAAB004C2452 /* IconPlaceholder.png */; };
@@ -487,6 +490,11 @@
 
 /* Begin PBXFileReference section */
 		02BE82ABC3A20FB8A2F366DB /* Pods-CommentFrameTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommentFrameTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommentFrameTests/Pods-CommentFrameTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0319F90B20D2A45C00A9CE79 /* WSKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSKeyboardView.h; sourceTree = "<group>"; };
+		0319F90C20D2A45C00A9CE79 /* arrowInKeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowInKeyboard.png; sourceTree = "<group>"; };
+		0319F90D20D2A45C00A9CE79 /* WSKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSKeyboardView.m; sourceTree = "<group>"; };
+		0319F91120D2BEB100A9CE79 /* NSString+DeviceBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviceBrand.m"; sourceTree = "<group>"; };
+		0319F91220D2BEB100A9CE79 /* NSString+DeviceBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviceBrand.h"; sourceTree = "<group>"; };
 		031C12282079AAAA004C2452 /* IconPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconPlaceholder@2x.png"; sourceTree = "<group>"; };
 		031C12292079AAAB004C2452 /* IconPlaceholder1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconPlaceholder1.png; sourceTree = "<group>"; };
 		031C122A2079AAAB004C2452 /* IconPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconPlaceholder.png; sourceTree = "<group>"; };
@@ -1200,6 +1208,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0319F90A20D2A45C00A9CE79 /* 键盘输入框 */ = {
+			isa = PBXGroup;
+			children = (
+				0319F90C20D2A45C00A9CE79 /* arrowInKeyboard.png */,
+				0319F90B20D2A45C00A9CE79 /* WSKeyboardView.h */,
+				0319F90D20D2A45C00A9CE79 /* WSKeyboardView.m */,
+			);
+			path = "键盘输入框";
+			sourceTree = "<group>";
+		};
+		0319F91020D2BEB100A9CE79 /* 判断设备型号 */ = {
+			isa = PBXGroup;
+			children = (
+				0319F91220D2BEB100A9CE79 /* NSString+DeviceBrand.h */,
+				0319F91120D2BEB100A9CE79 /* NSString+DeviceBrand.m */,
+			);
+			name = "判断设备型号";
+			path = "../../../../kaupor/CommentFrame/工具/类别/判断设备型号";
+			sourceTree = "<group>";
+		};
 		031C12362079F3C2004C2452 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1644,7 +1672,7 @@
 				208950FF1FFBC31F0060DBD4 /* 设置 */,
 			);
 			name = "个人中心(侧滑视图)";
-			path = "CommentFrame/个人中心(侧滑视图)";
+			path = "CommentFrame/视图/登录注册找回密码/个人中心(侧滑视图)";
 			sourceTree = SOURCE_ROOT;
 		};
 		200D7E941FF742CB00B97979 /* 操作图片类 */ = {
@@ -1823,6 +1851,7 @@
 				03235D032071BF2200200EC1 /* PrivacyVC.h */,
 				03235D042071BF2200200EC1 /* PrivacyVC.m */,
 				03235D052071BF2200200EC1 /* PrivacyVC.xib */,
+				200D7E8C1FF740C900B97979 /* 个人中心(侧滑视图) */,
 			);
 			path = "登录注册找回密码";
 			sourceTree = "<group>";
@@ -1989,6 +2018,7 @@
 		200D7FB51FF7540F00B97979 /* 类别 */ = {
 			isa = PBXGroup;
 			children = (
+				0319F91020D2BEB100A9CE79 /* 判断设备型号 */,
 				180D74C220171D2A00B56E5F /* NSDate+Category.h */,
 				180D74C120171D2A00B56E5F /* NSDate+Category.m */,
 				2090C638200DF46C00CC07F9 /* 扩大按钮点击范围 */,
@@ -2158,7 +2188,6 @@
 				200D7F251FF7434E00B97979 /* 启动页广告 */,
 				2090C624200B15BD00CC07F9 /* 左滑控制器 */,
 				200D7F7D1FF743D200B97979 /* 登录注册找回密码 */,
-				200D7E8C1FF740C900B97979 /* 个人中心(侧滑视图) */,
 				200D7F8D1FF7473A00B97979 /* 首页 */,
 				200D7F991FF7473B00B97979 /* 特价 */,
 				200D7F931FF7473A00B97979 /* 厂家 */,
@@ -2340,6 +2369,7 @@
 		206FA0372000F61100DB7998 /* 输入框 */ = {
 			isa = PBXGroup;
 			children = (
+				0319F90A20D2A45C00A9CE79 /* 键盘输入框 */,
 				206FA0382000F61100DB7998 /* DDTextField.m */,
 				206FA0392000F61100DB7998 /* PHTextView.m */,
 				206FA03B2000F61100DB7998 /* PHTextView.h */,
@@ -2971,7 +3001,7 @@
 				TargetAttributes = {
 					2031F6B01EA99BA30075E7F3 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6BGTAD57K8;
+						DevelopmentTeam = 5S7F827SPH;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -3257,6 +3287,7 @@
 				203F992D2016401900AE85CA /* IQButtonBarArrowLeft@2x.png in Resources */,
 				D278A2262043ED67000EC211 /* xinpin@3x.png in Resources */,
 				200D7EE51FF742CC00B97979 /* AlbumListCell.xib in Resources */,
+				0319F90E20D2A45C00A9CE79 /* arrowInKeyboard.png in Resources */,
 				2068653F2009C429008C50A2 /* DSTableCell.xib in Resources */,
 				D278A2292043ED67000EC211 /* xinpin@2x.png in Resources */,
 				18B542CE2011839500A40C4E /* ic_detail_praise@3x.png in Resources */,
@@ -3494,6 +3525,7 @@
 				186E6E662019E07B00D40E95 /* WebViewController.m in Sources */,
 				2064C54C1FFB5BA60073C2EC /* HomeHeaderCell.m in Sources */,
 				1898B86B20197030005E679F /* DYCityModel.m in Sources */,
+				0319F90F20D2A45C00A9CE79 /* WSKeyboardView.m in Sources */,
 				207418E320066735007C4F36 /* ProductDetailListModel.m in Sources */,
 				186E6E152019D65E00D40E95 /* LWImageBrowserButton.m in Sources */,
 				1898B86720197030005E679F /* DYPickerView.m in Sources */,
@@ -3580,6 +3612,7 @@
 				20A5D8BE1FB98FB300534868 /* HDModel.m in Sources */,
 				200D7EE61FF742CC00B97979 /* AlbumListCell.m in Sources */,
 				2090C636200D865B00CC07F9 /* SpecialOfferListVC.m in Sources */,
+				0319F91320D2BEB200A9CE79 /* NSString+DeviceBrand.m in Sources */,
 				186E6E192019D65E00D40E95 /* LWImageItem.m in Sources */,
 				20DF67DF201C6CDD00E0AD01 /* UserProtocolVC.m in Sources */,
 				2064C5431FFB56F00073C2EC /* NewsHeaderView.m in Sources */,
@@ -3786,7 +3819,7 @@
 				CODE_SIGN_ENTITLEMENTS = CommentFrame/CommentFrame.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6BGTAD57K8;
+				DEVELOPMENT_TEAM = 5S7F827SPH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3822,7 +3855,7 @@
 				CODE_SIGN_ENTITLEMENTS = CommentFrame/CommentFrame.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6BGTAD57K8;
+				DEVELOPMENT_TEAM = 5S7F827SPH;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

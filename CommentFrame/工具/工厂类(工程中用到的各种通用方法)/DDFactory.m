@@ -504,7 +504,7 @@
         /**
          * 移动号段正则表达式
          */
-        NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8]))\\d{8}|(1705)\\d{7}$";
+        NSString *CM_NUM = @"^((13[4-9])|(147)|(15[0-2,7-9])|(178)|(18[2-4,7-8])|(173)|(177))\\d{8}|(1705)\\d{7}$";
         /**
          * 联通号段正则表达式
          */
@@ -519,7 +519,6 @@
         BOOL isMatch2 = [pred2 evaluateWithObject:mobile];
         NSPredicate *pred3 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT_NUM];
         BOOL isMatch3 = [pred3 evaluateWithObject:mobile];
-        
         if (isMatch1 || isMatch2 || isMatch3) {
             return YES;
         }else{

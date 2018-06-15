@@ -57,6 +57,7 @@ typedef enum ViewTagIndentifyer{
 	_vercodeField.delegate = self;
     _userNameField.delegate = self;
     _addressField.delegate = self;
+   [WSKeyboardView numberBoardByField:_phoneField inputBlock:nil backspaceBlock:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
@@ -110,7 +111,7 @@ typedef enum ViewTagIndentifyer{
         [self.view makeToast:@"请同意用户协议和隐私政策"];
         return;
     }
-    if(![DDFactory valiMobile:_phoneField.text]){
+    if(_phoneField.text.length != 11){
         [self.view makeToast:@"手机号格式错误"];
         return;
     }

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +24,6 @@
                 <outlet property="seeNumLbl" destination="ohH-Pa-KBz" id="z7t-oh-Y1z"/>
                 <outlet property="timeLbl" destination="wZT-5m-C9E" id="D3V-yv-lm3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="4jg-Cn-65b" id="yoL-3O-Gdc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -131,22 +131,14 @@
                         <constraint firstItem="wZT-5m-C9E" firstAttribute="leading" secondItem="WGv-dv-WGQ" secondAttribute="leading" id="wq6-SN-gip"/>
                     </constraints>
                 </view>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jg-Cn-65b">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </webView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="zw1-13-eOa" firstAttribute="top" secondItem="4jg-Cn-65b" secondAttribute="bottom" id="NFG-eo-VQR"/>
                 <constraint firstItem="zw1-13-eOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V1A-ux-eDN"/>
-                <constraint firstItem="4jg-Cn-65b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="V3y-NR-1wi"/>
-                <constraint firstItem="4jg-Cn-65b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="abl-zy-jRJ"/>
-                <constraint firstAttribute="trailing" secondItem="4jg-Cn-65b" secondAttribute="trailing" id="d8c-z2-5Y8"/>
                 <constraint firstAttribute="trailing" secondItem="zw1-13-eOa" secondAttribute="trailing" id="jIr-fG-3sV"/>
                 <constraint firstAttribute="bottom" secondItem="zw1-13-eOa" secondAttribute="bottom" id="lNU-91-y5u"/>
             </constraints>
-            <point key="canvasLocation" x="-831" y="-329"/>
+            <point key="canvasLocation" x="-1036" y="-336"/>
         </view>
     </objects>
     <resources>

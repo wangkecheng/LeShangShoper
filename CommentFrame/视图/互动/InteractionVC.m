@@ -343,7 +343,7 @@
     VC.finishComBlock = ^(InteractionModel *interactionModel) {//评论完成 到这里 这里的评论数加1
          __strong typeof (weakSelf) strongSelf = weakSelf;
         interactionModel.commentNumber = [NSString stringFromInt:[model.commentNumber integerValue] + 1];
-//        [strongSelf.tableview reloadData];
+//        [strongSelf.t   ableview reloadData];
         [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:interactionModel]] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
      VC.interactionModel = model;

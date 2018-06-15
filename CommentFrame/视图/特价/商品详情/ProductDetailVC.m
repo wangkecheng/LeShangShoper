@@ -11,7 +11,9 @@
 #import "LWImageBrowserModel.h"
 #import "LWImageBrowser.h"
 #import <WebKit/WebKit.h>
-@interface ProductDetailVC ()<UIWebViewDelegate>
+@interface ProductDetailVC ()<WKNavigationDelegate,WKUIDelegate>
+
+@property (strong, nonatomic)  WKWebView *webView;
 @property (weak, nonatomic) IBOutlet UIView *scrollContentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollContentViewTopMargin;
 
@@ -29,8 +31,6 @@
 
 @property (strong, nonatomic)CollectionModel * detailModel;
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewH;
 
 @end
 
@@ -38,12 +38,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = @"商品详情";
-    _webView.delegate = self;
+	 self.title = @"商品详情";
+    
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+    
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+    
+    _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:wkWebConfig];
+    _webView.navigationDelegate  = self;
+    _webView.UIDelegate = self;
+    [_webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
+    [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    if([[UIDevice currentDevice].systemVersion floatValue] >=9.0) {
+        NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+        NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+        [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        }];
+    }else{
+        NSString*libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES)objectAtIndex:0];
+        NSString*cookiesFolderPath = [libraryPath stringByAppendingString:@"/Cookies"];
+        NSError*errors;
+        [[NSFileManager defaultManager]removeItemAtPath:cookiesFolderPath error:&errors];
+    }
+    
+    [self.scrollContentView addSubview:_webView];
     _webView.userInteractionEnabled = NO ;
     if (_isNeedResetMargin) {
         _scrollContentViewTopMargin.constant = -10;
     }
+    
     [self getPage];
 }
 
@@ -239,19 +267,33 @@
 	}];
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-//    NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'";
-//    [_webView stringByEvaluatingJavaScriptFromString:str];
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
     
-//    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",14.0,[UIColor blackColor]];
-//
-//    [webView stringByEvaluatingJavaScriptFromString:jsString];
- 
-    CGFloat webViewHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue] + 50;
-    _scrollViewH.constant += webViewHeight;
-    _webViewH.constant = webViewHeight;
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+    }
 }
-
+// WKNavigationDelegate 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    weakObj;
+    
+    [webView evaluateJavaScript:@"document.body.scrollHeight" completionHandler:^(id _Nullable result,NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof (weakSelf) strongSelf = weakSelf;
+           CGFloat webViewHeight = [result floatValue];
+            _scrollViewH.constant += webViewHeight;
+            strongSelf.webView.frame = CGRectMake(0, strongSelf.scrollViewH.constant - webViewHeight, SCREENWIDTH, webViewHeight + 50);
+        });
+    }];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    CGPoint p  = [[change objectForKey:@"new"] CGPointValue];
+    CGFloat h = p.y;
+    CGFloat newHeight = _webView.scrollView.contentSize.height;
+    [_webView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+     _webView.frame = CGRectMake(0, _scrollViewH.constant - newHeight, SCREENWIDTH, newHeight);
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; 
 }

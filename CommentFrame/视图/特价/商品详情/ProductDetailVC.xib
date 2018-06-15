@@ -32,8 +32,6 @@
                 <outlet property="titleLbl" destination="vPv-Nd-4k8" id="yJV-Ma-Kox"/>
                 <outlet property="usePlaceLbl" destination="cqo-CE-sLv" id="iUW-ev-9r4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="tkv-Qw-4fq" id="e90-Wl-Lxb"/>
-                <outlet property="webViewH" destination="Og1-4K-uM4" id="3zs-qp-Q0g"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -152,28 +150,18 @@
                                         <constraint firstAttribute="trailing" secondItem="RPK-Nj-8al" secondAttribute="trailing" id="yzj-uG-lV1"/>
                                     </constraints>
                                 </view>
-                                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkv-Qw-4fq">
-                                    <rect key="frame" x="0.0" y="597" width="414" height="1"/>
-                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="Og1-4K-uM4"/>
-                                    </constraints>
-                                </webView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="0qr-sR-CxC" firstAttribute="leading" secondItem="1Zb-c1-gAM" secondAttribute="leading" id="2Lq-if-WJz"/>
                                 <constraint firstAttribute="trailing" secondItem="0qr-sR-CxC" secondAttribute="trailing" id="D9o-ZR-uA7"/>
-                                <constraint firstItem="tkv-Qw-4fq" firstAttribute="top" secondItem="0qr-sR-CxC" secondAttribute="bottom" id="HXO-IO-76l"/>
                                 <constraint firstItem="0qr-sR-CxC" firstAttribute="top" secondItem="zuX-nm-OEG" secondAttribute="bottom" id="N1z-Rf-eSh"/>
                                 <constraint firstAttribute="height" constant="592" id="P1u-oP-LE1"/>
                                 <constraint firstItem="3ZU-t5-p7B" firstAttribute="bottom" secondItem="zuX-nm-OEG" secondAttribute="bottom" constant="-12" id="QSV-xD-33g"/>
                                 <constraint firstAttribute="trailing" secondItem="zuX-nm-OEG" secondAttribute="trailing" id="SL5-QT-fME"/>
-                                <constraint firstItem="tkv-Qw-4fq" firstAttribute="leading" secondItem="1Zb-c1-gAM" secondAttribute="leading" id="SaX-oh-bar"/>
                                 <constraint firstItem="3ZU-t5-p7B" firstAttribute="trailing" secondItem="zuX-nm-OEG" secondAttribute="trailing" constant="-12" id="TaS-7d-RfT"/>
                                 <constraint firstItem="zuX-nm-OEG" firstAttribute="top" secondItem="1Zb-c1-gAM" secondAttribute="top" id="bVF-ME-bLy"/>
                                 <constraint firstItem="zuX-nm-OEG" firstAttribute="leading" secondItem="1Zb-c1-gAM" secondAttribute="leading" id="h62-Hd-rdv"/>
-                                <constraint firstAttribute="trailing" secondItem="tkv-Qw-4fq" secondAttribute="trailing" id="lmI-eB-Nuh"/>
                             </constraints>
                         </view>
                     </subviews>

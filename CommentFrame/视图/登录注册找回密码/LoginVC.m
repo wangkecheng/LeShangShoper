@@ -53,6 +53,7 @@ typedef enum ViewTagIndentifyer{
     if (_isLoginOut) {
         _dissmissBtn.alpha = 0;
     }
+    [WSKeyboardView numberBoardByField:_userField inputBlock:nil backspaceBlock:nil];
 }
 
 - (IBAction)dissMissAction:(id)sender {
@@ -64,6 +65,10 @@ typedef enum ViewTagIndentifyer{
 	_getVercodeBtn.userInteractionEnabled = NO;
     if (_userField.text.length == 0) {
         [self.view makeToast:@"请输入手机号"];
+        return;
+    }
+    if(_userField.text.length != 11){
+        [self.view makeToast:@"手机号格式错误"];
         return;
     }
 	HDModel *m = [HDModel model];

@@ -46,7 +46,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define weakObj       __weak __typeof(self) weakSelf = self
 #define SAFE_BLOCK_CALL(b, p) (b == nil ? : b(p) )
 #define CountDownTime  60
-
+#import "WSKeyboardView.h"
 #import "WSAlertView.h"
 #import "DYPickerView.h"
 #import "WSPHPhotoLibrary.h"
@@ -58,6 +58,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "HDMainTBC.h"
+
+#import "NSString+DeviceBrand.h"
 #import "EaseChineseToPinyin.h"
 //这部分用于从plist文件中解析控制器
 #define ClassName @"className"//控制器名字

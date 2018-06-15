@@ -9,17 +9,17 @@
 
 #import "LosePromiseDetailVC.h"
 #import <WebKit/WebKit.h>
-@interface LosePromiseDetailVC ()<UIWebViewDelegate>
+@interface LosePromiseDetailVC ()<WKNavigationDelegate,WKUIDelegate>
 
+@property (strong, nonatomic)  WKWebView *webView;
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userInfoContentVY;//顶部视图的Y值
+
 
 @property (weak, nonatomic) IBOutlet UILabel *paridseNumLbl;//点赞数
 @property (weak, nonatomic) IBOutlet UIButton *paridseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *seeNumLbl;//查看数
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -34,9 +34,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _webView.navigationDelegate = self;
-    _webView.delegate = self;
+ 
 	_webView.backgroundColor = [UIColor whiteColor];
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+    
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+    CGFloat barH = 64;
+    if ([[NSString getCurrentDeviceModel] containsString:@"x"]) {
+        barH += 22;
+    }
+    _webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - barH -75) configuration:wkWebConfig];
+    _webView.navigationDelegate  = self;
+    _webView.UIDelegate = self;
+    [self.view addSubview:_webView];
 	HDModel * m = [HDModel model];
     m.did = _model.did;
 	weakObj;
@@ -102,34 +117,24 @@
     }];
 }
 
-//- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
-//    
-//    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-//        
-//        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
-//        
-//        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
-//        
-//    }
-//}
-// WKNavigationDelegate 页面加载完成之后调用
-//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
-//    //修改字体大小 300%
-//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'" completionHandler:nil];
-//
-//    //修改字体颜色  #9098b8
-////    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
-//
-//}
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '120%'";
-        [_webView stringByEvaluatingJavaScriptFromString:str];
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
     
-    //    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",14.0,[UIColor blackColor]];
-    //
-    //    [webView stringByEvaluatingJavaScriptFromString:jsString];
-    
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust]; completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+        
+    }
 }
+//WKNavigationDelegate 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    //修改字体大小 300%
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'" completionHandler:nil];
+
+    //修改字体颜色  #9098b8
+//    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
