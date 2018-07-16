@@ -22,12 +22,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeholder;
 @property (weak, nonatomic) IBOutlet UIView *commentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *commentViewBottom;
+    @property (weak, nonatomic) IBOutlet UIButton *publishBtn;
+    
 @end
 
 @implementation CommentInteractionVC
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    _publishBtn.layer.cornerRadius = 19;
 	//注册键盘通知
 	[self registeKeyboardNotifications];
 	  [IQKeyboardManager sharedManager].enableAutoToolbar = NO;//不显示工具条

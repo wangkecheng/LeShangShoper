@@ -85,7 +85,7 @@
                 <outlet property="pageContro" destination="U07-aE-Rhk" id="x3o-K7-aGy"/>
                 <outlet property="scrollView" destination="UfT-sL-YjM" id="HdZ-57-OOv"/>
             </connections>
-            <point key="canvasLocation" x="-708" y="-337"/>
+            <point key="canvasLocation" x="-830" y="-346"/>
         </tableViewCell>
     </objects>
 </document>

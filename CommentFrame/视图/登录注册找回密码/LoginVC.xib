@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="dissmissBtn" destination="74f-Q2-ClU" id="vUo-9f-FHp"/>
                 <outlet property="getVercodeBtn" destination="zF7-oZ-Bv0" id="nbv-iO-yr2"/>
+                <outlet property="inputView" destination="4uZ-zP-hAO" id="t5E-Sj-uGV"/>
                 <outlet property="loginBtn" destination="XLi-SE-0ah" id="Jjq-Is-VoZ"/>
                 <outlet property="time" destination="tWa-V4-M8w" id="A4K-hs-P86"/>
                 <outlet property="userField" destination="tcN-fh-P0d" id="1AJ-UN-VEP"/>
@@ -203,10 +204,6 @@
                                                 <constraint firstAttribute="height" constant="120" id="aGI-0N-oSp"/>
                                                 <constraint firstAttribute="bottom" secondItem="5KQ-aa-kNm" secondAttribute="bottom" id="z7W-gj-9Az"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                                            </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLi-SE-0ah">
                                             <rect key="frame" x="20" y="230" width="335" height="44"/>

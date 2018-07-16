@@ -48,9 +48,6 @@
                             <constraint firstAttribute="width" secondItem="I6n-mU-ILg" secondAttribute="height" multiplier="163:163" id="Hvg-p3-N7F"/>
                             <constraint firstAttribute="width" constant="35" id="WUQ-CZ-gZw"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GR6-zU-YtJ">
                         <rect key="frame" x="10" y="110.5" width="400" height="1"/>
@@ -77,9 +74,6 @@
                     <constraint firstAttribute="trailing" secondItem="sfD-Cw-TbA" secondAttribute="trailing" constant="12" id="xfm-Jr-JPu"/>
                 </constraints>
             </tableViewCellContentView>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value=""/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imgView" destination="sfD-Cw-TbA" id="zwm-Lk-0CV"/>
                 <outlet property="timeLbl" destination="SuA-e9-CDv" id="DLT-sN-3BW"/>

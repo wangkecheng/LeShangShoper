@@ -57,7 +57,6 @@
          */
         _sheetContentView = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - sheetH, [UIScreen mainScreen].bounds.size.width, sheetH)];
         _sheetContentView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, [UIScreen mainScreen].bounds.size.height+sheetH/2.0);
-        
         [self addSubview: self.coverView];
         [self addSubview:_sheetContentView];
         [_sheetContentView addSubview: self.toolbar];
@@ -158,10 +157,14 @@
     UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
     [keywindow addSubview:self];//将其自身添加到_window上去
     __weak typeof (self) weakSelf = self;
+    CGFloat centerY  = [UIScreen mainScreen].bounds.size.height-125;
+    if([[[UIDevice currentDevice] systemVersion] floatValue] < 9.0){
+        centerY += 20;
+    }
     [UIView animateKeyframesWithDuration:0.3 delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
         __strong typeof (weakSelf) strongSelf = weakSelf;
         strongSelf.coverView.alpha = 1.0;
-        strongSelf.sheetContentView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, [UIScreen mainScreen].bounds.size.height-125);
+        strongSelf.sheetContentView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0, centerY);
     } completion:^(BOOL finished) {
         if (finished) {
             

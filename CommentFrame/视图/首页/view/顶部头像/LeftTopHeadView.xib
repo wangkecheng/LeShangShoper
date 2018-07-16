@@ -51,9 +51,6 @@
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="icon_touxiang.png"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="8"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="headerViewClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="LUh-yW-Agm"/>
                     </connections>
@@ -91,7 +88,7 @@
                 <outlet property="nameLbl" destination="J9l-nC-3SG" id="Rhy-Qp-0YP"/>
                 <outlet property="rankLbl" destination="Kpg-ul-668" id="Pvu-Us-kat"/>
             </connections>
-            <point key="canvasLocation" x="-5328.5" y="-1651.5"/>
+            <point key="canvasLocation" x="-5516" y="-1673"/>
         </view>
     </objects>
     <resources>

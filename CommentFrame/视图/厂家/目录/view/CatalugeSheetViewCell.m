@@ -18,7 +18,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
+    _img.layer.cornerRadius = 4;
 }
 
 -(void)setModel:(BrandsModel *)model{

@@ -45,7 +45,7 @@
     searchField.layer.cornerRadius = 18;
     searchField.layer.masksToBounds = YES;
     [searchField setTextColor:UIColorFromHX(0xaaaaaa)];
-    searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+    searchField.font=[UIFont fontWithName:@"PingFangSC-Medium" size:13]==nil?[UIFont systemFontOfSize:13]:[UIFont fontWithName:@"PingFangSC-Medium" size:13];
     searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
     UIImage *image = [UIImage imageNamed:@"ic_home_search"];
     

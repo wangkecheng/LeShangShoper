@@ -25,9 +25,9 @@
 	//文字样式
 	//_noteTextView.maxTextLength = 400;
 	_noteTextView.delegate = self;
-    [_noteTextView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [_noteTextView setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
     [_noteTextView setPlaceholderColor:UIColorFromHX(0xcacacf)];
-    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 	NSString *version =  [NSString stringWithFormat:@"%@.%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"],[infoDictionary objectForKey:@"CFBundleVersion"]];
 	_noteTextView.placeholder = [NSString stringWithFormat:@"你正在使用%@版,欢迎反馈宝贵意见",version];

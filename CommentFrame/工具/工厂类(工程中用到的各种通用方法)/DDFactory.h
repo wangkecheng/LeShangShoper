@@ -70,8 +70,8 @@
 +(UIImage *)circleImage:(UIImage *)image size:(CGSize)size;
 
 //高度不变获取宽度
-+(CGFloat)autoWByText:(NSString *)text Font:(CGFloat)font H:(CGFloat)H;
-+(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font W:(CGFloat)W;
++(CGFloat)autoWByText:(NSString *)text Font:(CGFloat)font fontSize:(NSInteger)size H:(CGFloat)H;
++(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font fontSize:(NSInteger)size W:(CGFloat)W;
 
 + (CGSize)getImageSizeWithURL:(id)URL;
 //判断手机号码格式是否正确

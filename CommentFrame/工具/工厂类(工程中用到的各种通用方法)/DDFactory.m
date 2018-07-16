@@ -440,7 +440,7 @@
 }
 
 //高度不变获取宽度
-+(CGFloat)autoWByText:(NSString *)text Font:(CGFloat)font H:(CGFloat)H{
++(CGFloat)autoWByText:(NSString *)text Font:(CGFloat)font fontSize:(NSInteger)size H:(CGFloat)H{
 	if (text.length == 0  ) {
 		return  0;
 	}
@@ -448,14 +448,22 @@
 	return rect.size.width;
 }
 
-+(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font W:(CGFloat)W{
++(CGFloat)autoHByText:(NSString *)text Font:(UIFont *)font fontSize:(NSInteger)size W:(CGFloat)W{
 	if (text.length == 0  )  {
 		return  0;
 	}
 	NSStringDrawingOptions opts =NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading;
 	NSMutableParagraphStyle*style = [[NSMutableParagraphStyle alloc]init];
 	[style setLineBreakMode:NSLineBreakByWordWrapping];
-	NSDictionary*attribute =@{NSFontAttributeName:font,NSParagraphStyleAttributeName:style};
+    NSMutableDictionary * attribute = [NSMutableDictionary dictionary];
+    
+    if(!font){
+       [attribute  setObject:[UIFont systemFontOfSize:size] forKey:NSFontAttributeName];
+       [attribute  setObject:style forKey:NSParagraphStyleAttributeName];
+    }else{
+     [attribute addEntriesFromDictionary:@{NSFontAttributeName:font,NSParagraphStyleAttributeName:style}];
+    }
+ 
 	CGRect rect=  [text boundingRectWithSize:CGSizeMake(W,MAXFLOAT) options: opts attributes:attribute context:nil];
 	return rect.size.height;
 }

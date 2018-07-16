@@ -21,7 +21,7 @@
 
 //当遇到字段是系统保留字段(请求数据的对象属性 不能是系统保留字段) 就用这个方法
 + (void)postDict:(NSDictionary *)dict path:(NSString *)path isShowHud:(BOOL)isShowHud isShowSuccessHud:(BOOL)isShowSuccessHud isShowFieldHud:(BOOL)isShowFieldHud success:(successBlock)success failed:(failedBlock)failed{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+  AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
 	securityPolicy.validatesDomainName = NO;
 	securityPolicy.allowInvalidCertificates = YES;

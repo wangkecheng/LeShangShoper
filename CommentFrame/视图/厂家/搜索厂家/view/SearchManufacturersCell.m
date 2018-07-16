@@ -17,7 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _img.layer.cornerRadius = 5;
 }
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;

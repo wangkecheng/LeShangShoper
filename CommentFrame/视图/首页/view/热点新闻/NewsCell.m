@@ -17,6 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _newsImg.layer.cornerRadius = 3;
 }
 -(void)setNewsModel:(LosePromissAndNewsModel *)newsModel{
 	_newsModel = newsModel;

@@ -19,7 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-  
+    _headBtn.layer.cornerRadius = 17.5;
 }
 -(void)setModel:(CommentInteractionModel *)model{
     _model = model;
@@ -39,7 +39,7 @@
 
 +(CGFloat)cellHByModel:(CommentInteractionModel *)model{
 	CGFloat H = 84;
-	H += [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:14] W:SCREENWIDTH - 82];
+    H += [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFangSC-Medium" size:14] fontSize:15 W:SCREENWIDTH - 82];
 	return H;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

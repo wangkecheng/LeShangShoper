@@ -41,7 +41,7 @@ UICollectionViewDelegateFlowLayout>
     [super awakeFromNib];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _headerBtn.layer.cornerRadius = 17.5; _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.scrollEnabled  = NO;
 }
 
@@ -219,7 +219,7 @@ UICollectionViewDelegateFlowLayout>
 
 +(CGFloat)cellHByModel:(InteractionModel *)model{
 	CGFloat H = 45 + 10 + 40;
-    CGFloat titltH = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:15] W:SCREENWIDTH - 24];
+    CGFloat titltH = [DDFactory autoHByText:model.content Font:[UIFont fontWithName:@"PingFangSC-Medium" size:15] fontSize:15 W:SCREENWIDTH - 24];
     model.contentH = titltH;
     if (titltH > 60) {//大于60 那么需要有个 查看全部的按钮
         model.needHideSeeAllBtn = NO;//不能隐藏查看全部按钮

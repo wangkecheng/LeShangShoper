@@ -31,9 +31,6 @@
                             <constraint firstAttribute="width" secondItem="Wij-qP-REb" secondAttribute="height" multiplier="15:15" id="1AP-85-jPV"/>
                             <constraint firstAttribute="width" constant="9" id="CRj-rj-KaJ"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="4.5"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSP-R3-XFd">
                         <rect key="frame" x="51" y="43.5" width="294" height="0.0"/>
@@ -63,8 +60,9 @@
             <connections>
                 <outlet property="lineView" destination="C8G-ub-EhS" id="y67-R2-7Z2"/>
                 <outlet property="nameLbl" destination="hSP-R3-XFd" id="4Go-Rd-bpM"/>
+                <outlet property="pointView" destination="Wij-qP-REb" id="Nq5-oh-FAH"/>
             </connections>
-            <point key="canvasLocation" x="8" y="-79"/>
+            <point key="canvasLocation" x="-204.5" y="-97.5"/>
         </tableViewCell>
     </objects>
 </document>

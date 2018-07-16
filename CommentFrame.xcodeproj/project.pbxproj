@@ -217,7 +217,6 @@
 		18B543442011839500A40C4E /* ic_top_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B542CC2011839500A40C4E /* ic_top_add@3x.png */; };
 		18C0C0CC2024067400C900BE /* NotifyCenterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CA2024067400C900BE /* NotifyCenterTool.m */; };
 		18C0C0CF20240D1D00C900BE /* ImagePrivilegeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0C0CE20240D1D00C900BE /* ImagePrivilegeTool.m */; };
-		18C0C0D120240EB200C900BE /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C0C0D020240EB100C900BE /* UserNotifications.framework */; };
 		18C4464720283DDC004E8669 /* MyInteractionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464520283DDC004E8669 /* MyInteractionVC.m */; };
 		18C4464820283DDC004E8669 /* MyInteractionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C4464620283DDC004E8669 /* MyInteractionVC.xib */; };
 		18C4465020284702004E8669 /* SCIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C4464B20284702004E8669 /* SCIndexView.m */; };
@@ -1164,7 +1163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18C0C0D120240EB200C900BE /* UserNotifications.framework in Frameworks */,
 				2064C55D1FFB679F0073C2EC /* MobileCoreServices.framework in Frameworks */,
 				20DDE2CD1EA9B2F100E4CC04 /* libsqlite3.tbd in Frameworks */,
 				2079EB0E1EA9BA2C004DE68B /* ImageIO.framework in Frameworks */,
@@ -3817,6 +3815,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CommentFrame/CommentFrame.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haikun Yi (T226KXWDU8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5S7F827SPH;
@@ -3853,6 +3852,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CommentFrame/CommentFrame.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Haikun Yi (T226KXWDU8)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5S7F827SPH;

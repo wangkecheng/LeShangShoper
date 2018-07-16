@@ -41,9 +41,6 @@
                                 <constraint firstAttribute="width" constant="35" id="6iK-ij-4VU"/>
                             </constraints>
                             <state key="normal" image="icon_touxiang.png"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
-                            </userDefinedRuntimeAttributes>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGv-dv-WGQ">
                             <rect key="frame" x="55" y="15" width="205" height="21"/>
@@ -138,7 +135,7 @@
                 <constraint firstAttribute="trailing" secondItem="zw1-13-eOa" secondAttribute="trailing" id="jIr-fG-3sV"/>
                 <constraint firstAttribute="bottom" secondItem="zw1-13-eOa" secondAttribute="bottom" id="lNU-91-y5u"/>
             </constraints>
-            <point key="canvasLocation" x="-1036" y="-336"/>
+            <point key="canvasLocation" x="-1144" y="-330"/>
         </view>
     </objects>
     <resources>

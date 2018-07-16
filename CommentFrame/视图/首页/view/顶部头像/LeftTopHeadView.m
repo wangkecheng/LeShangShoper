@@ -25,13 +25,14 @@
     view.rankLbl.layer.cornerRadius = 3;
 //  view.rankLbl.layer.borderWidth = 1;
     view.rankLbl.layer.masksToBounds = YES;
+    view.headerBtn.layer.cornerRadius = 8;
 //  view.rankLbl.layer.borderColor = UIColorFromRGB(251, 142, 0).CGColor;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(headerViewClick)];
     [view addGestureRecognizer:tap];
     
     [[DDFactory factory] addObserver:view selector:@selector(setUserInfo) channel:@"ReInitUserInfo"];//发送通知，重新更改用户信息
      view.frame = frame;
-	return view;
+	  return view;
 }
 
 -(void)setUserInfo{

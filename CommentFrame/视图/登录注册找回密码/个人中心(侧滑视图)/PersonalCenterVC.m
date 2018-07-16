@@ -55,7 +55,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.view.frame = [UIScreen mainScreen].bounds;
-
+    _rankLbl.layer.cornerRadius = 3;
 	//设置ON一边的背景颜色，默认是绿色
 	_switchSex.onTintColor =   UIColorFromRGB(44, 155, 234);
 	//设置滑块颜色
@@ -64,7 +64,7 @@
 	_switchSex.layer.borderColor  = UIColorFromRGB(44, 155, 234).CGColor;
 	_switchSex.layer.cornerRadius = CGRectGetHeight(_switchSex.frame)/2;
 	_switchSex.layer.masksToBounds = YES;
-	
+  _headerBtn.layer.cornerRadius = 17.5;
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headerViewClick)];
 	[_topView addGestureRecognizer:tap];
 	weakObj;

@@ -46,13 +46,13 @@ UICollectionViewDelegateFlowLayout>
 	self.title = @"添加互动";
 	
     UIButton *publishBtn = [self addRightBarButtonItemWithTitle:@"发布" action:@selector(publishAction)];
-    publishBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:14] ;
+    publishBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14] ==nil? [UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14];
     [publishBtn setTitleColor:UIColorFromHX(0x1393fc) forState:0];
 	
 	//文字样式 
-    [_noteTextView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]]; 
+    [_noteTextView setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
     [_noteTextView setPlaceholderColor:UIColorFromHX(0xcacacf)];
-    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [_noteTextView setPlaceholderFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
     _noteTextView.maxTextLength = 500;
 	_noteTextView.delegate = self;
 	_noteTextView.placeholder= @"这一刻的想法...";

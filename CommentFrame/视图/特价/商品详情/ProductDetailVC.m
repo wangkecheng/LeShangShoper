@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	 self.title = @"商品详情";
-    
+    _indicatorLbl.layer.cornerRadius = 20;
     NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
     
     WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
@@ -169,8 +169,8 @@
     if (![_detailModel.des containsString:@"<"]) {
         [desStr appendString:@"<p class=\"one-p\" style=\"margin: 0px 0px 2em; padding: 2px; line-height: 2.2; font-family: &quot;Microsoft Yahei&quot;, Avenir, &quot;Segoe UI&quot;, &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 18px;\">"];
         [desStr appendString:[DDFactory getString:_detailModel.des withDefault:@""]];
-        [desStr appendString:@"</p>"];
-        _scrollViewH.constant +=  [DDFactory autoHByText:_detailModel.des Font:[UIFont fontWithName:@"PingFang-SC-Medium" size:18] W:SCREENWIDTH];
+        [desStr appendString:@"</p>"]; 
+        _scrollViewH.constant +=  [DDFactory autoHByText:_detailModel.des Font:[UIFont fontWithName:@"PingFangSC-Medium" size:18] fontSize:18 W:SCREENWIDTH];
     }else{
         [desStr appendString:[DDFactory getString:_detailModel.des withDefault:@""]];
         desStr = [NSString stringWithFormat:@"<html> \n"

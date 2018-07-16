@@ -31,9 +31,6 @@
                             <constraint firstAttribute="width" secondItem="pvh-9H-5Ay" secondAttribute="height" multiplier="5:5" id="NJW-hd-mQB"/>
                             <constraint firstAttribute="width" constant="35" id="Qtk-3y-9al"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="4"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sse-hu-bKN">
                         <rect key="frame" x="67" y="74.5" width="279" height="0.0"/>
@@ -65,7 +62,7 @@
                 <outlet property="img" destination="pvh-9H-5Ay" id="oxG-zn-Urx"/>
                 <outlet property="titleLbl" destination="sse-hu-bKN" id="txd-oA-VVO"/>
             </connections>
-            <point key="canvasLocation" x="-429" y="-68"/>
+            <point key="canvasLocation" x="-543" y="-95"/>
         </tableViewCell>
     </objects>
 </document>

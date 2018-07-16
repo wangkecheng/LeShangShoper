@@ -301,7 +301,8 @@
             
             model.giveNumber = [NSString stringFromInt:[model.giveNumber integerValue] + 1];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [strongSelf.tableview reloadData];
+//                [strongSelf.tableview reloadSections:[NSIndexSet indexSetWithIndex:[strongSelf.arrModel indexOfObject:model]] withRowAnimation:UITableViewRowAnimationAutomatic];
             });
 		} failed:^(NSError *error) {
 			

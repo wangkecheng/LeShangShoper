@@ -26,12 +26,12 @@
 	view.textView.layer.borderColor = UIColorFromHX(0x808080).CGColor;
 	
 	//文字样式
-	[view.textView setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [view.textView setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14] == nil? [UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
 	//_noteTextView.maxTextLength = 400;
 	view.textView.delegate = view;
 	view.textView.font = [UIFont boldSystemFontOfSize:14];
 	[view.textView setPlaceholderColor:UIColorFromHX(0xcacacf)];
-    [view.textView setPlaceholderFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [view.textView setPlaceholderFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
 	[view.textView setPlaceholderOpacity:1];
 	if (type == TypeUserName) {
 		view.titleLbl.text = @"更改姓名";

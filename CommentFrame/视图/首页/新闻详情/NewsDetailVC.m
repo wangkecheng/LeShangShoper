@@ -8,7 +8,7 @@
 @interface NewsDetailVC ()<WKNavigationDelegate,WKUIDelegate>
  
 @property (strong, nonatomic)  WKWebView *webView;
-
+    @property (strong, nonatomic) NSString * htmlStr;
 @end
 
 @implementation NewsDetailVC
@@ -71,6 +71,7 @@
                                "</script>%@"
                                "</body>"
                                "</html>",result[@"data"][@"content"]];
+            strongSelf.htmlStr = result[@"data"][@"content"];
             [strongSelf.webView loadHTMLString:htmls baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
         });
     } failed:^(NSError *error) {
@@ -86,10 +87,14 @@
           completionHandler(NSURLSessionAuthChallengeUseCredential,card);
     }
 }
-// WKNavigationDelegate 页面加载完成之后调用
+// WKNavigationDelegate 页面加载完成之后调用 player.html
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     //修改字体大小 300%
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '80%'" completionHandler:nil];
+    if([_htmlStr containsString:@"player.html"]){
+        [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'" completionHandler:nil];
+    }else{
+       [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '80%'" completionHandler:nil];
+    }
     //修改字体颜色  #9098b8
     // [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];
 }

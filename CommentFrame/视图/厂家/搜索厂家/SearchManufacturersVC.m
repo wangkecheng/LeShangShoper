@@ -37,7 +37,7 @@
 	[DDFactory removeSearhBarBack:_searchBar];
     UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
     [searchField setValue:UIColorFromHX(0xaaaaaa) forKeyPath:@"_placeholderLabel.textColor"];
-    searchField.font=[UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+    searchField.font=[UIFont fontWithName:@"PingFangSC-Medium" size:13] == nil? [UIFont systemFontOfSize:13]:[UIFont fontWithName:@"PingFangSC-Medium" size:13];
     //    [searchField setBackground:[DDFactory imageWithColor:UIColorFromRGB(228, 183, 20)]];
     //    [searchField setBackground:[DDFactory imageWithColor:[UIColor redColor]]];
     searchField.backgroundColor= UIColorFromHX(0xf1f1f1);
@@ -58,7 +58,7 @@
 	self.navigationItem.titleView = _searchBar;
   
     UIButton * rightBtnBar =  [self addRightBarButtonItemWithTitle:@"取消" action:@selector(back)];
-    [rightBtnBar.titleLabel setFont:[UIFont fontWithName:@"PingFang-SC-Medium" size:14]];
+    [rightBtnBar.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:14]==nil?[UIFont systemFontOfSize:14]:[UIFont fontWithName:@"PingFangSC-Medium" size:14]];
 	_arrModel = [NSMutableArray array];
 	[_tableView registerNib:[UINib nibWithNibName:SearchManufacturersCell_ bundle:nil] forCellReuseIdentifier:SearchManufacturersCell_];
 	

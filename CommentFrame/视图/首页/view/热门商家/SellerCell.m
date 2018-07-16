@@ -60,7 +60,7 @@
         [btn sd_setImageWithURL:IMGURL(model.logoUrl) forState:0 placeholderImage:IMG(@"icon_touxiang") options:SDWebImageAllowInvalidSSLCertificates];
 		[btn setTitle:[DDFactory getString:model.name   withDefault:@"未知"] forState:0]; 
 		 btn.titleLabel.textAlignment = 1;
-         btn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];;
+      btn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13]==nil?[UIFont systemFontOfSize:13]:[UIFont fontWithName:@"PingFangSC-Medium" size:13];
 		[btn setTitleColor:UIColorFromHX(0x666666) forState:0];
 		 btn.tag = i;
 		[btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -70,7 +70,7 @@
 	_pageContro.numberOfPages = pageCount;
 	_pageContro.currentPage = 0; 
 	_pageContro.pageIndicatorTintColor = UIColorFromHX(0xdcdcdc);
-	_pageContro.currentPageIndicatorTintColor = UIColorFromHX(0x1393fc);
+//    _pageContro.currentPageIndicatorTintColor = UIColorFromRGB(19, 147, 252);
 	_scrollView.showsHorizontalScrollIndicator = NO;
 	_scrollView.pagingEnabled = YES;
     _scrollView.pagingEnabled = YES;

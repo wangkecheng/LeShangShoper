@@ -12,13 +12,14 @@
 @interface ManufacturersCell()
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
-
+    @property (weak, nonatomic) IBOutlet UIView *pointView;
+    
 @end
 @implementation ManufacturersCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _pointView.layer.cornerRadius = 4.5;
 }
 -(void)setModel:(ManufacturersModel *)model{
 	_model = model;

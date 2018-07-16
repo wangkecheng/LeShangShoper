@@ -18,7 +18,7 @@
     [super viewDidLoad]; 
     //设置NavigationBar背景颜色
     [self.navigationBar setBackgroundImage:[DDFactory imageWithColor: [UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromHX(0x222222),NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Medium" size:18]}];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(34, 34, 34),NSFontAttributeName:[UIFont systemFontOfSize:18]}];
     self.navigationBar.opaque = NO;
     self.navigationBar.translucent = NO;
     self.view.translatesAutoresizingMaskIntoConstraints = YES;

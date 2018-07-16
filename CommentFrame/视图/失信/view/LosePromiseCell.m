@@ -11,7 +11,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
-
+    @property (weak, nonatomic) IBOutlet UIImageView *biaoZhiImg;
+    
 @end
 @implementation LosePromiseCell
 
@@ -27,6 +28,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _biaoZhiImg.layer.cornerRadius = 17.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

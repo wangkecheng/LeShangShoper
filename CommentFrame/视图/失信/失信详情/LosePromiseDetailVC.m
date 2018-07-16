@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *paridseNumLbl;//点赞数
 @property (weak, nonatomic) IBOutlet UIButton *paridseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *seeNumLbl;//查看数
-
+    @property (strong, nonatomic)NSString * htmlStr;
 @end
 
 @implementation LosePromiseDetailVC
@@ -34,9 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-	_webView.backgroundColor = [UIColor whiteColor];
-    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    _headBtn.layer.cornerRadius = 17.5;
+	  _webView.backgroundColor = [UIColor whiteColor];
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta); var imgs = document.getElementsByTagName('img');for (var i in imgs){imgs[i].style.maxWidth='100%';imgs[i].style.height='auto';}";
     
     WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     WKUserContentController *wkUController = [[WKUserContentController alloc] init];
@@ -76,7 +76,7 @@
 	[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	_timeLbl.text = [formatter stringFromDate:confromTimesp];
 	
-    NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+    NSString *htmls = model.content;[NSString stringWithFormat:@"<html> \n"
                        "<head> \n"
                        "<style type=\"text/css\"> \n"
                        "body {font-size:15px;}\n"
@@ -94,6 +94,7 @@
                        "</script>%@"
                        "</body>"
                        "</html>",model.content];
+    _htmlStr = model.content;
 	[_webView loadHTMLString:htmls baseURL:[NSURL URLWithString:@"https://120.79.169.197:3000"]];
 	[_paridseBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:30];
 	_paridseNumLbl.text = [DDFactory getString:model.giveNumber  withDefault:@"0"];
@@ -128,7 +129,11 @@
 //WKNavigationDelegate 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     //修改字体大小 300%
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'" completionHandler:nil];
+    if([_htmlStr containsString:@"player.html"]){
+        [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '180%'" completionHandler:nil];
+    }else{
+        [webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '80%'" completionHandler:nil];
+    }
 
     //修改字体颜色  #9098b8
 //    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#222222'" completionHandler:nil];

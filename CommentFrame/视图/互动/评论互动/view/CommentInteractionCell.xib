@@ -49,9 +49,6 @@
                             <constraint firstAttribute="width" constant="35" id="m7D-Zq-Sm7"/>
                         </constraints>
                         <state key="normal" image="icon_touxiang.png"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="headerBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kPK-2l-GdM"/>
                         </connections>

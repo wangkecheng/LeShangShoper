@@ -68,9 +68,6 @@
                                     <constraint firstAttribute="width" secondItem="3l3-Iw-jry" secondAttribute="height" multiplier="4:4" id="rIE-z0-wjV"/>
                                 </constraints>
                                 <state key="normal" image="icon_touxiang.png"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="cornerRadius" value="17.5"/>
-                                </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9P-xj-nk1">
                                 <rect key="frame" x="51" y="16" width="491" height="21"/>
